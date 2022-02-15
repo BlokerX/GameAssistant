@@ -1,0 +1,30 @@
+﻿<local:WidgetBase x:Class="NewGameAssistant.Widgets.PictureWidget"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:NewGameAssistant.Widgets" 
+                  xmlns:widgetmodels="clr-namespace:NewGameAssistant.WidgetModels"
+                  mc:Ignorable="d"
+                  Background="Transparent" AllowsTransparency="True" WindowStyle="None" 
+                  Title="{Binding Title}" 
+                  IsDragActive="{Binding IsDragActive}" 
+                  ResizeMode="{Binding ResizeMode}"
+                  Width="{Binding Width, Mode=TwoWay}"
+                  Height="{Binding Height, Mode=TwoWay}"
+                  Left="{Binding ScreenPositionX, Mode=TwoWay}" 
+                  Top="{Binding ScreenPositionY, Mode=TwoWay}">
+
+    <local:WidgetBase.DataContext>
+        <widgetmodels:PictureModel/>
+    </local:WidgetBase.DataContext>
+
+    <Grid>
+        
+        <Grid Background="{Binding BackgroundColor}" Opacity="{Binding BackgroundOpacity}"/>
+
+        <Image Source="{Binding ImageSource}"/>
+
+    </Grid>
+    
+</local:WidgetBase>
