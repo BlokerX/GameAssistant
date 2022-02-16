@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using NewGameAssistant.Services;
+using NewGameAssistant.Widgets;
+using System.IO;
 using System.Windows;
 
 namespace NewGameAssistant
@@ -12,15 +14,22 @@ namespace NewGameAssistant
         {
             base.OnStartup(e);
             SelectDisks();
+            AppFileSystem.RegisterFileSystem(
+                nameof(ClockWidget),
+                nameof(PictureWidget)
+                );
         }
 
+        /// <summary>
+        /// Set DiskName to default disk.
+        /// </summary>
         private static void SelectDisks()
         {
             foreach (var drive in DriveInfo.GetDrives())
             {
                 foreach (var directory in Directory.GetDirectories(drive.Name))
                 {
-                    if (directory == Path.Combine(drive.Name,"Users"))
+                    if (directory == Path.Combine(drive.Name, "Users"))
                     {
                         DiskName = drive.Name;
                         goto END;
@@ -30,14 +39,9 @@ namespace NewGameAssistant
         END:;
         }
 
-        private static string _diskName;
         /// <summary>
-        /// Name of disc with users dire.
+        /// Name of disc that has users dire.
         /// </summary>
-        public static string DiskName
-        {
-            get => _diskName;
-            set => _diskName = value;
-        }
+        public static string DiskName { get; private set; }
     }
 }

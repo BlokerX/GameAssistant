@@ -21,18 +21,18 @@ namespace NewGameAssistant
 
         private void SaveConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            WidgetCreatorMenager<ClockWidget, ClockModel>.SaveWidgetConfigurationInFile(someClockWidget, "clock_widget_test.json");
-            WidgetCreatorMenager<PictureWidget, PictureModel>.SaveWidgetConfigurationInFile(somePictureWidget, "picture_widget_test.json");
+            WidgetMenager<ClockWidget, ClockModel>.SaveWidgetConfigurationInFile(someClockWidget);
+            WidgetMenager<PictureWidget, PictureModel>.SaveWidgetConfigurationInFile(somePictureWidget);
         }
 
         private void DownloadConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            if (someClockWidget != null && WidgetCreatorMenager<ClockWidget, ClockModel>.DownloadWidgetConfigurationFromFile(out ClockModel cm, "clock_widget_test.json"))
+            if (someClockWidget != null && WidgetMenager<ClockWidget, ClockModel>.DownloadWidgetConfigurationFromFile(out ClockModel cm))
                 someClockWidget.DataContext = cm;
             else
                 MessageBox.Show("Not found clock widget's configuration file or widget has been null.", "Failed download configuration");
 
-            if (somePictureWidget != null && WidgetCreatorMenager<PictureWidget, PictureModel>.DownloadWidgetConfigurationFromFile(out PictureModel pm, "picture_widget_test.json"))
+            if (somePictureWidget != null && WidgetMenager<PictureWidget, PictureModel>.DownloadWidgetConfigurationFromFile(out PictureModel pm))
                 somePictureWidget.DataContext = pm;
             else
                 MessageBox.Show("Not found picture widget's configuration file or widget has been null.", "Failed download configuration");
