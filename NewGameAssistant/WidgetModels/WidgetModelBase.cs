@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
@@ -10,6 +12,25 @@ namespace NewGameAssistant.WidgetModels
     /// </summary>
     internal abstract class WidgetModelBase : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public WidgetModelBase()
+        {
+            CheckDiresArchitecture();
+        }
+
+        private static void CheckDiresArchitecture()
+        {
+            WidgetsConfigurationsMainDire = Path.Combine(App.DiskName, "Users", Environment.UserName, Application.ResourceAssembly.GetName().Name);
+            // todo tu skończyłem
+        }
+
+        /// <summary>
+        /// Path to main dire of app informations and save configurations.
+        /// </summary>
+        public static string WidgetsConfigurationsMainDire;
+
         // Paths:
         private string _saveConfigurationPath;
         /// <summary>
@@ -82,7 +103,7 @@ namespace NewGameAssistant.WidgetModels
             get => _screenPositionX;
             set => SetProperty(ref _screenPositionX, value);
         }
-        
+
         private double _screenPositionY = 50;
         /// <summary>
         /// Widget's vertical position.
@@ -94,7 +115,7 @@ namespace NewGameAssistant.WidgetModels
         }
 
         // Visual elements:
-        private Brush _backgroundColor= new SolidColorBrush(Color.FromRgb(249, 255, 129));
+        private Brush _backgroundColor = new SolidColorBrush(Color.FromRgb(249, 255, 129));
         /// <summary>
         /// Widget's background brush (color).
         /// </summary>
@@ -103,7 +124,7 @@ namespace NewGameAssistant.WidgetModels
             get => _backgroundColor;
             set => SetProperty(ref _backgroundColor, value);
         }
-        
+
         private double _backgroundOpacity = 0.5;
         /// <summary>
         /// Widget background's opacity.

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
 
 namespace NewGameAssistant
@@ -13,5 +8,36 @@ namespace NewGameAssistant
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            SelectDisks();
+        }
+
+        private static void SelectDisks()
+        {
+            foreach (var drive in DriveInfo.GetDrives())
+            {
+                foreach (var directory in Directory.GetDirectories(drive.Name))
+                {
+                    if (directory == Path.Combine(drive.Name,"Users"))
+                    {
+                        DiskName = drive.Name;
+                        goto END;
+                    }
+                }
+            }
+        END:;
+        }
+
+        private static string _diskName;
+        /// <summary>
+        /// Name of disc with users dire.
+        /// </summary>
+        public static string DiskName
+        {
+            get => _diskName;
+            set => _diskName = value;
+        }
     }
 }
