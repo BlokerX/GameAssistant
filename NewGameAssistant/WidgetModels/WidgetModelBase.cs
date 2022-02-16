@@ -1,6 +1,5 @@
-﻿using System;
+﻿using NewGameAssistant.Services;
 using System.ComponentModel;
-using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
@@ -12,38 +11,8 @@ namespace NewGameAssistant.WidgetModels
     /// </summary>
     internal abstract class WidgetModelBase : INotifyPropertyChanged
     {
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
-        public WidgetModelBase()
-        {
-            CheckDiresArchitecture();
-        }
-
-        private static void CheckDiresArchitecture()
-        {
-            WidgetsConfigurationsMainDire = Path.Combine(App.DiskName, "Users", Environment.UserName, Application.ResourceAssembly.GetName().Name);
-            // todo tu skończyłem
-        }
-
-        /// <summary>
-        /// Path to main dire of app informations and save configurations.
-        /// </summary>
-        public static string WidgetsConfigurationsMainDire;
-
-        // Paths:
-        private string _saveConfigurationPath;
-        /// <summary>
-        /// Path for widget configuration file.
-        /// </summary>
-        public string SaveConfigurationPath
-        {
-            get => _saveConfigurationPath;
-            set => SetProperty(ref _saveConfigurationPath, value);
-        }
-
         // Window const elements:
-        private string _title = "Widget";
+        private string _title;
         /// <summary>
         /// The title of widget window.
         /// </summary>

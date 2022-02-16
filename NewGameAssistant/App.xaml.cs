@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using NewGameAssistant.Services;
+using NewGameAssistant.Widgets;
+using System.IO;
 using System.Windows;
 
 namespace NewGameAssistant
@@ -12,6 +14,10 @@ namespace NewGameAssistant
         {
             base.OnStartup(e);
             SelectDisks();
+            AppFileSystem.RegisterFileSystem(
+                nameof(ClockWidget),
+                nameof(PictureWidget)
+                );
         }
 
         private static void SelectDisks()
@@ -20,7 +26,7 @@ namespace NewGameAssistant
             {
                 foreach (var directory in Directory.GetDirectories(drive.Name))
                 {
-                    if (directory == Path.Combine(drive.Name,"Users"))
+                    if (directory == Path.Combine(drive.Name, "Users"))
                     {
                         DiskName = drive.Name;
                         goto END;

@@ -58,7 +58,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Services\WidgetCreatorMenager.cs" />
+    <Compile Include="Services\AppFileSystem.cs" />
+    <Compile Include="Services\WidgetMenager.cs" />
     <Compile Include="WidgetModels\ClockModel.cs" />
     <Compile Include="WidgetModels\PictureModel.cs" />
     <Compile Include="WidgetModels\WidgetModelBase.cs" />

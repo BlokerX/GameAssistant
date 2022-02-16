@@ -58,6 +58,5 @@ namespace NewGameAssistant.WidgetModels
             set { _imageOpacity = value; }
         }
 
-
     }
 }
