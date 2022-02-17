@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Timers;
 using System.Windows.Media;
 
@@ -37,13 +38,14 @@ namespace NewGameAssistant.WidgetModels
         }
 
         private string _clockTime = DateTime.Now.ToString("HH:mm:ss");
+        [JsonIgnore]
         /// <summary>
         /// Time that is shown in the clock widget.
         /// </summary>
         public string ClockTime
         {
             get => _clockTime;
-            set
+            private set
             {
                 SetProperty(ref _clockTime, value);
             }
