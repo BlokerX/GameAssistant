@@ -16,7 +16,8 @@ namespace NewGameAssistant
             SelectDisks();
             AppFileSystem.RegisterFileSystem(
                 nameof(ClockWidget),
-                nameof(PictureWidget)
+                nameof(PictureWidget),
+                nameof(NoteWidget)
                 );
         }
 

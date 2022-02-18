@@ -13,6 +13,7 @@ namespace NewGameAssistant
         // Widgets:
         ClockWidget someClockWidget;
         PictureWidget somePictureWidget;
+        NoteWidget someNoteWidget;
 
         public MainWindow()
         {
@@ -23,6 +24,7 @@ namespace NewGameAssistant
         {
             WidgetMenager<ClockWidget, ClockModel>.SaveWidgetConfigurationInFile(someClockWidget);
             WidgetMenager<PictureWidget, PictureModel>.SaveWidgetConfigurationInFile(somePictureWidget);
+            WidgetMenager<NoteWidget, NoteModel>.SaveWidgetConfigurationInFile(someNoteWidget);
         }
 
         private void DownloadConfigurationButton_Click(object sender, RoutedEventArgs e)
@@ -36,7 +38,11 @@ namespace NewGameAssistant
                 somePictureWidget.DataContext = pm;
             else
                 MessageBox.Show("Not found picture widget's configuration file or widget has been null.", "Failed download configuration");
-
+            
+            if (someNoteWidget != null && WidgetMenager<NoteWidget, NoteModel>.DownloadWidgetConfigurationFromFile(out NoteModel nm))
+                someNoteWidget.DataContext = nm;
+            else
+                MessageBox.Show("Not found note widget's configuration file or widget has been null.", "Failed download configuration");
         }
 
         private void RebuildWidgetsButton_Click(object sender, RoutedEventArgs e)
@@ -45,17 +51,23 @@ namespace NewGameAssistant
 
             someClockWidget = new ClockWidget();
             somePictureWidget = new PictureWidget();
+            someNoteWidget = new NoteWidget();
 
             someClockWidget.Show();
             somePictureWidget.Show();
+            someNoteWidget.Show();
         }
 
         private void CloseWidgetsButton_Click(object sender, RoutedEventArgs e)
         {
             someClockWidget?.Close();
             someClockWidget = null;
+
             somePictureWidget?.Close();
             somePictureWidget = null;
+            
+            someNoteWidget?.Close();
+            someNoteWidget = null;
         }
     }
 }

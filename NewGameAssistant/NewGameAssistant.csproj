@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -58,13 +59,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="Models\BindableObject.cs" />
+    <Compile Include="Models\Note.cs" />
     <Compile Include="Services\AppFileSystem.cs" />
     <Compile Include="Services\WidgetMenager.cs" />
     <Compile Include="WidgetModels\ClockModel.cs" />
+    <Compile Include="WidgetModels\NoteModel.cs" />
     <Compile Include="WidgetModels\PictureModel.cs" />
     <Compile Include="WidgetModels\WidgetModelBase.cs" />
     <Compile Include="Widgets\ClockWidget.xaml.cs">
       <DependentUpon>ClockWidget.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widgets\NoteWidget.xaml.cs">
+      <DependentUpon>NoteWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="Widgets\PictureWidget.xaml.cs">
       <DependentUpon>PictureWidget.xaml</DependentUpon>
@@ -83,6 +91,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Widgets\ClockWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widgets\NoteWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
