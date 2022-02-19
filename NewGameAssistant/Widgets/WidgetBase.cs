@@ -13,7 +13,7 @@ namespace NewGameAssistant.Widgets
         /// </summary>
         public WidgetBase()
         {
-            Background = new SolidColorBrush(Color.FromArgb(0,0,0,0));
+            Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
             AllowsTransparency = true;
             WindowStyle = WindowStyle.None;
             Topmost = true;
@@ -23,7 +23,7 @@ namespace NewGameAssistant.Widgets
 
         #region Properties
 
-        private static readonly DependencyProperty IsDragActiveProperty = 
+        private static readonly DependencyProperty IsDragActiveProperty =
             DependencyProperty.Register
                 (
                 "IsDragActive",

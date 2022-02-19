@@ -1,17 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using NewGameAssistant.Core;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NewGameAssistant.Models
 {
-    internal class Note : BindableObject
+    internal class NoteInformations : BindableObject
     {
         private string _text = string.Empty;
-        [JsonIgnore]
         /// <summary>
         /// The text of note.
         /// </summary>
@@ -20,14 +14,6 @@ namespace NewGameAssistant.Models
             get => _text;
             set => SetProperty(ref _text, value);
         }
-
-        public Note(string saveFilePath)
-        {
-            SaveFilePath = saveFilePath;
-            Text = File.ReadAllText(saveFilePath);
-        }
-
-        public Note() { }
 
         private string _saveFilePath = string.Empty;
         /// <summary>
@@ -39,6 +25,20 @@ namespace NewGameAssistant.Models
             set => SetProperty(ref _saveFilePath, value);
         }
 
+        /// <summary>
+        /// Create NoteInformations base on saveFilePath property.
+        /// </summary>
+        /// <param name="saveFilePath">Note file path.</param>
+        public NoteInformations(string saveFilePath)
+        {
+            SaveFilePath = saveFilePath;
+            Text = File.ReadAllText(saveFilePath);
+        }
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public NoteInformations() { }
 
     }
 }

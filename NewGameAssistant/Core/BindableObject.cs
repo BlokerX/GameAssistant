@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace NewGameAssistant.Models
+namespace NewGameAssistant.Core
 {
     /// <summary>
     /// Class for bindable object with ProperyChanged event and SetProperty method.

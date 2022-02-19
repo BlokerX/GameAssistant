@@ -43,8 +43,8 @@ namespace NewGameAssistant.Services
 
             // Set widgets dires paths:
             Directory.CreateDirectory(WidgetsConfigurationsMainDire);
-            
-            foreach(var widgetTypeName in widgetTypesNames)
+
+            foreach (var widgetTypeName in widgetTypesNames)
             {
                 CheckDiresArchitectureEvent += () =>
                 {

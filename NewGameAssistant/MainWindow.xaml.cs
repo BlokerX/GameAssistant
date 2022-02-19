@@ -1,6 +1,7 @@
-﻿using NewGameAssistant.Services;
-using NewGameAssistant.WidgetModels;
+﻿using NewGameAssistant.Models;
+using NewGameAssistant.Services;
 using NewGameAssistant.Widgets;
+using NewGameAssistant.WidgetViewModels;
 using System.Windows;
 
 namespace NewGameAssistant
@@ -22,25 +23,25 @@ namespace NewGameAssistant
 
         private void SaveConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            WidgetMenager<ClockWidget, ClockModel>.SaveWidgetConfigurationInFile(someClockWidget);
-            WidgetMenager<PictureWidget, PictureModel>.SaveWidgetConfigurationInFile(somePictureWidget);
-            WidgetMenager<NoteWidget, NoteModel>.SaveWidgetConfigurationInFile(someNoteWidget);
+            WidgetMenager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(someClockWidget);
+            WidgetMenager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(somePictureWidget);
+            WidgetMenager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(someNoteWidget);
         }
 
         private void DownloadConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            if (someClockWidget != null && WidgetMenager<ClockWidget, ClockModel>.DownloadWidgetConfigurationFromFile(out ClockModel cm))
-                someClockWidget.DataContext = cm;
+            if (someClockWidget != null && WidgetMenager.DownloadWidgetConfigurationFromFile(out ClockModel cm))
+                (someClockWidget.DataContext as IWidgetViewModel<ClockModel>).WidgetModel = cm;
             else
                 MessageBox.Show("Not found clock widget's configuration file or widget has been null.", "Failed download configuration");
 
-            if (somePictureWidget != null && WidgetMenager<PictureWidget, PictureModel>.DownloadWidgetConfigurationFromFile(out PictureModel pm))
-                somePictureWidget.DataContext = pm;
+            if (somePictureWidget != null && WidgetMenager.DownloadWidgetConfigurationFromFile(out PictureModel pm))
+                (somePictureWidget.DataContext as IWidgetViewModel<PictureModel>).WidgetModel = pm;
             else
                 MessageBox.Show("Not found picture widget's configuration file or widget has been null.", "Failed download configuration");
-            
-            if (someNoteWidget != null && WidgetMenager<NoteWidget, NoteModel>.DownloadWidgetConfigurationFromFile(out NoteModel nm))
-                someNoteWidget.DataContext = nm;
+
+            if (someNoteWidget != null && WidgetMenager.DownloadWidgetConfigurationFromFile(out NoteModel nm))
+                (someNoteWidget.DataContext as IWidgetViewModel<NoteModel>).WidgetModel = nm;
             else
                 MessageBox.Show("Not found note widget's configuration file or widget has been null.", "Failed download configuration");
         }
@@ -65,7 +66,7 @@ namespace NewGameAssistant
 
             somePictureWidget?.Close();
             somePictureWidget = null;
-            
+
             someNoteWidget?.Close();
             someNoteWidget = null;
         }

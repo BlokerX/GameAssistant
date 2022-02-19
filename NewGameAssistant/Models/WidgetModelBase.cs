@@ -1,14 +1,12 @@
-﻿using NewGameAssistant.Models;
+﻿using NewGameAssistant.Core;
 using Newtonsoft.Json;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 
-namespace NewGameAssistant.WidgetModels
+namespace NewGameAssistant.Models
 {
     /// <summary>
-    /// Base of view model that contains bindings for Widget.
+    /// Base of widget model that contains bindings for Widget.
     /// </summary>
     internal abstract class WidgetModelBase : BindableObject
     {
@@ -107,6 +105,5 @@ namespace NewGameAssistant.WidgetModels
         }
 
         // TODO add color's animations
-
     }
 }

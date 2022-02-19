@@ -60,14 +60,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\RelayCommand.cs" />
-    <Compile Include="Models\BindableObject.cs" />
-    <Compile Include="Models\Note.cs" />
+    <Compile Include="Core\BindableObject.cs" />
+    <Compile Include="Models\ClockModel.cs" />
+    <Compile Include="Models\NoteInformations.cs" />
+    <Compile Include="Models\NoteModel.cs" />
+    <Compile Include="Models\PictureModel.cs" />
     <Compile Include="Services\AppFileSystem.cs" />
     <Compile Include="Services\WidgetMenager.cs" />
-    <Compile Include="WidgetModels\ClockModel.cs" />
-    <Compile Include="WidgetModels\NoteModel.cs" />
-    <Compile Include="WidgetModels\PictureModel.cs" />
-    <Compile Include="WidgetModels\WidgetModelBase.cs" />
+    <Compile Include="Services\WidgetTypeUnit.cs" />
+    <Compile Include="WidgetViewModels\ClockViewModel.cs" />
+    <Compile Include="WidgetViewModels\NoteViewModel.cs" />
+    <Compile Include="WidgetViewModels\PictureViewModel.cs" />
+    <Compile Include="Models\WidgetModelBase.cs" />
     <Compile Include="Widgets\ClockWidget.xaml.cs">
       <DependentUpon>ClockWidget.xaml</DependentUpon>
     </Compile>
@@ -78,6 +82,7 @@
       <DependentUpon>PictureWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="Widgets\WidgetBase.cs" />
+    <Compile Include="WidgetViewModels\IWidgetViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
