@@ -22,6 +22,17 @@ namespace NewGameAssistant.Models
             set => SetProperty(ref _title, value);
         }
 
+        private bool _isActive = true;
+        /// <summary>
+        /// If true widget has saved as enable, if false widget has saved as disabled.
+        /// </summary>
+        public bool IsActive
+        {
+            get => _isActive;
+            set => SetProperty(ref _isActive, value);
+        }
+
+
         private double _width;
         /// <summary>
         /// The width of widget window.

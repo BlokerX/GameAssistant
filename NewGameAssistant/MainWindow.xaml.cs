@@ -19,6 +19,39 @@ namespace NewGameAssistant
         public MainWindow()
         {
             InitializeComponent();
+
+            if (WidgetMenager.DownloadWidgetConfigurationFromFile(out ClockModel cm))
+            {
+                if (cm.IsActive)
+                {
+                    someClockWidget = new ClockWidget();
+                    (someClockWidget.DataContext as IWidgetViewModel<ClockModel>).WidgetModel = cm;
+                }
+            }
+            else someClockWidget = new ClockWidget();
+            someClockWidget?.Show();
+
+            if (WidgetMenager.DownloadWidgetConfigurationFromFile(out PictureModel pm))
+            {
+                if (pm.IsActive)
+                {
+                    somePictureWidget = new PictureWidget();
+                    (somePictureWidget.DataContext as IWidgetViewModel<PictureModel>).WidgetModel = pm;
+                }
+            }
+            else somePictureWidget = new PictureWidget();
+            somePictureWidget?.Show();
+
+            if (WidgetMenager.DownloadWidgetConfigurationFromFile(out NoteModel nm))
+            {
+                if (nm.IsActive)
+                {
+                    someNoteWidget = new NoteWidget();
+                    (someNoteWidget.DataContext as IWidgetViewModel<NoteModel>).WidgetModel = nm;
+                }
+            }
+            else someNoteWidget = new NoteWidget();
+            someNoteWidget?.Show();
         }
 
         private void SaveConfigurationButton_Click(object sender, RoutedEventArgs e)
