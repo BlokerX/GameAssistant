@@ -135,13 +135,20 @@ namespace NewGameAssistant.Services
         /// <typeparam name="WidgetViewModelType">Type of widget's view model.</typeparam>
         /// <typeparam name="WidgetModelType">Type of widget model.</typeparam>
         /// <returns>Widget.</returns>
-        public static WidgetType CreateWidget<WidgetType, WidgetViewModelType, WidgetModelType>()
+        public static WidgetType CreateWidget<WidgetType, WidgetViewModelType, WidgetModelType>(WidgetModelType widgetModel)
             where WidgetType : WidgetBase, new()
             where WidgetViewModelType : class, IWidgetViewModel<WidgetModelType>, new()
             where WidgetModelType : WidgetModelBase, new()
         {
             AppFileSystem.CheckDiresArchitecture();
-            return new WidgetType();
+
+            return new WidgetType()
+            {
+                DataContext = new WidgetViewModelType()
+                {
+                    WidgetModel = widgetModel
+                }
+            };
         }
 
         /// <summary>
@@ -154,6 +161,7 @@ namespace NewGameAssistant.Services
         /// <returns>Operation result.</returns>
         public static bool SaveWidgetConfigurationInFile<WidgetType, ModelType>(WidgetType widget, string path)
             where WidgetType : WidgetBase, new()
+            where ModelType : WidgetModelBase, new()
         {
             if (widget == null)
             {
@@ -162,16 +170,7 @@ namespace NewGameAssistant.Services
 
             var widgetModel = (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel;
 
-            var directoryPath = path.TrimStart(Path.DirectorySeparatorChar);
-            if (Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(path.TrimStart(Path.DirectorySeparatorChar));
-            }
-
-            using (var sw = File.CreateText(path))
-            {
-                sw.Write(JsonConvert.SerializeObject(widgetModel));
-            }
+            SaveWidgetConfigurationInFile(widgetModel, path);
 
             return true;
         }
@@ -185,9 +184,53 @@ namespace NewGameAssistant.Services
         /// <returns>Operation result.</returns>
         public static bool SaveWidgetConfigurationInFile<WidgetType, ModelType>(WidgetType widget)
             where WidgetType : WidgetBase, new()
+            where ModelType : WidgetModelBase, new()
         {
             Directory.CreateDirectory(AppFileSystem.GetSaveDireConfigurationPath(typeof(WidgetType).Name));
             return SaveWidgetConfigurationInFile<WidgetType, ModelType>(widget, AppFileSystem.GetSaveFileConfigurationPath(typeof(WidgetType).Name));
+        }
+        
+        /// <summary>
+        /// Save widget model to file by JSON way.
+        /// </summary>
+        /// <param name="widget">Widget with widget configuration (in data context) to save.</param>
+        /// <param name="path">Path to file where it save widget configuration.</param>
+        /// <typeparam name="ModelType">Type of widget model.</typeparam>
+        /// <returns>Operation result.</returns>
+        public static bool SaveWidgetConfigurationInFile<ModelType>(ModelType model, string path)
+            where ModelType : WidgetModelBase, new()
+        {
+            if (model == null)
+            {
+                return false;
+            }
+
+            var directoryPath = path.TrimStart(Path.DirectorySeparatorChar);
+            if (Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(path.TrimStart(Path.DirectorySeparatorChar));
+            }
+
+            using (var sw = File.CreateText(path))
+            {
+                sw.Write(JsonConvert.SerializeObject(model));
+            }
+
+            return true;
+        }
+        
+        /// <summary>
+        /// Save widget model to file by JSON way.
+        /// </summary>
+        /// <param name="widget">Widget with widget configuration (in data context) to save.</param>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ModelType">Type of widget model.</typeparam>
+        /// <returns>Operation result.</returns>
+        public static bool SaveWidgetConfigurationInFile<ModelType>(ModelType model)
+            where ModelType : WidgetModelBase, new()
+        {
+            Directory.CreateDirectory(AppFileSystem.GetSaveDireConfigurationPath(GetWidgetTypeOfModelType(typeof(ModelType)).Name));
+            return SaveWidgetConfigurationInFile(model, AppFileSystem.GetSaveFileConfigurationPath(GetWidgetTypeOfModelType(typeof(ModelType)).Name));
         }
 
         /// <summary>

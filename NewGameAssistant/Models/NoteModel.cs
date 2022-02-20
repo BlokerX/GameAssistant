@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Windows;
+using System.Windows.Media;
 
 namespace NewGameAssistant.Models
 {
@@ -48,6 +49,17 @@ namespace NewGameAssistant.Models
             get => _noteFontSize;
             set => SetProperty(ref _noteFontSize, value);
         }
+
+        private Visibility _settingsBarVisibility = Visibility.Visible;
+        /// <summary>
+        /// The visibiility of settings bar.
+        /// </summary>
+        public Visibility SettingsBarVisibility
+        {
+            get => _settingsBarVisibility;
+            set => SetProperty(ref _settingsBarVisibility, value);
+        }
+
 
         #endregion
     }
