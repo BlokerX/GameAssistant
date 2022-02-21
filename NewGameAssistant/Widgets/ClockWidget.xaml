@@ -13,7 +13,7 @@
                   Width="{Binding WidgetModel.Width, Mode=TwoWay}"
                   Height="{Binding WidgetModel.Height, Mode=TwoWay}"
                   Left="{Binding WidgetModel.ScreenPositionX, Mode=TwoWay}" 
-                  Top="{Binding WidgetModel.ScreenPositionY, Mode=TwoWay}" Closing="WidgetBase_Closing" Initialized="WidgetBase_Initialized">
+                  Top="{Binding WidgetModel.ScreenPositionY, Mode=TwoWay}">
 
     <local:WidgetBase.DataContext>
         <widgetmodels:ClockViewModel/>

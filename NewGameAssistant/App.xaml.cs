@@ -16,39 +16,24 @@ namespace NewGameAssistant
         #region Widgets
 
         #region ClockWidget
-        private ClockWidget _clockWidget;
         /// <summary>
         /// The clock widget.
         /// </summary>
-        public ClockWidget ClockWidget
-        {
-            get => _clockWidget;
-            set => _clockWidget = value;
-        }
+        private ClockWidget ClockWidget;
         #endregion
 
         #region PictureWidget
-        private PictureWidget _pictureWidget;
         /// <summary>
         /// The picture widget.
         /// </summary>
-        public PictureWidget PictureWidget
-        {
-            get => _pictureWidget;
-            set => _pictureWidget = value;
-        }
+        private PictureWidget PictureWidget;
         #endregion
 
         #region NoteWidget
-        private NoteWidget _noteWidget;
         /// <summary>
         /// The note widget.
         /// </summary>
-        public NoteWidget NoteWidget
-        {
-            get => _noteWidget;
-            set => _noteWidget = value;
-        }
+        private NoteWidget NoteWidget;
         #endregion
 
         #endregion
@@ -93,28 +78,59 @@ namespace NewGameAssistant
         /// </summary>
         private void NotifyIcon_ClockWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            var dwcff = WidgetMenager.DownloadWidgetConfigurationFromFile(out ClockModel cw);
+            Widget_ChangeStateAndSave<ClockWidget, ClockViewModel, ClockModel>(ref ClockWidget);
+        }
+        
+        /// <summary>
+        /// Invoke when picture widget button clicked.
+        /// </summary>
+        private void NotifyIcon_PictureWidget_Settings_Click(object sender, System.EventArgs e)
+        {
+            Widget_ChangeStateAndSave<PictureWidget, PictureViewModel, PictureModel>(ref PictureWidget);
+        }
+        
+        /// <summary>
+        /// Invoke when note widget button clicked.
+        /// </summary>
+        private void NotifyIcon_NoteWidget_Settings_Click(object sender, System.EventArgs e)
+        {
+            Widget_ChangeStateAndSave<NoteWidget, NoteViewModel, NoteModel>(ref NoteWidget);
+        }
 
-            if (ClockWidget != null)
+        /// <summary>
+        /// Change widget's state and save configuration. 
+        /// </summary>
+        /// <typeparam name="WidgetType"></typeparam>
+        /// <typeparam name="ViewModelType"></typeparam>
+        /// <typeparam name="ModelType"></typeparam>
+        /// <param name="widget"></param>
+        private void Widget_ChangeStateAndSave<WidgetType, ViewModelType, ModelType>(ref WidgetType widget)
+            where WidgetType : WidgetBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            var dwcff = WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
+
+            if (widget != null)
             {
-                ClockWidget.Close();
-                ClockWidget = null;
-                cw.IsActive = false;
+                widget?.Close();
+                widget = null;
+                model.IsActive = false;
                 goto END;
             }
 
             if (dwcff)
             {
-                cw.IsActive = true;
-                ClockWidget = WidgetMenager.CreateWidget<ClockWidget, ClockViewModel, ClockModel>(cw);
+                model.IsActive = true;
+                widget = WidgetMenager.CreateWidget<WidgetType, ViewModelType, ModelType>(model);
             }
             else
-                ClockWidget = new ClockWidget();
+                widget = new WidgetType();
 
-            ClockWidget.Show();
+            widget.Show();
 
         END:
-            WidgetMenager.SaveWidgetConfigurationInFile(cw);
+            WidgetMenager.SaveWidgetConfigurationInFile(model);
         }
 
         #endregion
@@ -153,8 +169,8 @@ namespace NewGameAssistant
                     new System.Windows.Forms.MenuItem[]
                     {
                         new System.Windows.Forms.MenuItem("Clock widget", NotifyIcon_ClockWidget_Settings_Click),
-                        new System.Windows.Forms.MenuItem("Picture widget"),
-                        new System.Windows.Forms.MenuItem("Note widget"),
+                        new System.Windows.Forms.MenuItem("Picture widget", NotifyIcon_PictureWidget_Settings_Click),
+                        new System.Windows.Forms.MenuItem("Note widget", NotifyIcon_NoteWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("-"),
                         new System.Windows.Forms.MenuItem("Settings", NotifyIcon_MenuItem_Settings_Click),
                         new System.Windows.Forms.MenuItem("-"),
