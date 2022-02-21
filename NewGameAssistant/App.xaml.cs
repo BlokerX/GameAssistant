@@ -80,7 +80,7 @@ namespace NewGameAssistant
         {
             Widget_ChangeStateAndSave<ClockWidget, ClockViewModel, ClockModel>(ref ClockWidget);
         }
-        
+
         /// <summary>
         /// Invoke when picture widget button clicked.
         /// </summary>
@@ -88,7 +88,7 @@ namespace NewGameAssistant
         {
             Widget_ChangeStateAndSave<PictureWidget, PictureViewModel, PictureModel>(ref PictureWidget);
         }
-        
+
         /// <summary>
         /// Invoke when note widget button clicked.
         /// </summary>
@@ -109,27 +109,83 @@ namespace NewGameAssistant
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
-            var dwcff = WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            var downloadedConfigurationResult = WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
 
             if (widget != null)
             {
-                widget?.Close();
-                widget = null;
-                model.IsActive = false;
+                CloseWidget(ref widget, ref model);
                 goto END;
             }
 
-            if (dwcff)
-            {
-                model.IsActive = true;
-                widget = WidgetMenager.CreateWidget<WidgetType, ViewModelType, ModelType>(model);
-            }
-            else
-                widget = new WidgetType();
-
-            widget.Show();
+            BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
 
         END:
+            WidgetMenager.SaveWidgetConfigurationInFile(model);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="WidgetType"></typeparam>
+        /// <typeparam name="ViewModelType"></typeparam>
+        /// <typeparam name="ModelType"></typeparam>
+        /// <param name="widget"></param>
+        /// <param name="downloadedModel"></param>
+        /// <param name="downloadWidgetConfigurationResult"></param>
+        private static void BuildWidget<WidgetType, ViewModelType, ModelType>(ref WidgetType widget, ref ModelType downloadedModel, bool downloadWidgetConfigurationResult)
+            where WidgetType : WidgetBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            if (downloadWidgetConfigurationResult)
+            {
+                widget = WidgetMenager.CreateWidget<WidgetType, ViewModelType, ModelType>(downloadedModel);
+            }
+            else
+            {
+                widget = new WidgetType();
+                downloadedModel = (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel;
+            }
+            widget.Show();
+            downloadedModel.IsActive = true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="WidgetType"></typeparam>
+        /// <typeparam name="ModelType"></typeparam>
+        /// <param name="widget"></param>
+        /// <param name="model"></param>
+        private void CloseWidget<WidgetType, ModelType>(ref WidgetType widget, ref ModelType model)
+            where WidgetType : WidgetBase, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            widget?.Close();
+            widget = null;
+            model.IsActive = false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="WidgetType"></typeparam>
+        /// <typeparam name="ViewModelType"></typeparam>
+        /// <typeparam name="ModelType"></typeparam>
+        /// <param name="widget"></param>
+        private void LoadWidget<WidgetType, ViewModelType, ModelType>(ref WidgetType widget)
+            where WidgetType : WidgetBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            var downloadedConfigurationResult = WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
+
+            if (!downloadedConfigurationResult || model.IsActive)
+            {
+                BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
+            }
+
             WidgetMenager.SaveWidgetConfigurationInFile(model);
         }
 
@@ -180,6 +236,15 @@ namespace NewGameAssistant
                 //todo notify icon picture's Icon = ,
             };
             NotifyIcon.DoubleClick += NotifyIcon_Click;
+
+            LoadWidgets();
+        }
+
+        private void LoadWidgets()
+        {
+            LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref ClockWidget);
+            LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref PictureWidget);
+            LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref NoteWidget);
         }
 
         protected override void OnExit(ExitEventArgs e)
