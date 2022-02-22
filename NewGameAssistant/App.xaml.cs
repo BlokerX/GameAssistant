@@ -39,15 +39,10 @@ namespace NewGameAssistant
         #endregion
 
         #region NotifyIcon
-        private System.Windows.Forms.NotifyIcon _notifyIcon;
         /// <summary>
         /// The notify icon.
         /// </summary>
-        public System.Windows.Forms.NotifyIcon NotifyIcon
-        {
-            get => _notifyIcon;
-            set => _notifyIcon = value;
-        }
+        private System.Windows.Forms.NotifyIcon NotifyIcon;
 
         /// <summary>
         /// Invoke when notify icon clicked.
@@ -55,14 +50,6 @@ namespace NewGameAssistant
         private void NotifyIcon_Click(object sender, System.EventArgs e)
         {
             OpenSettingsWindow();
-        }
-
-        /// <summary>
-        /// Invoke when close app button clicked.
-        /// </summary>
-        private void NotifyIcon_MenuItem_CloseApp_Click(object sender, System.EventArgs e)
-        {
-            App.Current.Shutdown();
         }
 
         /// <summary>
@@ -97,6 +84,14 @@ namespace NewGameAssistant
             Widget_ChangeStateAndSave<NoteWidget, NoteViewModel, NoteModel>(ref NoteWidget);
         }
 
+        /// <summary>
+        /// Invoke when close app button clicked.
+        /// </summary>
+        private void NotifyIcon_MenuItem_CloseApp_Click(object sender, System.EventArgs e)
+        {
+            App.Current.Shutdown();
+        }
+
         #endregion
 
         #region Settings window
@@ -117,12 +112,14 @@ namespace NewGameAssistant
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
             SelectDisks();
-            AppFileSystem.RegisterFileSystem(
+            AppFileSystem.RegisterFileSystem
+            (
                 nameof(ClockWidget),
                 nameof(PictureWidget),
                 nameof(NoteWidget)
-                );
+            );
 
             // Notify icon register:
             NotifyIcon = new System.Windows.Forms.NotifyIcon()
@@ -148,15 +145,9 @@ namespace NewGameAssistant
             LoadWidgets();
         }
 
-        private void LoadWidgets()
-        {
-            LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref ClockWidget);
-            LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref PictureWidget);
-            LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref NoteWidget);
-        }
-
         protected override void OnExit(ExitEventArgs e)
         {
+            CloseAndSaveWidgets();
             NotifyIcon.Dispose();
             base.OnExit(e);
         }
@@ -190,7 +181,6 @@ namespace NewGameAssistant
         END:
             WidgetMenager.SaveWidgetConfigurationInFile(model);
         }
-
 
         /// <summary>
         /// Build widget.
@@ -237,6 +227,36 @@ namespace NewGameAssistant
         }
 
         /// <summary>
+        /// Close widget and return model before closing.
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ModelType">Type of model.</typeparam>
+        /// <param name="widget">Widget to close.</param>
+        /// <returns>Widget model.</returns>
+        private ModelType CloseWidget<WidgetType, ModelType>(ref WidgetType widget)
+            where WidgetType : WidgetBase, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            widget?.Close();
+            widget = null;
+            return model;
+        }
+
+        /// <summary>
+        /// Close and save widget.
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ModelType">Type of model.</typeparam>
+        /// <param name="widget">Widget to close.</param>
+        private void CloseAndSaveWidget<WidgetType, ModelType>(ref WidgetType widget)
+            where WidgetType : WidgetBase, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            WidgetMenager.SaveWidgetConfigurationInFile(CloseWidget<WidgetType, ModelType>(ref widget));
+        }
+
+        /// <summary>
         /// Load widget (build or not).
         /// </summary>
         /// <typeparam name="WidgetType">Type of widget.</typeparam>
@@ -257,6 +277,47 @@ namespace NewGameAssistant
 
             WidgetMenager.SaveWidgetConfigurationInFile(model);
         }
+
+        /// <summary>
+        /// Load all widgets.
+        /// </summary>
+        private void LoadWidgets()
+        {
+            LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref ClockWidget);
+            LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref PictureWidget);
+            LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref NoteWidget);
+        }
+
+        /// <summary>
+        /// Save configuration for all widgets.
+        /// </summary>
+        private void SaveWidgets()
+        {
+            WidgetMenager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(ClockWidget);
+            WidgetMenager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(PictureWidget);
+            WidgetMenager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(PictureWidget);
+        }
+
+        /// <summary>
+        /// Close all widgets.
+        /// </summary>
+        private void CloseWidgets()
+        {
+            CloseWidget<ClockWidget, ClockModel>(ref ClockWidget);
+            CloseWidget<PictureWidget, PictureModel>(ref PictureWidget);
+            CloseWidget<PictureWidget, PictureModel>(ref PictureWidget);
+        }
+
+        /// <summary>
+        /// Close all widgets.
+        /// </summary>
+        private void CloseAndSaveWidgets()
+        {
+            CloseAndSaveWidget<ClockWidget, ClockModel>(ref ClockWidget);
+            CloseAndSaveWidget<PictureWidget, PictureModel>(ref PictureWidget);
+            CloseAndSaveWidget<NoteWidget, NoteModel>(ref NoteWidget);
+        }
+
 
         #endregion
 
