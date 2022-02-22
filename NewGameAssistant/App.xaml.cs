@@ -318,7 +318,6 @@ namespace NewGameAssistant
             CloseAndSaveWidget<NoteWidget, NoteModel>(ref NoteWidget);
         }
 
-
         #endregion
 
         #region Select global disk
