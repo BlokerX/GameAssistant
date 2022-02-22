@@ -1,0 +1,40 @@
+﻿<Window x:Class="GameAssistant.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid>
+
+        <Button Click="SaveConfigurationButton_Click" 
+                Content="Save configuration" 
+                Margin="10,10,0,0" 
+                Width="376" Height="185" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top"/>
+
+        <Button Click="DownloadConfigurationButton_Click" 
+                Content="Download configuration from file" 
+                Margin="415,10,0,0" 
+                Width="375" Height="185" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top"/>
+
+        <Button Click="RebuildWidgetsButton_Click" 
+                Content="Rebuild widgets" 
+                Margin="10,217,0,0" 
+                Height="207" Width="376"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"/>
+
+        <Button Click="CloseWidgetsButton_Click" 
+                Content="Close widgets" 
+                Margin="415,217,0,0"
+                Width="375" Height="207"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"/>
+    </Grid>
+
+</Window>
