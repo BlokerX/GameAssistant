@@ -71,9 +71,15 @@
     <Compile Include="Controls\DecimalSettingProperty.xaml.cs">
       <DependentUpon>DecimalSettingProperty.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FontSettingProperty.xaml.cs">
+      <DependentUpon>FontSettingProperty.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ISettingProperty.cs" />
     <Compile Include="Controls\SettingProperty.xaml.cs">
       <DependentUpon>SettingProperty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TextBoxStringSettingProperty.xaml.cs">
+      <DependentUpon>TextBoxStringSettingProperty.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\BindableObject.cs" />
@@ -117,7 +123,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\FontSettingProperty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SettingProperty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TextBoxStringSettingProperty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

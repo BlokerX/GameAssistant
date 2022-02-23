@@ -42,8 +42,9 @@
 
         </Grid>
 
-        <Grid Grid.Column="1"
-              Margin="10">
+        <ScrollViewer Grid.Column="1">
+
+            <Grid Margin="10">
 
             <Grid x:Name="ClockWidgetGrid">
 
@@ -104,7 +105,10 @@
                                Foreground="White"/>
 
                         <StackPanel Margin="2,0,0,0">
-                        </StackPanel>
+
+                                <controls:FontSettingProperty/>
+
+                            </StackPanel>
                         
                     </StackPanel>
 
@@ -129,6 +133,8 @@
 
         </Grid>
 
+        </ScrollViewer>
+        
     </Grid>
 
 </Window>
