@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GameAssistant.Controls
 {
@@ -20,6 +8,9 @@ namespace GameAssistant.Controls
     /// </summary>
     public partial class DecimalSettingProperty : UserControl, ISettingProperty
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public DecimalSettingProperty()
         {
             InitializeComponent();
@@ -46,30 +37,6 @@ namespace GameAssistant.Controls
             set => PropertyNameLabel.Content = value;
         }
 
-        public double PropertyValue
-        {
-            get => ValueSlider.Value;
-            set => ValueSlider.Value = value;
-        }
-        
-        public double MaximumValue
-        {
-            get => ValueSlider.Maximum;
-            set => ValueSlider.Maximum = value;
-        }
-        
-        public double MinimumValue
-        {
-            get => ValueSlider.Minimum;
-            set => ValueSlider.Minimum = value;
-        }
-
-        public Brush SliderColor
-        {
-            get => ValueSlider.BorderBrush;
-            set => ValueSlider.BorderBrush = value;
-        }
-
         public Brush ForegroundColor
         {
             set
@@ -77,6 +44,42 @@ namespace GameAssistant.Controls
                 ValueSlider.BorderBrush = value;
                 PropertyNameLabel.Foreground = value;
             }
+        }
+
+        /// <summary>
+        /// Double value of property.
+        /// </summary>
+        public double PropertyValue
+        {
+            get => ValueSlider.Value;
+            set => ValueSlider.Value = value;
+        }
+        
+        /// <summary>
+        /// Maximum value in slider.
+        /// </summary>
+        public double MaximumValue
+        {
+            get => ValueSlider.Maximum;
+            set => ValueSlider.Maximum = value;
+        }
+        
+        /// <summary>
+        /// Minimum value in slider.
+        /// </summary>
+        public double MinimumValue
+        {
+            get => ValueSlider.Minimum;
+            set => ValueSlider.Minimum = value;
+        }
+
+        /// <summary>
+        /// Color of slider.
+        /// </summary>
+        public Brush SliderColor
+        {
+            get => ValueSlider.BorderBrush;
+            set => ValueSlider.BorderBrush = value;
         }
    }
 }

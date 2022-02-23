@@ -24,21 +24,6 @@ namespace GameAssistant.Controls
         public FontSettingProperty()
         {
             InitializeComponent();
-
-            var fontDialog = new Forms.FontDialog()
-            {
-                AllowScriptChange = false,
-                AllowSimulations = true,
-                AllowVectorFonts = true,
-                AllowVerticalFonts = true,
-                ShowEffects = false,
-                FontMustExist = true,
-                ScriptsOnly = false,
-                ShowColor = false,
-                ShowHelp = false
-            };
-
-            //fontDialog.ShowDialog();
         }
 
         public Brush BorderColor
@@ -51,51 +36,62 @@ namespace GameAssistant.Controls
         {
             set
             {
-                FirstColumnGrid.Background = value;
-                SecondColumnGrid.Background = value;
+                FontFamilySettingProperty.BackgorundColor = value;
+                FontSizeSettingProperty.BackgorundColor = value;
             }
         }
 
-        public string PropertyName
-        {
-            get => PropertyNameLabel.Content.ToString();
-            set => PropertyNameLabel.Content = value;
-        }
+        //todo property name
+        public string PropertyName { get; set; }
 
         //todo
         public FontFamily PropertyFontFamily
         {
-            get;
-            set;
+            get => new FontFamily(FontFamilySettingProperty.ValueTextBox.Text);
+            set => FontFamilySettingProperty.ValueTextBox.Text = value.ToString();
         }
 
-        public FontStyle PropertyFontStyle
-        {
-            get;
-            set;
-        }
-        
+        //todo konwersja double-string
         public double PropertyFontSize
         {
-            get;
-            set;
+            get => double.Parse(FontSizeSettingProperty.PropertyValue);
+            set => FontSizeSettingProperty.PropertyValue = value.ToString();
         }
 
         public Brush ForegroundColor
         {
             set
             {
-                ValueTextBox.Foreground = value;
-                PropertyNameLabel.Foreground = value;
-                ValueTextBox.BorderBrush = value;
+                FontSizeSettingProperty.ForegroundColor = value;
+                FontFamilySettingProperty.ForegroundColor = value;
             }
         }
 
-        public Brush ValueTextBoxBackgroundColor
+        /// <summary>
+        /// On change font button click.
+        /// </summary>
+        private void ChangeFontButton_Click(object sender, RoutedEventArgs e)
         {
-            get => ValueTextBox.Background;
-            set => ValueTextBox.Background = value;
-        }
+            var fontDialog = new Forms.FontDialog()
+            {
+                AllowScriptChange = false,
+                AllowSimulations = true,
+                AllowVectorFonts = true,
+                AllowVerticalFonts = true,
+                ShowEffects = false,
+                FontMustExist = true,
+                ScriptsOnly = false,
+                ShowColor = false,
+                ShowHelp = false,
+                
+                Font = new System.Drawing.Font(FontFamilySettingProperty.PropertyValue, float.Parse(FontSizeSettingProperty.PropertyValue))
+            };
 
+            if(fontDialog.ShowDialog() == Forms.DialogResult.OK)
+            {
+                FontFamilySettingProperty.PropertyValue = fontDialog.Font.FontFamily.Name;
+                FontSizeSettingProperty.PropertyValue = fontDialog.Font.Size.ToString();
+            }
+        }
     }
 }

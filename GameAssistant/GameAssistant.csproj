@@ -75,18 +75,22 @@
       <DependentUpon>FontSettingProperty.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ISettingProperty.cs" />
-    <Compile Include="Controls\SettingProperty.xaml.cs">
-      <DependentUpon>SettingProperty.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\TextBoxStringSettingProperty.xaml.cs">
       <DependentUpon>TextBoxStringSettingProperty.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\TypeConverter.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\BindableObject.cs" />
     <Compile Include="Models\ClockModel.cs" />
     <Compile Include="Models\NoteInformations.cs" />
     <Compile Include="Models\NoteModel.cs" />
     <Compile Include="Models\PictureModel.cs" />
+    <Compile Include="Pages\ClockSettingsPage.xaml.cs">
+      <DependentUpon>ClockSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PictureSettingsPage.xaml.cs">
+      <DependentUpon>PictureSettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\AppFileSystem.cs" />
     <Compile Include="Services\WidgetMenager.cs" />
     <Compile Include="Services\WidgetTypeUnit.cs" />
@@ -127,10 +131,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\SettingProperty.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\TextBoxStringSettingProperty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +147,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ClockSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PictureSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Templates\MenuButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,8 +207,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

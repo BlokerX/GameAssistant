@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GameAssistant.Controls
 {
@@ -20,6 +8,9 @@ namespace GameAssistant.Controls
     /// </summary>
     public partial class BoolSettingProperty : UserControl, ISettingProperty
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public BoolSettingProperty()
         {
             InitializeComponent();
@@ -46,30 +37,6 @@ namespace GameAssistant.Controls
             set => PropertyNameLabel.Content = value;
         }
 
-        public bool? PropertyValue
-        {
-            get => ValueCheckBox.IsChecked;
-            set => ValueCheckBox.IsChecked = value;
-        }
-
-        public Brush CheckBoxForegroundColor
-        {
-            get => ValueCheckBox.Foreground;
-            set => ValueCheckBox.Foreground = value;
-        }
-        
-        public Brush CheckBoxBackgroundColor
-        {
-            get => ValueCheckBox.Background;
-            set => ValueCheckBox.Background = value;
-        }
-        
-        public Brush CheckBoxBorderColor
-        {
-            get => ValueCheckBox.BorderBrush;
-            set => ValueCheckBox.BorderBrush = value;
-        }
-
         public Brush ForegroundColor
         {
             set
@@ -77,6 +44,42 @@ namespace GameAssistant.Controls
                 ValueCheckBox.Foreground = value;
                 PropertyNameLabel.Foreground = value;
             }
+        }
+
+        /// <summary>
+        /// Bool property value.
+        /// </summary>
+        public bool? PropertyValue
+        {
+            get => ValueCheckBox.IsChecked;
+            set => ValueCheckBox.IsChecked = value;
+        }
+
+        /// <summary>
+        /// Color of CheckBox char.
+        /// </summary>
+        public Brush CheckBoxForegroundColor
+        {
+            get => ValueCheckBox.Foreground;
+            set => ValueCheckBox.Foreground = value;
+        }
+        
+        /// <summary>
+        /// Color of CheckBox's background.
+        /// </summary>
+        public Brush CheckBoxBackgroundColor
+        {
+            get => ValueCheckBox.Background;
+            set => ValueCheckBox.Background = value;
+        }
+        
+        /// <summary>
+        /// Color of CheckBox's border.
+        /// </summary>
+        public Brush CheckBoxBorderColor
+        {
+            get => ValueCheckBox.BorderBrush;
+            set => ValueCheckBox.BorderBrush = value;
         }
 
     }

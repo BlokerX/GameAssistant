@@ -2,9 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:GameAssistant.Controls"
-        mc:Ignorable="d"
-        Title="SettingsWindow" Height="450" Width="800">
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:GameAssistant.Controls" xmlns:pages="clr-namespace:GameAssistant.Pages"
+        mc:Ignorable="d" Title="SettingsWindow" Height="499" Width="800">
 
     <Grid Background="#FF2E2D29">
 
@@ -46,95 +45,23 @@
 
             <Grid Margin="10">
 
-            <Grid x:Name="ClockWidgetGrid">
+                <Frame>
+                    <Frame.Content>
+                        <pages:ClockSettingsPage x:Name="ClockWidgetPage"/>
+                    </Frame.Content>
+                </Frame>
 
-                <StackPanel>
-
-                    <Label Content="Clock Widget - configuration settings"
-                           FontSize="24"
-                           Foreground="White"/>
-
-                    <StackPanel Margin="5,0,0,0">
-
-                        <Label Content="Visibility:"
-                               FontSize="18"
-                               Foreground="White"/>
-
-                        <StackPanel Margin="2,0,0,0">
-
-                            <controls:BoolSettingProperty PropertyName="Active:"/>
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                    <StackPanel Margin="5,0,0,0">
-
-                        <Label Content="Colors:"
-                               FontSize="18"
-                               Foreground="White"/>
-
-                        <StackPanel Margin="2,0,0,0">
-
-                            <controls:ColorSettingProperty PropertyName="Background color:"/>
-                            <controls:ColorSettingProperty PropertyName="Foreground color:"/>
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                    <StackPanel Margin="5,0,0,0">
-
-                        <Label Content="Opacity:"
-                               FontSize="18"
-                               Foreground="White"/>
-
-                        <StackPanel Margin="2,0,0,0">
-
-                            <controls:DecimalSettingProperty PropertyName="Background opacity:"/>
-                            <controls:DecimalSettingProperty PropertyName="Foreground opacity:"/>
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                    <StackPanel Margin="5,0,0,0">
-
-                        <Label Content="Font:"
-                               FontSize="18"
-                               Foreground="White"/>
-
-                        <StackPanel Margin="2,0,0,0">
-
-                                <controls:FontSettingProperty/>
-
-                            </StackPanel>
-                        
-                    </StackPanel>
-
-                    <StackPanel Margin="5,0,0,0">
-
-                        <Label Content="Other:"
-                               FontSize="18"
-                               Foreground="White"/>
-
-                        <StackPanel Margin="2,0,0,0">
-
-                            <controls:BoolSettingProperty PropertyName="Can resize:"/>
-                            <controls:BoolSettingProperty PropertyName="Drag active:"/>
-
-                        </StackPanel>
-
-                    </StackPanel>
-
-                </StackPanel>
+                <Frame>
+                    <Frame.Content>
+                        <pages:PictureSettingsPage x:Name="PictureWidgetPage" 
+                                                   Visibility="Hidden"/>
+                    </Frame.Content>
+                </Frame>
 
             </Grid>
 
-        </Grid>
-
         </ScrollViewer>
-        
+
     </Grid>
 
 </Window>

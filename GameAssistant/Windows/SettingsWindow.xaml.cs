@@ -14,17 +14,20 @@ namespace GameAssistant.Windows
 
         private void ClockWidgetButton_Click(object sender, RoutedEventArgs e)
         {
-            ClockWidgetGrid.Visibility = Visibility.Visible;
+            PictureWidgetPage.Visibility = Visibility.Hidden;
+            ClockWidgetPage.Visibility = Visibility.Visible;
         }
 
         private void PictureWidgetButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ClockWidgetPage.Visibility = Visibility.Hidden;
+            PictureWidgetPage.Visibility = Visibility.Visible;
         }
 
         private void NoteWidgetButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ClockWidgetPage.Visibility = Visibility.Hidden;
+            PictureWidgetPage.Visibility = Visibility.Hidden;
         }
     }
 }

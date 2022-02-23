@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GameAssistant.Controls
+namespace GameAssistant.Pages
 {
     /// <summary>
-    /// Logika interakcji dla klasy SettingProperty.xaml
+    /// Logika interakcji dla klasy PictureSettingsPage.xaml
     /// </summary>
-    public partial class SettingProperty : UserControl
+    public partial class PictureSettingsPage : Page
     {
-        public SettingProperty()
+        public PictureSettingsPage()
         {
             InitializeComponent();
         }

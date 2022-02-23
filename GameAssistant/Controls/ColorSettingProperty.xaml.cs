@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Forms = System.Windows.Forms;
+using Drawing = System.Drawing;
+using GameAssistant.Core;
 
 namespace GameAssistant.Controls
 {
@@ -20,6 +12,9 @@ namespace GameAssistant.Controls
     /// </summary>
     public partial class ColorSettingProperty : UserControl, ISettingProperty
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public ColorSettingProperty()
         {
             InitializeComponent();
@@ -46,18 +41,41 @@ namespace GameAssistant.Controls
             set => PropertyNameLabel.Content = value;
         }
 
-        public Brush PropertyColor
-        {
-            get => ColorRectangle.Fill;
-            set => ColorRectangle.Fill = value;
-        }
-
         public Brush ForegroundColor
         {
             set
             {
                 ColorRectangle.Stroke = value;
                 PropertyNameLabel.Foreground = value;
+            }
+        }
+
+        /// <summary>
+        /// Property value (Color).
+        /// </summary>
+        public Brush PropertyColor
+        {
+            get => ColorRectangle.Fill;
+            set => ColorRectangle.Fill = value;
+        }
+
+        /// <summary>
+        /// On mouse left button click Color Rectangle.
+        /// </summary>
+        private void ColorRectangle_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var drawingColor = TypeConverter.ConvertColorMediaToDrawing((PropertyColor as SolidColorBrush).Color);
+
+            var colorDialog = new Forms.ColorDialog()
+            {
+                Color = drawingColor,
+                FullOpen = true,
+                ShowHelp = false
+            };
+
+            if(colorDialog.ShowDialog() == Forms.DialogResult.OK)
+            {
+                PropertyColor = new SolidColorBrush(TypeConverter.ConvertColorDrawingToMedia(colorDialog.Color));
             }
         }
 
