@@ -175,7 +175,8 @@ namespace GameAssistant.Pages
 
         private void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            //todo tu skończyłem i jest tu problem
+            //todo tu skończyłem
+            WidgetMenager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(ClockWidgetContainer.Widget);
             WidgetMenager.Widget_ChangeStateAndSave<ClockWidget, ClockViewModel, ClockModel>(ref _clockWidgetContainer.Widget);
             ActiveChanged((bool)e);
         }
