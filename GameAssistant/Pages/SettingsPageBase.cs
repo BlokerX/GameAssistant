@@ -1,12 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Controls;
 
-namespace GameAssistant.Core
+namespace GameAssistant.Pages
 {
-    /// <summary>
-    /// Class for bindable object with ProperyChanged event and SetProperty method.
-    /// </summary>
-    public class BindableObject : INotifyPropertyChanged
+    public class SettingsPageBase : Page, INotifyPropertyChanged
     {
         #region NotifyPropertyChanged (Implemented)
 

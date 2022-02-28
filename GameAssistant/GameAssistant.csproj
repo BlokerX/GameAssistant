@@ -75,9 +75,13 @@
       <DependentUpon>FontSettingProperty.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ISettingProperty.cs" />
+    <Compile Include="Controls\SettingPropertyBase.cs" />
     <Compile Include="Controls\TextBoxStringSettingProperty.xaml.cs">
       <DependentUpon>TextBoxStringSettingProperty.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlViewModels\ColorSettingPropertyViewModel.cs" />
+    <Compile Include="ControlViewModels\DecimalSettinPropertyViewModel.cs" />
+    <Compile Include="ControlViewModels\SettingPropertyViewModelBase.cs" />
     <Compile Include="Core\TypeConverter.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\BindableObject.cs" />
@@ -88,12 +92,18 @@
     <Compile Include="Pages\ClockSettingsPage.xaml.cs">
       <DependentUpon>ClockSettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\NoteSettingsPage.xaml.cs">
+      <DependentUpon>NoteSettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PictureSettingsPage.xaml.cs">
       <DependentUpon>PictureSettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SettingsPageBase.cs" />
+    <Compile Include="PageViewModels\ClockSettingsViewModel.cs" />
     <Compile Include="Services\AppFileSystem.cs" />
     <Compile Include="Services\WidgetMenager.cs" />
     <Compile Include="Services\WidgetTypeUnit.cs" />
+    <Compile Include="Widgets\WidgetContainer.cs" />
     <Compile Include="WidgetViewModels\ClockViewModel.cs" />
     <Compile Include="WidgetViewModels\NoteViewModel.cs" />
     <Compile Include="WidgetViewModels\PictureViewModel.cs" />
@@ -115,6 +125,7 @@
     <Compile Include="Windows\BusyWindow.xaml.cs">
       <DependentUpon>BusyWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowViewModels\SettingsViewModel.cs" />
     <Page Include="Controls\BoolSettingProperty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,6 +159,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\ClockSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NoteSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

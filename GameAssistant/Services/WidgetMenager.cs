@@ -269,5 +269,130 @@ namespace GameAssistant.Services
             return DownloadWidgetConfigurationFromFile(out widgetModel, AppFileSystem.GetSaveFileConfigurationPath(GetWidgetTypeOfModelType(typeof(WidgetModelType)).Name));
         }
 
+        //                //
+        // load and save: //
+        //                //
+
+        /// <summary>
+        /// Change widget's state and save configuration. 
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ViewModelType">Type of view model.</typeparam>
+        /// <typeparam name="ModelType">Type of model.</typeparam>
+        /// <param name="widget">Widget to change state.</param>
+        public static void Widget_ChangeStateAndSave<WidgetType, ViewModelType, ModelType>(ref WidgetType widget)
+            where WidgetType : WidgetBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            var downloadedConfigurationResult = WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
+
+            if (widget != null)
+            {
+                CloseWidget(ref widget, ref model);
+                goto END;
+            }
+
+            BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
+
+        END:
+            WidgetMenager.SaveWidgetConfigurationInFile(model);
+        }
+
+        /// <summary>
+        /// Build widget.
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ViewModelType">Type of view model.</typeparam>
+        /// <typeparam name="ModelType">Type of model.</typeparam>
+        /// <param name="widget">Widget to build.</param>
+        /// <param name="downloadedModel">Widget's model.</param>
+        /// <param name="downloadWidgetConfigurationResult">If true build widget use save configuration,
+        /// if false build new default widget</param>
+        public static void BuildWidget<WidgetType, ViewModelType, ModelType>(ref WidgetType widget, ref ModelType downloadedModel, bool downloadWidgetConfigurationResult)
+            where WidgetType : WidgetBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            if (downloadWidgetConfigurationResult)
+            {
+                widget = WidgetMenager.CreateWidget<WidgetType, ViewModelType, ModelType>(downloadedModel);
+            }
+            else
+            {
+                widget = new WidgetType();
+                downloadedModel = (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel;
+            }
+            widget.Show();
+            downloadedModel.IsActive = true;
+        }
+
+        /// <summary>
+        /// Close widget.
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ModelType">Type of model.</typeparam>
+        /// <param name="widget">Widget to close.</param>
+        /// <param name="model">Widget's model.</param>
+        public static void CloseWidget<WidgetType, ModelType>(ref WidgetType widget, ref ModelType model)
+            where WidgetType : WidgetBase, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            widget?.Close();
+            widget = null;
+            model.IsActive = false;
+        }
+
+        /// <summary>
+        /// Close widget and return model before closing.
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ModelType">Type of model.</typeparam>
+        /// <param name="widget">Widget to close.</param>
+        /// <returns>Widget model.</returns>
+        public static ModelType CloseWidget<WidgetType, ModelType>(ref WidgetType widget)
+            where WidgetType : WidgetBase, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            widget?.Close();
+            widget = null;
+            return model;
+        }
+
+        /// <summary>
+        /// Close and save widget.
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ModelType">Type of model.</typeparam>
+        /// <param name="widget">Widget to close.</param>
+        public static void CloseAndSaveWidget<WidgetType, ModelType>(ref WidgetType widget)
+            where WidgetType : WidgetBase, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            WidgetMenager.SaveWidgetConfigurationInFile(CloseWidget<WidgetType, ModelType>(ref widget));
+        }
+
+        /// <summary>
+        /// Load widget (build or not).
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ViewModelType">Type of view model.</typeparam>
+        /// <typeparam name="ModelType">Type of model.</typeparam>
+        /// <param name="widget">Widget to load.</param>
+        public static void LoadWidget<WidgetType, ViewModelType, ModelType>(ref WidgetType widget)
+            where WidgetType : WidgetBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            var downloadedConfigurationResult = WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
+
+            if (!downloadedConfigurationResult || model.IsActive)
+            {
+                BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
+            }
+
+            WidgetMenager.SaveWidgetConfigurationInFile(model);
+        }
     }
 }

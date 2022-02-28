@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameAssistant.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,6 +59,8 @@ namespace GameAssistant.Controls
             set => FontSizeSettingProperty.PropertyValue = value.ToString();
         }
 
+        public event EventHandler<(FontFamily, double)> PropertyValueChanged;
+
         public Brush ForegroundColor
         {
             set
@@ -83,15 +86,22 @@ namespace GameAssistant.Controls
                 ScriptsOnly = false,
                 ShowColor = false,
                 ShowHelp = false,
-                
+
                 Font = new System.Drawing.Font(FontFamilySettingProperty.PropertyValue, float.Parse(FontSizeSettingProperty.PropertyValue))
             };
 
-            if(fontDialog.ShowDialog() == Forms.DialogResult.OK)
+            if (fontDialog.ShowDialog() == Forms.DialogResult.OK)
             {
                 FontFamilySettingProperty.PropertyValue = fontDialog.Font.FontFamily.Name;
                 FontSizeSettingProperty.PropertyValue = fontDialog.Font.Size.ToString();
+                PropertyValueChanged?.Invoke(this,
+                    (
+                        TypeConverter.ConvertFontFamilyDrawingToMedia(fontDialog.Font.FontFamily),
+                        fontDialog.Font.Size
+                    )
+                    );
             }
+
         }
     }
 }

@@ -27,5 +27,26 @@ namespace GameAssistant.Core
         {
             return Media.Color.FromArgb(drawingColor.A, drawingColor.R, drawingColor.G, drawingColor.B);
         }
+
+        /// <summary>
+        /// Convert System.Windows.Media.FontFamily to System.Drawing.FontFamily.
+        /// </summary>
+        /// <param name="mediaFontFamily">System.Windows.Media.FontFamily to convert.</param>
+        /// <returns>System.Drawing.FontFamily result.</returns>
+        public static Drawing.FontFamily ConvertFontFamilyMediaToDrawing(Media.FontFamily mediaFontFamily)
+        {
+            return new Drawing.FontFamily(mediaFontFamily.Source);
+        }
+
+        /// <summary>
+        /// Convert System.Drawing.FontFamily to System.Windows.Media.FontFamily.
+        /// </summary>
+        /// <param name="drawingFontFamily">System.Drawing.FontFamily to convert.</param>
+        /// <returns>System.Windows.Media.FontFamily result.</returns>
+        public static Media.FontFamily ConvertFontFamilyDrawingToMedia(Drawing.FontFamily drawingFontFamily)
+        {
+            return new Media.FontFamily(drawingFontFamily.Name);
+        }
+
     }
 }

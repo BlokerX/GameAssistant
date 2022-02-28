@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace GameAssistant.Controls
@@ -52,8 +53,14 @@ namespace GameAssistant.Controls
         public bool? PropertyValue
         {
             get => ValueCheckBox.IsChecked;
-            set => ValueCheckBox.IsChecked = value;
+            set
+            {
+                ValueCheckBox.IsChecked = value;
+                PropertyValueChanged?.Invoke(this, value);
+            }
         }
+
+        public event EventHandler<bool?> PropertyValueChanged;
 
         /// <summary>
         /// Color of CheckBox char.
@@ -82,5 +89,14 @@ namespace GameAssistant.Controls
             set => ValueCheckBox.BorderBrush = value;
         }
 
+        private void ValueCheckBox_Checked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            PropertyValueChanged?.Invoke(sender, true);
+        }
+
+        private void ValueCheckBox_Unchecked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            PropertyValueChanged?.Invoke(sender, false);
+        }
     }
 }

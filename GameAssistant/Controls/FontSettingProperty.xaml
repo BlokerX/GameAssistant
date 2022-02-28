@@ -24,7 +24,8 @@
                     Background="#FF2E2B31"
                     Foreground="White"
                     BorderBrush="#FF1B1616"
-                    BorderThickness="1" Click="ChangeFontButton_Click"/>
+                    BorderThickness="1" 
+                    Click="ChangeFontButton_Click"/>
 
         </StackPanel>
 

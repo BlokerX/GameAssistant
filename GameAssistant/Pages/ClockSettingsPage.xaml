@@ -1,12 +1,14 @@
-﻿<Page x:Class="GameAssistant.Pages.ClockSettingsPage"
+﻿<pages:SettingsPageBase  xmlns:pages="clr-namespace:GameAssistant.Pages"
+                         x:Class="GameAssistant.Pages.ClockSettingsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="clr-namespace:GameAssistant.Controls"
-      mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="800"
-      Title="ClockSettingsPage">
+      xmlns:controls="clr-namespace:GameAssistant.Controls" 
+      xmlns:pageviewmodels="clr-namespace:GameAssistant.PageViewModels" 
+      d:DataContext="{d:DesignInstance Type=pageviewmodels:ClockSettingsViewModel}"
+      mc:Ignorable="d"
+      Title="ClockSettingsPage"  d:DesignHeight="560" d:DesignWidth="797">
 
     <StackPanel>
 
@@ -22,7 +24,8 @@
 
             <StackPanel Margin="2,0,0,0">
 
-                <controls:BoolSettingProperty PropertyName="Active:"/>
+                <controls:BoolSettingProperty x:Name="ActiveProperty" PropertyName="Active:" 
+                                              PropertyValueChanged="ActiveProperty_PropertyValueChanged"/>
 
             </StackPanel>
 
@@ -31,13 +34,18 @@
         <StackPanel Margin="5,0,0,0">
 
             <Label Content="Colors:"
-                               FontSize="18"
-                               Foreground="White"/>
+                   FontSize="18"
+                   Foreground="White"/>
 
             <StackPanel Margin="2,0,0,0">
 
-                <controls:ColorSettingProperty PropertyName="Background color:"/>
-                <controls:ColorSettingProperty PropertyName="Foreground color:"/>
+                <controls:ColorSettingProperty x:Name="BackgroundColorProperty" 
+                                               PropertyName="Background color:"
+                                               PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"/>
+                
+                <controls:ColorSettingProperty x:Name="ForegroundColorProperty"
+                                               PropertyName="Foreground color:"
+                                               PropertyColorChanged="ForegroundColorProperty_PropertyColorChanged"/>
 
             </StackPanel>
 
@@ -51,8 +59,13 @@
 
             <StackPanel Margin="2,0,0,0">
 
-                <controls:DecimalSettingProperty PropertyName="Background opacity:"/>
-                <controls:DecimalSettingProperty PropertyName="Foreground opacity:"/>
+                <controls:DecimalSettingProperty x:Name="BackgroundOpacityProperty"
+                                                 PropertyName="Background opacity:"
+                                                 PropertyValueChanged="BackgroundOpacityProperty_PropertyValueChanged"/>
+                
+                <controls:DecimalSettingProperty x:Name="ForegroundOpacityProperty"
+                                                 PropertyName="Foreground opacity:"
+                                                 PropertyValueChanged="ForegroundOpacityProperty_PropertyValueChanged"/>
 
             </StackPanel>
 
@@ -66,10 +79,8 @@
 
             <StackPanel Margin="2,0,0,0">
 
-                <controls:FontSettingProperty/>
-                <!-- todo controls:TextBoxIntSettingProperty PropertyName="Font size:" 
-                                                                             PropertyValue="18"/-->
-
+                <controls:FontSettingProperty x:Name="FontSettingsPropertyPanel"
+                                              PropertyValueChanged="FontSettingsPropertyPanel_PropertyValueChanged"/>
                 <!-- font style -->
 
             </StackPanel>
@@ -79,13 +90,18 @@
         <StackPanel Margin="5,0,0,0">
 
             <Label Content="Other:"
-                               FontSize="18"
-                               Foreground="White"/>
+                   FontSize="18"
+                   Foreground="White"/>
 
             <StackPanel Margin="2,0,0,0">
 
-                <controls:BoolSettingProperty PropertyName="Can resize:"/>
-                <controls:BoolSettingProperty PropertyName="Drag active:"/>
+                <controls:BoolSettingProperty x:Name="CanResizeProperty"
+                                              PropertyName="Can resize:"
+                                              PropertyValueChanged="CanResizeProperty_PropertyValueChanged"/>
+                
+                <controls:BoolSettingProperty x:Name="DragActiveProperty"
+                                              PropertyName="Drag active:"
+                                              PropertyValueChanged="DragActiveProperty_PropertyValueChanged"/>
 
             </StackPanel>
 
@@ -93,4 +109,4 @@
 
     </StackPanel>
 
-</Page>
+</pages:SettingsPageBase>

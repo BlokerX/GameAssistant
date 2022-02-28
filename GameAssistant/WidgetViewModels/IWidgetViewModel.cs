@@ -4,7 +4,7 @@
     /// View model's base interface.
     /// </summary>
     /// <typeparam name="TModel">Widget model.</typeparam>
-    internal interface IWidgetViewModel<TModel>
+    public interface IWidgetViewModel<TModel>
     {
         /// <summary>
         /// Widget properties.

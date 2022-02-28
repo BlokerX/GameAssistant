@@ -4,19 +4,22 @@ using System.Windows.Media;
 using Forms = System.Windows.Forms;
 using Drawing = System.Drawing;
 using GameAssistant.Core;
+using System.Windows;
+using GameAssistant.ControlViewModels;
+using System;
 
 namespace GameAssistant.Controls
 {
     /// <summary>
     /// Logika interakcji dla klasy ColorSettingProperty.xaml
     /// </summary>
-    public partial class ColorSettingProperty : UserControl, ISettingProperty
+    public partial class ColorSettingProperty : SettingPropertyBase
     {
         /// <summary>
         /// Default constructor.
         /// </summary>
         public ColorSettingProperty()
-        {
+        {//todo tutaj jest problem z przekazywaniem argumentu
             InitializeComponent();
         }
 
@@ -55,9 +58,18 @@ namespace GameAssistant.Controls
         /// </summary>
         public Brush PropertyColor
         {
-            get => ColorRectangle.Fill;
-            set => ColorRectangle.Fill = value;
+            get
+            {
+                return this.ColorRectangle.Fill;
+            }
+            set
+            {
+                ColorRectangle.Fill = value;
+                PropertyColorChanged?.Invoke(this, value);
+            }
         }
+
+        public event EventHandler<Brush> PropertyColorChanged;
 
         /// <summary>
         /// On mouse left button click Color Rectangle.
@@ -73,7 +85,7 @@ namespace GameAssistant.Controls
                 ShowHelp = false
             };
 
-            if(colorDialog.ShowDialog() == Forms.DialogResult.OK)
+            if (colorDialog.ShowDialog() == Forms.DialogResult.OK)
             {
                 PropertyColor = new SolidColorBrush(TypeConverter.ConvertColorDrawingToMedia(colorDialog.Color));
             }

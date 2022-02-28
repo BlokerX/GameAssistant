@@ -17,23 +17,23 @@ namespace GameAssistant
 
         #region ClockWidget
         /// <summary>
-        /// The clock widget.
+        /// The clock widget's container.
         /// </summary>
-        private ClockWidget ClockWidget;
+        private WidgetContainer<ClockWidget> clockWidgetContainer = new WidgetContainer<ClockWidget>();
         #endregion
 
         #region PictureWidget
         /// <summary>
         /// The picture widget.
         /// </summary>
-        private PictureWidget PictureWidget;
+        private WidgetContainer<PictureWidget> pictureWidgetContainer = new WidgetContainer<PictureWidget>();
         #endregion
 
         #region NoteWidget
         /// <summary>
         /// The note widget.
         /// </summary>
-        private NoteWidget NoteWidget;
+        private WidgetContainer<NoteWidget> noteWidgetContainer = new WidgetContainer<NoteWidget>();
         #endregion
 
         #endregion
@@ -65,7 +65,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_ClockWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            Widget_ChangeStateAndSave<ClockWidget, ClockViewModel, ClockModel>(ref ClockWidget);
+            WidgetMenager.Widget_ChangeStateAndSave<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_PictureWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            Widget_ChangeStateAndSave<PictureWidget, PictureViewModel, PictureModel>(ref PictureWidget);
+            WidgetMenager.Widget_ChangeStateAndSave<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_NoteWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            Widget_ChangeStateAndSave<NoteWidget, NoteViewModel, NoteModel>(ref NoteWidget);
+            WidgetMenager.Widget_ChangeStateAndSave<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -95,12 +95,13 @@ namespace GameAssistant
         #endregion
 
         #region Settings window
+
         /// <summary>
         /// Open setting window.
         /// </summary>
-        private static void OpenSettingsWindow()
+        private void OpenSettingsWindow()
         {
-            var sw = new SettingsWindow();
+            var sw = new SettingsWindow(ref clockWidgetContainer, ref pictureWidgetContainer, ref noteWidgetContainer);
             sw.Show();
             //todo
         }
@@ -116,9 +117,9 @@ namespace GameAssistant
             SelectDisks();
             AppFileSystem.RegisterFileSystem
             (
-                nameof(ClockWidget),
-                nameof(PictureWidget),
-                nameof(NoteWidget)
+                nameof(clockWidgetContainer),
+                nameof(pictureWidgetContainer),
+                nameof(noteWidgetContainer)
             );
 
             // Notify icon register:
@@ -156,136 +157,16 @@ namespace GameAssistant
 
         #region Widgets methods
 
-        /// <summary>
-        /// Change widget's state and save configuration. 
-        /// </summary>
-        /// <typeparam name="WidgetType">Type of widget.</typeparam>
-        /// <typeparam name="ViewModelType">Type of view model.</typeparam>
-        /// <typeparam name="ModelType">Type of model.</typeparam>
-        /// <param name="widget">Widget to change state.</param>
-        private void Widget_ChangeStateAndSave<WidgetType, ViewModelType, ModelType>(ref WidgetType widget)
-            where WidgetType : WidgetBase, new()
-            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
-            where ModelType : WidgetModelBase, new()
-        {
-            var downloadedConfigurationResult = WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
-
-            if (widget != null)
-            {
-                CloseWidget(ref widget, ref model);
-                goto END;
-            }
-
-            BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
-
-        END:
-            WidgetMenager.SaveWidgetConfigurationInFile(model);
-        }
-
-        /// <summary>
-        /// Build widget.
-        /// </summary>
-        /// <typeparam name="WidgetType">Type of widget.</typeparam>
-        /// <typeparam name="ViewModelType">Type of view model.</typeparam>
-        /// <typeparam name="ModelType">Type of model.</typeparam>
-        /// <param name="widget">Widget to build.</param>
-        /// <param name="downloadedModel">Widget's model.</param>
-        /// <param name="downloadWidgetConfigurationResult">If true build widget use save configuration,
-        /// if false build new default widget</param>
-        private static void BuildWidget<WidgetType, ViewModelType, ModelType>(ref WidgetType widget, ref ModelType downloadedModel, bool downloadWidgetConfigurationResult)
-            where WidgetType : WidgetBase, new()
-            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
-            where ModelType : WidgetModelBase, new()
-        {
-            if (downloadWidgetConfigurationResult)
-            {
-                widget = WidgetMenager.CreateWidget<WidgetType, ViewModelType, ModelType>(downloadedModel);
-            }
-            else
-            {
-                widget = new WidgetType();
-                downloadedModel = (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel;
-            }
-            widget.Show();
-            downloadedModel.IsActive = true;
-        }
-
-        /// <summary>
-        /// Close widget.
-        /// </summary>
-        /// <typeparam name="WidgetType">Type of widget.</typeparam>
-        /// <typeparam name="ModelType">Type of model.</typeparam>
-        /// <param name="widget">Widget to close.</param>
-        /// <param name="model">Widget's model.</param>
-        private void CloseWidget<WidgetType, ModelType>(ref WidgetType widget, ref ModelType model)
-            where WidgetType : WidgetBase, new()
-            where ModelType : WidgetModelBase, new()
-        {
-            widget?.Close();
-            widget = null;
-            model.IsActive = false;
-        }
-
-        /// <summary>
-        /// Close widget and return model before closing.
-        /// </summary>
-        /// <typeparam name="WidgetType">Type of widget.</typeparam>
-        /// <typeparam name="ModelType">Type of model.</typeparam>
-        /// <param name="widget">Widget to close.</param>
-        /// <returns>Widget model.</returns>
-        private ModelType CloseWidget<WidgetType, ModelType>(ref WidgetType widget)
-            where WidgetType : WidgetBase, new()
-            where ModelType : WidgetModelBase, new()
-        {
-            WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
-            widget?.Close();
-            widget = null;
-            return model;
-        }
-
-        /// <summary>
-        /// Close and save widget.
-        /// </summary>
-        /// <typeparam name="WidgetType">Type of widget.</typeparam>
-        /// <typeparam name="ModelType">Type of model.</typeparam>
-        /// <param name="widget">Widget to close.</param>
-        private void CloseAndSaveWidget<WidgetType, ModelType>(ref WidgetType widget)
-            where WidgetType : WidgetBase, new()
-            where ModelType : WidgetModelBase, new()
-        {
-            WidgetMenager.SaveWidgetConfigurationInFile(CloseWidget<WidgetType, ModelType>(ref widget));
-        }
-
-        /// <summary>
-        /// Load widget (build or not).
-        /// </summary>
-        /// <typeparam name="WidgetType">Type of widget.</typeparam>
-        /// <typeparam name="ViewModelType">Type of view model.</typeparam>
-        /// <typeparam name="ModelType">Type of model.</typeparam>
-        /// <param name="widget">Widget to load.</param>
-        private void LoadWidget<WidgetType, ViewModelType, ModelType>(ref WidgetType widget)
-            where WidgetType : WidgetBase, new()
-            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
-            where ModelType : WidgetModelBase, new()
-        {
-            var downloadedConfigurationResult = WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
-
-            if (!downloadedConfigurationResult || model.IsActive)
-            {
-                BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
-            }
-
-            WidgetMenager.SaveWidgetConfigurationInFile(model);
-        }
+        
 
         /// <summary>
         /// Load all widgets.
         /// </summary>
         private void LoadWidgets()
         {
-            LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref ClockWidget);
-            LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref PictureWidget);
-            LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref NoteWidget);
+            WidgetMenager.LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget);
+            WidgetMenager.LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget);
+            WidgetMenager.LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -293,9 +174,9 @@ namespace GameAssistant
         /// </summary>
         private void SaveWidgets()
         {
-            WidgetMenager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(ClockWidget);
-            WidgetMenager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(PictureWidget);
-            WidgetMenager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(PictureWidget);
+            WidgetMenager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(clockWidgetContainer.Widget);
+            WidgetMenager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(pictureWidgetContainer.Widget);
+            WidgetMenager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(pictureWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -303,9 +184,9 @@ namespace GameAssistant
         /// </summary>
         private void CloseWidgets()
         {
-            CloseWidget<ClockWidget, ClockModel>(ref ClockWidget);
-            CloseWidget<PictureWidget, PictureModel>(ref PictureWidget);
-            CloseWidget<PictureWidget, PictureModel>(ref PictureWidget);
+            WidgetMenager.CloseWidget<ClockWidget, ClockModel>(ref clockWidgetContainer.Widget);
+            WidgetMenager.CloseWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
+            WidgetMenager.CloseWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -313,9 +194,9 @@ namespace GameAssistant
         /// </summary>
         private void CloseAndSaveWidgets()
         {
-            CloseAndSaveWidget<ClockWidget, ClockModel>(ref ClockWidget);
-            CloseAndSaveWidget<PictureWidget, PictureModel>(ref PictureWidget);
-            CloseAndSaveWidget<NoteWidget, NoteModel>(ref NoteWidget);
+            WidgetMenager.CloseAndSaveWidget<ClockWidget, ClockModel>(ref clockWidgetContainer.Widget);
+            WidgetMenager.CloseAndSaveWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
+            WidgetMenager.CloseAndSaveWidget<NoteWidget, NoteModel>(ref noteWidgetContainer.Widget);
         }
 
         #endregion

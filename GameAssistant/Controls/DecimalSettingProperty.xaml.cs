@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace GameAssistant.Controls
@@ -6,7 +7,7 @@ namespace GameAssistant.Controls
     /// <summary>
     /// Logika interakcji dla klasy DecimalSettingProperty.xaml
     /// </summary>
-    public partial class DecimalSettingProperty : UserControl, ISettingProperty
+    public partial class DecimalSettingProperty : SettingPropertyBase
     {
         /// <summary>
         /// Default constructor.
@@ -52,9 +53,15 @@ namespace GameAssistant.Controls
         public double PropertyValue
         {
             get => ValueSlider.Value;
-            set => ValueSlider.Value = value;
+            set
+            {
+                ValueSlider.Value = value;
+                PropertyValueChanged?.Invoke(this, value);
+            }
         }
-        
+
+        public event EventHandler<double> PropertyValueChanged;
+
         /// <summary>
         /// Maximum value in slider.
         /// </summary>
@@ -81,5 +88,10 @@ namespace GameAssistant.Controls
             get => ValueSlider.BorderBrush;
             set => ValueSlider.BorderBrush = value;
         }
-   }
+
+        private void ValueSlider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
+        {
+            PropertyValueChanged?.Invoke(this, e.NewValue);
+        }
+    }
 }

@@ -1,12 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 
-namespace GameAssistant.Core
+namespace GameAssistant.ControlViewModels
 {
-    /// <summary>
-    /// Class for bindable object with ProperyChanged event and SetProperty method.
-    /// </summary>
-    public class BindableObject : INotifyPropertyChanged
+    internal class SettingPropertyViewModelBase : DependencyObject, INotifyPropertyChanged
     {
         #region NotifyPropertyChanged (Implemented)
 
@@ -26,5 +29,6 @@ namespace GameAssistant.Core
         }
 
         #endregion
+
     }
 }

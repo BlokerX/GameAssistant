@@ -8,7 +8,7 @@ namespace GameAssistant.Models
     /// <summary>
     /// Base of widget model that contains bindings for Widget.
     /// </summary>
-    internal abstract class WidgetModelBase : BindableObject
+    public abstract class WidgetModelBase : BindableObject
     {
         // Window const elements:
         private string _title = "Widget";
@@ -63,11 +63,11 @@ namespace GameAssistant.Models
             set => SetProperty(ref _resizeMode, value);
         }
 
-        private bool _isDragActive = true /* todo false */;
+        private bool? _isDragActive = false;
         /// <summary>
         /// If true drag move is enable, if false drag move is disable.
         /// </summary>
-        public bool IsDragActive
+        public bool? IsDragActive
         {
             get => _isDragActive;
             set => SetProperty(ref _isDragActive, value);

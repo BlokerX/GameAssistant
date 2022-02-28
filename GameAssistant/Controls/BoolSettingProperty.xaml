@@ -19,7 +19,7 @@
               Background="#FF2E2B31">
 
                 <Label x:Name="PropertyNameLabel"
-               Content="Color property"
+               Content="Bool property"
                VerticalAlignment="Stretch"
                HorizontalAlignment="Stretch"
                VerticalContentAlignment="Center"
@@ -39,6 +39,8 @@
               Background="#FF2E2B31">
 
                 <CheckBox x:Name="ValueCheckBox" 
+                          Checked="ValueCheckBox_Checked"
+                          Unchecked="ValueCheckBox_Unchecked"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Center"
                           VerticalContentAlignment="Center"
