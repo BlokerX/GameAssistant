@@ -48,5 +48,40 @@ namespace GameAssistant.Core
             return new Media.FontFamily(drawingFontFamily.Name);
         }
 
+        /// <summary>
+        /// Convert System.Windows.ResizeMode to bool?.
+        /// </summary>
+        /// <param name="resizeMode">System.Windows.ResizeMode to convert.</param>
+        /// <returns>The bool? tesult.</returns>
+        public static bool? ResizeModToBool(System.Windows.ResizeMode resizeMode)
+        {
+            switch (resizeMode)
+            {
+                //case ResizeMode.CanResize:
+                case System.Windows.ResizeMode.CanResizeWithGrip:
+                    return true;
+                default:
+                case System.Windows.ResizeMode.NoResize:
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Convert bool? to System.Windows.ResizeMode.
+        /// </summary>
+        /// <param name="resizeMode">A bool? to convert.</param>
+        /// <returns>System.Windows.ResizeMode result.</returns>
+        public static System.Windows.ResizeMode BoolToResizeMod(bool? resizeMode)
+        {
+            switch (resizeMode)
+            {
+                case true:
+                    return System.Windows.ResizeMode.CanResizeWithGrip;
+                default:
+                case false:
+                    return System.Windows.ResizeMode.NoResize;
+            }
+        }
+
     }
 }

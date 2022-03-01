@@ -394,5 +394,16 @@ namespace GameAssistant.Services
 
             WidgetMenager.SaveWidgetConfigurationInFile(model);
         }
+
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ModelType">Type of model.</typeparam>
+        /// <param name="widget">Widget to load.</param>
+        public static ModelType GetModelFromWidget<WidgetType, ModelType>(ref WidgetType widget)
+            where WidgetType : WidgetBase, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            // todo pozyskiwanie modelu z widgetu
+            return (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel;
+        }
     }
 }

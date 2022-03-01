@@ -107,6 +107,18 @@
 
         </StackPanel>
 
+        <Button x:Name="DefaultSettingsButton"
+                Content="Default settings"
+                Click="DefaultSettingsButton_Click"/>
+        
+        <Button x:Name="OpenSaveConfigurationDireButton"
+                Content="Open save configuration dire"
+                Click="OpenSaveConfigurationDireButton_Click"/>
+        
+        <Button x:Name="LoadSavedConfigurationButton"
+                Content="Download save configuration"
+                Click="LoadSavedConfigurationButton_Click"/>
+
     </StackPanel>
 
 </pages:SettingsPageBase>
