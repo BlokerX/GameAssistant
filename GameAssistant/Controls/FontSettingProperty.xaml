@@ -20,10 +20,8 @@
             <Button x:Name="ChangeFontButton" 
                     Content="Change font"
                     Padding="0,4"
-                    Margin="0,1"
                     Style="{StaticResource SettingButton}"
-                    Foreground="White"
-                    BorderThickness="1" 
+                    Foreground="White" 
                     Click="ChangeFontButton_Click"/>
 
         </StackPanel>
