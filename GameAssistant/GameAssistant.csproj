@@ -127,7 +127,6 @@
     <Compile Include="Windows\BusyWindow.xaml.cs">
       <DependentUpon>BusyWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowViewModels\SettingsViewModel.cs" />
     <Page Include="Controls\BoolSettingProperty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\MenuButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\SettingButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

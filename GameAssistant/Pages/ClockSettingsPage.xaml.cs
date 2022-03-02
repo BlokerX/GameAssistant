@@ -3,21 +3,9 @@ using GameAssistant.Models;
 using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GameAssistant.Pages
 {
@@ -37,7 +25,7 @@ namespace GameAssistant.Pages
             ClockWidgetContainer = clockWidget;
             LoadWidget(ClockWidgetContainer);
         }
-        
+
         public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget, ref bool? clockWidgetState)
         {
             InitializeComponent();
@@ -197,8 +185,8 @@ namespace GameAssistant.Pages
                     break;
 
                 case false:
-                    if(_clockWidgetContainer.Widget != null)
-                    WidgetManager.CloseWidget(ref _clockWidgetContainer.Widget, ref model);
+                    if (_clockWidgetContainer.Widget != null)
+                        WidgetManager.CloseWidget(ref _clockWidgetContainer.Widget, ref model);
                     break;
             }
             WidgetManager.SaveWidgetConfigurationInFile(model);

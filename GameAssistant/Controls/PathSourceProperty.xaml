@@ -18,7 +18,7 @@
                     Content="SelectPath"
                     Padding="0,4"
                     Margin="0,1"
-                    Background="#FF2E2B31"
+                    Style="{StaticResource SettingButton}"
                     Foreground="White"
                     BorderBrush="#FF1B1616"
                     BorderThickness="1" 

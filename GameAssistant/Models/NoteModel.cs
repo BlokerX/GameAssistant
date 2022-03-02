@@ -36,7 +36,7 @@ namespace GameAssistant.Models
         /// </summary>
         public double NoteFontOpacity
         {
-            get => _noteFontOpacity; 
+            get => _noteFontOpacity;
             set => SetProperty(ref _noteFontOpacity, value);
         }
 

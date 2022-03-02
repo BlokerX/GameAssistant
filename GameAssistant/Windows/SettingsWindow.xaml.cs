@@ -1,10 +1,6 @@
-﻿using GameAssistant.Models;
-using GameAssistant.Pages;
+﻿using GameAssistant.Pages;
 using GameAssistant.Widgets;
-using GameAssistant.WidgetViewModels;
-using GameAssistant.WindowViewModels;
 using System.Windows;
-using System.Windows.Media;
 
 namespace GameAssistant.Windows
 {

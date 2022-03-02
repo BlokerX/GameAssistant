@@ -1,11 +1,12 @@
-﻿<pages:SettingsPageBase  xmlns:pages="clr-namespace:GameAssistant.Pages"
-                         x:Class="GameAssistant.Pages.NoteSettingsPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="clr-namespace:GameAssistant.Controls"
-      mc:Ignorable="d"
+﻿<pages:SettingsPageBase
+    x:Class="GameAssistant.Pages.NoteSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:GameAssistant.Controls"
+    xmlns:pages="clr-namespace:GameAssistant.Pages"
+    mc:Ignorable="d"
       Title="NoteSettingsPage" d:DesignHeight="700" d:DesignWidth="1000">
 
     <StackPanel>
@@ -41,7 +42,7 @@
                 <controls:ColorSettingProperty x:Name="BackgroundColorProperty"
                                                PropertyName="Background color:"
                                                PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"/>
-                
+
                 <controls:ColorSettingProperty x:Name="ForegroundColorProperty"
                                                PropertyName="Foreground color:"
                                                PropertyColorChanged="ForegroundColorProperty_PropertyColorChanged"/>
@@ -61,7 +62,7 @@
                 <controls:DecimalSettingProperty x:Name="BackgroundOpacityProperty"
                                                  PropertyName="Background opacity:"
                                                  PropertyValueChanged="BackgroundOpacityProperty_PropertyValueChanged"/>
-                
+
                 <controls:DecimalSettingProperty x:Name="ForegroundOpacityProperty"
                                                  PropertyName="Foreground opacity:"
                                                  PropertyValueChanged="ForegroundOpacityProperty_PropertyValueChanged"/>
@@ -96,11 +97,11 @@
                 <controls:BoolSettingProperty x:Name="CanResizeProperty"
                                               PropertyName="Can resize:"
                                               PropertyValueChanged="CanResizeProperty_PropertyValueChanged"/>
-                
+
                 <controls:BoolSettingProperty x:Name="DragActiveProperty"
                                               PropertyName="Drag active:"
                                               PropertyValueChanged="DragActiveProperty_PropertyValueChanged"/>
-                
+
                 <controls:BoolSettingProperty x:Name="SettingBarVisibilityProperty"
                                               PropertyName="Setting bar visibility:"
                                               PropertyValueChanged="SettingBarVisibilityProperty_PropertyValueChanged"/>
@@ -108,14 +109,17 @@
             </StackPanel>
 
             <Button x:Name="DefaultSettingsButton"
+                    Style="{StaticResource SettingButton}"
                 Content="Default settings"
                 Click="DefaultSettingsButton_Click"/>
 
             <Button x:Name="OpenSaveConfigurationDireButton"
+                    Style="{StaticResource SettingButton}"
                 Content="Open save configuration dire"
                 Click="OpenSaveConfigurationDireButton_Click"/>
 
             <Button x:Name="LoadSavedConfigurationButton"
+                    Style="{StaticResource SettingButton}"
                 Content="Download save configuration"
                 Click="LoadSavedConfigurationButton_Click"/>
 
