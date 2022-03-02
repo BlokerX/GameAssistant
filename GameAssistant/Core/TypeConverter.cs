@@ -1,12 +1,14 @@
 ﻿using Media = System.Windows.Media;
 using Drawing = System.Drawing;
+using System.Windows;
+using System;
 
 namespace GameAssistant.Core
 {
     /// <summary>
     /// Class converter.
     /// </summary>
-    internal static class TypeConverter
+    public static class TypeConverter
     {
         /// <summary>
         /// Convert System.Windows.Media.Color to System.Drawing.Color.
@@ -80,6 +82,41 @@ namespace GameAssistant.Core
                 default:
                 case false:
                     return System.Windows.ResizeMode.NoResize;
+            }
+        }
+
+        /// <summary>
+        /// Convert System.Windows.Visibility to bool?.
+        /// </summary>
+        /// <param name="settingsBarVisibility">System.Windows.Visibility to convert.</param>
+        /// <returns>The bool? result.</returns>
+        public static bool? VisibilityToBool(Visibility settingsBarVisibility)
+        {
+            switch (settingsBarVisibility)
+            {
+                case Visibility.Visible:
+                    return true;
+                case Visibility.Hidden:
+                case Visibility.Collapsed:
+                default:
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Convert bool? to System.Windows.Visibility.
+        /// </summary>
+        /// <param name="settingsBarVisibilityBool">A bool? to convert.</param>
+        /// <returns>System.Windows.Visibility result.</returns>
+        public static Visibility BoolToVisibility(bool? settingsBarVisibilityBool)
+        {
+            switch (settingsBarVisibilityBool)
+            {
+                case true:
+                    return Visibility.Visible;
+                case false:
+                default:
+                    return Visibility.Hidden;
             }
         }
 

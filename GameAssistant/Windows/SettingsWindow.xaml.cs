@@ -33,7 +33,7 @@ namespace GameAssistant.Windows
 
             ClockWidgetFrame.Content = new ClockSettingsPage(ref clockWidgetContainer);
             PictureWidgetFrame.Content = new PictureSettingsPage(ref pictureWidgetContainer);
-            //NoteWidgetFrame.Content = new ClockSettingsPage(ref noteWidgetContainer);
+            NoteWidgetFrame.Content = new NoteSettingsPage(ref noteWidgetContainer);
         }
 
 
@@ -41,26 +41,29 @@ namespace GameAssistant.Windows
             ref bool? clockWidgetState, ref bool? pictureWidgetState, ref bool? noteWidgetState)
         {
             ClockWidgetFrame.Content = new ClockSettingsPage(ref clockWidgetContainer, ref clockWidgetState);
-            PictureWidgetFrame.Content = new PictureSettingsPage(ref pictureWidgetContainer);
-            //NoteWidgetFrame.Content = new ClockSettingsPage(ref noteWidgetContainer);
+            PictureWidgetFrame.Content = new PictureSettingsPage(ref pictureWidgetContainer, ref pictureWidgetState);
+            NoteWidgetFrame.Content = new NoteSettingsPage(ref noteWidgetContainer, ref noteWidgetState);
         }
 
         private void ClockWidgetButton_Click(object sender, RoutedEventArgs e)
         {
-            PictureWidgetFrame.Visibility = Visibility.Hidden;
             ClockWidgetFrame.Visibility = Visibility.Visible;
+            PictureWidgetFrame.Visibility = Visibility.Hidden;
+            NoteWidgetFrame.Visibility = Visibility.Hidden;
         }
 
         private void PictureWidgetButton_Click(object sender, RoutedEventArgs e)
         {
             ClockWidgetFrame.Visibility = Visibility.Hidden;
             PictureWidgetFrame.Visibility = Visibility.Visible;
+            NoteWidgetFrame.Visibility = Visibility.Hidden;
         }
 
         private void NoteWidgetButton_Click(object sender, RoutedEventArgs e)
         {
             ClockWidgetFrame.Visibility = Visibility.Hidden;
             PictureWidgetFrame.Visibility = Visibility.Hidden;
+            NoteWidgetFrame.Visibility = Visibility.Visible;
         }
 
     }

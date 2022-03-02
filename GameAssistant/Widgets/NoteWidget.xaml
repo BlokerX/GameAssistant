@@ -99,6 +99,7 @@
 
             <TextBox Text="{Binding SelectedNote.Text, Mode=TwoWay}"
                      Background="Transparent" TextChanged="TextBox_TextChanged"
+                     Opacity="{Binding WidgetModel.NoteFontOpacity}"
                      FontFamily="{Binding WidgetModel.NoteFontFamily}"
                      FontSize="{Binding WidgetModel.NoteFontSize}"
                      Foreground="{Binding WidgetModel.NoteFontColor}"

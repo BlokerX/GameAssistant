@@ -30,6 +30,17 @@ namespace GameAssistant.Models
             set => SetProperty(ref _noteFontColor, value);
         }
 
+        private double _noteFontOpacity = 1;
+        /// <summary>
+        /// The font opacity of note text.
+        /// </summary>
+        public double NoteFontOpacity
+        {
+            get => _noteFontOpacity; 
+            set => SetProperty(ref _noteFontOpacity, value);
+        }
+
+
         private string _noteFontFamily = "Century Gothic";
         /// <summary>
         /// The font family of note text.
