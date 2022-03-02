@@ -20,7 +20,7 @@ namespace GameAssistant
         {
             InitializeComponent();
 
-            if (WidgetMenager.DownloadWidgetConfigurationFromFile(out ClockModel cm))
+            if (WidgetManager.DownloadWidgetConfigurationFromFile(out ClockModel cm))
             {
                 if (cm.IsActive)
                 {
@@ -31,7 +31,7 @@ namespace GameAssistant
             else someClockWidget = new ClockWidget();
             someClockWidget?.Show();
 
-            if (WidgetMenager.DownloadWidgetConfigurationFromFile(out PictureModel pm))
+            if (WidgetManager.DownloadWidgetConfigurationFromFile(out PictureModel pm))
             {
                 if (pm.IsActive)
                 {
@@ -42,7 +42,7 @@ namespace GameAssistant
             else somePictureWidget = new PictureWidget();
             somePictureWidget?.Show();
 
-            if (WidgetMenager.DownloadWidgetConfigurationFromFile(out NoteModel nm))
+            if (WidgetManager.DownloadWidgetConfigurationFromFile(out NoteModel nm))
             {
                 if (nm.IsActive)
                 {
@@ -56,24 +56,24 @@ namespace GameAssistant
 
         private void SaveConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            WidgetMenager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(someClockWidget);
-            WidgetMenager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(somePictureWidget);
-            WidgetMenager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(someNoteWidget);
+            WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(someClockWidget);
+            WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(somePictureWidget);
+            WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(someNoteWidget);
         }
 
         private void DownloadConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            if (someClockWidget != null && WidgetMenager.DownloadWidgetConfigurationFromFile(out ClockModel cm))
+            if (someClockWidget != null && WidgetManager.DownloadWidgetConfigurationFromFile(out ClockModel cm))
                 (someClockWidget.DataContext as IWidgetViewModel<ClockModel>).WidgetModel = cm;
             else
                 MessageBox.Show("Not found clock widget's configuration file or widget has been null.", "Failed download configuration");
 
-            if (somePictureWidget != null && WidgetMenager.DownloadWidgetConfigurationFromFile(out PictureModel pm))
+            if (somePictureWidget != null && WidgetManager.DownloadWidgetConfigurationFromFile(out PictureModel pm))
                 (somePictureWidget.DataContext as IWidgetViewModel<PictureModel>).WidgetModel = pm;
             else
                 MessageBox.Show("Not found picture widget's configuration file or widget has been null.", "Failed download configuration");
 
-            if (someNoteWidget != null && WidgetMenager.DownloadWidgetConfigurationFromFile(out NoteModel nm))
+            if (someNoteWidget != null && WidgetManager.DownloadWidgetConfigurationFromFile(out NoteModel nm))
                 (someNoteWidget.DataContext as IWidgetViewModel<NoteModel>).WidgetModel = nm;
             else
                 MessageBox.Show("Not found note widget's configuration file or widget has been null.", "Failed download configuration");

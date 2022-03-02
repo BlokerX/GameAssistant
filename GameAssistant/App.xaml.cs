@@ -49,7 +49,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_Click(object sender, System.EventArgs e)
         {
-            OpenSettingsWindow();
+            // todo zrobić lub usunąć zdarzenie kliknięcia
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_ClockWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            WidgetMenager.Widget_ChangeStateAndSave<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget);
+            WidgetManager.Widget_ChangeStateAndSave<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_PictureWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            WidgetMenager.Widget_ChangeStateAndSave<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget);
+            WidgetManager.Widget_ChangeStateAndSave<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_NoteWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            WidgetMenager.Widget_ChangeStateAndSave<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
+            WidgetManager.Widget_ChangeStateAndSave<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -97,13 +97,23 @@ namespace GameAssistant
         #region Settings window
 
         /// <summary>
+        /// Setting window slot.
+        /// </summary>
+        private SettingsWindow settingsWindow;
+
+        /// <summary>
         /// Open setting window.
         /// </summary>
         private void OpenSettingsWindow()
         {
-            var sw = new SettingsWindow(ref clockWidgetContainer, ref pictureWidgetContainer, ref noteWidgetContainer);
-            sw.Show();
-            //todo
+            if (settingsWindow == null)
+            {
+                settingsWindow = new SettingsWindow(ref clockWidgetContainer, ref pictureWidgetContainer, ref noteWidgetContainer);
+                settingsWindow.Closed += (s, o) => settingsWindow = null;
+                settingsWindow.Show();
+            }
+            settingsWindow?.Focus();
+            //todo zorobić synchronizację między wyborem widgetów
         }
 
         #endregion
@@ -157,16 +167,16 @@ namespace GameAssistant
 
         #region Widgets methods
 
-        
+
 
         /// <summary>
         /// Load all widgets.
         /// </summary>
         private void LoadWidgets()
         {
-            WidgetMenager.LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget);
-            WidgetMenager.LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget);
-            WidgetMenager.LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
+            WidgetManager.LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget);
+            WidgetManager.LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget);
+            WidgetManager.LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -174,9 +184,9 @@ namespace GameAssistant
         /// </summary>
         private void SaveWidgets()
         {
-            WidgetMenager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(clockWidgetContainer.Widget);
-            WidgetMenager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(pictureWidgetContainer.Widget);
-            WidgetMenager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(pictureWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(clockWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(pictureWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(pictureWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -184,9 +194,9 @@ namespace GameAssistant
         /// </summary>
         private void CloseWidgets()
         {
-            WidgetMenager.CloseWidget<ClockWidget, ClockModel>(ref clockWidgetContainer.Widget);
-            WidgetMenager.CloseWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
-            WidgetMenager.CloseWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
+            WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref clockWidgetContainer.Widget);
+            WidgetManager.CloseWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
+            WidgetManager.CloseWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -194,9 +204,9 @@ namespace GameAssistant
         /// </summary>
         private void CloseAndSaveWidgets()
         {
-            WidgetMenager.CloseAndSaveWidget<ClockWidget, ClockModel>(ref clockWidgetContainer.Widget);
-            WidgetMenager.CloseAndSaveWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
-            WidgetMenager.CloseAndSaveWidget<NoteWidget, NoteModel>(ref noteWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<ClockWidget, ClockModel>(ref clockWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<NoteWidget, NoteModel>(ref noteWidgetContainer.Widget);
         }
 
         #endregion

@@ -47,6 +47,7 @@
                          Background="Transparent"
                          BorderBrush="White"
                          Foreground="White"
+                         TextChanged="ValueTextBox_TextChanged"
                          Margin="5,5" />
 
             </Grid>

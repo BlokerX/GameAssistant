@@ -24,29 +24,44 @@ namespace GameAssistant.Windows
         /// <summary>
         /// Constructor with widgets.
         /// </summary>
+        /// <param name="clockWidgetContainer"></param>
+        /// <param name="pictureWidgetContainer"></param>
+        /// <param name="noteWidgetContainer"></param>
         public SettingsWindow(ref WidgetContainer<ClockWidget> clockWidgetContainer, ref WidgetContainer<PictureWidget> pictureWidgetContainer, ref WidgetContainer<NoteWidget> noteWidgetContainer)
         {
             InitializeComponent();
 
-            ClockWidgetFrame.Content = new ClockSettingsPage(ref clockWidgetContainer); 
+            ClockWidgetFrame.Content = new ClockSettingsPage(ref clockWidgetContainer);
+            PictureWidgetFrame.Content = new PictureSettingsPage(ref pictureWidgetContainer);
+            //NoteWidgetFrame.Content = new ClockSettingsPage(ref noteWidgetContainer);
+        }
+
+
+        public SettingsWindow(ref WidgetContainer<ClockWidget> clockWidgetContainer, ref WidgetContainer<PictureWidget> pictureWidgetContainer, ref WidgetContainer<NoteWidget> noteWidgetContainer,
+            ref bool? clockWidgetState, ref bool? pictureWidgetState, ref bool? noteWidgetState)
+        {
+            ClockWidgetFrame.Content = new ClockSettingsPage(ref clockWidgetContainer, ref clockWidgetState);
+            PictureWidgetFrame.Content = new PictureSettingsPage(ref pictureWidgetContainer);
+            //NoteWidgetFrame.Content = new ClockSettingsPage(ref noteWidgetContainer);
         }
 
         private void ClockWidgetButton_Click(object sender, RoutedEventArgs e)
         {
-            //PictureWidgetPage.Visibility = Visibility.Hidden;
-            //ClockWidgetPage.Visibility = Visibility.Visible;
+            PictureWidgetFrame.Visibility = Visibility.Hidden;
+            ClockWidgetFrame.Visibility = Visibility.Visible;
         }
 
         private void PictureWidgetButton_Click(object sender, RoutedEventArgs e)
         {
-            //ClockWidgetPage.Visibility = Visibility.Hidden;
-            //PictureWidgetPage.Visibility = Visibility.Visible;
+            ClockWidgetFrame.Visibility = Visibility.Hidden;
+            PictureWidgetFrame.Visibility = Visibility.Visible;
         }
 
         private void NoteWidgetButton_Click(object sender, RoutedEventArgs e)
         {
-            //ClockWidgetPage.Visibility = Visibility.Hidden;
-            //PictureWidgetPage.Visibility = Visibility.Hidden;
+            ClockWidgetFrame.Visibility = Visibility.Hidden;
+            PictureWidgetFrame.Visibility = Visibility.Hidden;
         }
+
     }
 }

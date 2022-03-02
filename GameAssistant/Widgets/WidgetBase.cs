@@ -17,6 +17,7 @@ namespace GameAssistant.Widgets
             AllowsTransparency = true;
             WindowStyle = WindowStyle.None;
             Topmost = true;
+            ShowInTaskbar = false;
 
             this.MouseLeftButtonDown += DragWindow;
         }

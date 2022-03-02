@@ -1,6 +1,5 @@
 ﻿using GameAssistant.Core;
 using GameAssistant.Models;
-using GameAssistant.PageViewModels;
 using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
@@ -38,8 +37,21 @@ namespace GameAssistant.Pages
             ClockWidgetContainer = clockWidget;
             LoadWidget(ClockWidgetContainer);
         }
+        
+        public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget, ref bool? clockWidgetState)
+        {
+            InitializeComponent();
 
-        private void LoadWidget(WidgetContainer<ClockWidget> clockWidget)
+            ClockWidgetContainer = clockWidget;
+            LoadWidget(ClockWidgetContainer);
+            ActiveProperty.PropertyValue = clockWidgetState;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clockWidgetContainer"></param>
+        private void LoadWidget(WidgetContainer<ClockWidget> clockWidgetContainer)
         {
             if (ClockWidgetContainer.Widget == null)
             {
@@ -50,8 +62,8 @@ namespace GameAssistant.Pages
             {
                 this.ActiveProperty.PropertyValue = true;
 
-                this.DataContext = new ClockSettingsViewModel(ref clockWidget);
-                var model = (clockWidget.Widget.DataContext as IWidgetViewModel<ClockModel>).WidgetModel;
+                //this.DataContext = new ClockSettingsViewModel(ref clockWidgetContainer);
+                var model = (clockWidgetContainer.Widget.DataContext as IWidgetViewModel<ClockModel>).WidgetModel;
 
                 //todo problem's solution
                 this.BackgroundColorProperty.PropertyColor = model.BackgroundColor;
@@ -68,6 +80,10 @@ namespace GameAssistant.Pages
             }
         }
 
+        /// <summary>
+        /// Set properties active state.
+        /// </summary>
+        /// <param name="newState">True = enabled, false = disabled.</param>
         private void ActiveChanged(bool newState)
         {
             this.BackgroundColorProperty.IsEnabled = newState;
@@ -87,6 +103,9 @@ namespace GameAssistant.Pages
         typeof(ClockSettingsPage)
         );
         private WidgetContainer<ClockWidget> _clockWidgetContainer;
+        /// <summary>
+        /// The clock container with clock widget.
+        /// </summary>
         public WidgetContainer<ClockWidget> ClockWidgetContainer
         {
             get => _clockWidgetContainer;
@@ -97,9 +116,9 @@ namespace GameAssistant.Pages
         {
             if (ClockWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetMenager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
                 model.BackgroundColor = e;
-                WidgetMenager.SaveWidgetConfigurationInFile(model);
+                WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
 
@@ -107,9 +126,9 @@ namespace GameAssistant.Pages
         {
             if (ClockWidgetContainer.Widget.DataContext != null)
             {
-                var model = WidgetMenager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
                 model.ClockLabelForeground = e;
-                WidgetMenager.SaveWidgetConfigurationInFile(model);
+                WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
 
@@ -117,9 +136,9 @@ namespace GameAssistant.Pages
         {
             if (ClockWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetMenager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
                 model.BackgroundOpacity = e;
-                WidgetMenager.SaveWidgetConfigurationInFile(model);
+                WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
 
@@ -127,9 +146,9 @@ namespace GameAssistant.Pages
         {
             if (ClockWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetMenager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
                 model.ClockLabelOpacity = e;
-                WidgetMenager.SaveWidgetConfigurationInFile(model);
+                WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
 
@@ -137,9 +156,9 @@ namespace GameAssistant.Pages
         {
             if (ClockWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetMenager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
                 model.ResizeMode = TypeConverter.BoolToResizeMod(e);
-                WidgetMenager.SaveWidgetConfigurationInFile(model);
+                WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
 
@@ -147,9 +166,9 @@ namespace GameAssistant.Pages
         {
             if (ClockWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetMenager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
                 model.IsDragActive = e;
-                WidgetMenager.SaveWidgetConfigurationInFile(model);
+                WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
 
@@ -157,18 +176,33 @@ namespace GameAssistant.Pages
         {
             if (ClockWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetMenager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
                 model.FontFamily = e.Item1.ToString();
                 model.FontSize = e.Item2;
-                WidgetMenager.SaveWidgetConfigurationInFile(model);
+                WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
 
         private void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
             //todo tu skończyłem
-            WidgetMenager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(ClockWidgetContainer.Widget);
-            WidgetMenager.Widget_ChangeStateAndSave<ClockWidget, ClockViewModel, ClockModel>(ref _clockWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(_clockWidgetContainer.Widget);
+
+            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ClockModel model);
+            switch (e)
+            {
+                case true:
+                    if (_clockWidgetContainer.Widget == null)
+                        WidgetManager.BuildWidget<ClockWidget, ClockViewModel, ClockModel>(ref _clockWidgetContainer.Widget, ref model, downloadedConfigurationResult);
+                    break;
+
+                case false:
+                    if(_clockWidgetContainer.Widget != null)
+                    WidgetManager.CloseWidget(ref _clockWidgetContainer.Widget, ref model);
+                    break;
+            }
+            WidgetManager.SaveWidgetConfigurationInFile(model);
+
             ActiveChanged((bool)e);
         }
 
@@ -179,12 +213,12 @@ namespace GameAssistant.Pages
                 // todo przywracanie ustawień domyślnych i zapisywanie ich
                 if (_clockWidgetContainer.Widget != null)
                 {
-                    WidgetMenager.CloseWidget<ClockWidget, ClockModel>(ref _clockWidgetContainer.Widget);
+                    WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref _clockWidgetContainer.Widget);
                 }
                 _clockWidgetContainer.Widget = new ClockWidget();
                 _clockWidgetContainer.Widget.Show();
                 LoadWidget(_clockWidgetContainer);
-                WidgetMenager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(_clockWidgetContainer.Widget);
+                WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(_clockWidgetContainer.Widget);
             }
         }
 

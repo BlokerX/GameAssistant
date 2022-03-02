@@ -4,11 +4,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="clr-namespace:GameAssistant.Controls" 
-      xmlns:pageviewmodels="clr-namespace:GameAssistant.PageViewModels" 
-      d:DataContext="{d:DesignInstance Type=pageviewmodels:ClockSettingsViewModel}"
+      xmlns:controls="clr-namespace:GameAssistant.Controls"
       mc:Ignorable="d"
-      Title="ClockSettingsPage"  d:DesignHeight="560" d:DesignWidth="797">
+      Title="ClockSettingsPage"  d:DesignHeight="760" d:DesignWidth="997">
 
     <StackPanel>
 

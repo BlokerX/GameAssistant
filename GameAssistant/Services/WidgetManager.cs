@@ -11,7 +11,7 @@ namespace GameAssistant.Services
     /// <summary>
     /// Widget's helper class.
     /// </summary>
-    internal static class WidgetMenager
+    internal static class WidgetManager
     {
         /// <summary>
         /// List of widget type's unit.
@@ -285,7 +285,7 @@ namespace GameAssistant.Services
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
-            var downloadedConfigurationResult = WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
 
             if (widget != null)
             {
@@ -296,7 +296,7 @@ namespace GameAssistant.Services
             BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
 
         END:
-            WidgetMenager.SaveWidgetConfigurationInFile(model);
+            WidgetManager.SaveWidgetConfigurationInFile(model);
         }
 
         /// <summary>
@@ -316,7 +316,7 @@ namespace GameAssistant.Services
         {
             if (downloadWidgetConfigurationResult)
             {
-                widget = WidgetMenager.CreateWidget<WidgetType, ViewModelType, ModelType>(downloadedModel);
+                widget = WidgetManager.CreateWidget<WidgetType, ViewModelType, ModelType>(downloadedModel);
             }
             else
             {
@@ -354,7 +354,7 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
-            WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
             widget?.Close();
             widget = null;
             return model;
@@ -370,7 +370,7 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
-            WidgetMenager.SaveWidgetConfigurationInFile(CloseWidget<WidgetType, ModelType>(ref widget));
+            WidgetManager.SaveWidgetConfigurationInFile(CloseWidget<WidgetType, ModelType>(ref widget));
         }
 
         /// <summary>
@@ -385,14 +385,14 @@ namespace GameAssistant.Services
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
-            var downloadedConfigurationResult = WidgetMenager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
 
             if (!downloadedConfigurationResult || model.IsActive)
             {
                 BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
             }
 
-            WidgetMenager.SaveWidgetConfigurationInFile(model);
+            WidgetManager.SaveWidgetConfigurationInFile(model);
         }
 
         /// <typeparam name="WidgetType">Type of widget.</typeparam>

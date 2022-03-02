@@ -50,18 +50,13 @@
 
             <Grid Margin="10">
 
-                <Frame x:Name="ClockWidgetFrame">
-                    <!--Frame.Content>
-                        <pages:ClockSettingsPage x:Name="ClockWidgetPage" ClockWidget="{Binding ClockWidget}"/>
-                    </Frame.Content-->
-                </Frame>
+                <Frame x:Name="ClockWidgetFrame"/>
 
-                <Frame>
-                    <!--Frame.Content>
-                        <pages:PictureSettingsPage x:Name="PictureWidgetPage" 
-                                                   Visibility="Hidden"/>
-                    </Frame.Content-->
-                </Frame>
+                <Frame x:Name="PictureWidgetFrame"
+                       Visibility="Hidden"/>
+                
+                <Frame x:Name="NoteWidgetFrame"
+                       Visibility="Hidden"/>
 
             </Grid>
 

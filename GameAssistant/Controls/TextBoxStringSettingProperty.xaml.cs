@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace GameAssistant.Controls
@@ -63,6 +64,13 @@ namespace GameAssistant.Controls
         {
             get => ValueTextBox.Text;
             set => ValueTextBox.Text = value;
+        }
+
+        public event EventHandler<string> PropertyValueChanged;
+
+        private void ValueTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PropertyValueChanged?.Invoke(sender, (sender as TextBox).Text);
         }
     }
 }

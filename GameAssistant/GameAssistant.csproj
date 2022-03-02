@@ -75,6 +75,9 @@
       <DependentUpon>FontSettingProperty.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ISettingProperty.cs" />
+    <Compile Include="Controls\PathSourceProperty.xaml.cs">
+      <DependentUpon>PathSourceProperty.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SettingPropertyBase.cs" />
     <Compile Include="Controls\TextBoxStringSettingProperty.xaml.cs">
       <DependentUpon>TextBoxStringSettingProperty.xaml</DependentUpon>
@@ -99,9 +102,8 @@
       <DependentUpon>PictureSettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\SettingsPageBase.cs" />
-    <Compile Include="PageViewModels\ClockSettingsViewModel.cs" />
     <Compile Include="Services\AppFileSystem.cs" />
-    <Compile Include="Services\WidgetMenager.cs" />
+    <Compile Include="Services\WidgetManager.cs" />
     <Compile Include="Services\WidgetTypeUnit.cs" />
     <Compile Include="Widgets\WidgetContainer.cs" />
     <Compile Include="WidgetViewModels\ClockViewModel.cs" />
@@ -139,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\FontSettingProperty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PathSourceProperty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

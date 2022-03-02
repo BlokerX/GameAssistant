@@ -24,7 +24,8 @@
         <Grid Background="{Binding WidgetModel.BackgroundColor}" 
               Opacity="{Binding WidgetModel.BackgroundOpacity}"/>
 
-        <Image Source="{Binding WidgetModel.ImageSource}"/>
+        <Image Source="{Binding WidgetModel.ImageSource}"
+               Opacity="{Binding WidgetModel.ImageOpacity}"/>
 
     </Grid>
 
