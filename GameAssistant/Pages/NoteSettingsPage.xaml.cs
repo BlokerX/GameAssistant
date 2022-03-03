@@ -36,38 +36,43 @@ namespace GameAssistant.Pages
         }
 
         /// <summary>
-        /// 
+        /// Load widget in settings page.
         /// </summary>
-        /// <param name="noteWidgetContainer"></param>
+        /// <param name="noteWidgetContainer">Note widget to load.</param>
         private void LoadWidget(WidgetContainer<NoteWidget> noteWidgetContainer)
         {
             if (NoteWidgetContainer.Widget == null)
             {
                 this.ActiveProperty.PropertyValue = false;
+
                 ActiveChanged(false);
             }
             else
             {
                 this.ActiveProperty.PropertyValue = true;
+                LoadWidgetSettings(ref noteWidgetContainer);
 
-                //this.DataContext = new NoteSettingsViewModel(ref noteWidgetContainer);
-                var model = (noteWidgetContainer.Widget.DataContext as IWidgetViewModel<NoteModel>).WidgetModel;
-
-                //todo problem's solution
-                this.BackgroundColorProperty.PropertyColor = model.BackgroundColor;
-                this.ForegroundColorProperty.PropertyColor = model.NoteFontColor;
-
-                this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
-                this.ForegroundOpacityProperty.PropertyValue = model.NoteFontOpacity;
-
-                this.FontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.NoteFontFamily);
-                this.FontSettingsPropertyPanel.PropertyFontSize = model.NoteFontSize;
-
-                this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
-                this.DragActiveProperty.PropertyValue = model.IsDragActive;
-
-                this.SettingBarVisibilityProperty.PropertyValue = TypeConverter.VisibilityToBool(model.SettingsBarVisibility);
+                ActiveChanged(true);
             }
+        }
+
+        private void LoadWidgetSettings(ref WidgetContainer<NoteWidget> noteWidgetContainer)
+        {
+            var model = (noteWidgetContainer.Widget.DataContext as IWidgetViewModel<NoteModel>).WidgetModel;
+
+            this.BackgroundColorProperty.PropertyColor = model.BackgroundColor;
+            this.ForegroundColorProperty.PropertyColor = model.NoteFontColor;
+
+            this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
+            this.ForegroundOpacityProperty.PropertyValue = model.NoteFontOpacity;
+
+            this.FontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.NoteFontFamily);
+            this.FontSettingsPropertyPanel.PropertyFontSize = model.NoteFontSize;
+
+            this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
+            this.DragActiveProperty.PropertyValue = model.IsDragActive;
+
+            this.SettingBarVisibilityProperty.PropertyValue = TypeConverter.VisibilityToBool(model.SettingsBarVisibility);
         }
 
         /// <summary>
@@ -177,6 +182,7 @@ namespace GameAssistant.Pages
 
         private void SettingBarVisibilityProperty_PropertyValueChanged(object sender, bool? e)
         {
+            //todo setting bar visibility to improve
             if (NoteWidgetContainer.Widget?.DataContext != null)
             {
                 var model = WidgetManager.GetModelFromWidget<NoteWidget, NoteModel>(ref NoteWidgetContainer.Widget);
@@ -205,6 +211,12 @@ namespace GameAssistant.Pages
             }
             WidgetManager.SaveWidgetConfigurationInFile(model);
 
+            //todo naprawić aktualizowanie configuracji w note widget (show settings bar)
+            //todo naprawić w innych widgetach
+            if (_noteWidgetContainer.Widget != null)
+            {
+                LoadWidgetSettings(ref _noteWidgetContainer);
+            }
             ActiveChanged((bool)e);
         }
 

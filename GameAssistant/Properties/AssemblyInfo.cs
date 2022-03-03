@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("Game Assistant")]
 [assembly: AssemblyDescription("Widgets for Windows.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Bloker Company™")]
+[assembly: AssemblyCompany("BlokerCompany™")]
 [assembly: AssemblyProduct("Game Assistant (by BlokerCompany™)")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("BlokerCompany™")]
