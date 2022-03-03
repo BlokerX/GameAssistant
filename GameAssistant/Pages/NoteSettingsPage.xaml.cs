@@ -3,7 +3,9 @@ using GameAssistant.Models;
 using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Media;
 
@@ -14,6 +16,8 @@ namespace GameAssistant.Pages
     /// </summary>
     public partial class NoteSettingsPage : SettingsPageBase
     {
+        #region Constructors
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -23,7 +27,7 @@ namespace GameAssistant.Pages
             InitializeComponent();
 
             NoteWidgetContainer = noteWidget;
-            LoadWidget(NoteWidgetContainer);
+            LoadWidget(ref _noteWidgetContainer);
         }
 
         public NoteSettingsPage(ref WidgetContainer<NoteWidget> noteWidget, ref bool? noteWidgetState)
@@ -31,27 +35,27 @@ namespace GameAssistant.Pages
             InitializeComponent();
 
             NoteWidgetContainer = noteWidget;
-            LoadWidget(NoteWidgetContainer);
+            LoadWidget(ref _noteWidgetContainer);
             ActiveProperty.PropertyValue = noteWidgetState;
         }
+
+        #endregion
 
         /// <summary>
         /// Load widget in settings page.
         /// </summary>
         /// <param name="noteWidgetContainer">Note widget to load.</param>
-        private void LoadWidget(WidgetContainer<NoteWidget> noteWidgetContainer)
+        private void LoadWidget(ref WidgetContainer<NoteWidget> noteWidgetContainer)
         {
-            if (NoteWidgetContainer.Widget == null)
+            if (noteWidgetContainer.Widget == null)
             {
                 this.ActiveProperty.PropertyValue = false;
-
                 ActiveChanged(false);
             }
             else
             {
                 this.ActiveProperty.PropertyValue = true;
                 LoadWidgetSettings(ref noteWidgetContainer);
-
                 ActiveChanged(true);
             }
         }
@@ -75,11 +79,7 @@ namespace GameAssistant.Pages
             this.SettingBarVisibilityProperty.PropertyValue = TypeConverter.VisibilityToBool(model.SettingsBarVisibility);
         }
 
-        /// <summary>
-        /// Set properties active state.
-        /// </summary>
-        /// <param name="newState">True = enabled, false = disabled.</param>
-        private void ActiveChanged(bool newState)
+        protected override void ActiveChanged(bool newState)
         {
             this.BackgroundColorProperty.IsEnabled = newState;
             this.ForegroundColorProperty.IsEnabled = newState;
@@ -95,10 +95,13 @@ namespace GameAssistant.Pages
             this.SettingBarVisibilityProperty.IsEnabled = newState;
         }
 
+        #region Widget
+
         public static readonly DependencyProperty PropertyColorProperty = DependencyProperty.Register(
         "NoteWidgetContainer", typeof(WidgetContainer<NoteWidget>),
         typeof(NoteSettingsPage)
         );
+
         private WidgetContainer<NoteWidget> _noteWidgetContainer;
         /// <summary>
         /// The note container with note widget.
@@ -109,7 +112,11 @@ namespace GameAssistant.Pages
             set => SetProperty(ref _noteWidgetContainer, value);
         }
 
-        public void BackgroundColorProperty_PropertyColorChanged(object sender, Brush e)
+        #endregion
+
+        #region PropertyChangedMethods
+
+        private void BackgroundColorProperty_PropertyColorChanged(object sender, Brush e)
         {
             if (NoteWidgetContainer.Widget?.DataContext != null)
             {
@@ -191,9 +198,9 @@ namespace GameAssistant.Pages
             }
         }
 
-        private void ActiveProperty_PropertyValueChanged(object sender, bool? e)
+
+        protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            //todo tu skończyłem
             WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(_noteWidgetContainer.Widget);
 
             var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out NoteModel model);
@@ -220,7 +227,9 @@ namespace GameAssistant.Pages
             ActiveChanged((bool)e);
         }
 
-        private void DefaultSettingsButton_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+        protected override void DefaultSettingsButton_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
             {
@@ -231,20 +240,50 @@ namespace GameAssistant.Pages
                 }
                 _noteWidgetContainer.Widget = new NoteWidget();
                 _noteWidgetContainer.Widget.Show();
-                LoadWidget(_noteWidgetContainer);
+                LoadWidget(ref _noteWidgetContainer);
                 WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(_noteWidgetContainer.Widget);
             }
         }
 
-        private void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
+        protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
         {
             // todo zabezpieczyć
             Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(NoteWidget).Name));
         }
 
-        private void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
+        protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            // todo zrobić kiedyś konfiguracje z plików
+            var fileDialog = new System.Windows.Forms.OpenFileDialog()
+            {
+                Filter =
+                "JSON files (*.json)|*.json" +
+                "|All files (*.*)|*.*",
+
+                Multiselect = false,
+
+                Title = "Select save with widget configuration:"
+            };
+            //todo dodać sprawdzanie czy nie jest to pusta konfiguracja
+            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (MessageBox.Show("Should you change widget configuration?\n(Warning, if you change configuration settings without backup you will not be able to restore the current data.)", "Change setting configuration:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+                {
+                    var model = new NoteModel();
+                    using (var sr = File.OpenText(fileDialog.FileName))
+                    {
+                        model = JsonConvert.DeserializeObject<NoteModel>(sr.ReadToEnd());
+                        WidgetManager.SaveWidgetConfigurationInFile(model);
+                    }
+
+                    if (_noteWidgetContainer.Widget != null)
+                    {
+                        WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref _noteWidgetContainer.Widget);
+                    }
+                    WidgetManager.LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref _noteWidgetContainer.Widget);
+                    _noteWidgetContainer.Widget?.Show();
+                    LoadWidget(ref _noteWidgetContainer);
+                }
+            }
         }
 
     }

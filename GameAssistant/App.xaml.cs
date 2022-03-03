@@ -13,23 +13,23 @@ namespace GameAssistant
     /// </summary>
     public partial class App : Application
     {
-        #region Widgets
+        #region WidgetsContainers
 
-        #region ClockWidget
+        #region ClockWidgetContainer
         /// <summary>
         /// The clock widget's container.
         /// </summary>
         private WidgetContainer<ClockWidget> clockWidgetContainer = new WidgetContainer<ClockWidget>();
         #endregion
 
-        #region PictureWidget
+        #region PictureWidgetContainer
         /// <summary>
         /// The picture widget.
         /// </summary>
         private WidgetContainer<PictureWidget> pictureWidgetContainer = new WidgetContainer<PictureWidget>();
         #endregion
 
-        #region NoteWidget
+        #region NoteWidgetContainer
         /// <summary>
         /// The note widget.
         /// </summary>
@@ -44,13 +44,13 @@ namespace GameAssistant
         /// </summary>
         private System.Windows.Forms.NotifyIcon NotifyIcon;
 
-        /// <summary>
-        /// Invoke when notify icon clicked.
-        /// </summary>
-        private void NotifyIcon_Click(object sender, System.EventArgs e)
-        {
-            // todo zrobić lub usunąć zdarzenie kliknięcia
-        }
+        ///// <summary>
+        ///// Invoke when notify icon clicked.
+        ///// </summary>
+        //private void NotifyIcon_Click(object sender, System.EventArgs e)
+        //{
+        //    // todo zrobić lub usunąć zdarzenie kliknięcia
+        //}
 
         /// <summary>
         /// Invoke when settings button clicked.
@@ -151,7 +151,7 @@ namespace GameAssistant
                 ),
                 //todo notify icon picture's Icon = ,
             };
-            NotifyIcon.DoubleClick += NotifyIcon_Click;
+            //todo coś z tym zrobić: NotifyIcon.DoubleClick += NotifyIcon_Click;
 
             LoadWidgets();
         }

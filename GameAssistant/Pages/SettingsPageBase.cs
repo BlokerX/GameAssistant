@@ -1,16 +1,34 @@
-﻿using System;
+﻿using GameAssistant.Widgets;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace GameAssistant.Pages
 {
-    public class SettingsPageBase : Page, INotifyPropertyChanged
+    public abstract class SettingsPageBase : Page, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Set properties active state.
+        /// </summary>
+        /// <param name="newState">True = enabled, false = disabled.</param>
+        protected abstract void ActiveChanged(bool newState);
+
+        protected abstract void ActiveProperty_PropertyValueChanged(object sender, bool? e);
+
+        protected abstract void DefaultSettingsButton_Click(object sender, RoutedEventArgs e);
+
+        protected abstract void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e);
+
+        protected abstract void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e);
+
+        // ========================================================================================== //
+
         #region NotifyPropertyChanged (Implemented)
 
         public event PropertyChangedEventHandler PropertyChanged;

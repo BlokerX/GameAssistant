@@ -3,22 +3,12 @@ using GameAssistant.Models;
 using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GameAssistant.Pages
 {
@@ -27,6 +17,8 @@ namespace GameAssistant.Pages
     /// </summary>
     public partial class PictureSettingsPage : SettingsPageBase
     {
+        #region Constructors
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -36,7 +28,7 @@ namespace GameAssistant.Pages
             InitializeComponent();
 
             PictureWidgetContainer = pictureWidget;
-            LoadWidget(PictureWidgetContainer);
+            LoadWidget(ref _pictureWidgetContainer);
         }
 
         public PictureSettingsPage(ref WidgetContainer<PictureWidget> pictureWidget, ref bool? pictureWidgetState)
@@ -44,15 +36,17 @@ namespace GameAssistant.Pages
             InitializeComponent();
 
             PictureWidgetContainer = pictureWidget;
-            LoadWidget(PictureWidgetContainer);
+            LoadWidget(ref _pictureWidgetContainer);
             ActiveProperty.PropertyValue = pictureWidgetState;
         }
 
+        #endregion
+
         /// <summary>
-        /// 
+        /// Load widget in settings page.
         /// </summary>
-        /// <param name="pictureWidgetContainer"></param>
-        private void LoadWidget(WidgetContainer<PictureWidget> pictureWidgetContainer)
+        /// <param name="pictureWidgetContainer">Picture widget to load.</param>
+        private void LoadWidget(ref WidgetContainer<PictureWidget> pictureWidgetContainer)
         {
             if (PictureWidgetContainer.Widget == null)
             {
@@ -62,28 +56,27 @@ namespace GameAssistant.Pages
             else
             {
                 this.ActiveProperty.PropertyValue = true;
-
-                //this.DataContext = new PictureSettingsViewModel(ref pictureWidgetContainer);
-                var model = (pictureWidgetContainer.Widget.DataContext as IWidgetViewModel<PictureModel>).WidgetModel;
-
-                //todo problem's solution
-                this.BackgroundColorProperty.PropertyColor = model.BackgroundColor;
-
-                this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
-                this.ImageOpacityProperty.PropertyValue = model.ImageOpacity;
-
-                this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
-                this.DragActiveProperty.PropertyValue = model.IsDragActive;
-
-                this.ImageSourceProperty.PropertyValue = model.ImageSource;
+                LoadWidgetSettings(ref pictureWidgetContainer);
+                ActiveChanged(true);
             }
         }
 
-        /// <summary>
-        /// Set properties active state.
-        /// </summary>
-        /// <param name="newState">True = enabled, false = disabled.</param>
-        private void ActiveChanged(bool newState)
+        private void LoadWidgetSettings(ref WidgetContainer<PictureWidget> pictureWidgetContainer)
+        {
+            var model = (pictureWidgetContainer.Widget.DataContext as IWidgetViewModel<PictureModel>).WidgetModel;
+
+            this.BackgroundColorProperty.PropertyColor = model.BackgroundColor;
+
+            this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
+            this.ImageOpacityProperty.PropertyValue = model.ImageOpacity;
+
+            this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
+            this.DragActiveProperty.PropertyValue = model.IsDragActive;
+
+            this.ImageSourceProperty.PropertyValue = model.ImageSource;
+        }
+
+        protected override void ActiveChanged(bool newState)
         {
             this.BackgroundColorProperty.IsEnabled = newState;
 
@@ -96,10 +89,13 @@ namespace GameAssistant.Pages
             this.ImageSourceProperty.IsEnabled = newState;
         }
 
+        #region Widget
+
         public static readonly DependencyProperty PropertyColorProperty = DependencyProperty.Register(
         "PictureWidgetContainer", typeof(WidgetContainer<PictureWidget>),
         typeof(PictureSettingsPage)
         );
+
         private WidgetContainer<PictureWidget> _pictureWidgetContainer;
         /// <summary>
         /// The picture container with picture widget.
@@ -110,7 +106,11 @@ namespace GameAssistant.Pages
             set => SetProperty(ref _pictureWidgetContainer, value);
         }
 
-        public void BackgroundColorProperty_PropertyColorChanged(object sender, Brush e)
+        #endregion
+
+        #region PropertyChangedMethods
+
+        private void BackgroundColorProperty_PropertyColorChanged(object sender, Brush e)
         {
             if (PictureWidgetContainer.Widget?.DataContext != null)
             {
@@ -201,9 +201,9 @@ namespace GameAssistant.Pages
             }
         }
 
-        private void ActiveProperty_PropertyValueChanged(object sender, bool? e)
+
+        protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            //todo tu skończyłem
             WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(_pictureWidgetContainer.Widget);
 
             var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out PictureModel model);
@@ -221,10 +221,16 @@ namespace GameAssistant.Pages
             }
             WidgetManager.SaveWidgetConfigurationInFile(model);
 
+            if (_pictureWidgetContainer.Widget != null)
+            {
+                LoadWidgetSettings(ref _pictureWidgetContainer);
+            }
             ActiveChanged((bool)e);
         }
 
-        private void DefaultSettingsButton_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+        protected override void DefaultSettingsButton_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
             {
@@ -235,20 +241,50 @@ namespace GameAssistant.Pages
                 }
                 _pictureWidgetContainer.Widget = new PictureWidget();
                 _pictureWidgetContainer.Widget.Show();
-                LoadWidget(_pictureWidgetContainer);
+                LoadWidget(ref _pictureWidgetContainer);
                 WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(_pictureWidgetContainer.Widget);
             }
         }
 
-        private void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
+        protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
         {
             // todo zabezpieczyć
             Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(PictureWidget).Name));
         }
 
-        private void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
+        protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            // todo zrobić kiedyś konfiguracje z plików
+            var fileDialog = new System.Windows.Forms.OpenFileDialog()
+            {
+                Filter =
+                "JSON files (*.json)|*.json" +
+                "|All files (*.*)|*.*",
+
+                Multiselect = false,
+
+                Title = "Select save with widget configuration:"
+            };
+
+            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (MessageBox.Show("Should you change widget configuration?\n(Warning, if you change configuration settings without backup you will not be able to restore the current data.)", "Change setting configuration:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+                {
+                    var model = new PictureModel();
+                    using (var sr = File.OpenText(fileDialog.FileName))
+                    {
+                        model = JsonConvert.DeserializeObject<PictureModel>(sr.ReadToEnd());
+                        WidgetManager.SaveWidgetConfigurationInFile(model);
+                    }
+
+                    if (_pictureWidgetContainer.Widget != null)
+                    {
+                        WidgetManager.CloseWidget<PictureWidget, PictureModel>(ref _pictureWidgetContainer.Widget);
+                    }
+                    WidgetManager.LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref _pictureWidgetContainer.Widget);
+                    _pictureWidgetContainer.Widget?.Show();
+                    LoadWidget(ref _pictureWidgetContainer);
+                }
+            }
         }
     }
 }

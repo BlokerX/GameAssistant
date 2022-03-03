@@ -3,7 +3,9 @@ using GameAssistant.Models;
 using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Media;
 
@@ -14,6 +16,8 @@ namespace GameAssistant.Pages
     /// </summary>
     public partial class ClockSettingsPage : SettingsPageBase
     {
+        #region Constructors
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -23,7 +27,7 @@ namespace GameAssistant.Pages
             InitializeComponent();
 
             ClockWidgetContainer = clockWidget;
-            LoadWidget(ClockWidgetContainer);
+            LoadWidget(ref _clockWidgetContainer);
         }
 
         public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget, ref bool? clockWidgetState)
@@ -31,17 +35,19 @@ namespace GameAssistant.Pages
             InitializeComponent();
 
             ClockWidgetContainer = clockWidget;
-            LoadWidget(ClockWidgetContainer);
+            LoadWidget(ref _clockWidgetContainer);
             ActiveProperty.PropertyValue = clockWidgetState;
         }
 
+        #endregion
+
         /// <summary>
-        /// 
+        /// Load widget in settings page.
         /// </summary>
-        /// <param name="clockWidgetContainer"></param>
-        private void LoadWidget(WidgetContainer<ClockWidget> clockWidgetContainer)
+        /// <param name="clockWidgetContainer">Clock widget to load.</param>
+        private void LoadWidget(ref WidgetContainer<ClockWidget> clockWidgetContainer)
         {
-            if (ClockWidgetContainer.Widget == null)
+            if (clockWidgetContainer.Widget == null)
             {
                 this.ActiveProperty.PropertyValue = false;
                 ActiveChanged(false);
@@ -49,30 +55,29 @@ namespace GameAssistant.Pages
             else
             {
                 this.ActiveProperty.PropertyValue = true;
-
-                //this.DataContext = new ClockSettingsViewModel(ref clockWidgetContainer);
-                var model = (clockWidgetContainer.Widget.DataContext as IWidgetViewModel<ClockModel>).WidgetModel;
-
-                //todo problem's solution
-                this.BackgroundColorProperty.PropertyColor = model.BackgroundColor;
-                this.ForegroundColorProperty.PropertyColor = model.ClockLabelForeground;
-
-                this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
-                this.ForegroundOpacityProperty.PropertyValue = model.ClockLabelOpacity;
-
-                this.FontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.FontFamily);
-                this.FontSettingsPropertyPanel.PropertyFontSize = model.FontSize;
-
-                this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
-                this.DragActiveProperty.PropertyValue = model.IsDragActive;
+                LoadWidgetSettings(ref clockWidgetContainer);
+                ActiveChanged(true);
             }
         }
 
-        /// <summary>
-        /// Set properties active state.
-        /// </summary>
-        /// <param name="newState">True = enabled, false = disabled.</param>
-        private void ActiveChanged(bool newState)
+        private void LoadWidgetSettings(ref WidgetContainer<ClockWidget> clockWidgetContainer)
+        {
+            var model = (clockWidgetContainer.Widget.DataContext as IWidgetViewModel<ClockModel>).WidgetModel;
+
+            this.BackgroundColorProperty.PropertyColor = model.BackgroundColor;
+            this.ForegroundColorProperty.PropertyColor = model.ClockLabelForeground;
+
+            this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
+            this.ForegroundOpacityProperty.PropertyValue = model.ClockLabelOpacity;
+
+            this.FontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.FontFamily);
+            this.FontSettingsPropertyPanel.PropertyFontSize = model.FontSize;
+
+            this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
+            this.DragActiveProperty.PropertyValue = model.IsDragActive;
+        }
+
+        protected override void ActiveChanged(bool newState)
         {
             this.BackgroundColorProperty.IsEnabled = newState;
             this.ForegroundColorProperty.IsEnabled = newState;
@@ -86,10 +91,13 @@ namespace GameAssistant.Pages
             this.DragActiveProperty.IsEnabled = newState;
         }
 
+        #region Widget
+
         public static readonly DependencyProperty PropertyColorProperty = DependencyProperty.Register(
         "ClockWidgetContainer", typeof(WidgetContainer<ClockWidget>),
         typeof(ClockSettingsPage)
         );
+
         private WidgetContainer<ClockWidget> _clockWidgetContainer;
         /// <summary>
         /// The clock container with clock widget.
@@ -100,7 +108,11 @@ namespace GameAssistant.Pages
             set => SetProperty(ref _clockWidgetContainer, value);
         }
 
-        public void BackgroundColorProperty_PropertyColorChanged(object sender, Brush e)
+        #endregion
+
+        #region PropertyChangedMethods
+
+        private void BackgroundColorProperty_PropertyColorChanged(object sender, Brush e)
         {
             if (ClockWidgetContainer.Widget?.DataContext != null)
             {
@@ -171,9 +183,9 @@ namespace GameAssistant.Pages
             }
         }
 
-        private void ActiveProperty_PropertyValueChanged(object sender, bool? e)
+
+        protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            //todo tu skończyłem
             WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(_clockWidgetContainer.Widget);
 
             var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ClockModel model);
@@ -191,10 +203,16 @@ namespace GameAssistant.Pages
             }
             WidgetManager.SaveWidgetConfigurationInFile(model);
 
+            if (_clockWidgetContainer.Widget != null)
+            {
+                LoadWidgetSettings(ref _clockWidgetContainer);
+            }
             ActiveChanged((bool)e);
         }
 
-        private void DefaultSettingsButton_Click(object sender, RoutedEventArgs e)
+        #endregion
+
+        protected override void DefaultSettingsButton_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
             {
@@ -205,20 +223,50 @@ namespace GameAssistant.Pages
                 }
                 _clockWidgetContainer.Widget = new ClockWidget();
                 _clockWidgetContainer.Widget.Show();
-                LoadWidget(_clockWidgetContainer);
+                LoadWidget(ref _clockWidgetContainer);
                 WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(_clockWidgetContainer.Widget);
             }
         }
 
-        private void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
+        protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
         {
             // todo zabezpieczyć
             Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(ClockWidget).Name));
         }
 
-        private void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
+        protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            // todo zrobić kiedyś konfiguracje z plików
+            var fileDialog = new System.Windows.Forms.OpenFileDialog()
+            {
+                Filter =
+                "JSON files (*.json)|*.json" +
+                "|All files (*.*)|*.*",
+
+                Multiselect = false,
+
+                Title = "Select save with widget configuration:"
+            };
+
+            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (MessageBox.Show("Should you change widget configuration?\n(Warning, if you change configuration settings without backup you will not be able to restore the current data.)", "Change setting configuration:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+                {
+                    var model = new ClockModel();
+                    using (var sr = File.OpenText(fileDialog.FileName))
+                    {
+                        model = JsonConvert.DeserializeObject<ClockModel>(sr.ReadToEnd());
+                        WidgetManager.SaveWidgetConfigurationInFile(model);
+                    }
+
+                    if (_clockWidgetContainer.Widget != null)
+                    {
+                        WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref _clockWidgetContainer.Widget);
+                    }
+                    WidgetManager.LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref _clockWidgetContainer.Widget);
+                    _clockWidgetContainer.Widget?.Show();
+                    LoadWidget(ref _clockWidgetContainer);
+                }
+            }
         }
     }
 }
