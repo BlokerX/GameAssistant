@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace GameAssistant.Controls
@@ -7,7 +6,7 @@ namespace GameAssistant.Controls
     /// <summary>
     /// Logika interakcji dla klasy DecimalSettingProperty.xaml
     /// </summary>
-    public partial class DecimalSettingProperty : SettingPropertyBase
+    public partial class DecimalSettingProperty : SettingPropertyBase, ISettingProperty
     {
         /// <summary>
         /// Default constructor.
@@ -60,6 +59,9 @@ namespace GameAssistant.Controls
             }
         }
 
+        /// <summary>
+        /// On PropertyValue changed.
+        /// </summary>
         public event EventHandler<double> PropertyValueChanged;
 
         /// <summary>
@@ -70,7 +72,7 @@ namespace GameAssistant.Controls
             get => ValueSlider.Maximum;
             set => ValueSlider.Maximum = value;
         }
-        
+
         /// <summary>
         /// Minimum value in slider.
         /// </summary>

@@ -1,5 +1,4 @@
-﻿using GameAssistant.WidgetViewModels;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace GameAssistant.Widgets
 {
@@ -8,6 +7,9 @@ namespace GameAssistant.Widgets
     /// </summary>
     public partial class NoteWidget : WidgetBase
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public NoteWidget()
         {
             InitializeComponent();
@@ -19,14 +21,5 @@ namespace GameAssistant.Widgets
             binding.UpdateSource();
         }
 
-        private void WidgetBase_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            (DataContext as NoteViewModel).WidgetModel.IsActive = false;
-        }
-
-        private void WidgetBase_Initialized(object sender, System.EventArgs e)
-        {
-            (DataContext as NoteViewModel).WidgetModel.IsActive = true;
-        }
     }
 }

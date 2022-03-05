@@ -12,7 +12,12 @@
                 <SolidColorBrush Color="{StaticResource NoPress}"/>
             </Setter.Value>
         </Setter>
+
         <Setter Property="Foreground" Value="White"/>
+
+        <Setter Property="BorderBrush" Value="White"/>
+        
+        <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
 
@@ -20,13 +25,18 @@
 
                 <ControlTemplate TargetType="Button">
 
-                    <Border Background="{TemplateBinding Background}"
+                    <Border Background="{TemplateBinding BorderBrush}"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch"
+                            Padding="{TemplateBinding BorderThickness}">
+
+                        <Border Background="{TemplateBinding Background}"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Stretch">
 
-                        <Grid>
+                            <Grid>
 
-                            <Label Content="{TemplateBinding Content}"
+                                <Label Content="{TemplateBinding Content}"
                                    FontSize="{TemplateBinding FontSize}"
                                    FontFamily="Century Gothic"
                                    Foreground="{TemplateBinding Foreground}"
@@ -35,8 +45,10 @@
                                    VerticalContentAlignment="Center"
                                    HorizontalContentAlignment="Center"/>
 
-                        </Grid>
+                            </Grid>
 
+                        </Border>
+                        
                     </Border>
 
                 </ControlTemplate>

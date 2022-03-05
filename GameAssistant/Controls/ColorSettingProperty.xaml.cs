@@ -1,25 +1,21 @@
-﻿using System.Windows.Controls;
+﻿using GameAssistant.Core;
+using System;
 using System.Windows.Input;
 using System.Windows.Media;
 using Forms = System.Windows.Forms;
-using Drawing = System.Drawing;
-using GameAssistant.Core;
-using System.Windows;
-using GameAssistant.ControlViewModels;
-using System;
 
 namespace GameAssistant.Controls
 {
     /// <summary>
     /// Logika interakcji dla klasy ColorSettingProperty.xaml
     /// </summary>
-    public partial class ColorSettingProperty : SettingPropertyBase
+    public partial class ColorSettingProperty : SettingPropertyBase, ISettingProperty
     {
         /// <summary>
         /// Default constructor.
         /// </summary>
         public ColorSettingProperty()
-        {//todo tutaj jest problem z przekazywaniem argumentu
+        {
             InitializeComponent();
         }
 
@@ -58,10 +54,7 @@ namespace GameAssistant.Controls
         /// </summary>
         public Brush PropertyColor
         {
-            get
-            {
-                return this.ColorRectangle.Fill;
-            }
+            get => ColorRectangle.Fill;
             set
             {
                 ColorRectangle.Fill = value;
@@ -69,6 +62,9 @@ namespace GameAssistant.Controls
             }
         }
 
+        /// <summary>
+        /// On PropertyColor changed.
+        /// </summary>
         public event EventHandler<Brush> PropertyColorChanged;
 
         /// <summary>

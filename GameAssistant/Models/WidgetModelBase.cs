@@ -115,6 +115,6 @@ namespace GameAssistant.Models
             set => SetProperty(ref _backgroundOpacity, value);
         }
 
-        // TODO add color's animations
+        // TODO Add color's animations!!!
     }
 }

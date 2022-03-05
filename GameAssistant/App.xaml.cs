@@ -44,14 +44,6 @@ namespace GameAssistant
         /// </summary>
         private System.Windows.Forms.NotifyIcon NotifyIcon;
 
-        ///// <summary>
-        ///// Invoke when notify icon clicked.
-        ///// </summary>
-        //private void NotifyIcon_Click(object sender, System.EventArgs e)
-        //{
-        //    // todo zrobić lub usunąć zdarzenie kliknięcia
-        //}
-
         /// <summary>
         /// Invoke when settings button clicked.
         /// </summary>
@@ -151,7 +143,6 @@ namespace GameAssistant
                 ),
                 //todo notify icon picture's Icon = ,
             };
-            //todo coś z tym zrobić: NotifyIcon.DoubleClick += NotifyIcon_Click;
 
             LoadWidgets();
         }

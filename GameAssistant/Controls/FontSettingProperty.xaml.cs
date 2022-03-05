@@ -1,18 +1,7 @@
 ﻿using GameAssistant.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Forms = System.Windows.Forms;
 
 namespace GameAssistant.Controls
@@ -20,7 +9,7 @@ namespace GameAssistant.Controls
     /// <summary>
     /// Logika interakcji dla klasy FontSettingProperty.xaml
     /// </summary>
-    public partial class FontSettingProperty : UserControl, ISettingProperty
+    public partial class FontSettingProperty : SettingPropertyBase, ISettingProperty
     {
         public FontSettingProperty()
         {
@@ -43,7 +32,12 @@ namespace GameAssistant.Controls
         }
 
         //todo property name
-        public string PropertyName { get; set; }
+        private string _propertyName;
+        public string PropertyName
+        {
+            get => _propertyName;
+            set => SetProperty(ref _propertyName, value);
+        }
 
         //todo
         public FontFamily PropertyFontFamily

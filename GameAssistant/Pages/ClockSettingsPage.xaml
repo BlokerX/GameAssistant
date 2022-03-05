@@ -80,7 +80,6 @@
 
                 <controls:FontSettingProperty x:Name="FontSettingsPropertyPanel"
                                               PropertyValueChanged="FontSettingsPropertyPanel_PropertyValueChanged"/>
-                <!-- font style -->
 
             </StackPanel>
 

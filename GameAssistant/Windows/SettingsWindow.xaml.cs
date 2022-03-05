@@ -1,6 +1,7 @@
 ﻿using GameAssistant.Pages;
 using GameAssistant.Widgets;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace GameAssistant.Windows
 {
@@ -41,26 +42,66 @@ namespace GameAssistant.Windows
             NoteWidgetFrame.Content = new NoteSettingsPage(ref noteWidgetContainer, ref noteWidgetState);
         }
 
+        /// <summary>
+        /// Set visibility to hidden for all pages.
+        /// </summary>
+        private void HideAllPages()
+        {
+            ClockWidgetFrame.Visibility = Visibility.Hidden;
+            PictureWidgetFrame.Visibility = Visibility.Hidden;
+            NoteWidgetFrame.Visibility = Visibility.Hidden;
+            AboutFrame.Visibility = Visibility.Hidden;
+        }
+
+        /// <summary>
+        /// Light up selected button and turn off it for other.
+        /// </summary>
+        /// <param name="senderButton">Selected button (to light up).</param>
+        private void CheckMenuButton(Button senderButton)
+        {
+            ClockWidgetButton.BorderThickness = new Thickness(0);
+            PictureWidgetButton.BorderThickness = new Thickness(0);
+            NoteWidgetButton.BorderThickness = new Thickness(0);
+            AboutButton.BorderThickness = new Thickness(0);
+
+            senderButton.BorderThickness = new Thickness(1);
+        }
+
+        /// <summary>
+        /// On clock widget button click.
+        /// </summary>
         private void ClockWidgetButton_Click(object sender, RoutedEventArgs e)
         {
+            HideAllPages();
             ClockWidgetFrame.Visibility = Visibility.Visible;
-            PictureWidgetFrame.Visibility = Visibility.Hidden;
-            NoteWidgetFrame.Visibility = Visibility.Hidden;
+            CheckMenuButton(sender as Button);
         }
 
+        /// <summary>
+        /// On picture widget button click.
+        /// </summary>
         private void PictureWidgetButton_Click(object sender, RoutedEventArgs e)
         {
-            ClockWidgetFrame.Visibility = Visibility.Hidden;
+            HideAllPages();
             PictureWidgetFrame.Visibility = Visibility.Visible;
-            NoteWidgetFrame.Visibility = Visibility.Hidden;
+            CheckMenuButton(sender as Button);
         }
 
+        /// <summary>
+        /// On widget button click.
+        /// </summary>
         private void NoteWidgetButton_Click(object sender, RoutedEventArgs e)
         {
-            ClockWidgetFrame.Visibility = Visibility.Hidden;
-            PictureWidgetFrame.Visibility = Visibility.Hidden;
+            HideAllPages();
             NoteWidgetFrame.Visibility = Visibility.Visible;
+            CheckMenuButton(sender as Button);
         }
 
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            HideAllPages();
+            AboutFrame.Visibility = Visibility.Visible;
+            CheckMenuButton(sender as Button);
+        }
     }
 }

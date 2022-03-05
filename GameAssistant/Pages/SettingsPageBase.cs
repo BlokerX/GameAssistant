@@ -1,11 +1,5 @@
-﻿using GameAssistant.Widgets;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -19,12 +13,26 @@ namespace GameAssistant.Pages
         /// <param name="newState">True = enabled, false = disabled.</param>
         protected abstract void ActiveChanged(bool newState);
 
+        /// <summary>
+        /// Active property changed.
+        /// </summary>
         protected abstract void ActiveProperty_PropertyValueChanged(object sender, bool? e);
 
+        /// <summary>
+        /// On default button click.
+        /// </summary>
         protected abstract void DefaultSettingsButton_Click(object sender, RoutedEventArgs e);
 
+        /// <summary>
+        /// On open save dire button click.
+        /// </summary>
         protected abstract void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e);
 
+        /// <summary>
+        /// On loaded save configuration button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected abstract void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e);
 
         // ========================================================================================== //

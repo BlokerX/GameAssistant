@@ -85,9 +85,6 @@
     <Compile Include="Controls\TextBoxStringSettingProperty.xaml.cs">
       <DependentUpon>TextBoxStringSettingProperty.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ControlViewModels\ColorSettingPropertyViewModel.cs" />
-    <Compile Include="ControlViewModels\DecimalSettinPropertyViewModel.cs" />
-    <Compile Include="ControlViewModels\SettingPropertyViewModelBase.cs" />
     <Compile Include="Core\TypeConverter.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\BindableObject.cs" />
@@ -95,6 +92,9 @@
     <Compile Include="Models\NoteInformations.cs" />
     <Compile Include="Models\NoteModel.cs" />
     <Compile Include="Models\PictureModel.cs" />
+    <Compile Include="Pages\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ClockSettingsPage.xaml.cs">
       <DependentUpon>ClockSettingsPage.xaml</DependentUpon>
     </Compile>
@@ -107,7 +107,7 @@
     <Compile Include="Pages\SettingsPageBase.cs" />
     <Compile Include="Services\AppFileSystem.cs" />
     <Compile Include="Services\WidgetManager.cs" />
-    <Compile Include="Services\WidgetTypeUnit.cs" />
+    <Compile Include="Services\MVVMUnit.cs" />
     <Compile Include="Widgets\WidgetContainer.cs" />
     <Compile Include="WidgetViewModels\ClockViewModel.cs" />
     <Compile Include="WidgetViewModels\NoteViewModel.cs" />
@@ -154,18 +154,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Pages\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ClockSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

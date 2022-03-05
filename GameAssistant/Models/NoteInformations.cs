@@ -39,7 +39,7 @@ namespace GameAssistant.Models
             {
                 SetProperty(ref _saveFilePath, value);
                 var x = "";
-                for(int i = value.LastIndexOf(Path.DirectorySeparatorChar) + 1; i < value.Length; i++)
+                for (int i = value.LastIndexOf(Path.DirectorySeparatorChar) + 1; i < value.Length; i++)
                 {
                     x += value[i];
                 }

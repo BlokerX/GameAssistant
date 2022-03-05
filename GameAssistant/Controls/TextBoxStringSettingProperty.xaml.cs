@@ -7,7 +7,7 @@ namespace GameAssistant.Controls
     /// <summary>
     /// Logika interakcji dla klasy TextBoxStringSettingProperty.xaml
     /// </summary>
-    public partial class TextBoxStringSettingProperty : UserControl, ISettingProperty
+    public partial class TextBoxStringSettingProperty : SettingPropertyBase, ISettingProperty
     {
         /// <summary>
         /// Default constructor.
@@ -66,6 +66,9 @@ namespace GameAssistant.Controls
             set => ValueTextBox.Text = value;
         }
 
+        /// <summary>
+        /// On PropertyValue changed.
+        /// </summary>
         public event EventHandler<string> PropertyValueChanged;
 
         private void ValueTextBox_TextChanged(object sender, TextChangedEventArgs e)

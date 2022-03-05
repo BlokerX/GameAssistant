@@ -1,12 +1,13 @@
 ﻿<local:SettingsPageBase x:Class="GameAssistant.Pages.PictureSettingsPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:GameAssistant.Pages" xmlns:controls="clr-namespace:GameAssistant.Controls"
-      mc:Ignorable="d" 
-      d:DesignHeight="620" d:DesignWidth="900"
-      Title="PictureSettingsPage">
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:controls="clr-namespace:GameAssistant.Controls"
+                        xmlns:local="clr-namespace:GameAssistant.Pages"
+                        d:DesignHeight="620" d:DesignWidth="900"
+                        mc:Ignorable="d"
+                        Title="PictureSettingsPage">
 
     <StackPanel>
 
@@ -83,11 +84,11 @@
                                               PropertyValueChanged="DragActiveProperty_PropertyValueChanged"/>
 
             </StackPanel>
-            
+
         </StackPanel>
-        
+
         <StackPanel Margin="5,0,0,0">
-            
+
             <StackPanel Margin="2,0,0,0">
 
                 <Label Content="Image source:"

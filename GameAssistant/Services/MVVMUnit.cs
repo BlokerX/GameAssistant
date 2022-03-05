@@ -2,8 +2,10 @@
 
 namespace GameAssistant.Services
 {
-    //todo MVVMUnit name
-    internal class WidgetTypeUnit
+    /// <summary>
+    /// Class with types base on Model-View-ViewModel strategy.
+    /// </summary>
+    internal class MVVMUnit
     {
         /// <summary>
         /// Type of widget (window instance).

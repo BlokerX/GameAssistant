@@ -10,7 +10,7 @@ namespace GameAssistant.Services
         /// Path to main dire of app informations and save configurations.
         /// </summary>
         private static string WidgetsConfigurationsMainDire = Path.Combine("C:\\", "Users", Environment.UserName, Application.ResourceAssembly.GetName().Name);
-        
+
         /// <summary>
         /// Return widgets save configuration dire path.
         /// </summary>

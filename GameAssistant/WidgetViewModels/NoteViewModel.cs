@@ -2,11 +2,9 @@
 using GameAssistant.Models;
 using GameAssistant.Services;
 using GameAssistant.Widgets;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -218,7 +216,7 @@ namespace GameAssistant.WidgetViewModels
             set => SetProperty(ref _deleteButtonCommand, value);
         }
 
-        private Thickness _textBoxMargin= new Thickness(10,30,10,10);
+        private Thickness _textBoxMargin = new Thickness(10, 30, 10, 10);
         /// <summary>
         /// Margin of text box margin.
         /// </summary>
@@ -228,7 +226,6 @@ namespace GameAssistant.WidgetViewModels
             set => SetProperty(ref _textBoxMargin, value);
         }
 
-        //todo naprawić to
         /// <summary>
         /// Load notes from notes dire.
         /// </summary>

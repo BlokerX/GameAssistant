@@ -60,6 +60,9 @@ namespace GameAssistant.Controls
             }
         }
 
+        /// <summary>
+        ///  On PropertyValue changed.
+        /// </summary>
         public event EventHandler<bool?> PropertyValueChanged;
 
         /// <summary>
@@ -70,7 +73,7 @@ namespace GameAssistant.Controls
             get => ValueCheckBox.Foreground;
             set => ValueCheckBox.Foreground = value;
         }
-        
+
         /// <summary>
         /// Color of CheckBox's background.
         /// </summary>
@@ -79,7 +82,7 @@ namespace GameAssistant.Controls
             get => ValueCheckBox.Background;
             set => ValueCheckBox.Background = value;
         }
-        
+
         /// <summary>
         /// Color of CheckBox's border.
         /// </summary>
@@ -90,13 +93,9 @@ namespace GameAssistant.Controls
         }
 
         private void ValueCheckBox_Checked(object sender, System.Windows.RoutedEventArgs e)
-        {
-            PropertyValueChanged?.Invoke(sender, true);
-        }
+            => PropertyValueChanged?.Invoke(sender, true);
 
         private void ValueCheckBox_Unchecked(object sender, System.Windows.RoutedEventArgs e)
-        {
-            PropertyValueChanged?.Invoke(sender, false);
-        }
+            => PropertyValueChanged?.Invoke(sender, false);
     }
 }

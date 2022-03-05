@@ -2,10 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-        xmlns:controls="clr-namespace:GameAssistant.Controls" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:pages="clr-namespace:GameAssistant.Pages"
-        xmlns:widgets="clr-namespace:GameAssistant.Widgets"
         mc:Ignorable="d" Title="SettingsWindow" Height="499" Width="800">
 
     <Grid Background="#FF2E2D29">
@@ -27,20 +25,26 @@
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <Button Content="Clock Widget" Grid.Row="0" 
+            <Button x:Name="ClockWidgetButton"
+                    Content="Clock Widget" Grid.Row="0" 
                     Style="{StaticResource MenuButton}"
-                    Click="ClockWidgetButton_Click"/>
+                    Click="ClockWidgetButton_Click"
+                    BorderThickness="1"/>
 
-            <Button Content="Picture Widget" Grid.Row="2"
+            <Button x:Name="PictureWidgetButton"
+                    Content="Picture Widget" Grid.Row="2"
                     Style="{StaticResource MenuButton}"
                     Click="PictureWidgetButton_Click"/>
 
-            <Button Content="Note Widget" Grid.Row="4"
+            <Button x:Name="NoteWidgetButton"
+                    Content="Note Widget" Grid.Row="4"
                     Style="{StaticResource MenuButton}"
                     Click="NoteWidgetButton_Click"/>
 
-            <Button Content="About" Grid.Row="6"
-                    Style="{StaticResource MenuButton}"/>
+            <Button x:Name="AboutButton"
+                    Content="About" Grid.Row="6"
+                    Style="{StaticResource MenuButton}"
+                    Click="AboutButton_Click"/>
 
         </Grid>
 
@@ -52,9 +56,16 @@
 
                 <Frame x:Name="PictureWidgetFrame"
                        Visibility="Hidden"/>
-                
+
                 <Frame x:Name="NoteWidgetFrame"
                        Visibility="Hidden"/>
+
+                <Frame x:Name="AboutFrame"
+                       Visibility="Hidden">
+                    <Frame.Content>
+                        <pages:AboutPage/>
+                    </Frame.Content>
+                </Frame>
 
             </Grid>
 

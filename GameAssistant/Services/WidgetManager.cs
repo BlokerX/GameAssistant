@@ -16,21 +16,21 @@ namespace GameAssistant.Services
         /// <summary>
         /// List of widget type's unit.
         /// </summary>
-        public static List<WidgetTypeUnit> WidgetsList = new List<WidgetTypeUnit>()
+        public static List<MVVMUnit> WidgetsList = new List<MVVMUnit>()
         {
-            new WidgetTypeUnit()
+            new MVVMUnit()
             {
                 WidgetType = typeof(ClockWidget),
                 WidgetViewModelType = typeof(ClockViewModel),
                 WidgetModelType = typeof(ClockModel)
             },
-            new WidgetTypeUnit()
+            new MVVMUnit()
             {
                 WidgetType = typeof(PictureWidget),
                 WidgetViewModelType = typeof(PictureViewModel),
                 WidgetModelType = typeof(PictureModel)
             },
-            new WidgetTypeUnit()
+            new MVVMUnit()
             {
                 WidgetType = typeof(NoteWidget),
                 WidgetViewModelType = typeof(NoteViewModel),
@@ -189,7 +189,7 @@ namespace GameAssistant.Services
             Directory.CreateDirectory(AppFileSystem.GetSaveDireConfigurationPath(typeof(WidgetType).Name));
             return SaveWidgetConfigurationInFile<WidgetType, ModelType>(widget, AppFileSystem.GetSaveFileConfigurationPath(typeof(WidgetType).Name));
         }
-        
+
         /// <summary>
         /// Save widget model to file by JSON way.
         /// </summary>
@@ -218,7 +218,7 @@ namespace GameAssistant.Services
 
             return true;
         }
-        
+
         /// <summary>
         /// Save widget model to file by JSON way.
         /// </summary>
