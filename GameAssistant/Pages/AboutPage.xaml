@@ -31,15 +31,15 @@
                 <Label Content="Author: BlokerCompany™"
                        FontSize="24"
                        Foreground="LightGray"/>
-                
+
                 <Label Content="Language: English (default)"
                        FontSize="24"
                        Foreground="Silver"/>
-                
+
                 <Label Content="Contact email: InformatykaGarwolin@gmail.com"
                        FontSize="24"
                        Foreground="Silver"/>
-                
+
                 <Label Content="Short describe: App with widgets for windows."
                        FontSize="24"
                        Foreground="Silver"/>

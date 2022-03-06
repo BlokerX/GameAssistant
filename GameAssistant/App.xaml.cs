@@ -3,6 +3,7 @@ using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
 using GameAssistant.Windows;
+using System;
 using System.IO;
 using System.Windows;
 
@@ -119,16 +120,16 @@ namespace GameAssistant
             SelectDisks();
             AppFileSystem.RegisterFileSystem
             (
-                nameof(clockWidgetContainer),
-                nameof(pictureWidgetContainer),
-                nameof(noteWidgetContainer)
+                nameof(ClockWidget),
+                nameof(PictureWidget),
+                nameof(NoteWidget)
             );
 
             // Notify icon register:
             NotifyIcon = new System.Windows.Forms.NotifyIcon()
             {
                 Visible = true,
-                Icon = new System.Drawing.Icon("C:\\Users\\Lenovo\\Desktop\\favicon.ico"),
+                Icon = GameAssistant.Properties.Resources.NotifyIcon,
                 ContextMenu = new System.Windows.Forms.ContextMenu(
                     new System.Windows.Forms.MenuItem[]
                     {
@@ -140,8 +141,7 @@ namespace GameAssistant
                         new System.Windows.Forms.MenuItem("-"),
                         new System.Windows.Forms.MenuItem("Close app", NotifyIcon_MenuItem_CloseApp_Click)
                     }
-                ),
-                //todo notify icon picture's Icon = ,
+                )
             };
 
             LoadWidgets();
@@ -157,8 +157,6 @@ namespace GameAssistant
         #endregion
 
         #region Widgets methods
-
-
 
         /// <summary>
         /// Load all widgets.
