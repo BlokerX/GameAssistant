@@ -83,6 +83,16 @@ namespace GameAssistant.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Icon podobny do zasobu (Ikona).
         /// </summary>
+        internal static System.Drawing.Icon ColorBackgroundIcon_32 {
+            get {
+                object obj = ResourceManager.GetObject("ColorBackgroundIcon_32", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Icon podobny do zasobu (Ikona).
+        /// </summary>
         internal static System.Drawing.Icon ColorBackgroundIcon_64 {
             get {
                 object obj = ResourceManager.GetObject("ColorBackgroundIcon_64", resourceCulture);

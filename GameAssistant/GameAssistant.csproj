@@ -278,5 +278,8 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\AppIcon\TransparentBackground\128.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\AppIcon\ColorBackground\32.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
