@@ -321,7 +321,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Game Assistant"
         "ProductCode" = "8:{5E802D4C-A2CB-4D14-A490-E130667306AF}"
-        "PackageCode" = "8:{E6138CB7-4A1E-4E7F-8281-A4DA3703C2FB}"
+        "PackageCode" = "8:{C57B13DE-0BCA-44A8-B47C-86CABB1F1416}"
         "UpgradeCode" = "8:{A7EADB09-5CEE-4D1B-88F5-0E87C6C762D2}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -338,8 +338,8 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Widgets for Windows"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_7748E844E870485297C5449DD57B5764"
-        "ARPIconIndex" = "3:32512"
+        "ARPPRODUCTICON" = "8:_09A002CD376F4A4ABD0A418B2A3D9672"
+        "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
         "TargetPlatform" = "3:0"
@@ -870,7 +870,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7748E844E870485297C5449DD57B5764"
             {
-            "SourcePath" = "8:..\\GameAssistant\\obj\\Debug\\GameAssistant.exe"
+            "SourcePath" = "8:..\\GameAssistant\\obj\\Release\\GameAssistant.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"

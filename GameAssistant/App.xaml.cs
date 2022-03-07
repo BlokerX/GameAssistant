@@ -3,7 +3,6 @@ using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
 using GameAssistant.Windows;
-using System;
 using System.IO;
 using System.Windows;
 
