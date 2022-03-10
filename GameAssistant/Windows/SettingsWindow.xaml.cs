@@ -33,24 +33,15 @@ namespace GameAssistant.Windows
             NoteWidgetFrame.Content = new NoteSettingsPage(ref noteWidgetContainer);
         }
 
-
-        public SettingsWindow(ref WidgetContainer<ClockWidget> clockWidgetContainer, ref WidgetContainer<PictureWidget> pictureWidgetContainer, ref WidgetContainer<NoteWidget> noteWidgetContainer,
-            ref bool? clockWidgetState, ref bool? pictureWidgetState, ref bool? noteWidgetState)
-        {
-            ClockWidgetFrame.Content = new ClockSettingsPage(ref clockWidgetContainer, ref clockWidgetState);
-            PictureWidgetFrame.Content = new PictureSettingsPage(ref pictureWidgetContainer, ref pictureWidgetState);
-            NoteWidgetFrame.Content = new NoteSettingsPage(ref noteWidgetContainer, ref noteWidgetState);
-        }
-
         /// <summary>
         /// Set visibility to hidden for all pages.
         /// </summary>
         private void HideAllPages()
         {
-            ClockWidgetFrame.Visibility = Visibility.Hidden;
-            PictureWidgetFrame.Visibility = Visibility.Hidden;
-            NoteWidgetFrame.Visibility = Visibility.Hidden;
-            AboutFrame.Visibility = Visibility.Hidden;
+            ClockWidgetFrame.Visibility = Visibility.Collapsed;
+            PictureWidgetFrame.Visibility = Visibility.Collapsed;
+            NoteWidgetFrame.Visibility = Visibility.Collapsed;
+            AboutFrame.Visibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -97,6 +88,9 @@ namespace GameAssistant.Windows
             CheckMenuButton(sender as Button);
         }
 
+        /// <summary>
+        /// On about button click.
+        /// </summary>
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
             HideAllPages();

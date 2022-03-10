@@ -55,13 +55,13 @@
                 <Frame x:Name="ClockWidgetFrame"/>
 
                 <Frame x:Name="PictureWidgetFrame"
-                       Visibility="Hidden"/>
+                       Visibility="Collapsed"/>
 
                 <Frame x:Name="NoteWidgetFrame"
-                       Visibility="Hidden"/>
+                       Visibility="Collapsed"/>
 
                 <Frame x:Name="AboutFrame"
-                       Visibility="Hidden">
+                       Visibility="Collapsed">
                     <Frame.Content>
                         <pages:AboutPage/>
                     </Frame.Content>
