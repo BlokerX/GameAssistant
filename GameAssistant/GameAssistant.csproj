@@ -131,6 +131,7 @@
     <Compile Include="Services\AppFileSystem.cs" />
     <Compile Include="Services\WidgetManager.cs" />
     <Compile Include="Services\MVVMUnit.cs" />
+    <Compile Include="TODOList.cs" />
     <Compile Include="Widgets\WidgetContainer.cs" />
     <Compile Include="WidgetViewModels\ClockViewModel.cs" />
     <Compile Include="WidgetViewModels\NoteViewModel.cs" />

@@ -39,7 +39,6 @@ namespace GameAssistant.Controls
             set => SetProperty(ref _propertyName, value);
         }
 
-        //todo
         public FontFamily PropertyFontFamily
         {
             get => new FontFamily(FontFamilySettingProperty.ValueTextBox.Text);
