@@ -4,72 +4,125 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:pages="clr-namespace:GameAssistant.Pages"
-        mc:Ignorable="d" Title="SettingsWindow" Height="499" Width="800">
+        mc:Ignorable="d" Title="SettingsWindow" Height="499" Width="800" WindowStyle="None" ResizeMode="CanResize">
 
-    <Grid Background="#FF2E2D29">
+    <!-- Delete white top bar -->
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
+    <Grid Background="#FF343238">
 
-        <Grid Width="100" Background="#FF1C1A1A">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="60"/>
-            </Grid.RowDefinitions>
+        <!-- Drag&Drop bar -->
+        <Grid MouseLeftButtonDown="StackPanel_MouseLeftButtonDown"
+              Background="#FF343238">
 
-            <Button x:Name="ClockWidgetButton"
+            <StackPanel Orientation="Horizontal">
+
+                <Image x:Name="WindowIcon"
+                       HorizontalAlignment="Left"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       MaxWidth="20"
+                       MaxHeight="20"
+                       Margin="5"/>
+
+                <Label x:Name="WindowTitleLabel" 
+                       Content="Settings window"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"/>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Right">
+
+                <Button Content="_" Click="WindowActionButton_MinimizeButton_Click"
+                        Style="{DynamicResource WindowActionButton}"/>
+
+                <Button Content="[]" Click="WindowActionButton_WindowStateButton_Click"
+                        Style="{DynamicResource WindowActionButton}"/>
+
+                <Button Content="X" Click="WindowActionButton_CloseButton_Click"
+                        Style="{DynamicResource WindowActionButton}"/>
+
+            </StackPanel>
+
+        </Grid>
+
+        <!-- Window content -->
+        <Grid Background="#FF2E2D29" Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Width="100" Background="#FF1C1A1A">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="ClockWidgetButton"
                     Content="Clock Widget" Grid.Row="0" 
                     Style="{StaticResource MenuButton}"
                     Click="ClockWidgetButton_Click"
                     BorderThickness="1"/>
 
-            <Button x:Name="PictureWidgetButton"
+                <Button x:Name="PictureWidgetButton"
                     Content="Picture Widget" Grid.Row="2"
                     Style="{StaticResource MenuButton}"
                     Click="PictureWidgetButton_Click"/>
 
-            <Button x:Name="NoteWidgetButton"
+                <Button x:Name="NoteWidgetButton"
                     Content="Note Widget" Grid.Row="4"
                     Style="{StaticResource MenuButton}"
                     Click="NoteWidgetButton_Click"/>
 
-            <Button x:Name="AboutButton"
+                <Button x:Name="AboutButton"
                     Content="About" Grid.Row="6"
                     Style="{StaticResource MenuButton}"
                     Click="AboutButton_Click"/>
 
-        </Grid>
-
-        <ScrollViewer Grid.Column="1">
-
-            <Grid Margin="10">
-
-                <Frame x:Name="ClockWidgetFrame"/>
-
-                <Frame x:Name="PictureWidgetFrame"
-                       Visibility="Collapsed"/>
-
-                <Frame x:Name="NoteWidgetFrame"
-                       Visibility="Collapsed"/>
-
-                <Frame x:Name="AboutFrame"
-                       Visibility="Collapsed">
-                    <Frame.Content>
-                        <pages:AboutPage/>
-                    </Frame.Content>
-                </Frame>
-
             </Grid>
 
-        </ScrollViewer>
+            <ScrollViewer Grid.Column="1">
+
+                <Grid Margin="10">
+
+                    <Frame x:Name="ClockWidgetFrame"/>
+
+                    <Frame x:Name="PictureWidgetFrame"
+                       Visibility="Collapsed"/>
+
+                    <Frame x:Name="NoteWidgetFrame"
+                       Visibility="Collapsed"/>
+
+                    <Frame x:Name="AboutFrame"
+                       Visibility="Collapsed">
+                        <Frame.Content>
+                            <pages:AboutPage/>
+                        </Frame.Content>
+                    </Frame>
+
+                </Grid>
+
+            </ScrollViewer>
+
+        </Grid>
 
     </Grid>
 
