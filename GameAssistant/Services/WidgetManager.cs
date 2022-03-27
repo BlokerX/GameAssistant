@@ -338,6 +338,9 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
+            // todo zamykanie menadżera animacji (przenieść we właściwe miejsce)
+            (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel.EndAnimate();
+
             widget?.Close();
             widget = null;
             model.IsActive = false;
@@ -354,6 +357,10 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
+            // todo zamykanie menadżera animacji (przenieść we właściwe miejsce)
+            if (widget != null)
+                (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel.EndAnimate();
+
             WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
             widget?.Close();
             widget = null;

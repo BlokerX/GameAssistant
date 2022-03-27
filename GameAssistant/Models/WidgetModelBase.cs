@@ -1,15 +1,23 @@
 ﻿using GameAssistant.Core;
+using GameAssistant.Services;
 using Newtonsoft.Json;
 using System.Windows;
 using System.Windows.Media;
+using System;
 
 namespace GameAssistant.Models
 {
     /// <summary>
     /// Base of widget model that contains bindings for Widget.
     /// </summary>
-    public abstract class WidgetModelBase : BindableObject
+    public class WidgetModelBase : BindableObject
     {
+        // Constructors:
+        public WidgetModelBase()
+        {
+            animationManager = new AnimationManager(ref _backgroundColor, AnimationManager.AnimationType.RGB);
+        }
+
         // Window const elements:
         private string _title = "Widget";
         [JsonIgnore]
@@ -95,14 +103,28 @@ namespace GameAssistant.Models
         }
 
         // Visual elements:
-        private Brush _backgroundColor = new SolidColorBrush(Color.FromRgb(249, 255, 129));
+        private VariableContainer<Brush> _backgroundColor = new VariableContainer<Brush>(new SolidColorBrush(Color.FromRgb(249, 255, 129)));
+        /// <summary>
+        /// Container with widget's background brush (Container).
+        /// </summary>
+        public VariableContainer<Brush> BackgroundColorContainer
+        {
+            get => _backgroundColor;
+            set
+            {
+                SetProperty(ref _backgroundColor, value);
+            }
+        }
         /// <summary>
         /// Widget's background brush (color).
         /// </summary>
         public Brush BackgroundColor
         {
-            get => _backgroundColor;
-            set => SetProperty(ref _backgroundColor, value);
+            get => _backgroundColor.Variable;
+            set
+            {
+                _backgroundColor.Variable = value;
+            }
         }
 
         private double _backgroundOpacity = 0.5;
@@ -116,5 +138,8 @@ namespace GameAssistant.Models
         }
 
         // TODO Add color's animations!!!
+        private AnimationManager animationManager;
+
+        public void EndAnimate() => animationManager.CloseAnimate();
     }
 }

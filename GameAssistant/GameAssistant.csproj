@@ -106,6 +106,7 @@
     <Compile Include="Core\TypeConverter.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\BindableObject.cs" />
+    <Compile Include="Core\VariableContainer.cs" />
     <Compile Include="Models\ClockModel.cs" />
     <Compile Include="Models\NoteInformations.cs" />
     <Compile Include="Models\NoteModel.cs" />
