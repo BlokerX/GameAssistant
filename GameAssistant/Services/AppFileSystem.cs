@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.IO;
 using System.Windows;
 
 namespace GameAssistant.Services
 {
-    internal class AppFileSystem
+    /// <summary>
+    /// Manage applicatoion's file system. 
+    /// </summary>
+    internal static class AppFileSystem
     {
         /// <summary>
         /// Path to main dire of app informations and save configurations.
@@ -67,5 +71,32 @@ namespace GameAssistant.Services
         {
             CheckDiresArchitectureEvent.Invoke();
         }
+
+        #region Autostart Options
+
+        public static void CreateStartupKey()
+        {
+            RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            reg.SetValue("Game Assistant", System.Reflection.Assembly.GetExecutingAssembly().Location);
+        }
+        
+        public static void DeleteStartupKey()
+        {
+            RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            reg.DeleteValue("Game Assistant", false);
+        }
+        
+        //public static void SwitchOnStartupState()
+        //{
+            
+        //}
+        
+        //public static void SwitchOffStartupState()
+        //{
+            
+        //}
+
+        #endregion
+
     }
 }
