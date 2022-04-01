@@ -15,13 +15,15 @@ namespace GameAssistant.Models
         // Constructors:
         public WidgetModelBase()
         {
-            animationManager = new AnimationManager(ref _backgroundColor, AnimationManager.AnimationType.RGB);
+            AnimationToken_True += () => _backgroundAnimationManager?.StartAnimate();
+            AnimationToken_False += () => _backgroundAnimationManager?.StopAnimate();
+            _backgroundAnimationManager = new AnimationManager(ref _backgroundColor);
         }
 
         private bool _animationToken = false;
         [JsonIgnore]
         /// <summary>
-        /// Animation token.
+        /// Specjal seciurity protocol for animations threads.
         /// </summary>
         public bool AnimationToken
         {
@@ -30,11 +32,18 @@ namespace GameAssistant.Models
             {
                 SetProperty(ref _animationToken, value);
                 if (value == true)
-                    animationManager?.StartAnimate();
+                    AnimationToken_True();
                 else if (value == false)
-                    animationManager?.StopAnimate();
+                    AnimationToken_False();
+
             }
         }
+
+        [JsonIgnore]
+        protected Action AnimationToken_True;
+
+        [JsonIgnore]
+        protected Action AnimationToken_False;
 
         // Window const elements:
         private string _title = "Widget";
@@ -156,7 +165,16 @@ namespace GameAssistant.Models
         }
 
         // TODO Add color's animations!!!
-        private AnimationManager animationManager;
+        private AnimationManager _backgroundAnimationManager;
+        /// <summary>
+        /// Background color animation.
+        /// </summary>
+        public AnimationManager BackgroundAnimationManager
+        {
+            get { return _backgroundAnimationManager; }
+            set { _backgroundAnimationManager = value; }
+        }
+
 
         ~WidgetModelBase()
         {

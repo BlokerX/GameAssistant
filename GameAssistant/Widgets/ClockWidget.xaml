@@ -27,7 +27,7 @@
         <Label Content="{Binding ClockTime}" 
                FontSize="{Binding WidgetModel.FontSize}" 
                FontFamily="{Binding WidgetModel.FontFamily}" 
-               Foreground="{Binding WidgetModel.ClockLabelForeground}" 
+               Foreground="{Binding WidgetModel.ForegroundColorContainer.Variable}" 
                Opacity="{Binding WidgetModel.ClockLabelOpacity}"
                VerticalAlignment="Stretch" 
                HorizontalAlignment="Stretch"

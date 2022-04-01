@@ -1,4 +1,6 @@
-﻿using System.Windows.Media;
+﻿using GameAssistant.Core;
+using GameAssistant.Services;
+using System.Windows.Media;
 
 namespace GameAssistant.Models
 {
@@ -7,6 +9,13 @@ namespace GameAssistant.Models
     /// </summary>
     internal class ClockModel : WidgetModelBase
     {
+        // Constructors:
+        public ClockModel()
+        {
+            AnimationToken_True += () => _foregroundAnimationManager?.StartAnimate();
+            AnimationToken_False += () => _foregroundAnimationManager?.StopAnimate();
+            _foregroundAnimationManager = new AnimationManager(ref _foregroundColor);
+        }
 
         #region Serialize properties
 
@@ -30,14 +39,28 @@ namespace GameAssistant.Models
             set => SetProperty(ref _fontSize, value);
         }
 
-        private Brush _clockLabelForeground = new SolidColorBrush(Colors.Navy);
+        private VariableContainer<Brush> _foregroundColor = new VariableContainer<Brush>(new SolidColorBrush((Colors.Navy)));
+        /// <summary>
+        /// Container with clock label's brush (Container).
+        /// </summary>
+        public VariableContainer<Brush> ForegroundColorContainer
+        {
+            get => _foregroundColor;
+            set
+            {
+                SetProperty(ref _foregroundColor, value);
+            }
+        }
         /// <summary>
         /// Clock label's foreground brush (color).
         /// </summary>
-        public Brush ClockLabelForeground
+        public Brush ForegroundColor
         {
-            get => _clockLabelForeground;
-            set => SetProperty(ref _clockLabelForeground, value);
+            get => _foregroundColor.Variable;
+            set
+            {
+                _foregroundColor.Variable = value;
+            }
         }
 
         private double _clockLabelOpacity = 0.75;
@@ -48,6 +71,16 @@ namespace GameAssistant.Models
         {
             get => _clockLabelOpacity;
             set => SetProperty(ref _clockLabelOpacity, value);
+        }
+
+        private AnimationManager _foregroundAnimationManager;
+        /// <summary>
+        /// Clock label's color animation.
+        /// </summary>
+        public AnimationManager ForegroundAnimationManager
+        {
+            get { return _foregroundAnimationManager; }
+            set { _foregroundAnimationManager = value; }
         }
 
         #endregion
