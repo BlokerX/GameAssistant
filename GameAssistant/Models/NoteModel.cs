@@ -8,6 +8,7 @@ namespace GameAssistant.Models
     /// </summary>
     internal class NoteModel : WidgetModelBase
     {
+
         #region Serialize properties
 
         private int _selectedNoteIndex = 0;

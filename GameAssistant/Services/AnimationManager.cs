@@ -28,11 +28,7 @@ namespace GameAssistant.Services
             set
             {
                 _animation = value;
-                animationTimer.Stop();
                 animationInformation = 0;
-
-                if (value != AnimationType.None)
-                    animationTimer.Start();
             }
         }
 
@@ -43,7 +39,12 @@ namespace GameAssistant.Services
         public AnimationManager(ref VariableContainer<Brush> brush)
         {
             this.brush = brush;
-            animationTimer.Elapsed += (s, e) => Animate();
+            animationTimer.Elapsed += AnimationTimer_Elapsed;
+        }
+
+        private void AnimationTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Animate();
         }
 
         /// <summary>
@@ -56,9 +57,20 @@ namespace GameAssistant.Services
             Animation = animation;
         }
 
-        public void CloseAnimate()
+        /// <summary>
+        /// Turn on timer elapsed event.
+        /// </summary>
+        public void StartAnimate()
         {
-            animationTimer.Stop();
+            animationTimer?.Start();
+        }
+
+        /// <summary>
+        /// Turn off timer elapsed event.
+        /// </summary>
+        public void StopAnimate()
+        {
+            animationTimer?.Stop();
         }
 
         /// <summary>
@@ -92,7 +104,8 @@ namespace GameAssistant.Services
         private void Animate_RGB()
         {
             var tmpColor = default(Color);
-            System.Windows.Application.Current.Dispatcher.Invoke(() => tmpColor = ((SolidColorBrush)(brush.Variable)).Color);
+            if (animationTimer.Enabled)
+                System.Windows.Application.Current.Dispatcher.Invoke(() => tmpColor = ((SolidColorBrush)(brush.Variable)).Color);
             const byte jump = 1;
 
             switch (animationInformation)
@@ -152,7 +165,8 @@ namespace GameAssistant.Services
 
             }
 
-            System.Windows.Application.Current.Dispatcher.Invoke(() => brush.Variable = new SolidColorBrush(tmpColor));
+            if (animationTimer.Enabled)
+                System.Windows.Application.Current.Dispatcher.Invoke(() => brush.Variable = new SolidColorBrush(tmpColor));
         }
 
         /// <summary>
@@ -185,5 +199,11 @@ namespace GameAssistant.Services
             /// </summary>
             RGB_Reversed = 2
         }
+
+        ~AnimationManager()
+        {
+            StopAnimate();
+        }
+
     }
 }

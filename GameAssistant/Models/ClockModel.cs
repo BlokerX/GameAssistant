@@ -7,6 +7,7 @@ namespace GameAssistant.Models
     /// </summary>
     internal class ClockModel : WidgetModelBase
     {
+
         #region Serialize properties
 
         private string _fontFamily = "Century Gothic";

@@ -7,9 +7,9 @@
 // TODO Poprawić styl programu
 // TODO Interaktywne elementy w aplikacji (wizualnie)
 
+// TODO Nowe Widgety: kalkulator, mikser głośności, detektor klawiszy
+
 // TODO Przechwytywanie aplikacji takich jak: Spotify, Discord
 // TODO Przechwytywanie stron internetowych takich jak: Youtube, Facebook, Messangare
-
-// TODO Nowe Widgety: kalkulator, mikser głośności, detektor klawiszy
 
 // TODO Dodać samouczek
