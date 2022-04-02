@@ -18,11 +18,9 @@
         <StackPanel>
 
             <Label Content="Visibility:"
-                   FontSize="18"
-                   Foreground="White"
-                   Margin="5,0"/>
+                   Style="{StaticResource SettingsGroupTitle}"/>
 
-            <StackPanel Margin="2,0">
+            <StackPanel>
 
                 <controls:BoolSettingProperty x:Name="ActiveProperty"
                                               PropertyName="Active:"
@@ -35,11 +33,9 @@
         <StackPanel>
 
             <Label Content="Colors:"
-                   FontSize="18"
-                   Foreground="White"
-                   Margin="5,0"/>
+                   Style="{StaticResource SettingsGroupTitle}"/>
 
-            <StackPanel Margin="2,0">
+            <StackPanel>
 
                 <controls:ColorSettingProperty x:Name="BackgroundColorProperty"
                                                PropertyName="Background color:"
@@ -56,11 +52,9 @@
         <StackPanel>
 
             <Label Content="Opacity:"
-                   FontSize="18"
-                   Foreground="White"
-                   Margin="5,0"/>
+                   Style="{StaticResource SettingsGroupTitle}"/>
 
-            <StackPanel Margin="2,0">
+            <StackPanel>
 
                 <controls:DecimalSettingProperty x:Name="BackgroundOpacityProperty"
                                                  PropertyName="Background opacity:"
@@ -77,11 +71,9 @@
         <StackPanel>
 
             <Label Content="Font:"
-                   FontSize="18"
-                   Foreground="White"
-                   Margin="5,0"/>
+                   Style="{StaticResource SettingsGroupTitle}"/>
 
-            <StackPanel Margin="2,0">
+            <StackPanel>
 
                 <controls:FontSettingProperty x:Name="FontSettingsPropertyPanel"
                                               PropertyValueChanged="FontSettingsPropertyPanel_PropertyValueChanged"/>
@@ -93,11 +85,9 @@
         <StackPanel>
 
             <Label Content="Other:"
-                   FontSize="18"
-                   Foreground="White"
-                   Margin="5,0"/>
+                   Style="{StaticResource SettingsGroupTitle}"/>
 
-            <StackPanel Margin="2,0">
+            <StackPanel>
 
                 <controls:BoolSettingProperty x:Name="CanResizeProperty"
                                               PropertyName="Can resize:"
