@@ -106,6 +106,7 @@
     <Compile Include="Core\TypeConverter.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\BindableObject.cs" />
+    <Compile Include="Models\CalculatorModel.cs" />
     <Compile Include="Models\ClockModel.cs" />
     <Compile Include="Models\NoteInformations.cs" />
     <Compile Include="Models\NoteModel.cs" />
@@ -132,7 +133,11 @@
     <Compile Include="Services\WidgetManager.cs" />
     <Compile Include="Services\MVVMUnit.cs" />
     <Compile Include="TODOList.cs" />
+    <Compile Include="Widgets\CalculatorWidget.xaml.cs">
+      <DependentUpon>CalculatorWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widgets\WidgetContainer.cs" />
+    <Compile Include="WidgetViewModels\CalculatorViewModel.cs" />
     <Compile Include="WidgetViewModels\ClockViewModel.cs" />
     <Compile Include="WidgetViewModels\NoteViewModel.cs" />
     <Compile Include="WidgetViewModels\PictureViewModel.cs" />
@@ -198,11 +203,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Templates\CalculatorButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Templates\MenuButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\SettingButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widgets\CalculatorWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
