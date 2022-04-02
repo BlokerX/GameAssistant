@@ -9,6 +9,16 @@
 
     <Grid>
 
+        <Border Background="DarkSlateGray"
+                Width="130" Height="130"
+                Padding="1"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Margin="15">
+            <Image Source="/Resources/Pictures/AppIcon.png"
+                   RenderOptions.BitmapScalingMode="Fant"/>
+        </Border>
+
         <StackPanel>
 
             <Label Content="About"
