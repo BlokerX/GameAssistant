@@ -6,20 +6,18 @@
         xmlns:pages="clr-namespace:GameAssistant.Pages"
         mc:Ignorable="d" Title="SettingsWindow" Height="499" Width="800">
 
-    <Grid Background="#FF2E2D29">
+    <Grid Background="#FF26262F">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Width="100" Background="#FF1C1A1A">
+        <Grid Width="100" Background="#FF1A1A1C">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-                <RowDefinition Height="1"/>
                 <RowDefinition Height="60"/>
-                <RowDefinition Height="1"/>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="60"/>
@@ -29,20 +27,23 @@
                     Content="Clock Widget" Grid.Row="0" 
                     Style="{StaticResource MenuButton}"
                     Click="ClockWidgetButton_Click"
+                    Margin="0,0,0,1"
                     BorderThickness="1"/>
 
             <Button x:Name="PictureWidgetButton"
-                    Content="Picture Widget" Grid.Row="2"
+                    Content="Picture Widget" Grid.Row="1"
                     Style="{StaticResource MenuButton}"
+                    Margin="0,0,0,1"
                     Click="PictureWidgetButton_Click"/>
 
             <Button x:Name="NoteWidgetButton"
-                    Content="Note Widget" Grid.Row="4"
+                    Content="Note Widget" Grid.Row="2"
                     Style="{StaticResource MenuButton}"
+                    Margin="0,0,0,1"
                     Click="NoteWidgetButton_Click"/>
 
             <Button x:Name="AboutButton"
-                    Content="About" Grid.Row="6"
+                    Content="About" Grid.Row="4"
                     Style="{StaticResource MenuButton}"
                     Click="AboutButton_Click"/>
 
@@ -50,24 +51,36 @@
 
         <ScrollViewer Grid.Column="1">
 
-            <Grid Margin="10">
+            <StackPanel>
 
-                <Frame x:Name="ClockWidgetFrame"/>
+                <Grid Margin="10,10,10,0">
 
-                <Frame x:Name="PictureWidgetFrame"
+                    <Frame x:Name="ClockWidgetFrame"/>
+
+                    <Frame x:Name="PictureWidgetFrame"
                        Visibility="Collapsed"/>
 
-                <Frame x:Name="NoteWidgetFrame"
+                    <Frame x:Name="NoteWidgetFrame"
                        Visibility="Collapsed"/>
 
-                <Frame x:Name="AboutFrame"
+                    <Frame x:Name="AboutFrame"
                        Visibility="Collapsed">
-                    <Frame.Content>
-                        <pages:AboutPage/>
-                    </Frame.Content>
-                </Frame>
+                        <Frame.Content>
+                            <pages:AboutPage/>
+                        </Frame.Content>
+                    </Frame>
 
-            </Grid>
+                </Grid>
+
+                <StackPanel Margin="10,10,10,10">
+
+                    <Button Content="Close app"
+                            Style="{StaticResource SettingButton}" 
+                            Click="CloseAppButton_Click"/>
+
+                </StackPanel>
+
+            </StackPanel>
 
         </ScrollViewer>
 

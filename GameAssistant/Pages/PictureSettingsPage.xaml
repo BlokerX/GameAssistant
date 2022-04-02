@@ -102,9 +102,7 @@
 
             </StackPanel>
 
-        </StackPanel>
-
-        <Button x:Name="DefaultSettingsButton"
+            <Button x:Name="DefaultSettingsButton"
                 Style="{StaticResource SettingButton}"
                 Content="Default settings"
                 Click="DefaultSettingsButton_Click"/>
@@ -119,6 +117,8 @@
                 Content="Download save configuration"
                 Click="LoadSavedConfigurationButton_Click"/>
 
+        </StackPanel>
+        
     </StackPanel>
 
 </local:SettingsPageBase>

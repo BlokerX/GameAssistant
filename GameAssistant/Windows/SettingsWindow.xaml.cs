@@ -1,5 +1,6 @@
 ﻿using GameAssistant.Pages;
 using GameAssistant.Widgets;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -10,6 +11,11 @@ namespace GameAssistant.Windows
     /// </summary>
     public partial class SettingsWindow : Window
     {
+        /// <summary>
+        /// Event what's close whole app.
+        /// </summary>
+        public event Action AppClose;
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -96,6 +102,14 @@ namespace GameAssistant.Windows
             HideAllPages();
             AboutFrame.Visibility = Visibility.Visible;
             CheckMenuButton(sender as Button);
+        }
+
+        /// <summary>
+        /// On close app button clicked.
+        /// </summary>
+        private void CloseAppButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppClose.Invoke();
         }
     }
 }
