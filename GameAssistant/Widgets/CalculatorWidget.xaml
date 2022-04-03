@@ -48,107 +48,127 @@
                      HorizontalContentAlignment="Right"
                      FontSize="28"
                      Opacity="0.75"
-                     Text="0"
+                     Text="{Binding CalculatorTextBox}"
                      Margin="1"/>
 
             <Button Content="C"
                     Grid.Column="0"
                     Grid.Row="1"
+                    Command="{Binding ClearButton_Command}"
                     Style="{StaticResource CalculatorButton}" Background="#FFFF6060"/>
 
             <Button Content="kas"
                     Grid.Column="1"
                     Grid.Row="1"
+                    Command="{Binding BackspaceButton_Command}"
                     Style="{StaticResource CalculatorButton}"/>
             
             <Button Content="%"
                     Grid.Column="2"
                     Grid.Row="1"
+                    Command="{Binding PercentButton_Command}"
                     Style="{StaticResource CalculatorButton}"/>
             
             <Button Content="/"
                     Grid.Column="3"
                     Grid.Row="1"
+                    Command="{Binding DivideButton_Command}"
                     Style="{StaticResource CalculatorButton}"/>
 
             <Button Content="7"
                     Grid.Column="0"
                     Grid.Row="2"
+                    Command="{Binding Button7_Command}"
                     Style="{StaticResource CalculatorButton}"/>
             
             <Button Content="8"
                     Grid.Column="1"
                     Grid.Row="2"
+                    Command="{Binding Button8_Command}"
                     Style="{StaticResource CalculatorButton}"/>
 
             <Button Content="9"
                     Grid.Column="2"
                     Grid.Row="2"
+                    Command="{Binding Button9_Command}"
                     Style="{StaticResource CalculatorButton}"/>
             
             <Button Content="*"
                     Grid.Column="3"
                     Grid.Row="2"
+                    Command="{Binding MultiplyButton_Command}"
                     Style="{StaticResource CalculatorButton}"/>
 
             <Button Content="4"
                     Grid.Column="0"
                     Grid.Row="3"
+                    Command="{Binding Button4_Command}"
                     Style="{StaticResource CalculatorButton}"/>
             
             <Button Content="5"
                     Grid.Column="1"
                     Grid.Row="3"
+                    Command="{Binding Button5_Command}"
                     Style="{StaticResource CalculatorButton}"/>
             
             <Button Content="6"
                     Grid.Column="2"
                     Grid.Row="3"
+                    Command="{Binding Button6_Command}"
                     Style="{StaticResource CalculatorButton}"/>
             
             <Button Content="-"
                     Grid.Column="3"
                     Grid.Row="3"
+                    Command="{Binding SubstractButton_Command}"
                     Style="{StaticResource CalculatorButton}"/>
 
             <Button Content="1"
                     Grid.Column="0"
                     Grid.Row="4"
+                    Command="{Binding Button1_Command}"
                     Style="{StaticResource CalculatorButton}"/>
 
             <Button Content="2"
                     Grid.Column="1"
                     Grid.Row="4"
+                    Command="{Binding Button2_Command}"
                     Style="{StaticResource CalculatorButton}"/>
 
             <Button Content="3"
                     Grid.Column="2"
                     Grid.Row="4"
+                    Command="{Binding Button3_Command}"
                     Style="{StaticResource CalculatorButton}"/>
 
             <Button Content="+"
                     Grid.Column="3"
                     Grid.Row="4"
+                    Command="{Binding AddictionButton_Command}"
                     Style="{StaticResource CalculatorButton}"/>
 
             <Button Content="..."
                     Grid.Column="0"
                     Grid.Row="5"
+                    Command="{Binding MoreOptionsButton_Command}"
                     Style="{StaticResource CalculatorButton}"/>
             
             <Button Content="0"
                     Grid.Column="1"
                     Grid.Row="5"
+                    Command="{Binding Button0_Command}"
                     Style="{StaticResource CalculatorButton}"/>
             
             <Button Content="."
                     Grid.Column="2"
                     Grid.Row="5"
+                    Command="{Binding DecimalButton_Command}"
                     Style="{StaticResource CalculatorButton}"/>
             
             <Button Content="="
                     Grid.Column="3"
                     Grid.Row="5"
+                    Command="{Binding EqualsButton_Command}"
                     Style="{StaticResource CalculatorButton}"
                     Background="#FFDCA5A5"/>
 

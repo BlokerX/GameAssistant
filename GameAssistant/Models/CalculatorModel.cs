@@ -7,7 +7,7 @@
     {
         #region Serialize properties
 
-
+        
 
         #endregion
     }
