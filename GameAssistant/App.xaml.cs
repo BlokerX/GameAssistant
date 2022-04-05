@@ -117,6 +117,8 @@ namespace GameAssistant
         {
             base.OnStartup(e);
 
+            AppFileSystem.CreateStartupKey();
+
             SelectDisks();
             AppFileSystem.RegisterFileSystem
             (
