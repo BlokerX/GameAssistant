@@ -1,4 +1,4 @@
-﻿// TODO Własny drag&drop bar
+// TODO Własny drag&drop bar
 // TODO Własny styl okna
 
 // TODO Interaktywne elementy w aplikacji (wizualnie)
