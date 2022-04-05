@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="./Templates/MenuButton.xaml"/>
                 <ResourceDictionary Source="./Templates/SettingButton.xaml"/>
                 <ResourceDictionary Source="./Templates/SettingsGroupTitle.xaml"/>
+                <ResourceDictionary Source="./Templates/WindowActionButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

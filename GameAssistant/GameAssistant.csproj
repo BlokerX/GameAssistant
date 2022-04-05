@@ -106,6 +106,7 @@
     <Compile Include="Core\TypeConverter.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\BindableObject.cs" />
+    <Compile Include="Core\VariableContainer.cs" />
     <Compile Include="Models\ClockModel.cs" />
     <Compile Include="Models\NoteInformations.cs" />
     <Compile Include="Models\NoteModel.cs" />
@@ -128,6 +129,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\AnimationManager.cs" />
     <Compile Include="Services\AppFileSystem.cs" />
     <Compile Include="Services\WidgetManager.cs" />
     <Compile Include="Services\MVVMUnit.cs" />
@@ -197,6 +199,10 @@
     <Page Include="Pages\PictureSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\WindowActionButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Templates\MenuButton.xaml">
       <SubType>Designer</SubType>

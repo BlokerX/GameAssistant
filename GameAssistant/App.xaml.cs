@@ -160,6 +160,7 @@ namespace GameAssistant
 
         private void CloseApp()
         {
+            CloseWidgets();
             App.Current.Shutdown();
         }
 
@@ -184,7 +185,7 @@ namespace GameAssistant
         {
             WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(clockWidgetContainer.Widget);
             WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(pictureWidgetContainer.Widget);
-            WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(pictureWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(noteWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -194,7 +195,7 @@ namespace GameAssistant
         {
             WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref clockWidgetContainer.Widget);
             WidgetManager.CloseWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
-            WidgetManager.CloseWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
+            WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref noteWidgetContainer.Widget);
         }
 
         /// <summary>

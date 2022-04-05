@@ -111,5 +111,36 @@ namespace GameAssistant.Windows
         {
             AppClose.Invoke();
         }
+        
+        private void StackPanel_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == System.Windows.Input.MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void WindowActionButton_CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        
+        private void WindowActionButton_WindowStateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+                WindowState = WindowState.Normal;
+            else
+            {
+                var preOperationWindowStyle = WindowStyle;
+                WindowStyle = WindowStyle.SingleBorderWindow;
+                WindowState = WindowState.Maximized;
+                WindowStyle = preOperationWindowStyle;
+            }
+        }
+        
+        private void WindowActionButton_MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Minimized)
+                WindowState = WindowState.Normal;
+            else WindowState = WindowState.Minimized;
+        }
     }
 }
