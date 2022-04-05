@@ -5,6 +5,7 @@
     /// </summary>
     internal class PictureModel : WidgetModelBase
     {
+
         #region Serialize properties
 
         private string _imageSource;
