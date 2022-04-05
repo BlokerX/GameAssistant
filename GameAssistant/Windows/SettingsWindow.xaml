@@ -11,16 +11,26 @@
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
 
-    <Grid Background="#FF343238">
-
+    <Grid Background="#FF26262F">
+      
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-
-        <!-- Drag&Drop bar -->
+      
+         <!-- Drag&Drop bar -->
         <Grid MouseLeftButtonDown="StackPanel_MouseLeftButtonDown"
               Background="#FF343238">
+
+        <Grid Width="100" Background="#FF1A1A1C">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
 
             <StackPanel Orientation="Horizontal">
 
@@ -80,20 +90,24 @@
                     Content="Clock Widget" Grid.Row="0" 
                     Style="{StaticResource MenuButton}"
                     Click="ClockWidgetButton_Click"
+                    Margin="0,0,0,1"
                     BorderThickness="1"/>
 
-                <Button x:Name="PictureWidgetButton"
-                    Content="Picture Widget" Grid.Row="2"
+            <Button x:Name="PictureWidgetButton"
+                    Content="Picture Widget" Grid.Row="1"
+
                     Style="{StaticResource MenuButton}"
+                    Margin="0,0,0,1"
                     Click="PictureWidgetButton_Click"/>
 
-                <Button x:Name="NoteWidgetButton"
-                    Content="Note Widget" Grid.Row="4"
+            <Button x:Name="NoteWidgetButton"
+                    Content="Note Widget" Grid.Row="2"
                     Style="{StaticResource MenuButton}"
+                    Margin="0,0,0,1"
                     Click="NoteWidgetButton_Click"/>
 
-                <Button x:Name="AboutButton"
-                    Content="About" Grid.Row="6"
+            <Button x:Name="AboutButton"
+                    Content="About" Grid.Row="4"
                     Style="{StaticResource MenuButton}"
                     Click="AboutButton_Click"/>
 
@@ -117,6 +131,18 @@
                             <pages:AboutPage/>
                         </Frame.Content>
                     </Frame>
+
+                </Grid>
+
+                <StackPanel Margin="10,10,10,10">
+
+                    <Button Content="Close app"
+                            Style="{StaticResource SettingButton}" 
+                            Click="CloseAppButton_Click"/>
+
+                </StackPanel>
+
+            </StackPanel>
 
                 </Grid>
 

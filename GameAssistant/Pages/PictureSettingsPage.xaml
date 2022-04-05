@@ -15,13 +15,12 @@
                            FontSize="24"
                            Foreground="White"/>
 
-        <StackPanel Margin="5,0,0,0">
+        <StackPanel>
 
             <Label Content="Visibility:"
-                               FontSize="18"
-                               Foreground="White"/>
+                   Style="{StaticResource SettingsGroupTitle}"/>
 
-            <StackPanel Margin="2,0,0,0">
+            <StackPanel>
 
                 <controls:BoolSettingProperty x:Name="ActiveProperty"
                                               PropertyName="Active:"
@@ -31,13 +30,12 @@
 
         </StackPanel>
 
-        <StackPanel Margin="5,0,0,0">
+        <StackPanel >
 
             <Label Content="Colors:"
-                               FontSize="18"
-                               Foreground="White"/>
+                   Style="{StaticResource SettingsGroupTitle}"/>
 
-            <StackPanel Margin="2,0,0,0">
+            <StackPanel>
 
                 <controls:ColorSettingProperty x:Name="BackgroundColorProperty"
                                                PropertyName="Background color:"
@@ -47,13 +45,12 @@
 
         </StackPanel>
 
-        <StackPanel Margin="5,0,0,0">
+        <StackPanel >
 
             <Label Content="Opacity:"
-                               FontSize="18"
-                               Foreground="White"/>
+                   Style="{StaticResource SettingsGroupTitle}"/>
 
-            <StackPanel Margin="2,0,0,0">
+            <StackPanel>
 
                 <controls:DecimalSettingProperty x:Name="BackgroundOpacityProperty"
                                                  PropertyName="Background opacity:"
@@ -67,13 +64,29 @@
 
         </StackPanel>
 
-        <StackPanel Margin="5,0,0,0">
+        <StackPanel>
+
+
+            <Label Content="Image source:"
+                   Style="{StaticResource SettingsGroupTitle}"/>
+
+            <StackPanel>
+
+                <controls:PathSourceProperty x:Name="ImageSourceProperty"
+                                             PropertyName="Image source:"
+                                             PropertyValueChanged="ImageSourceProperty_PropertyValueChanged"
+                                             ButtonClick="ImageSourceProperty_ButtonClick"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel>
 
             <Label Content="Other:"
-                   FontSize="18"
-                   Foreground="White"/>
+                   Style="{StaticResource SettingsGroupTitle}"/>
 
-            <StackPanel Margin="2,0,0,0">
+            <StackPanel>
 
                 <controls:BoolSettingProperty x:Name="CanResizeProperty"
                                               PropertyName="Can resize:"
@@ -82,23 +95,6 @@
                 <controls:BoolSettingProperty x:Name="DragActiveProperty"
                                               PropertyName="Drag active:"
                                               PropertyValueChanged="DragActiveProperty_PropertyValueChanged"/>
-
-            </StackPanel>
-
-        </StackPanel>
-
-        <StackPanel Margin="5,0,0,0">
-
-            <StackPanel Margin="2,0,0,0">
-
-                <Label Content="Image source:"
-                   FontSize="18"
-                   Foreground="White"/>
-
-                <controls:PathSourceProperty x:Name="ImageSourceProperty"
-                                             PropertyName="Image source:"
-                                             PropertyValueChanged="ImageSourceProperty_PropertyValueChanged"
-                                             ButtonClick="ImageSourceProperty_ButtonClick"/>
 
             </StackPanel>
 
@@ -118,6 +114,7 @@
                 Style="{StaticResource SettingButton}"
                 Content="Download save configuration"
                 Click="LoadSavedConfigurationButton_Click"/>
+
 
     </StackPanel>
 

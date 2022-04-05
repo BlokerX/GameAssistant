@@ -81,9 +81,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_MenuItem_CloseApp_Click(object sender, System.EventArgs e)
         {
-            CloseWidgets();
-            // todo problem z wyłanczeniem animacji
-            App.Current.Shutdown();
+            CloseApp();
         }
 
         #endregion
@@ -104,6 +102,7 @@ namespace GameAssistant
             {
                 settingsWindow = new SettingsWindow(ref clockWidgetContainer, ref pictureWidgetContainer, ref noteWidgetContainer);
                 settingsWindow.Closed += (s, o) => settingsWindow = null;
+                settingsWindow.AppClose += CloseApp;
                 settingsWindow.Show();
             }
             settingsWindow?.Focus();
@@ -153,6 +152,16 @@ namespace GameAssistant
             CloseAndSaveWidgets();
             NotifyIcon.Dispose();
             base.OnExit(e);
+        }
+
+        #endregion
+
+        #region AppMethods
+
+        private void CloseApp()
+        {
+            CloseWidgets();
+            App.Current.Shutdown();
         }
 
         #endregion

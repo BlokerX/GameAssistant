@@ -1,9 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Color x:Key="NoPress" R="33" G="31" B="29" A="255"/>
-    <Color x:Key="Press" R="16" G="14" B="12" A="255"/>
-    <Color x:Key="Click" R="66" G="62" B="58" A="255"/>
+    <Color x:Key="NoPress" R="33" G="31" B="35" A="255"/>
+    <Color x:Key="Press" R="16" G="14" B="17" A="255"/>
+    <Color x:Key="Click" R="66" G="62" B="70" A="255"/>
 
     <Style x:Key="MenuButton" TargetType="Button">
 
