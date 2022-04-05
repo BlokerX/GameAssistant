@@ -65,7 +65,7 @@ namespace GameAssistant.Pages
             var model = (clockWidgetContainer.Widget.DataContext as IWidgetViewModel<ClockModel>).WidgetModel;
 
             this.BackgroundColorProperty.PropertyColor = model.BackgroundColor;
-            this.ForegroundColorProperty.PropertyColor = model.ClockLabelForeground;
+            this.ForegroundColorProperty.PropertyColor = model.ForegroundColor;
 
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
             this.ForegroundOpacityProperty.PropertyValue = model.ClockLabelOpacity;
@@ -127,7 +127,7 @@ namespace GameAssistant.Pages
             if (ClockWidgetContainer.Widget.DataContext != null)
             {
                 var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
-                model.ClockLabelForeground = e;
+                model.ForegroundColor = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }

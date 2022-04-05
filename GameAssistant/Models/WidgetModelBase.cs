@@ -1,15 +1,50 @@
 ﻿using GameAssistant.Core;
+using GameAssistant.Services;
 using Newtonsoft.Json;
 using System.Windows;
 using System.Windows.Media;
+using System;
 
 namespace GameAssistant.Models
 {
     /// <summary>
     /// Base of widget model that contains bindings for Widget.
     /// </summary>
-    public abstract class WidgetModelBase : BindableObject
+    public class WidgetModelBase : BindableObject
     {
+        // Constructors:
+        public WidgetModelBase()
+        {
+            AnimationToken_True += () => _backgroundAnimationManager?.StartAnimate();
+            AnimationToken_False += () => _backgroundAnimationManager?.StopAnimate();
+            _backgroundAnimationManager = new AnimationManager(ref _backgroundColor);
+        }
+
+        private bool _animationToken = false;
+        [JsonIgnore]
+        /// <summary>
+        /// Specjal seciurity protocol for animations threads.
+        /// </summary>
+        public bool AnimationToken
+        {
+            get => _animationToken;
+            set
+            {
+                SetProperty(ref _animationToken, value);
+                if (value == true)
+                    AnimationToken_True();
+                else if (value == false)
+                    AnimationToken_False();
+
+            }
+        }
+
+        [JsonIgnore]
+        protected Action AnimationToken_True;
+
+        [JsonIgnore]
+        protected Action AnimationToken_False;
+
         // Window const elements:
         private string _title = "Widget";
         [JsonIgnore]
@@ -95,14 +130,28 @@ namespace GameAssistant.Models
         }
 
         // Visual elements:
-        private Brush _backgroundColor = new SolidColorBrush(Color.FromRgb(249, 255, 129));
+        private VariableContainer<Brush> _backgroundColor = new VariableContainer<Brush>(new SolidColorBrush(Color.FromRgb(249, 255, 129)));
+        /// <summary>
+        /// Container with widget's background brush (Container).
+        /// </summary>
+        public VariableContainer<Brush> BackgroundColorContainer
+        {
+            get => _backgroundColor;
+            set
+            {
+                SetProperty(ref _backgroundColor, value);
+            }
+        }
         /// <summary>
         /// Widget's background brush (color).
         /// </summary>
         public Brush BackgroundColor
         {
-            get => _backgroundColor;
-            set => SetProperty(ref _backgroundColor, value);
+            get => _backgroundColor.Variable;
+            set
+            {
+                _backgroundColor.Variable = value;
+            }
         }
 
         private double _backgroundOpacity = 0.5;
@@ -116,5 +165,21 @@ namespace GameAssistant.Models
         }
 
         // TODO Add color's animations!!!
+        private AnimationManager _backgroundAnimationManager;
+        /// <summary>
+        /// Background color animation.
+        /// </summary>
+        public AnimationManager BackgroundAnimationManager
+        {
+            get { return _backgroundAnimationManager; }
+            set { _backgroundAnimationManager = value; }
+        }
+
+
+        ~WidgetModelBase()
+        {
+            AnimationToken = false;
+        }
+
     }
 }
