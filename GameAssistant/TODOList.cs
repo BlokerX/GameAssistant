@@ -1,15 +1,7 @@
-// TODO Własny drag&drop bar
-// TODO Własny styl okna
-
 // TODO Interaktywne elementy w aplikacji (wizualnie)
-// TODO Poprawić styl programu
-// TODO Przebudować architekturę menu
-// TODO Przycisk close w menu
 // TODO Checkbox auto startu w menu
-
 // TODO Opcja autostartu
-
-// TODO Animacja koloru
+// TODO Animacja koloru poprawić wydajność
 
 // TODO Nowe Widgety: kalkulator, mikser głośności, detektor klawiszy
 
