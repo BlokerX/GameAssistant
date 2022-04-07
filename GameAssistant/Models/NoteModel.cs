@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using GameAssistant.Core;
+using GameAssistant.Services;
+using System.Windows;
 using System.Windows.Media;
 
 namespace GameAssistant.Models
@@ -8,6 +10,14 @@ namespace GameAssistant.Models
     /// </summary>
     internal class NoteModel : WidgetModelBase
     {
+        // Constructors:
+        public NoteModel()
+        {
+            AnimationToken_True += () => _foregroundAnimationManager?.StartAnimate();
+            AnimationToken_False += () => _foregroundAnimationManager?.StopAnimate();
+            _foregroundAnimationManager = new AnimationManager(ref _foregroundColor);
+        }
+
         #region Serialize properties
 
         private int _selectedNoteIndex = 0;
@@ -20,14 +30,28 @@ namespace GameAssistant.Models
             set => SetProperty(ref _selectedNoteIndex, value);
         }
 
-        private Brush _noteFontColor = new SolidColorBrush(Colors.Black);
+        private VariableContainer<Brush> _foregroundColor = new VariableContainer<Brush>(new SolidColorBrush((Colors.Black)));
+        /// <summary>
+        /// Container with note text brush (Container).
+        /// </summary>
+        public VariableContainer<Brush> ForegroundColorContainer
+        {
+            get => _foregroundColor;
+            set
+            {
+                SetProperty(ref _foregroundColor, value);
+            }
+        }
         /// <summary>
         /// The font color of note text.
         /// </summary>
-        public Brush NoteFontColor
+        public Brush ForegroundColor
         {
-            get => _noteFontColor;
-            set => SetProperty(ref _noteFontColor, value);
+            get => _foregroundColor.Variable;
+            set
+            {
+                _foregroundColor.Variable = value;
+            }
         }
 
         private double _noteFontOpacity = 1;
@@ -71,6 +95,15 @@ namespace GameAssistant.Models
             set => SetProperty(ref _settingsBarVisibility, value);
         }
 
+        private AnimationManager _foregroundAnimationManager;
+        /// <summary>
+        /// Note font's color animation.
+        /// </summary>
+        public AnimationManager ForegroundAnimationManager
+        {
+            get { return _foregroundAnimationManager; }
+            set { _foregroundAnimationManager = value; }
+        }
 
         #endregion
     }

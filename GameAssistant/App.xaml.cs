@@ -96,7 +96,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_MenuItem_CloseApp_Click(object sender, System.EventArgs e)
         {
-            App.Current.Shutdown();
+            CloseApp();
         }
 
         #endregion
@@ -118,6 +118,7 @@ namespace GameAssistant
                 // todo . DODAĆ CALCULATOR widget
                 settingsWindow = new SettingsWindow(ref clockWidgetContainer, ref pictureWidgetContainer, ref noteWidgetContainer);
                 settingsWindow.Closed += (s, o) => settingsWindow = null;
+                settingsWindow.AppClose += CloseApp;
                 settingsWindow.Show();
             }
             settingsWindow?.Focus();
@@ -131,6 +132,8 @@ namespace GameAssistant
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            AppFileSystem.CreateStartupKey();
 
             SelectDisks();
             AppFileSystem.RegisterFileSystem
@@ -169,6 +172,16 @@ namespace GameAssistant
             CloseAndSaveWidgets();
             NotifyIcon.Dispose();
             base.OnExit(e);
+        }
+
+        #endregion
+
+        #region AppMethods
+
+        private void CloseApp()
+        {
+            CloseWidgets();
+            App.Current.Shutdown();
         }
 
         #endregion

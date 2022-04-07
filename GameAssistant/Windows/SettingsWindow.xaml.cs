@@ -1,5 +1,6 @@
 ﻿using GameAssistant.Pages;
 using GameAssistant.Widgets;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -10,6 +11,11 @@ namespace GameAssistant.Windows
     /// </summary>
     public partial class SettingsWindow : Window
     {
+        /// <summary>
+        /// Event what's close whole app.
+        /// </summary>
+        public event Action AppClose;
+
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -96,6 +102,45 @@ namespace GameAssistant.Windows
             HideAllPages();
             AboutFrame.Visibility = Visibility.Visible;
             CheckMenuButton(sender as Button);
+        }
+
+        /// <summary>
+        /// On close app button clicked.
+        /// </summary>
+        private void CloseAppButton_Click(object sender, RoutedEventArgs e)
+        {
+            AppClose.Invoke();
+        }
+        
+        private void StackPanel_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ButtonState == System.Windows.Input.MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void WindowActionButton_CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        
+        private void WindowActionButton_WindowStateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+                WindowState = WindowState.Normal;
+            else
+            {
+                var preOperationWindowStyle = WindowStyle;
+                WindowStyle = WindowStyle.SingleBorderWindow;
+                WindowState = WindowState.Maximized;
+                WindowStyle = preOperationWindowStyle;
+            }
+        }
+        
+        private void WindowActionButton_MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Minimized)
+                WindowState = WindowState.Normal;
+            else WindowState = WindowState.Minimized;
         }
     }
 }

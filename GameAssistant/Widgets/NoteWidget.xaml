@@ -21,7 +21,7 @@
 
     <Grid>
 
-        <Grid Background="{Binding WidgetModel.BackgroundColor}" 
+        <Grid Background="{Binding WidgetModel.BackgroundColorContainer.Variable}" 
               Opacity="{Binding WidgetModel.BackgroundOpacity}"/>
 
         <Grid>
@@ -102,7 +102,7 @@
                      Opacity="{Binding WidgetModel.NoteFontOpacity}"
                      FontFamily="{Binding WidgetModel.NoteFontFamily}"
                      FontSize="{Binding WidgetModel.NoteFontSize}"
-                     Foreground="{Binding WidgetModel.NoteFontColor}"
+                     Foreground="{Binding WidgetModel.ForegroundColorContainer.Variable}"
                      BorderBrush="Transparent"
                      SelectionBrush="Black"
                      Margin="{Binding TextBoxMargin}"

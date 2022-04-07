@@ -259,6 +259,7 @@ namespace GameAssistant.Services
             using (var sr = new StreamReader(path))
             {
                 widgetModel = JsonConvert.DeserializeObject<WidgetModelType>(sr.ReadToEnd());
+                widgetModel.AnimationToken = false;
             }
             return true;
         }
@@ -300,7 +301,6 @@ namespace GameAssistant.Services
             }
 
             BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
-
         END:
             WidgetManager.SaveWidgetConfigurationInFile(model);
         }
@@ -320,6 +320,7 @@ namespace GameAssistant.Services
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
+            downloadedModel.AnimationToken = true;
             if (downloadWidgetConfigurationResult)
             {
                 widget = WidgetManager.CreateWidget<WidgetType, ViewModelType, ModelType>(downloadedModel);
@@ -344,6 +345,9 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
+            // todo zamykanie menadżera animacji (przenieść we właściwe miejsce)
+            (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel.AnimationToken = false;
+
             widget?.Close();
             widget = null;
             model.IsActive = false;
@@ -360,6 +364,10 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
+            // todo zamykanie menadżera animacji (przenieść we właściwe miejsce)
+            if (widget != null)
+                (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel.AnimationToken = false;
+
             WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
             widget?.Close();
             widget = null;

@@ -1,23 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Color x:Key="NoPress" R="33" G="31" B="35" A="255"/>
-    <Color x:Key="Press" R="16" G="14" B="17" A="255"/>
-    <Color x:Key="Click" R="66" G="62" B="70" A="255"/>
+    <Color x:Key="NoPress" R="0" G="0" B="0" A="0"/>
+    <Color x:Key="Press" R="100" G="100" B="100" A="200"/>
+    <Color x:Key="Click" R="220" G="190" B="150" A="220"/>
 
-    <Style x:Key="MenuButton" TargetType="Button">
+    <Style x:Key="WindowActionButton" TargetType="Button">
 
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="{StaticResource NoPress}"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Width" Value="40"/>
+
+        <Setter Property="Background" Value="Transparent"/>
 
         <Setter Property="Foreground" Value="White"/>
-
-        <Setter Property="BorderBrush" Value="White"/>
-        
-        <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
 
@@ -25,18 +19,13 @@
 
                 <ControlTemplate TargetType="Button">
 
-                    <Border Background="{TemplateBinding BorderBrush}"
-                            VerticalAlignment="Stretch"
-                            HorizontalAlignment="Stretch"
-                            Padding="{TemplateBinding BorderThickness}">
-
-                        <Border Background="{TemplateBinding Background}"
+                    <Border Background="{TemplateBinding Background}"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Stretch">
 
-                            <Grid>
+                        <Grid>
 
-                                <Label Content="{TemplateBinding Content}"
+                            <Label Content="{TemplateBinding Content}"
                                    FontSize="{TemplateBinding FontSize}"
                                    FontFamily="Century Gothic"
                                    Foreground="{TemplateBinding Foreground}"
@@ -45,10 +34,8 @@
                                    VerticalContentAlignment="Center"
                                    HorizontalContentAlignment="Center"/>
 
-                            </Grid>
+                        </Grid>
 
-                        </Border>
-                        
                     </Border>
 
                 </ControlTemplate>
