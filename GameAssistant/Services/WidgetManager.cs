@@ -36,6 +36,12 @@ namespace GameAssistant.Services
                 WidgetViewModelType = typeof(NoteViewModel),
                 WidgetModelType = typeof(NoteModel)
             },
+            new MVVMUnit()
+            {
+                WidgetType = typeof(CalculatorWidget),
+                WidgetViewModelType = typeof(CalculatorViewModel),
+                WidgetModelType = typeof(CalculatorModel)
+            },
         };
 
         /// <summary>

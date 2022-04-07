@@ -24,16 +24,23 @@ namespace GameAssistant
 
         #region PictureWidgetContainer
         /// <summary>
-        /// The picture widget.
+        /// The picture widget's container.
         /// </summary>
         private WidgetContainer<PictureWidget> pictureWidgetContainer = new WidgetContainer<PictureWidget>();
         #endregion
 
         #region NoteWidgetContainer
         /// <summary>
-        /// The note widget.
+        /// The note widget's container.
         /// </summary>
         private WidgetContainer<NoteWidget> noteWidgetContainer = new WidgetContainer<NoteWidget>();
+        #endregion
+        
+        #region CalculatorWidgetContainer
+        /// <summary>
+        /// The calculator widget's container.
+        /// </summary>
+        private WidgetContainer<CalculatorWidget> calculatorWidgetContainer = new WidgetContainer<CalculatorWidget>();
         #endregion
 
         #endregion
@@ -75,6 +82,14 @@ namespace GameAssistant
         {
             WidgetManager.Widget_ChangeStateAndSave<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
         }
+        
+        /// <summary>
+        /// Invoke when calculator widget button clicked.
+        /// </summary>
+        private void NotifyIcon_CalculatorWidget_Settings_Click(object sender, System.EventArgs e)
+        {
+            WidgetManager.Widget_ChangeStateAndSave<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref calculatorWidgetContainer.Widget);
+        }
 
         /// <summary>
         /// Invoke when close app button clicked.
@@ -100,6 +115,7 @@ namespace GameAssistant
         {
             if (settingsWindow == null)
             {
+                // todo . DODAĆ CALCULATOR widget
                 settingsWindow = new SettingsWindow(ref clockWidgetContainer, ref pictureWidgetContainer, ref noteWidgetContainer);
                 settingsWindow.Closed += (s, o) => settingsWindow = null;
                 settingsWindow.AppClose += CloseApp;
@@ -124,7 +140,8 @@ namespace GameAssistant
             (
                 nameof(ClockWidget),
                 nameof(PictureWidget),
-                nameof(NoteWidget)
+                nameof(NoteWidget),
+                nameof(CalculatorWidget)
             );
 
             // Notify icon register:
@@ -138,6 +155,7 @@ namespace GameAssistant
                         new System.Windows.Forms.MenuItem("Clock widget", NotifyIcon_ClockWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("Picture widget", NotifyIcon_PictureWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("Note widget", NotifyIcon_NoteWidget_Settings_Click),
+                        new System.Windows.Forms.MenuItem("Calculator widget", NotifyIcon_CalculatorWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("-"),
                         new System.Windows.Forms.MenuItem("Settings", NotifyIcon_MenuItem_Settings_Click),
                         new System.Windows.Forms.MenuItem("-"),
@@ -178,6 +196,7 @@ namespace GameAssistant
             WidgetManager.LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget);
             WidgetManager.LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget);
             WidgetManager.LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
+            WidgetManager.LoadWidget<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref calculatorWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -188,6 +207,7 @@ namespace GameAssistant
             WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(clockWidgetContainer.Widget);
             WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(pictureWidgetContainer.Widget);
             WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(noteWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(calculatorWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -198,6 +218,7 @@ namespace GameAssistant
             WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref clockWidgetContainer.Widget);
             WidgetManager.CloseWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
             WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref noteWidgetContainer.Widget);
+            WidgetManager.CloseWidget<CalculatorWidget, CalculatorModel>(ref calculatorWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -208,6 +229,7 @@ namespace GameAssistant
             WidgetManager.CloseAndSaveWidget<ClockWidget, ClockModel>(ref clockWidgetContainer.Widget);
             WidgetManager.CloseAndSaveWidget<PictureWidget, PictureModel>(ref pictureWidgetContainer.Widget);
             WidgetManager.CloseAndSaveWidget<NoteWidget, NoteModel>(ref noteWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<CalculatorWidget, CalculatorModel>(ref calculatorWidgetContainer.Widget);
         }
 
         #endregion
