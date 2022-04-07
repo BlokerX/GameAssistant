@@ -208,6 +208,7 @@
     <Page Include="Templates\CalculatorButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+	</Page>
     <Page Include="Templates\WindowActionButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -221,6 +222,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widgets\CalculatorWidget.xaml">
+	  <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Templates\SettingsGroupTitle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
