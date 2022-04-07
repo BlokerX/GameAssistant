@@ -10,14 +10,13 @@ namespace GameAssistant.Models
     /// <summary>
     /// Base of widget model that contains bindings for Widget.
     /// </summary>
-    public class WidgetModelBase : BindableObject
+    internal class WidgetModelBase : BindableObject
     {
         // Constructors:
         public WidgetModelBase()
         {
-            AnimationToken_True += () => _backgroundAnimationManager?.StartAnimate();
-            AnimationToken_False += () => _backgroundAnimationManager?.StopAnimate();
-            _backgroundAnimationManager = new AnimationManager(ref _backgroundColor);
+            AnimationToken_True += () => BackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
+            AnimationToken_False += () => BackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
         }
 
         private bool _animationToken = false;
@@ -129,29 +128,14 @@ namespace GameAssistant.Models
             set => SetProperty(ref _screenPositionY, value);
         }
 
-        // Visual elements:
-        private VariableContainer<Brush> _backgroundColor = new VariableContainer<Brush>(new SolidColorBrush(Color.FromRgb(249, 255, 129)));
+        private AnimatedBrush _backgroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Color.FromRgb(249, 255, 129)));
         /// <summary>
-        /// Container with widget's background brush (Container).
+        /// Widget's background animated brush.
         /// </summary>
-        public VariableContainer<Brush> BackgroundColorContainer
+        public AnimatedBrush BackgroundAnimatedBrush
         {
-            get => _backgroundColor;
-            set
-            {
-                SetProperty(ref _backgroundColor, value);
-            }
-        }
-        /// <summary>
-        /// Widget's background brush (color).
-        /// </summary>
-        public Brush BackgroundColor
-        {
-            get => _backgroundColor.Variable;
-            set
-            {
-                _backgroundColor.Variable = value;
-            }
+            get => _backgroundAnimatedBrush;
+            set => SetProperty(ref _backgroundAnimatedBrush, value);
         }
 
         private double _backgroundOpacity = 0.5;
@@ -163,18 +147,6 @@ namespace GameAssistant.Models
             get => _backgroundOpacity;
             set => SetProperty(ref _backgroundOpacity, value);
         }
-
-        // TODO Add color's animations!!!
-        private AnimationManager _backgroundAnimationManager;
-        /// <summary>
-        /// Background color animation.
-        /// </summary>
-        public AnimationManager BackgroundAnimationManager
-        {
-            get { return _backgroundAnimationManager; }
-            set { _backgroundAnimationManager = value; }
-        }
-
 
         ~WidgetModelBase()
         {

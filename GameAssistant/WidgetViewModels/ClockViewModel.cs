@@ -34,7 +34,7 @@ namespace GameAssistant.WidgetViewModels
             WidgetModel.Height = 60;
 
             // Set widget background color:
-            WidgetModel.BackgroundColor = new SolidColorBrush(Colors.Yellow);
+            WidgetModel.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable = new SolidColorBrush(Colors.Yellow);
 
             // Clock timer configuration:
             ClockTimer.Elapsed += (sender, e) => ClockTime = DateTime.Now.ToString("HH:mm:ss");
@@ -50,10 +50,7 @@ namespace GameAssistant.WidgetViewModels
         public string ClockTime
         {
             get => _clockTime;
-            private set
-            {
-                SetProperty(ref _clockTime, value);
-            }
+            private set => SetProperty(ref _clockTime, value);
         }
 
         /// <summary>

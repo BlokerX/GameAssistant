@@ -320,7 +320,8 @@ namespace GameAssistant.Services
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
-            downloadedModel.AnimationToken = true;
+            if (downloadedModel != null)
+                downloadedModel.AnimationToken = true;
             if (downloadWidgetConfigurationResult)
             {
                 widget = WidgetManager.CreateWidget<WidgetType, ViewModelType, ModelType>(downloadedModel);

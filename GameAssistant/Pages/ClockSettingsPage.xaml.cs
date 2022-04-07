@@ -64,8 +64,8 @@ namespace GameAssistant.Pages
         {
             var model = (clockWidgetContainer.Widget.DataContext as IWidgetViewModel<ClockModel>).WidgetModel;
 
-            this.BackgroundColorProperty.PropertyColor = model.BackgroundColor;
-            this.ForegroundColorProperty.PropertyColor = model.ForegroundColor;
+            this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable;
+            this.ForegroundColorProperty.PropertyColor = model.ForegroundAnimatedBrush.BrushBackgroundContainer.Variable;
 
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
             this.ForegroundOpacityProperty.PropertyValue = model.ClockLabelOpacity;
@@ -117,7 +117,7 @@ namespace GameAssistant.Pages
             if (ClockWidgetContainer.Widget?.DataContext != null)
             {
                 var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
-                model.BackgroundColor = e;
+                model.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
@@ -127,7 +127,7 @@ namespace GameAssistant.Pages
             if (ClockWidgetContainer.Widget.DataContext != null)
             {
                 var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
-                model.ForegroundColor = e;
+                model.ForegroundAnimatedBrush.BrushBackgroundContainer.Variable = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }

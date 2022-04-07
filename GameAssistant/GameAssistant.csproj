@@ -130,6 +130,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\AnimatedBrush.cs" />
     <Compile Include="Services\AnimationManager.cs" />
     <Compile Include="Services\AppFileSystem.cs" />
     <Compile Include="Services\WidgetManager.cs" />
@@ -208,7 +209,7 @@
     <Page Include="Templates\CalculatorButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-	</Page>
+    </Page>
     <Page Include="Templates\WindowActionButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -222,7 +223,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Widgets\CalculatorWidget.xaml">
-	  <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\SettingsGroupTitle.xaml">

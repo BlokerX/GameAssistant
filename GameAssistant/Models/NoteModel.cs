@@ -13,9 +13,8 @@ namespace GameAssistant.Models
         // Constructors:
         public NoteModel()
         {
-            AnimationToken_True += () => _foregroundAnimationManager?.StartAnimate();
-            AnimationToken_False += () => _foregroundAnimationManager?.StopAnimate();
-            _foregroundAnimationManager = new AnimationManager(ref _foregroundColor);
+            AnimationToken_True += () => ForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
+            AnimationToken_False += () => ForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
         }
 
         #region Serialize properties
@@ -28,30 +27,6 @@ namespace GameAssistant.Models
         {
             get => _selectedNoteIndex;
             set => SetProperty(ref _selectedNoteIndex, value);
-        }
-
-        private VariableContainer<Brush> _foregroundColor = new VariableContainer<Brush>(new SolidColorBrush((Colors.Black)));
-        /// <summary>
-        /// Container with note text brush (Container).
-        /// </summary>
-        public VariableContainer<Brush> ForegroundColorContainer
-        {
-            get => _foregroundColor;
-            set
-            {
-                SetProperty(ref _foregroundColor, value);
-            }
-        }
-        /// <summary>
-        /// The font color of note text.
-        /// </summary>
-        public Brush ForegroundColor
-        {
-            get => _foregroundColor.Variable;
-            set
-            {
-                _foregroundColor.Variable = value;
-            }
         }
 
         private double _noteFontOpacity = 1;
@@ -95,14 +70,14 @@ namespace GameAssistant.Models
             set => SetProperty(ref _settingsBarVisibility, value);
         }
 
-        private AnimationManager _foregroundAnimationManager;
+        private AnimatedBrush _foregroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Black));
         /// <summary>
-        /// Note font's color animation.
+        /// Note font animated brush.
         /// </summary>
-        public AnimationManager ForegroundAnimationManager
+        public AnimatedBrush ForegroundAnimatedBrush
         {
-            get { return _foregroundAnimationManager; }
-            set { _foregroundAnimationManager = value; }
+            get => _foregroundAnimatedBrush; 
+            set => SetProperty(ref _foregroundAnimatedBrush, value);
         }
 
         #endregion

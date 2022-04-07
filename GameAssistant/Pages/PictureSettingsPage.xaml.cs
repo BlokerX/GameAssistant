@@ -65,7 +65,7 @@ namespace GameAssistant.Pages
         {
             var model = (pictureWidgetContainer.Widget.DataContext as IWidgetViewModel<PictureModel>).WidgetModel;
 
-            this.BackgroundColorProperty.PropertyColor = model.BackgroundColor;
+            this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable;
 
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
             this.ImageOpacityProperty.PropertyValue = model.ImageOpacity;
@@ -115,7 +115,7 @@ namespace GameAssistant.Pages
             if (PictureWidgetContainer.Widget?.DataContext != null)
             {
                 var model = WidgetManager.GetModelFromWidget<PictureWidget, PictureModel>(ref PictureWidgetContainer.Widget);
-                model.BackgroundColor = e;
+                model.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }

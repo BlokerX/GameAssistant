@@ -1,5 +1,4 @@
-﻿using GameAssistant.Core;
-using GameAssistant.Services;
+﻿using GameAssistant.Services;
 using System.Windows.Media;
 
 namespace GameAssistant.Models
@@ -12,9 +11,8 @@ namespace GameAssistant.Models
         // Constructors:
         public ClockModel()
         {
-            AnimationToken_True += () => _foregroundAnimationManager?.StartAnimate();
-            AnimationToken_False += () => _foregroundAnimationManager?.StopAnimate();
-            _foregroundAnimationManager = new AnimationManager(ref _foregroundColor);
+            AnimationToken_True += () => ForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
+            AnimationToken_False += () => ForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
         }
 
         #region Serialize properties
@@ -39,30 +37,6 @@ namespace GameAssistant.Models
             set => SetProperty(ref _fontSize, value);
         }
 
-        private VariableContainer<Brush> _foregroundColor = new VariableContainer<Brush>(new SolidColorBrush((Colors.Navy)));
-        /// <summary>
-        /// Container with clock label's brush (Container).
-        /// </summary>
-        public VariableContainer<Brush> ForegroundColorContainer
-        {
-            get => _foregroundColor;
-            set
-            {
-                SetProperty(ref _foregroundColor, value);
-            }
-        }
-        /// <summary>
-        /// Clock label's foreground brush (color).
-        /// </summary>
-        public Brush ForegroundColor
-        {
-            get => _foregroundColor.Variable;
-            set
-            {
-                _foregroundColor.Variable = value;
-            }
-        }
-
         private double _clockLabelOpacity = 0.75;
         /// <summary>
         /// Clock label's opacity.
@@ -73,14 +47,14 @@ namespace GameAssistant.Models
             set => SetProperty(ref _clockLabelOpacity, value);
         }
 
-        private AnimationManager _foregroundAnimationManager;
+        private AnimatedBrush _foregroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Navy));
         /// <summary>
-        /// Clock label's color animation.
+        /// Clock label's animated brush.
         /// </summary>
-        public AnimationManager ForegroundAnimationManager
+        public AnimatedBrush ForegroundAnimatedBrush
         {
-            get { return _foregroundAnimationManager; }
-            set { _foregroundAnimationManager = value; }
+            get => _foregroundAnimatedBrush;
+            set => SetProperty(ref _foregroundAnimatedBrush, value);
         }
 
         #endregion

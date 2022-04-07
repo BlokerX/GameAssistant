@@ -21,13 +21,13 @@
 
     <Grid>
 
-        <Grid Background="{Binding WidgetModel.BackgroundColorContainer.Variable}" 
+        <Grid Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable}" 
               Opacity="{Binding WidgetModel.BackgroundOpacity}"/>
 
         <Label Content="{Binding ClockTime}" 
                FontSize="{Binding WidgetModel.FontSize}" 
                FontFamily="{Binding WidgetModel.FontFamily}" 
-               Foreground="{Binding WidgetModel.ForegroundColorContainer.Variable}" 
+               Foreground="{Binding WidgetModel.ForegroundAnimatedBrush.BrushBackgroundContainer.Variable}" 
                Opacity="{Binding WidgetModel.ClockLabelOpacity}"
                VerticalAlignment="Stretch" 
                HorizontalAlignment="Stretch"

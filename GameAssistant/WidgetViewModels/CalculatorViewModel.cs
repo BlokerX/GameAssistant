@@ -68,7 +68,7 @@ namespace GameAssistant.WidgetViewModels
             WidgetModel.Height = 260;
 
             // Set widget background color:
-            WidgetModel.BackgroundColor = new SolidColorBrush(Colors.GhostWhite);
+            WidgetModel.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable = new SolidColorBrush(Colors.GhostWhite);
 
             // Command initialize:
             Button0_Command = new RelayCommand((o) => ClickNumberButton(0));
@@ -113,8 +113,8 @@ namespace GameAssistant.WidgetViewModels
             {
                 if (CalculatorTextBox.Length > 0)
                     CalculatorTextBox = CalculatorTextBox.Remove(CalculatorTextBox.Length - 1);
-                
-                if(CalculatorTextBox.Length == 0)
+
+                if (CalculatorTextBox.Length == 0)
                     CalculatorTextBox = "0";
             });
 
@@ -148,7 +148,7 @@ namespace GameAssistant.WidgetViewModels
         private void ClickOperationButton(char operation)
         {
             if (double.TryParse(CalculatorTextBox, out var dResult))
-            firstNumber = dResult;
+                firstNumber = dResult;
             else return;
 
             operationType = operation;
