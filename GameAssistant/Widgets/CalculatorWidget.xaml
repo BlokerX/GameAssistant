@@ -21,7 +21,7 @@
 
     <Grid>
 
-        <Grid Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable}" 
+        <Grid Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable}" 
               Opacity="{Binding WidgetModel.BackgroundOpacity}"/>
 
         <Grid Margin="2">
@@ -43,8 +43,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.ColumnSpan="5"
-                     Background="{Binding WidgetModel.TextBoxBackgroundContainer.Variable}"
-                     Foreground="{Binding WidgetModel.TextBoxForegroundContainer.Variable}"
+                     Background="{Binding WidgetModel.TextBoxBackgroundAnimatedBrush.BrushContainer.Variable}"
+                     Foreground="{Binding WidgetModel.TextBoxForegroundAnimatedBrush.BrushContainer.Variable}"
                      Opacity="{Binding WidgetModel.TextBoxOpacity}"
                      Margin="1"
                      BorderThickness="0"
@@ -58,7 +58,7 @@
                     Grid.Column="0"
                     Grid.Row="1"
                     
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -71,8 +71,8 @@
                     Grid.Column="1"
                     Grid.Row="1"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -84,8 +84,8 @@
                     Grid.Column="2"
                     Grid.Row="1"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -97,8 +97,8 @@
                     Grid.Column="3"
                     Grid.Row="1"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -110,8 +110,8 @@
                     Grid.Column="0"
                     Grid.Row="2"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -123,8 +123,8 @@
                     Grid.Column="1"
                     Grid.Row="2"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -136,8 +136,8 @@
                     Grid.Column="2"
                     Grid.Row="2"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -149,8 +149,8 @@
                     Grid.Column="3"
                     Grid.Row="2"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -162,8 +162,8 @@
                     Grid.Column="0"
                     Grid.Row="3"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -175,8 +175,8 @@
                     Grid.Column="1"
                     Grid.Row="3"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -188,8 +188,8 @@
                     Grid.Column="2"
                     Grid.Row="3"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -201,8 +201,8 @@
                     Grid.Column="3"
                     Grid.Row="3"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -214,8 +214,8 @@
                     Grid.Column="0"
                     Grid.Row="4"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -227,8 +227,8 @@
                     Grid.Column="1"
                     Grid.Row="4"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -240,8 +240,8 @@
                     Grid.Column="2"
                     Grid.Row="4"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -253,8 +253,8 @@
                     Grid.Column="3"
                     Grid.Row="4"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -266,8 +266,8 @@
                     Grid.Column="0"
                     Grid.Row="5"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -279,8 +279,8 @@
                     Grid.Column="1"
                     Grid.Row="5"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -292,8 +292,8 @@
                     Grid.Column="2"
                     Grid.Row="5"
                     
-                    Background="{Binding WidgetModel.ButtonsBackgroundContainer.Variable}"
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Background="{Binding WidgetModel.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"
@@ -305,7 +305,7 @@
                     Grid.Column="3"
                     Grid.Row="5"
                     
-                    Foreground="{Binding WidgetModel.ButtonsForegroundContainer.Variable}"
+                    Foreground="{Binding WidgetModel.ButtonsForegroundAnimatedBrush.BrushContainer.Variable}"
                     Opacity="{Binding WidgetModel.ButtonsOpacity}"
                     FontFamily="{Binding WidgetModel.ButtonsFontFamily}"
                     FontSize="{Binding WidgetModel.ButtonsFontSize}"

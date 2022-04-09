@@ -64,11 +64,14 @@ namespace GameAssistant.Pages
         {
             var model = (noteWidgetContainer.Widget.DataContext as IWidgetViewModel<NoteModel>).WidgetModel;
 
-            this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable;
-            this.ForegroundColorProperty.PropertyColor = model.ForegroundAnimatedBrush.BrushBackgroundContainer.Variable;
+            this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushContainer.Variable;
+            this.ForegroundColorProperty.PropertyColor = model.ForegroundAnimatedBrush.BrushContainer.Variable;
 
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
             this.ForegroundOpacityProperty.PropertyValue = model.NoteFontOpacity;
+
+            this.BackgroundAnimationProperty.SelectedElementIndex = (int)model.BackgroundAnimatedBrush.BrushAnimationManager.Animation;
+            this.ForegroundAnimationProperty.SelectedElementIndex = (int)model.ForegroundAnimatedBrush.BrushAnimationManager.Animation;
 
             this.FontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.NoteFontFamily);
             this.FontSettingsPropertyPanel.PropertyFontSize = model.NoteFontSize;
@@ -121,7 +124,16 @@ namespace GameAssistant.Pages
             if (NoteWidgetContainer.Widget?.DataContext != null)
             {
                 var model = WidgetManager.GetModelFromWidget<NoteWidget, NoteModel>(ref NoteWidgetContainer.Widget);
-                model.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable = e;
+                model.BackgroundAnimatedBrush.BrushContainer.Variable = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+        private void BackgroundAnimationProperty_PropertyValueChanged(object sender, int e)
+        {
+            if (NoteWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<NoteWidget, NoteModel>(ref NoteWidgetContainer.Widget);
+                model.BackgroundAnimatedBrush.BrushAnimationManager.Animation = (AnimationManager.AnimationType)e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
@@ -131,7 +143,17 @@ namespace GameAssistant.Pages
             if (NoteWidgetContainer.Widget.DataContext != null)
             {
                 var model = WidgetManager.GetModelFromWidget<NoteWidget, NoteModel>(ref NoteWidgetContainer.Widget);
-                model.ForegroundAnimatedBrush.BrushBackgroundContainer.Variable = e;
+                model.ForegroundAnimatedBrush.BrushContainer.Variable = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+
+        private void ForegroundAnimationProperty_PropertyValueChanged(object sender, int e)
+        {
+            if (NoteWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<NoteWidget, NoteModel>(ref NoteWidgetContainer.Widget);
+                model.ForegroundAnimatedBrush.BrushAnimationManager.Animation = (AnimationManager.AnimationType)e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }

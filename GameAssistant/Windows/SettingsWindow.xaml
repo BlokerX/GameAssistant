@@ -71,6 +71,7 @@
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
@@ -94,9 +95,15 @@
                     Style="{StaticResource MenuButton}"
                     Margin="0,0,0,1"
                     Click="NoteWidgetButton_Click"/>
+                
+                <Button x:Name="CalculatorWidgetButton"
+                    Content="Calculator Widget" Grid.Row="3"
+                    Style="{StaticResource MenuButton}"
+                    Margin="0,0,0,1"
+                    Click="CalculatorWidgetButton_Click"/>
 
                 <Button x:Name="AboutButton"
-                    Content="About" Grid.Row="4"
+                    Content="About" Grid.Row="5"
                     Style="{StaticResource MenuButton}"
                     Click="AboutButton_Click"/>
 
@@ -114,6 +121,9 @@
                        Visibility="Collapsed"/>
 
                         <Frame x:Name="NoteWidgetFrame"
+                       Visibility="Collapsed"/>
+                        
+                        <Frame x:Name="CalculatorWidgetFrame"
                        Visibility="Collapsed"/>
 
                         <Frame x:Name="AboutFrame"

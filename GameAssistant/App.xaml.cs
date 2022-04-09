@@ -35,7 +35,7 @@ namespace GameAssistant
         /// </summary>
         private WidgetContainer<NoteWidget> noteWidgetContainer = new WidgetContainer<NoteWidget>();
         #endregion
-        
+
         #region CalculatorWidgetContainer
         /// <summary>
         /// The calculator widget's container.
@@ -82,7 +82,7 @@ namespace GameAssistant
         {
             WidgetManager.Widget_ChangeStateAndSave<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
         }
-        
+
         /// <summary>
         /// Invoke when calculator widget button clicked.
         /// </summary>
@@ -116,7 +116,11 @@ namespace GameAssistant
             if (settingsWindow == null)
             {
                 // todo . DODAĆ CALCULATOR widget
-                settingsWindow = new SettingsWindow(ref clockWidgetContainer, ref pictureWidgetContainer, ref noteWidgetContainer);
+                settingsWindow = new SettingsWindow(
+                    ref clockWidgetContainer,
+                    ref pictureWidgetContainer,
+                    ref noteWidgetContainer,
+                    ref calculatorWidgetContainer);
                 settingsWindow.Closed += (s, o) => settingsWindow = null;
                 settingsWindow.AppClose += CloseApp;
                 settingsWindow.Show();

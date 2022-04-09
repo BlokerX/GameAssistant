@@ -21,7 +21,7 @@
 
     <Grid>
 
-        <Grid Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable}" 
+        <Grid Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable}" 
               Opacity="{Binding WidgetModel.BackgroundOpacity}"/>
 
         <Image Source="{Binding WidgetModel.ImageSource}"

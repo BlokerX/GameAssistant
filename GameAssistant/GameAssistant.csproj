@@ -83,8 +83,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\AnimationModeSettingProperty.cs" />
     <Compile Include="Controls\BoolSettingProperty.xaml.cs">
       <DependentUpon>BoolSettingProperty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ListBoxSettingProperty.xaml.cs">
+      <DependentUpon>ListBoxSettingProperty.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ColorSettingProperty.xaml.cs">
       <DependentUpon>ColorSettingProperty.xaml</DependentUpon>
@@ -114,6 +118,9 @@
     <Compile Include="Models\PictureModel.cs" />
     <Compile Include="Pages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CalculatorSettingsPage.xaml.cs">
+      <DependentUpon>CalculatorSettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ClockSettingsPage.xaml.cs">
       <DependentUpon>ClockSettingsPage.xaml</DependentUpon>
@@ -166,6 +173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ListBoxSettingProperty.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\ColorSettingProperty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +204,10 @@
     <Page Include="Pages\AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CalculatorSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\ClockSettingsPage.xaml">
       <SubType>Designer</SubType>

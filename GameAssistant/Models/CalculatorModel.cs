@@ -12,21 +12,17 @@ namespace GameAssistant.Models
         // Constructors:
         public CalculatorModel()
         {
-            AnimationToken_True += () => _buttonsBackgroundAnimationManager?.StartAnimate();
-            AnimationToken_False += () => _buttonsBackgroundAnimationManager?.StopAnimate();
-            _buttonsBackgroundAnimationManager = new AnimationManager(ref _buttonsBackground);
+            AnimationToken_True += () => ButtonsBackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
+            AnimationToken_False += () => ButtonsBackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
             
-            AnimationToken_True += () => _buttonsForegroundAnimationManager?.StartAnimate();
-            AnimationToken_False += () => _buttonsForegroundAnimationManager?.StopAnimate();
-            _buttonsForegroundAnimationManager = new AnimationManager(ref _buttonsForeground);
+            AnimationToken_True += () => ButtonsForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
+            AnimationToken_False += () => ButtonsForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
             
-            AnimationToken_True += () => _textBoxBackgroundAnimationManager?.StartAnimate();
-            AnimationToken_False += () => _textBoxBackgroundAnimationManager?.StopAnimate();
-            _textBoxBackgroundAnimationManager = new AnimationManager(ref _textBoxBackground);
+            AnimationToken_True += () => TextBoxBackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
+            AnimationToken_False += () => TextBoxBackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
             
-            AnimationToken_True += () => _textBoxForegroundAnimationManager?.StartAnimate();
-            AnimationToken_False += () => _textBoxForegroundAnimationManager?.StopAnimate();
-            _textBoxForegroundAnimationManager = new AnimationManager(ref _textBoxForeground);
+            AnimationToken_True += () => TextBoxForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
+            AnimationToken_False += () => TextBoxForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
         }
 
         #region Serialize properties
@@ -53,46 +49,25 @@ namespace GameAssistant.Models
             set => SetProperty(ref _buttonsFontSize, value);
         }
 
-        private VariableContainer<Brush> _buttonsForeground = new VariableContainer<Brush>(new SolidColorBrush((Colors.Black)));
+        private AnimatedBrush _buttonsForegroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Black));
         /// <summary>
-        /// Container with buttons foreground brush (Container).
+        /// Buttons foreground animated brush.
         /// </summary>
-        public VariableContainer<Brush> ButtonsForegroundContainer
+        public AnimatedBrush ButtonsForegroundAnimatedBrush
         {
-            get => _buttonsForeground;
-            set => SetProperty(ref _buttonsForeground, value);
-        }
-
-        private AnimationManager _buttonsForegroundAnimationManager;
-        /// <summary>
-        /// Buttons foreground color animation.
-        /// </summary>
-        public AnimationManager ButtonsForegroundAnimationManager
-        {
-            get { return _buttonsForegroundAnimationManager; }
-            set { _buttonsForegroundAnimationManager = value; }
+            get => _buttonsForegroundAnimatedBrush;
+            set => SetProperty(ref _buttonsForegroundAnimatedBrush, value);
         }
 
         // Buttons background:
-
-        private VariableContainer<Brush> _buttonsBackground = new VariableContainer<Brush>(new SolidColorBrush((Colors.DarkGray)));
+        private AnimatedBrush _buttonsBackgroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.DarkGray));
         /// <summary>
-        /// Container with buttons background brush (Container).
+        /// Buttons background animated brush.
         /// </summary>
-        public VariableContainer<Brush> ButtonsBackgroundContainer
+        public AnimatedBrush ButtonsBackgroundAnimatedBrush
         {
-            get => _buttonsBackground;
-            set => SetProperty(ref _buttonsBackground, value);
-        }
-
-        private AnimationManager _buttonsBackgroundAnimationManager;
-        /// <summary>
-        /// Buttons background color animation.
-        /// </summary>
-        public AnimationManager ButtonsBackgroundAnimationManager
-        {
-            get { return _buttonsBackgroundAnimationManager; }
-            set { _buttonsBackgroundAnimationManager = value; }
+            get => _buttonsBackgroundAnimatedBrush;
+            set => SetProperty(ref _buttonsBackgroundAnimatedBrush, value);
         }
 
         private double _buttonsOpacity = 0.75;
@@ -127,46 +102,26 @@ namespace GameAssistant.Models
             set => SetProperty(ref _textBoxFontSize, value);
         }
 
-        private VariableContainer<Brush> _textBoxForeground = new VariableContainer<Brush>(new SolidColorBrush((Colors.Black)));
+        private AnimatedBrush _textBoxForegroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Black));
         /// <summary>
-        /// Container with TextBox foreground brush (Container).
+        /// TextBox foreground animated brush.
         /// </summary>
-        public VariableContainer<Brush> TextBoxForegroundContainer
+        public AnimatedBrush TextBoxForegroundAnimatedBrush
         {
-            get => _textBoxForeground;
-            set => SetProperty(ref _textBoxForeground, value);
-        }
-
-        private AnimationManager _textBoxForegroundAnimationManager;
-        /// <summary>
-        /// TextBox foreground color animation.
-        /// </summary>
-        public AnimationManager TextBoxForegroundAnimationManager
-        {
-            get { return _textBoxForegroundAnimationManager; }
-            set { _textBoxForegroundAnimationManager = value; }
+            get => _textBoxForegroundAnimatedBrush;
+            set => SetProperty(ref _textBoxForegroundAnimatedBrush, value);
         }
 
         // TextBox background:
 
-        private VariableContainer<Brush> _textBoxBackground = new VariableContainer<Brush>(new SolidColorBrush((Colors.White)));
+        private AnimatedBrush _textBoxBackgroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.White));
         /// <summary>
-        /// Container with TextBox background brush (Container).
+        /// TextBox background animated brush.
         /// </summary>
-        public VariableContainer<Brush> TextBoxBackgroundContainer
+        public AnimatedBrush TextBoxBackgroundAnimatedBrush
         {
-            get => _textBoxBackground;
-            set => SetProperty(ref _textBoxBackground, value);
-        }
-
-        private AnimationManager _textBoxBackgroundAnimationManager;
-        /// <summary>
-        /// TextBox background color animation.
-        /// </summary>
-        public AnimationManager TextBoxBackgroundAnimationManager
-        {
-            get { return _textBoxBackgroundAnimationManager; }
-            set { _textBoxBackgroundAnimationManager = value; }
+            get => _textBoxBackgroundAnimatedBrush;
+            set => SetProperty(ref _textBoxBackgroundAnimatedBrush, value);
         }
 
         private double _textBoxOpacity = 0.75;

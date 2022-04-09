@@ -24,7 +24,7 @@ namespace GameAssistant.Services
         /// <summary>
         /// Container with brush (Container).
         /// </summary>
-        public VariableContainer<Brush> BrushBackgroundContainer
+        public VariableContainer<Brush> BrushContainer
         {
             get => _brushContainer;
             set => SetProperty(ref _brushContainer, value);

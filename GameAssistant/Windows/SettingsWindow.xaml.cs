@@ -30,13 +30,18 @@ namespace GameAssistant.Windows
         /// <param name="clockWidgetContainer"></param>
         /// <param name="pictureWidgetContainer"></param>
         /// <param name="noteWidgetContainer"></param>
-        public SettingsWindow(ref WidgetContainer<ClockWidget> clockWidgetContainer, ref WidgetContainer<PictureWidget> pictureWidgetContainer, ref WidgetContainer<NoteWidget> noteWidgetContainer)
+        /// <param name="calculatorWidgetContainer"></param>
+        public SettingsWindow(ref WidgetContainer<ClockWidget> clockWidgetContainer, 
+            ref WidgetContainer<PictureWidget> pictureWidgetContainer, 
+            ref WidgetContainer<NoteWidget> noteWidgetContainer, 
+            ref WidgetContainer<CalculatorWidget> calculatorWidgetContainer)
         {
             InitializeComponent();
 
             ClockWidgetFrame.Content = new ClockSettingsPage(ref clockWidgetContainer);
             PictureWidgetFrame.Content = new PictureSettingsPage(ref pictureWidgetContainer);
             NoteWidgetFrame.Content = new NoteSettingsPage(ref noteWidgetContainer);
+            CalculatorWidgetFrame.Content = new CalculatorSettingsPage(ref calculatorWidgetContainer);
         }
 
         /// <summary>
@@ -47,6 +52,7 @@ namespace GameAssistant.Windows
             ClockWidgetFrame.Visibility = Visibility.Collapsed;
             PictureWidgetFrame.Visibility = Visibility.Collapsed;
             NoteWidgetFrame.Visibility = Visibility.Collapsed;
+            CalculatorWidgetFrame.Visibility = Visibility.Collapsed;
             AboutFrame.Visibility = Visibility.Collapsed;
         }
 
@@ -59,6 +65,7 @@ namespace GameAssistant.Windows
             ClockWidgetButton.BorderThickness = new Thickness(0);
             PictureWidgetButton.BorderThickness = new Thickness(0);
             NoteWidgetButton.BorderThickness = new Thickness(0);
+            CalculatorWidgetButton.BorderThickness = new Thickness(0);
             AboutButton.BorderThickness = new Thickness(0);
 
             senderButton.BorderThickness = new Thickness(1);
@@ -85,12 +92,22 @@ namespace GameAssistant.Windows
         }
 
         /// <summary>
-        /// On widget button click.
+        /// On note widget button click.
         /// </summary>
         private void NoteWidgetButton_Click(object sender, RoutedEventArgs e)
         {
             HideAllPages();
             NoteWidgetFrame.Visibility = Visibility.Visible;
+            CheckMenuButton(sender as Button);
+        }
+        
+        /// <summary>
+        /// On calculator widget button click.
+        /// </summary>
+        private void CalculatorWidgetButton_Click(object sender, RoutedEventArgs e)
+        {
+            HideAllPages();
+            CalculatorWidgetFrame.Visibility = Visibility.Visible;
             CheckMenuButton(sender as Button);
         }
 

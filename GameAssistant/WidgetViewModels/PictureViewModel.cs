@@ -36,7 +36,7 @@ namespace GameAssistant.WidgetViewModels
             WidgetModel.ScreenPositionY += 70;
 
             // Set widget background color:
-            WidgetModel.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable = new SolidColorBrush(Colors.Transparent);
+            WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.Transparent);
         }
     }
 }

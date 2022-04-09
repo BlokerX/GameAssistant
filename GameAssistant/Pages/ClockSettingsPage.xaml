@@ -40,9 +40,17 @@
                                                PropertyName="Background color:"
                                                PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"/>
 
+                <controls:AnimationModeSettingProperty x:Name="BackgroundAnimationProperty"
+                                                       PropertyName="Background animation:"
+                                                       PropertyValueChanged="BackgroundAnimationProperty_PropertyValueChanged"/>
+
                 <controls:ColorSettingProperty x:Name="ForegroundColorProperty"
                                                PropertyName="Foreground color:"
                                                PropertyColorChanged="ForegroundColorProperty_PropertyColorChanged"/>
+                
+                <controls:AnimationModeSettingProperty x:Name="ForegroundAnimationProperty"
+                                                       PropertyName="Foreground animation:"
+                                                       PropertyValueChanged="ForegroundAnimationProperty_PropertyValueChanged"/>
 
             </StackPanel>
 
@@ -114,7 +122,7 @@
                 Style="{StaticResource SettingButton}"
                 Content="Download save configuration"
                 Click="LoadSavedConfigurationButton_Click"/>
-        
+
 
     </StackPanel>
 

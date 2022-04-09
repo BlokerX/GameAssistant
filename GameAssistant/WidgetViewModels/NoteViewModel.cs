@@ -61,7 +61,7 @@ namespace GameAssistant.WidgetViewModels
             WidgetModel.ScreenPositionY += 330;
 
             // Set widget background color:
-            WidgetModel.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable = new SolidColorBrush(Colors.OrangeRed);
+            WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.OrangeRed);
 
             // Set selected note:
             SelectedNote = new NoteInformations()

@@ -4,6 +4,7 @@ using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
 using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -64,17 +65,21 @@ namespace GameAssistant.Pages
         {
             var model = (clockWidgetContainer.Widget.DataContext as IWidgetViewModel<ClockModel>).WidgetModel;
 
-            this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable;
-            this.ForegroundColorProperty.PropertyColor = model.ForegroundAnimatedBrush.BrushBackgroundContainer.Variable;
+            this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushContainer.Variable;
+            this.ForegroundColorProperty.PropertyColor = model.ForegroundAnimatedBrush.BrushContainer.Variable;
 
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
             this.ForegroundOpacityProperty.PropertyValue = model.ClockLabelOpacity;
+
+            this.BackgroundAnimationProperty.SelectedElementIndex = (int)model.BackgroundAnimatedBrush.BrushAnimationManager.Animation;
+            this.ForegroundAnimationProperty.SelectedElementIndex = (int)model.ForegroundAnimatedBrush.BrushAnimationManager.Animation;
 
             this.FontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.FontFamily);
             this.FontSettingsPropertyPanel.PropertyFontSize = model.FontSize;
 
             this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
             this.DragActiveProperty.PropertyValue = model.IsDragActive;
+
         }
 
         protected override void ActiveChanged(bool newState)
@@ -117,7 +122,17 @@ namespace GameAssistant.Pages
             if (ClockWidgetContainer.Widget?.DataContext != null)
             {
                 var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
-                model.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable = e;
+                model.BackgroundAnimatedBrush.BrushContainer.Variable = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+
+        private void BackgroundAnimationProperty_PropertyValueChanged(object sender, int e)
+        {
+            if (ClockWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                model.BackgroundAnimatedBrush.BrushAnimationManager.Animation = (AnimationManager.AnimationType)e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
@@ -127,7 +142,17 @@ namespace GameAssistant.Pages
             if (ClockWidgetContainer.Widget.DataContext != null)
             {
                 var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
-                model.ForegroundAnimatedBrush.BrushBackgroundContainer.Variable = e;
+                model.ForegroundAnimatedBrush.BrushContainer.Variable = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+
+        private void ForegroundAnimationProperty_PropertyValueChanged(object sender, int e)
+        {
+            if (ClockWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                model.ForegroundAnimatedBrush.BrushAnimationManager.Animation = (AnimationManager.AnimationType)e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
@@ -182,7 +207,6 @@ namespace GameAssistant.Pages
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
-
 
         protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {

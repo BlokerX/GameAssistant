@@ -34,7 +34,6 @@ namespace GameAssistant.Models
                     AnimationToken_True();
                 else if (value == false)
                     AnimationToken_False();
-
             }
         }
 

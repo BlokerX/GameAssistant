@@ -68,7 +68,7 @@ namespace GameAssistant.WidgetViewModels
             WidgetModel.Height = 260;
 
             // Set widget background color:
-            WidgetModel.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable = new SolidColorBrush(Colors.GhostWhite);
+            WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.GhostWhite);
 
             // Command initialize:
             Button0_Command = new RelayCommand((o) => ClickNumberButton(0));

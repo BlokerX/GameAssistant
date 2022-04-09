@@ -65,7 +65,9 @@ namespace GameAssistant.Pages
         {
             var model = (pictureWidgetContainer.Widget.DataContext as IWidgetViewModel<PictureModel>).WidgetModel;
 
-            this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable;
+            this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushContainer.Variable;
+
+            this.BackgroundAnimationProperty.SelectedElementIndex = (int)model.BackgroundAnimatedBrush.BrushAnimationManager.Animation;
 
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
             this.ImageOpacityProperty.PropertyValue = model.ImageOpacity;
@@ -115,7 +117,16 @@ namespace GameAssistant.Pages
             if (PictureWidgetContainer.Widget?.DataContext != null)
             {
                 var model = WidgetManager.GetModelFromWidget<PictureWidget, PictureModel>(ref PictureWidgetContainer.Widget);
-                model.BackgroundAnimatedBrush.BrushBackgroundContainer.Variable = e;
+                model.BackgroundAnimatedBrush.BrushContainer.Variable = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+        private void BackgroundAnimationProperty_PropertyValueChanged(object sender, int e)
+        {
+            if (PictureWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<PictureWidget, PictureModel>(ref PictureWidgetContainer.Widget);
+                model.BackgroundAnimatedBrush.BrushAnimationManager.Animation = (AnimationManager.AnimationType)e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }

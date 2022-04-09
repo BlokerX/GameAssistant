@@ -41,6 +41,10 @@
                                                PropertyName="Background color:"
                                                PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"/>
 
+                <controls:AnimationModeSettingProperty x:Name="BackgroundAnimationProperty"
+                                                       PropertyName="Background animation:"
+                                                       PropertyValueChanged="BackgroundAnimationProperty_PropertyValueChanged"/>
+
             </StackPanel>
 
         </StackPanel>
