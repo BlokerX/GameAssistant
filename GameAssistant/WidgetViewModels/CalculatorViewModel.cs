@@ -67,6 +67,9 @@ namespace GameAssistant.WidgetViewModels
             WidgetModel.Width = 240;
             WidgetModel.Height = 260;
 
+            // Set widget position:
+            WidgetModel.ScreenPositionY += 620;
+
             // Set widget background color:
             WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.GhostWhite);
 
