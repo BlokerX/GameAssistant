@@ -87,15 +87,15 @@
 
             <StackPanel>
 
-                <controls:DecimalSettingProperty x:Name="BackgroundOpacityProperty"
+                <controls:DoubleSettingProperty x:Name="BackgroundOpacityProperty"
                                                  PropertyName="Background opacity:"
                                                  PropertyValueChanged="BackgroundOpacityProperty_PropertyValueChanged"/>
 
-                <controls:DecimalSettingProperty x:Name="TextBoxOpacityProperty"
+                <controls:DoubleSettingProperty x:Name="TextBoxOpacityProperty"
                                                  PropertyName="TextBox opacity:"
                                                  PropertyValueChanged="TextBoxOpacityProperty_PropertyValueChanged"/>
 
-                <controls:DecimalSettingProperty x:Name="ButtonsOpacityProperty"
+                <controls:DoubleSettingProperty x:Name="ButtonsOpacityProperty"
                                                  PropertyName="Buttons opacity:"
                                                  PropertyValueChanged="ButtonsOpacityProperty_PropertyValueChanged"/>
 

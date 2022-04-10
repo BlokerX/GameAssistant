@@ -63,11 +63,11 @@
 
             <StackPanel>
 
-                <controls:DecimalSettingProperty x:Name="BackgroundOpacityProperty"
+                <controls:DoubleSettingProperty x:Name="BackgroundOpacityProperty"
                                                  PropertyName="Background opacity:"
                                                  PropertyValueChanged="BackgroundOpacityProperty_PropertyValueChanged"/>
 
-                <controls:DecimalSettingProperty x:Name="ForegroundOpacityProperty"
+                <controls:DoubleSettingProperty x:Name="ForegroundOpacityProperty"
                                                  PropertyName="Foreground opacity:"
                                                  PropertyValueChanged="ForegroundOpacityProperty_PropertyValueChanged"/>
 

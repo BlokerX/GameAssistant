@@ -65,7 +65,7 @@ namespace GameAssistant.Windows
         /// <param name="senderButton">Selected button (to light up).</param>
         private void CheckMenuButton(Button senderButton)
         {
-            GeneralSettingsFrame.BorderThickness = new Thickness(0);
+            GeneralSettingsButton.BorderThickness = new Thickness(0);
             ClockWidgetButton.BorderThickness = new Thickness(0);
             PictureWidgetButton.BorderThickness = new Thickness(0);
             NoteWidgetButton.BorderThickness = new Thickness(0);

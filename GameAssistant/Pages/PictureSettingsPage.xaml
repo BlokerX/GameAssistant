@@ -56,11 +56,11 @@
 
             <StackPanel>
 
-                <controls:DecimalSettingProperty x:Name="BackgroundOpacityProperty"
+                <controls:DoubleSettingProperty x:Name="BackgroundOpacityProperty"
                                                  PropertyName="Background opacity:"
                                                  PropertyValueChanged="BackgroundOpacityProperty_PropertyValueChanged"/>
 
-                <controls:DecimalSettingProperty x:Name="ImageOpacityProperty"
+                <controls:DoubleSettingProperty x:Name="ImageOpacityProperty"
                                                  PropertyName="Image opacity:"
                                                  PropertyValueChanged="ImageOpacityProperty_PropertyValueChanged"/>
 

@@ -1,17 +1,19 @@
-﻿using System;
+﻿using GameAssistant.ControlViewModels;
+using System;
 using System.Windows.Media;
+using Xceed.Wpf.Toolkit;
 
 namespace GameAssistant.Controls
 {
     /// <summary>
-    /// Logika interakcji dla klasy DecimalSettingProperty.xaml
+    /// Logika interakcji dla klasy DoubleSettingProperty.xaml
     /// </summary>
-    public partial class DecimalSettingProperty : SettingPropertyBase, ISettingProperty
+    public partial class DoubleSettingProperty : SettingPropertyBase, ISettingProperty
     {
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public DecimalSettingProperty()
+        public DoubleSettingProperty()
         {
             InitializeComponent();
         }
@@ -42,6 +44,7 @@ namespace GameAssistant.Controls
             set
             {
                 ValueSlider.BorderBrush = value;
+                ValueDoubleUpDown.BorderBrush = value;
                 PropertyNameLabel.Foreground = value;
             }
         }
@@ -51,10 +54,10 @@ namespace GameAssistant.Controls
         /// </summary>
         public double PropertyValue
         {
-            get => ValueSlider.Value;
+            get => (DataContext as DoubleSettingPropertyViewModel).Value;
             set
             {
-                ValueSlider.Value = value;
+                (DataContext as DoubleSettingPropertyViewModel).Value = value;
                 PropertyValueChanged?.Invoke(this, value);
             }
         }
@@ -69,8 +72,11 @@ namespace GameAssistant.Controls
         /// </summary>
         public double MaximumValue
         {
-            get => ValueSlider.Maximum;
-            set => ValueSlider.Maximum = value;
+            get => (DataContext as DoubleSettingPropertyViewModel).Maximum;
+            set
+            {
+                (DataContext as DoubleSettingPropertyViewModel).Maximum = value;
+            }
         }
 
         /// <summary>
@@ -78,8 +84,11 @@ namespace GameAssistant.Controls
         /// </summary>
         public double MinimumValue
         {
-            get => ValueSlider.Minimum;
-            set => ValueSlider.Minimum = value;
+            get => (DataContext as DoubleSettingPropertyViewModel).Minimum;
+            set
+            {
+                (DataContext as DoubleSettingPropertyViewModel).Minimum = value;
+            }
         }
 
         /// <summary>
@@ -94,6 +103,12 @@ namespace GameAssistant.Controls
         private void ValueSlider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
         {
             PropertyValueChanged?.Invoke(this, e.NewValue);
+        }
+
+        private void ValueDoubleUpDown_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (double.TryParse((sender as DoubleUpDown).Value.ToString(), out var result))
+                PropertyValueChanged?.Invoke(this, result);
         }
     }
 }
