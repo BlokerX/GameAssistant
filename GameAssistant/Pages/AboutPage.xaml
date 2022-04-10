@@ -22,36 +22,36 @@
         <StackPanel>
 
             <Label Content="About"
-                   FontSize="42"
+                   FontSize="24"
                    Foreground="White"
                    Margin="0,5"/>
 
             <StackPanel Margin="5,0,0,0">
 
                 <Label Content="Application name: Game Assistant"
-                       FontSize="28"
+                       FontSize="18"
                        Foreground="Orange"
                        FontWeight="Bold"/>
 
                 <Label Content="Version: Test (v.1)"
-                       FontSize="26"
+                       FontSize="16"
                        Foreground="Aqua" 
                        FontWeight="Bold"/>
 
                 <Label Content="Author: BlokerCompany™"
-                       FontSize="24"
+                       FontSize="14"
                        Foreground="LightGray"/>
 
                 <Label Content="Language: English (default)"
-                       FontSize="24"
+                       FontSize="14"
                        Foreground="Silver"/>
 
                 <Label Content="Contact email: InformatykaGarwolin@gmail.com"
-                       FontSize="24"
+                       FontSize="14"
                        Foreground="Silver"/>
 
                 <Label Content="Short describe: App with widgets for windows."
-                       FontSize="24"
+                       FontSize="14"
                        Foreground="Silver"/>
 
             </StackPanel>

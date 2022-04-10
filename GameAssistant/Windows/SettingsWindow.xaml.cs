@@ -38,6 +38,8 @@ namespace GameAssistant.Windows
         {
             InitializeComponent();
 
+            //todo general settings create proccess
+            GeneralSettingsFrame.Content = new GeneralSettingsPage();
             ClockWidgetFrame.Content = new ClockSettingsPage(ref clockWidgetContainer);
             PictureWidgetFrame.Content = new PictureSettingsPage(ref pictureWidgetContainer);
             NoteWidgetFrame.Content = new NoteSettingsPage(ref noteWidgetContainer);
@@ -49,6 +51,7 @@ namespace GameAssistant.Windows
         /// </summary>
         private void HideAllPages()
         {
+            GeneralSettingsFrame.Visibility = Visibility.Collapsed;
             ClockWidgetFrame.Visibility = Visibility.Collapsed;
             PictureWidgetFrame.Visibility = Visibility.Collapsed;
             NoteWidgetFrame.Visibility = Visibility.Collapsed;
@@ -62,6 +65,7 @@ namespace GameAssistant.Windows
         /// <param name="senderButton">Selected button (to light up).</param>
         private void CheckMenuButton(Button senderButton)
         {
+            GeneralSettingsFrame.BorderThickness = new Thickness(0);
             ClockWidgetButton.BorderThickness = new Thickness(0);
             PictureWidgetButton.BorderThickness = new Thickness(0);
             NoteWidgetButton.BorderThickness = new Thickness(0);
@@ -69,6 +73,13 @@ namespace GameAssistant.Windows
             AboutButton.BorderThickness = new Thickness(0);
 
             senderButton.BorderThickness = new Thickness(1);
+        }
+
+        private void GeneralSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            HideAllPages();
+            GeneralSettingsFrame.Visibility = Visibility.Visible;
+            CheckMenuButton(sender as Button);
         }
 
         /// <summary>

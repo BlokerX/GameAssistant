@@ -86,6 +86,15 @@ namespace GameAssistant.Services
             reg.DeleteValue("Game Assistant", false);
         }
         
+        public static bool CheckStartupKeyValue()
+        {
+            RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            var value = reg.GetValue("Game Assistant");
+            if(value != null)
+                return true;
+            return false;
+        }
+
         //public static void SwitchOnStartupState()
         //{
             
