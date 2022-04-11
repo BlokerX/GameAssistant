@@ -6,7 +6,7 @@ namespace GameAssistant.Services
     /// <summary>
     /// Object contains Brush and AnimationManager.
     /// </summary>
-    internal class AnimatedBrush : BindableObject
+    public class AnimatedBrush : BindableObject
     {
         /// <summary>
         /// Default constructor.

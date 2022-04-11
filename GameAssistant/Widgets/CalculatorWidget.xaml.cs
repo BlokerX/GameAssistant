@@ -1,4 +1,7 @@
-﻿namespace GameAssistant.Widgets
+﻿using GameAssistant.Models;
+using GameAssistant.Services;
+
+namespace GameAssistant.Widgets
 {
     /// <summary>
     /// Logika interakcji dla klasy CalculatorWidget.xaml
@@ -11,6 +14,7 @@
         public CalculatorWidget()
         {
             InitializeComponent();
+            DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(this);
         }
     }
 }

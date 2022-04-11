@@ -85,6 +85,8 @@ namespace GameAssistant.Pages
             this.BackgroundOpacityProperty.IsEnabled = newState;
             this.ImageOpacityProperty.IsEnabled = newState;
 
+            this.BackgroundAnimationProperty.IsEnabled = newState;
+
             this.CanResizeProperty.IsEnabled = newState;
             this.DragActiveProperty.IsEnabled = newState;
 

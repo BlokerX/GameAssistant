@@ -83,7 +83,7 @@
                     Click="GeneralSettingsButton_Click"
                     Margin="0,0,0,1"
                     BorderThickness="1"/>
-                
+
                 <Button x:Name="ClockWidgetButton"
                     Content="Clock Widget" Grid.Row="1" 
                     Style="{StaticResource MenuButton}"
@@ -101,7 +101,7 @@
                     Style="{StaticResource MenuButton}"
                     Margin="0,0,0,1"
                     Click="NoteWidgetButton_Click"/>
-                
+
                 <Button x:Name="CalculatorWidgetButton"
                     Content="Calculator Widget" Grid.Row="4"
                     Style="{StaticResource MenuButton}"
@@ -125,13 +125,13 @@
 
                         <Frame x:Name="ClockWidgetFrame"
                        Visibility="Collapsed"/>
-                        
+
                         <Frame x:Name="PictureWidgetFrame"
                        Visibility="Collapsed"/>
 
                         <Frame x:Name="NoteWidgetFrame"
                        Visibility="Collapsed"/>
-                        
+
                         <Frame x:Name="CalculatorWidgetFrame"
                        Visibility="Collapsed"/>
 

@@ -4,7 +4,6 @@ using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
 using Newtonsoft.Json;
-using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -159,8 +158,8 @@ namespace GameAssistant.Pages
                 model.BackgroundAnimatedBrush.BrushAnimationManager.Animation = (AnimationManager.AnimationType)e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
-        } 
-        
+        }
+
         private void TextBoxBackgroundColorProperty_PropertyColorChanged(object sender, Brush e)
         {
             if (CalculatorWidgetContainer.Widget?.DataContext != null)
@@ -180,7 +179,7 @@ namespace GameAssistant.Pages
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
-        
+
         private void TextBoxForegroundColorProperty_PropertyColorChanged(object sender, Brush e)
         {
             if (CalculatorWidgetContainer.Widget?.DataContext != null)
@@ -200,7 +199,7 @@ namespace GameAssistant.Pages
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
-        
+
         private void ButtonsBackgroundColorProperty_PropertyColorChanged(object sender, Brush e)
         {
             if (CalculatorWidgetContainer.Widget?.DataContext != null)
@@ -220,7 +219,7 @@ namespace GameAssistant.Pages
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
-        
+
         private void ButtonsForegroundColorProperty_PropertyColorChanged(object sender, Brush e)
         {
             if (CalculatorWidgetContainer.Widget?.DataContext != null)
@@ -260,7 +259,7 @@ namespace GameAssistant.Pages
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
-        
+
         private void ButtonsOpacityProperty_PropertyValueChanged(object sender, double e)
         {
             if (CalculatorWidgetContainer.Widget?.DataContext != null)
@@ -301,7 +300,7 @@ namespace GameAssistant.Pages
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
-        
+
         private void ButtonsFontSettingsPropertyPanel_PropertyValueChanged(object sender, (FontFamily, double) e)
         {
             if (CalculatorWidgetContainer.Widget?.DataContext != null)

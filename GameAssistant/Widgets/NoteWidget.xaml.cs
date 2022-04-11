@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using GameAssistant.Models;
+using GameAssistant.Services;
+using System.Windows.Controls;
 
 namespace GameAssistant.Widgets
 {
@@ -13,6 +15,7 @@ namespace GameAssistant.Widgets
         public NoteWidget()
         {
             InitializeComponent();
+            DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(this);
         }
 
         public void TextBox_TextChanged(object sender, TextChangedEventArgs e)

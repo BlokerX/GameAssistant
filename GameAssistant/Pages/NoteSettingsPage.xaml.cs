@@ -90,6 +90,9 @@ namespace GameAssistant.Pages
             this.BackgroundOpacityProperty.IsEnabled = newState;
             this.ForegroundOpacityProperty.IsEnabled = newState;
 
+            this.BackgroundAnimationProperty.IsEnabled = newState;
+            this.ForegroundAnimationProperty.IsEnabled = newState;
+
             this.FontSettingsPropertyPanel.IsEnabled = newState;
 
             this.CanResizeProperty.IsEnabled = newState;

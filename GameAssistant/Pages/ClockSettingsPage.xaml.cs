@@ -4,7 +4,6 @@ using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
 using Newtonsoft.Json;
-using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -89,6 +88,9 @@ namespace GameAssistant.Pages
 
             this.BackgroundOpacityProperty.IsEnabled = newState;
             this.ForegroundOpacityProperty.IsEnabled = newState;
+
+            this.BackgroundAnimationProperty.IsEnabled = newState;
+            this.ForegroundAnimationProperty.IsEnabled = newState;
 
             this.FontSettingsPropertyPanel.IsEnabled = newState;
 

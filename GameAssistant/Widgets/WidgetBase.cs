@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Media;
+using System.Windows.Shell;
 
 namespace GameAssistant.Widgets
 {
@@ -8,11 +10,15 @@ namespace GameAssistant.Widgets
     /// </summary>
     public abstract class WidgetBase : Window
     {
+        //protected WidgetModelBase widgetModel;
+
         /// <summary>
         /// Default constructor.
         /// </summary>
         public WidgetBase()
         {
+            WindowChrome.SetWindowChrome(this, new WindowChrome() { CaptionHeight = 0 });
+
             Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
             AllowsTransparency = true;
             WindowStyle = WindowStyle.None;
@@ -51,7 +57,14 @@ namespace GameAssistant.Widgets
             if (IsDragActive && e.ButtonState == System.Windows.Input.MouseButtonState.Pressed)
             {
                 DragMove();
+                DragWindowEvent.Invoke();
             }
         }
+
+        /// <summary>
+        /// Event invoked when drag window.
+        /// </summary>
+        protected event Action DragWindowEvent;
+
     }
 }

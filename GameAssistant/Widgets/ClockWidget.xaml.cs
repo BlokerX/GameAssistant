@@ -1,4 +1,7 @@
-﻿namespace GameAssistant.Widgets
+﻿using GameAssistant.Models;
+using GameAssistant.Services;
+
+namespace GameAssistant.Widgets
 {
     /// <summary>
     /// Logika interakcji dla klasy ClockWidget.xaml
@@ -11,6 +14,7 @@
         public ClockWidget()
         {
             InitializeComponent();
+            DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(this);
         }
     }
 }

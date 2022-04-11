@@ -1,16 +1,16 @@
 ﻿using GameAssistant.Core;
 using GameAssistant.Services;
 using Newtonsoft.Json;
+using System;
 using System.Windows;
 using System.Windows.Media;
-using System;
 
 namespace GameAssistant.Models
 {
     /// <summary>
     /// Base of widget model that contains bindings for Widget.
     /// </summary>
-    internal class WidgetModelBase : BindableObject
+    public class WidgetModelBase : BindableObject
     {
         // Constructors:
         public WidgetModelBase()
