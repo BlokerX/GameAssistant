@@ -1,4 +1,6 @@
-﻿namespace GameAssistant.Widgets
+﻿using System;
+
+namespace GameAssistant.Widgets
 {
     /// <summary>
     /// Container for widgets (It is very helpfull with use references).
@@ -25,5 +27,6 @@
         /// Widget as container item.
         /// </summary>
         public WidgetType Widget;
+
     }
 }

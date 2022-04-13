@@ -306,6 +306,34 @@ namespace GameAssistant.Services
         }
 
         /// <summary>
+        /// Create or close widget.
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ViewModelType">Type of view model.</typeparam>
+        /// <typeparam name="ModelType">Type of model.</typeparam>
+        /// <param name="widget"></param>
+        /// <param name="state"></param>
+        public static void ChangeWidgetState<WidgetType, ViewModelType, ModelType>(ref WidgetType widget, bool state)
+            where WidgetType : WidgetBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
+
+            if (widget != null)
+            {
+                WidgetManager.CloseWidget(ref widget, ref model);
+            }
+
+            if (state == true)
+            {
+                WidgetManager.BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
+            }
+
+            WidgetManager.SaveWidgetConfigurationInFile(model);
+        }
+
+        /// <summary>
         /// Build widget.
         /// </summary>
         /// <typeparam name="WidgetType">Type of widget.</typeparam>

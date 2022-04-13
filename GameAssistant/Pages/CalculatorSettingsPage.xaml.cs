@@ -28,14 +28,21 @@ namespace GameAssistant.Pages
 
             CalculatorWidgetContainer = calculatorWidget;
             LoadWidget(ref _calculatorWidgetContainer);
+
+            // Register widget change active state event:
+            CalculatorWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                if (ActiveProperty.PropertyValue != b)
+                    ActiveProperty.PropertyValue = b;
+            };
         }
 
-        public CalculatorSettingsPage(ref WidgetContainer<CalculatorWidget> calculatorWidget, ref bool? calculatorWidgetState)
+        public CalculatorSettingsPage(ref WidgetContainer<CalculatorWidget> calculatorWidget, ref bool? calculatorWidgetState): this(ref calculatorWidget)
         {
-            InitializeComponent();
+            //InitializeComponent();
 
-            CalculatorWidgetContainer = calculatorWidget;
-            LoadWidget(ref _calculatorWidgetContainer);
+            //CalculatorWidgetContainer = calculatorWidget;
+            //LoadWidget(ref _calculatorWidgetContainer);
             ActiveProperty.PropertyValue = calculatorWidgetState;
         }
 
@@ -314,22 +321,25 @@ namespace GameAssistant.Pages
 
         protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(_calculatorWidgetContainer.Widget);
+            //WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(_calculatorWidgetContainer.Widget);
 
-            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out CalculatorModel model);
-            switch (e)
-            {
-                case true:
-                    if (_calculatorWidgetContainer.Widget == null)
-                        WidgetManager.BuildWidget<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref _calculatorWidgetContainer.Widget, ref model, downloadedConfigurationResult);
-                    break;
+            //var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out CalculatorModel model);
+            //switch (e)
+            //{
+            //    case true:
+            //        if (_calculatorWidgetContainer.Widget == null)
+            //            WidgetManager.BuildWidget<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref _calculatorWidgetContainer.Widget, ref model, downloadedConfigurationResult);
+            //        break;
 
-                case false:
-                    if (_calculatorWidgetContainer.Widget != null)
-                        WidgetManager.CloseWidget(ref _calculatorWidgetContainer.Widget, ref model);
-                    break;
-            }
-            WidgetManager.SaveWidgetConfigurationInFile(model);
+            //    case false:
+            //        if (_calculatorWidgetContainer.Widget != null)
+            //            WidgetManager.CloseWidget(ref _calculatorWidgetContainer.Widget, ref model);
+            //        break;
+            //}
+            //WidgetManager.SaveWidgetConfigurationInFile(model);
+
+
+            CalculatorWidget.Events.WidgetActiveChanged_Invoke((bool)e);
 
             if (_calculatorWidgetContainer.Widget != null)
             {

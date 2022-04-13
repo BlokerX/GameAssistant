@@ -159,6 +159,7 @@
     <Compile Include="Services\AnimatedBrush.cs" />
     <Compile Include="Services\AnimationManager.cs" />
     <Compile Include="Services\AppFileSystem.cs" />
+    <Compile Include="Services\WidgetEvents.cs" />
     <Compile Include="Services\WidgetManager.cs" />
     <Compile Include="Services\MVVMUnit.cs" />
     <Compile Include="TODOList.cs" />

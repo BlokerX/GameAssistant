@@ -29,14 +29,17 @@ namespace GameAssistant.Pages
 
             PictureWidgetContainer = pictureWidget;
             LoadWidget(ref _pictureWidgetContainer);
+
+            // Register widget change active state event:
+            PictureWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                if (ActiveProperty.PropertyValue != b)
+                    ActiveProperty.PropertyValue = b;
+            };
         }
 
-        public PictureSettingsPage(ref WidgetContainer<PictureWidget> pictureWidget, ref bool? pictureWidgetState)
+        public PictureSettingsPage(ref WidgetContainer<PictureWidget> pictureWidget, ref bool? pictureWidgetState) : this(ref pictureWidget)
         {
-            InitializeComponent();
-
-            PictureWidgetContainer = pictureWidget;
-            LoadWidget(ref _pictureWidgetContainer);
             ActiveProperty.PropertyValue = pictureWidgetState;
         }
 
@@ -217,22 +220,24 @@ namespace GameAssistant.Pages
 
         protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(_pictureWidgetContainer.Widget);
+            //WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(_pictureWidgetContainer.Widget);
 
-            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out PictureModel model);
-            switch (e)
-            {
-                case true:
-                    if (_pictureWidgetContainer.Widget == null)
-                        WidgetManager.BuildWidget<PictureWidget, PictureViewModel, PictureModel>(ref _pictureWidgetContainer.Widget, ref model, downloadedConfigurationResult);
-                    break;
+            //var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out PictureModel model);
+            //switch (e)
+            //{
+            //    case true:
+            //        if (_pictureWidgetContainer.Widget == null)
+            //            WidgetManager.BuildWidget<PictureWidget, PictureViewModel, PictureModel>(ref _pictureWidgetContainer.Widget, ref model, downloadedConfigurationResult);
+            //        break;
 
-                case false:
-                    if (_pictureWidgetContainer.Widget != null)
-                        WidgetManager.CloseWidget(ref _pictureWidgetContainer.Widget, ref model);
-                    break;
-            }
-            WidgetManager.SaveWidgetConfigurationInFile(model);
+            //    case false:
+            //        if (_pictureWidgetContainer.Widget != null)
+            //            WidgetManager.CloseWidget(ref _pictureWidgetContainer.Widget, ref model);
+            //        break;
+            //}
+            //WidgetManager.SaveWidgetConfigurationInFile(model);
+
+            PictureWidget.Events.WidgetActiveChanged_Invoke((bool)e);
 
             if (_pictureWidgetContainer.Widget != null)
             {

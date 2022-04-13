@@ -64,7 +64,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_ClockWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            WidgetManager.Widget_ChangeStateAndSave<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget);
+            ClockWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[0].Checked);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_PictureWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            WidgetManager.Widget_ChangeStateAndSave<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget);
+            PictureWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[1].Checked);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_NoteWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            WidgetManager.Widget_ChangeStateAndSave<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
+            NoteWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[2].Checked);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_CalculatorWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            WidgetManager.Widget_ChangeStateAndSave<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref calculatorWidgetContainer.Widget);
+            CalculatorWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[3].Checked);
         }
 
         /// <summary>
@@ -146,6 +146,9 @@ namespace GameAssistant
                 nameof(CalculatorWidget)
             );
 
+            // Register widget events
+            RegisterWidgetEvents();
+
             // Notify icon register:
             NotifyIcon = new System.Windows.Forms.NotifyIcon()
             {
@@ -167,6 +170,66 @@ namespace GameAssistant
             };
 
             LoadWidgets();
+        }
+
+        private void RegisterWidgetEvents()
+        {
+            RegisterWidgetEventsMethods();
+            RegisterWidgetEventsForNotifyIcon();
+        }
+
+        private void RegisterWidgetEventsMethods()
+        {
+            ClockWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                WidgetManager.ChangeWidgetState<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget, b);
+            };
+
+            PictureWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                WidgetManager.ChangeWidgetState<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget, b);
+            };
+
+            NoteWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                WidgetManager.ChangeWidgetState<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget, b);
+            };
+
+            CalculatorWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                WidgetManager.ChangeWidgetState<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref calculatorWidgetContainer.Widget, b);
+            };
+
+            //var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ClockModel model);
+            //if (clockWidgetContainer.Widget != null)
+            //{
+            //    WidgetManager.CloseWidget(ref clockWidgetContainer.Widget, ref model);
+            //}
+            //if (b == true)
+            //{
+            //    WidgetManager.BuildWidget<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget, ref model, downloadedConfigurationResult);
+            //}
+            //WidgetManager.SaveWidgetConfigurationInFile(model);
+        }
+
+        private void RegisterWidgetEventsForNotifyIcon()
+        {
+            ClockWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                NotifyIcon.ContextMenu.MenuItems[0].Checked = b;
+            };
+            PictureWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                NotifyIcon.ContextMenu.MenuItems[1].Checked = b;
+            };
+            NoteWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                NotifyIcon.ContextMenu.MenuItems[2].Checked = b;
+            };
+            CalculatorWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                NotifyIcon.ContextMenu.MenuItems[3].Checked = b;
+            };
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -196,9 +259,17 @@ namespace GameAssistant
         private void LoadWidgets()
         {
             WidgetManager.LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget);
+            if (clockWidgetContainer.Widget != null)
+                NotifyIcon.ContextMenu.MenuItems[0].Checked = true;
             WidgetManager.LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget);
+            if (pictureWidgetContainer.Widget != null)
+                NotifyIcon.ContextMenu.MenuItems[1].Checked = true;
             WidgetManager.LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
+            if (noteWidgetContainer.Widget != null)
+                NotifyIcon.ContextMenu.MenuItems[2].Checked = true;
             WidgetManager.LoadWidget<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref calculatorWidgetContainer.Widget);
+            if (calculatorWidgetContainer.Widget != null)
+                NotifyIcon.ContextMenu.MenuItems[3].Checked = true;
         }
 
         /// <summary>

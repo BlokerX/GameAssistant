@@ -22,6 +22,22 @@ namespace GameAssistant.Windows
         public SettingsWindow()
         {
             InitializeComponent();
+            GeneralSettingsFrame.Content = new GeneralSettingsPage
+                (() => 
+                {
+                    //todo
+                    //if (MessageBox.Show("Should you set all settings to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting all configurations to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+                    //{
+                    //    if (notewi.Widget != null)
+                    //    {
+                    //        WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref _noteWidgetContainer.Widget);
+                    //    }
+                    //    _noteWidgetContainer.Widget = new NoteWidget();
+                    //    _noteWidgetContainer.Widget.Show();
+                    //    LoadWidget(ref _noteWidgetContainer);
+                    //    WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(_noteWidgetContainer.Widget);
+                    //}
+                });
         }
 
         /// <summary>
@@ -31,15 +47,11 @@ namespace GameAssistant.Windows
         /// <param name="pictureWidgetContainer"></param>
         /// <param name="noteWidgetContainer"></param>
         /// <param name="calculatorWidgetContainer"></param>
-        public SettingsWindow(ref WidgetContainer<ClockWidget> clockWidgetContainer, 
-            ref WidgetContainer<PictureWidget> pictureWidgetContainer, 
-            ref WidgetContainer<NoteWidget> noteWidgetContainer, 
-            ref WidgetContainer<CalculatorWidget> calculatorWidgetContainer)
+        public SettingsWindow(ref WidgetContainer<ClockWidget> clockWidgetContainer,
+            ref WidgetContainer<PictureWidget> pictureWidgetContainer,
+            ref WidgetContainer<NoteWidget> noteWidgetContainer,
+            ref WidgetContainer<CalculatorWidget> calculatorWidgetContainer) : this()
         {
-            InitializeComponent();
-
-            //todo general settings create proccess
-            GeneralSettingsFrame.Content = new GeneralSettingsPage();
             ClockWidgetFrame.Content = new ClockSettingsPage(ref clockWidgetContainer);
             PictureWidgetFrame.Content = new PictureSettingsPage(ref pictureWidgetContainer);
             NoteWidgetFrame.Content = new NoteSettingsPage(ref noteWidgetContainer);
@@ -111,7 +123,7 @@ namespace GameAssistant.Windows
             NoteWidgetFrame.Visibility = Visibility.Visible;
             CheckMenuButton(sender as Button);
         }
-        
+
         /// <summary>
         /// On calculator widget button click.
         /// </summary>
@@ -139,7 +151,7 @@ namespace GameAssistant.Windows
         {
             AppClose.Invoke();
         }
-        
+
         private void StackPanel_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (e.ButtonState == System.Windows.Input.MouseButtonState.Pressed)
@@ -150,7 +162,7 @@ namespace GameAssistant.Windows
         {
             Close();
         }
-        
+
         private void WindowActionButton_WindowStateButton_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Maximized)
@@ -163,7 +175,7 @@ namespace GameAssistant.Windows
                 WindowStyle = preOperationWindowStyle;
             }
         }
-        
+
         private void WindowActionButton_MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Minimized)

@@ -28,14 +28,17 @@ namespace GameAssistant.Pages
 
             NoteWidgetContainer = noteWidget;
             LoadWidget(ref _noteWidgetContainer);
+
+            // Register widget change active state event:
+            NoteWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                if (ActiveProperty.PropertyValue != b)
+                    ActiveProperty.PropertyValue = b;
+            };
         }
 
-        public NoteSettingsPage(ref WidgetContainer<NoteWidget> noteWidget, ref bool? noteWidgetState)
+        public NoteSettingsPage(ref WidgetContainer<NoteWidget> noteWidget, ref bool? noteWidgetState): this(ref noteWidget)
         {
-            InitializeComponent();
-
-            NoteWidgetContainer = noteWidget;
-            LoadWidget(ref _noteWidgetContainer);
             ActiveProperty.PropertyValue = noteWidgetState;
         }
 
@@ -226,22 +229,24 @@ namespace GameAssistant.Pages
 
         protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(_noteWidgetContainer.Widget);
+            //WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(_noteWidgetContainer.Widget);
 
-            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out NoteModel model);
-            switch (e)
-            {
-                case true:
-                    if (_noteWidgetContainer.Widget == null)
-                        WidgetManager.BuildWidget<NoteWidget, NoteViewModel, NoteModel>(ref _noteWidgetContainer.Widget, ref model, downloadedConfigurationResult);
-                    break;
+            //var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out NoteModel model);
+            //switch (e)
+            //{
+            //    case true:
+            //        if (_noteWidgetContainer.Widget == null)
+            //            WidgetManager.BuildWidget<NoteWidget, NoteViewModel, NoteModel>(ref _noteWidgetContainer.Widget, ref model, downloadedConfigurationResult);
+            //        break;
 
-                case false:
-                    if (_noteWidgetContainer.Widget != null)
-                        WidgetManager.CloseWidget(ref _noteWidgetContainer.Widget, ref model);
-                    break;
-            }
-            WidgetManager.SaveWidgetConfigurationInFile(model);
+            //    case false:
+            //        if (_noteWidgetContainer.Widget != null)
+            //            WidgetManager.CloseWidget(ref _noteWidgetContainer.Widget, ref model);
+            //        break;
+            //}
+            //WidgetManager.SaveWidgetConfigurationInFile(model);
+
+            NoteWidget.Events.WidgetActiveChanged_Invoke((bool)e);
 
             //todo naprawić aktualizowanie configuracji w note widget (show settings bar)
             //todo naprawić w innych widgetach

@@ -1,5 +1,6 @@
 ﻿using GameAssistant.Models;
 using GameAssistant.Services;
+using System;
 
 namespace GameAssistant.Widgets
 {
@@ -16,5 +17,8 @@ namespace GameAssistant.Widgets
             InitializeComponent();
             DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(this);
         }
+
+        public static WidgetEvents Events = new WidgetEvents();
+
     }
 }

@@ -28,14 +28,22 @@ namespace GameAssistant.Pages
 
             ClockWidgetContainer = clockWidget;
             LoadWidget(ref _clockWidgetContainer);
+
+            // Register widget change active state event:
+            ClockWidget.Events.WidgetActiveChanged += (b) =>
+            {
+                if (ActiveProperty.PropertyValue != b)
+                    ActiveProperty.PropertyValue = b;
+            };
         }
 
-        public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget, ref bool? clockWidgetState)
+        public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget, ref bool? clockWidgetState) : this(ref clockWidget)
         {
-            InitializeComponent();
+            //InitializeComponent();
 
-            ClockWidgetContainer = clockWidget;
-            LoadWidget(ref _clockWidgetContainer);
+            //ClockWidgetContainer = clockWidget;
+            //LoadWidget(ref _clockWidgetContainer);
+
             ActiveProperty.PropertyValue = clockWidgetState;
         }
 
@@ -212,22 +220,24 @@ namespace GameAssistant.Pages
 
         protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(_clockWidgetContainer.Widget);
+            //WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(_clockWidgetContainer.Widget);
 
-            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ClockModel model);
-            switch (e)
-            {
-                case true:
-                    if (_clockWidgetContainer.Widget == null)
-                        WidgetManager.BuildWidget<ClockWidget, ClockViewModel, ClockModel>(ref _clockWidgetContainer.Widget, ref model, downloadedConfigurationResult);
-                    break;
+            //var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ClockModel model);
+            //switch (e)
+            //{
+            //    case true:
+            //        if (_clockWidgetContainer.Widget == null)
+            //            WidgetManager.BuildWidget<ClockWidget, ClockViewModel, ClockModel>(ref _clockWidgetContainer.Widget, ref model, downloadedConfigurationResult);
+            //        break;
 
-                case false:
-                    if (_clockWidgetContainer.Widget != null)
-                        WidgetManager.CloseWidget(ref _clockWidgetContainer.Widget, ref model);
-                    break;
-            }
-            WidgetManager.SaveWidgetConfigurationInFile(model);
+            //    case false:
+            //        if (_clockWidgetContainer.Widget != null)
+            //            WidgetManager.CloseWidget(ref _clockWidgetContainer.Widget, ref model);
+            //        break;
+            //}
+            //WidgetManager.SaveWidgetConfigurationInFile(model);
+
+            ClockWidget.Events.WidgetActiveChanged_Invoke((bool)e);
 
             if (_clockWidgetContainer.Widget != null)
             {

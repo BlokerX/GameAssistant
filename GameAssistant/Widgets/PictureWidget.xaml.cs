@@ -1,6 +1,6 @@
 ﻿using GameAssistant.Models;
 using GameAssistant.Services;
-using GameAssistant.WidgetViewModels;
+using System;
 
 namespace GameAssistant.Widgets
 {
@@ -18,5 +18,8 @@ namespace GameAssistant.Widgets
             // todo widget model w dziedziczeniu widgetModel = (DataContext as IWidgetViewModel<PictureModel>).WidgetModel;
             DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(this);
         }
+
+        public static WidgetEvents Events = new WidgetEvents();
+        
     }
 }

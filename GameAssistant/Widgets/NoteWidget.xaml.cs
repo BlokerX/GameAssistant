@@ -1,5 +1,6 @@
 ﻿using GameAssistant.Models;
 using GameAssistant.Services;
+using System;
 using System.Windows.Controls;
 
 namespace GameAssistant.Widgets
@@ -23,6 +24,8 @@ namespace GameAssistant.Widgets
             var binding = ((TextBox)sender).GetBindingExpression(TextBox.TextProperty);
             binding.UpdateSource();
         }
+
+        public static WidgetEvents Events = new WidgetEvents();
 
     }
 }
