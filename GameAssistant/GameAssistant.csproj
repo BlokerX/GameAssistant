@@ -162,7 +162,6 @@
     <Compile Include="Services\WidgetEvents.cs" />
     <Compile Include="Services\WidgetManager.cs" />
     <Compile Include="Services\MVVMUnit.cs" />
-    <Compile Include="TODOList.cs" />
     <Compile Include="Widgets\CalculatorWidget.xaml.cs">
       <DependentUpon>CalculatorWidget.xaml</DependentUpon>
     </Compile>
