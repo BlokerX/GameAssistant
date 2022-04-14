@@ -23,7 +23,7 @@ namespace GameAssistant.Windows
         {
             InitializeComponent();
             GeneralSettingsFrame.Content = new GeneralSettingsPage
-                (() => 
+                (() =>
                 {
                     //todo
                     //if (MessageBox.Show("Should you set all settings to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting all configurations to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
@@ -38,6 +38,14 @@ namespace GameAssistant.Windows
                     //    WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(_noteWidgetContainer.Widget);
                     //}
                 });
+
+            Closing += (o, e) =>
+            {
+                (ClockWidgetFrame.Content as SettingsPageBase).RemoveChangeWidgetActive();
+                (PictureWidgetFrame.Content as SettingsPageBase).RemoveChangeWidgetActive();
+                (NoteWidgetFrame.Content as SettingsPageBase).RemoveChangeWidgetActive();
+                (CalculatorWidgetFrame.Content as SettingsPageBase).RemoveChangeWidgetActive();
+            };
         }
 
         /// <summary>

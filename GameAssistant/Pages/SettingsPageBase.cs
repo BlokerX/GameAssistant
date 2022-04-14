@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,6 +35,11 @@ namespace GameAssistant.Pages
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected abstract void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e);
+
+        /// <summary>
+        /// Remove page's method from ChangeWidgetEvent.
+        /// </summary>
+        public abstract void RemoveChangeWidgetActive();
 
         // ========================================================================================== //
 

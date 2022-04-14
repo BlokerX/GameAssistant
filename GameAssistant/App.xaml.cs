@@ -52,11 +52,18 @@ namespace GameAssistant
         private System.Windows.Forms.NotifyIcon NotifyIcon;
 
         /// <summary>
-        /// Invoke when settings button clicked.
+        /// NotifyIcon menu items.
         /// </summary>
-        private void NotifyIcon_MenuItem_Settings_Click(object sender, System.EventArgs e)
+        private enum NotifyIconMenuItem
         {
-            OpenSettingsWindow();
+            ClockWidget,
+            PictureWidget,
+            NoteWidget,
+            CalculatorWidget,
+            // - //
+            SettingsWindow = 6,
+            // - //
+            CloseApp = 8
         }
 
         /// <summary>
@@ -64,7 +71,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_ClockWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            ClockWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[0].Checked);
+            ClockWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.ClockWidget].Checked);
         }
 
         /// <summary>
@@ -72,7 +79,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_PictureWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            PictureWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[1].Checked);
+            PictureWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.PictureWidget].Checked);
         }
 
         /// <summary>
@@ -80,7 +87,7 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_NoteWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            NoteWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[2].Checked);
+            NoteWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.NoteWidget].Checked);
         }
 
         /// <summary>
@@ -88,7 +95,15 @@ namespace GameAssistant
         /// </summary>
         private void NotifyIcon_CalculatorWidget_Settings_Click(object sender, System.EventArgs e)
         {
-            CalculatorWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[3].Checked);
+            CalculatorWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.CalculatorWidget].Checked);
+        }
+
+        /// <summary>
+        /// Invoke when settings button clicked.
+        /// </summary>
+        private void NotifyIcon_MenuItem_Settings_Click(object sender, System.EventArgs e)
+        {
+            OpenSettingsWindow();
         }
 
         /// <summary>
@@ -115,7 +130,6 @@ namespace GameAssistant
         {
             if (settingsWindow == null)
             {
-                // todo . DODAĆ CALCULATOR widget
                 settingsWindow = new SettingsWindow(
                     ref clockWidgetContainer,
                     ref pictureWidgetContainer,
@@ -126,13 +140,16 @@ namespace GameAssistant
                 settingsWindow.Show();
             }
             settingsWindow?.Focus();
-            //todo zorobić synchronizację między wyborem widgetów
         }
 
         #endregion
 
         #region Ovverides methods
 
+        /// <summary>
+        /// On application startup.
+        /// </summary>
+        /// <param name="e">Startup args.</param>
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -181,55 +198,22 @@ namespace GameAssistant
         private void RegisterWidgetEventsMethods()
         {
             ClockWidget.Events.WidgetActiveChanged += (b) =>
-            {
-                WidgetManager.ChangeWidgetState<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget, b);
-            };
-
+            WidgetManager.ChangeWidgetState<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget, b);
             PictureWidget.Events.WidgetActiveChanged += (b) =>
-            {
-                WidgetManager.ChangeWidgetState<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget, b);
-            };
-
+            WidgetManager.ChangeWidgetState<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget, b);
             NoteWidget.Events.WidgetActiveChanged += (b) =>
-            {
-                WidgetManager.ChangeWidgetState<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget, b);
-            };
-
+            WidgetManager.ChangeWidgetState<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget, b);
             CalculatorWidget.Events.WidgetActiveChanged += (b) =>
-            {
-                WidgetManager.ChangeWidgetState<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref calculatorWidgetContainer.Widget, b);
-            };
+            WidgetManager.ChangeWidgetState<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref calculatorWidgetContainer.Widget, b);
 
-            //var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ClockModel model);
-            //if (clockWidgetContainer.Widget != null)
-            //{
-            //    WidgetManager.CloseWidget(ref clockWidgetContainer.Widget, ref model);
-            //}
-            //if (b == true)
-            //{
-            //    WidgetManager.BuildWidget<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget, ref model, downloadedConfigurationResult);
-            //}
-            //WidgetManager.SaveWidgetConfigurationInFile(model);
         }
 
         private void RegisterWidgetEventsForNotifyIcon()
         {
-            ClockWidget.Events.WidgetActiveChanged += (b) =>
-            {
-                NotifyIcon.ContextMenu.MenuItems[0].Checked = b;
-            };
-            PictureWidget.Events.WidgetActiveChanged += (b) =>
-            {
-                NotifyIcon.ContextMenu.MenuItems[1].Checked = b;
-            };
-            NoteWidget.Events.WidgetActiveChanged += (b) =>
-            {
-                NotifyIcon.ContextMenu.MenuItems[2].Checked = b;
-            };
-            CalculatorWidget.Events.WidgetActiveChanged += (b) =>
-            {
-                NotifyIcon.ContextMenu.MenuItems[3].Checked = b;
-            };
+            ClockWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.ClockWidget].Checked = b;
+            PictureWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.PictureWidget].Checked = b;
+            NoteWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.NoteWidget].Checked = b;
+            CalculatorWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.CalculatorWidget].Checked = b;
         }
 
         protected override void OnExit(ExitEventArgs e)

@@ -25,22 +25,26 @@ namespace GameAssistant.Pages
         /// <param name="pictureWidget">Widget container with picture widget to use.</param>
         public PictureSettingsPage(ref WidgetContainer<PictureWidget> pictureWidget)
         {
+            // Register widget change active state event:
+            PictureWidget.Events.WidgetActiveChanged += (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+
             InitializeComponent();
 
             PictureWidgetContainer = pictureWidget;
             LoadWidget(ref _pictureWidgetContainer);
-
-            // Register widget change active state event:
-            PictureWidget.Events.WidgetActiveChanged += (b) =>
-            {
-                if (ActiveProperty.PropertyValue != b)
-                    ActiveProperty.PropertyValue = b;
-            };
         }
 
         public PictureSettingsPage(ref WidgetContainer<PictureWidget> pictureWidget, ref bool? pictureWidgetState) : this(ref pictureWidget)
         {
             ActiveProperty.PropertyValue = pictureWidgetState;
+        }
+
+        public override void RemoveChangeWidgetActive() => PictureWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+
+        private void WidgetChangeActiveStateMethodForSettingsPage(bool state)
+        {
+            if (ActiveProperty.PropertyValue != state)
+                ActiveProperty.PropertyValue = state;
         }
 
         #endregion
@@ -217,26 +221,8 @@ namespace GameAssistant.Pages
             }
         }
 
-
         protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            //WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(_pictureWidgetContainer.Widget);
-
-            //var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out PictureModel model);
-            //switch (e)
-            //{
-            //    case true:
-            //        if (_pictureWidgetContainer.Widget == null)
-            //            WidgetManager.BuildWidget<PictureWidget, PictureViewModel, PictureModel>(ref _pictureWidgetContainer.Widget, ref model, downloadedConfigurationResult);
-            //        break;
-
-            //    case false:
-            //        if (_pictureWidgetContainer.Widget != null)
-            //            WidgetManager.CloseWidget(ref _pictureWidgetContainer.Widget, ref model);
-            //        break;
-            //}
-            //WidgetManager.SaveWidgetConfigurationInFile(model);
-
             PictureWidget.Events.WidgetActiveChanged_Invoke((bool)e);
 
             if (_pictureWidgetContainer.Widget != null)

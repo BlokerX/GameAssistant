@@ -320,12 +320,12 @@ namespace GameAssistant.Services
         {
             var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
 
-            if (widget != null)
+            if (state == false && widget != null)
             {
                 WidgetManager.CloseWidget(ref widget, ref model);
             }
 
-            if (state == true)
+            if (state == true && widget == null)
             {
                 WidgetManager.BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
             }

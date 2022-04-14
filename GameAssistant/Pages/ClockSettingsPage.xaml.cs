@@ -24,27 +24,27 @@ namespace GameAssistant.Pages
         /// <param name="clockWidget">Widget container with clock widget to use.</param>
         public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget)
         {
+            // Register widget change active state event:
+            ClockWidget.Events.WidgetActiveChanged += (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+
             InitializeComponent();
 
             ClockWidgetContainer = clockWidget;
             LoadWidget(ref _clockWidgetContainer);
 
-            // Register widget change active state event:
-            ClockWidget.Events.WidgetActiveChanged += (b) =>
-            {
-                if (ActiveProperty.PropertyValue != b)
-                    ActiveProperty.PropertyValue = b;
-            };
         }
+
+        public override void RemoveChangeWidgetActive() => ClockWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
 
         public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget, ref bool? clockWidgetState) : this(ref clockWidget)
         {
-            //InitializeComponent();
-
-            //ClockWidgetContainer = clockWidget;
-            //LoadWidget(ref _clockWidgetContainer);
-
             ActiveProperty.PropertyValue = clockWidgetState;
+        }
+
+        private void WidgetChangeActiveStateMethodForSettingsPage(bool state)
+        {
+            if (ActiveProperty.PropertyValue != state)
+                ActiveProperty.PropertyValue = state;
         }
 
         #endregion
@@ -114,6 +114,7 @@ namespace GameAssistant.Pages
         );
 
         private WidgetContainer<ClockWidget> _clockWidgetContainer;
+
         /// <summary>
         /// The clock container with clock widget.
         /// </summary>
@@ -220,23 +221,6 @@ namespace GameAssistant.Pages
 
         protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            //WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(_clockWidgetContainer.Widget);
-
-            //var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ClockModel model);
-            //switch (e)
-            //{
-            //    case true:
-            //        if (_clockWidgetContainer.Widget == null)
-            //            WidgetManager.BuildWidget<ClockWidget, ClockViewModel, ClockModel>(ref _clockWidgetContainer.Widget, ref model, downloadedConfigurationResult);
-            //        break;
-
-            //    case false:
-            //        if (_clockWidgetContainer.Widget != null)
-            //            WidgetManager.CloseWidget(ref _clockWidgetContainer.Widget, ref model);
-            //        break;
-            //}
-            //WidgetManager.SaveWidgetConfigurationInFile(model);
-
             ClockWidget.Events.WidgetActiveChanged_Invoke((bool)e);
 
             if (_clockWidgetContainer.Widget != null)
