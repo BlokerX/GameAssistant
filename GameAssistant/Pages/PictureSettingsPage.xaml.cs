@@ -182,13 +182,12 @@ namespace GameAssistant.Pages
 
         private void ImageSourceProperty_PropertyValueChanged(object sender, string e)
         {
-            // todo zdjęcie ustawienia
-            //if (PictureWidgetContainer.Widget?.DataContext != null)
-            //{
-            //    var model = WidgetManager.GetModelFromWidget<PictureWidget, PictureModel>(ref PictureWidgetContainer.Widget);
-            //    model.ImageSource = e;
-            //    WidgetManager.SaveWidgetConfigurationInFile(model);
-            //}
+            if (PictureWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<PictureWidget, PictureModel>(ref PictureWidgetContainer.Widget);
+                model.ImageSource = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
         }
 
         private void ImageSourceProperty_ButtonClick(object sender, EventArgs e)
@@ -238,7 +237,6 @@ namespace GameAssistant.Pages
         {
             if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
             {
-                // todo przywracanie ustawień domyślnych i zapisywanie ich
                 if (_pictureWidgetContainer.Widget != null)
                 {
                     WidgetManager.CloseWidget<PictureWidget, PictureModel>(ref _pictureWidgetContainer.Widget);
@@ -252,7 +250,6 @@ namespace GameAssistant.Pages
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
         {
-            // todo zabezpieczyć
             Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(PictureWidget).Name));
         }
 

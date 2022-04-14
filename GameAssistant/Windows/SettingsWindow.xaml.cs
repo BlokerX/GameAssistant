@@ -25,18 +25,7 @@ namespace GameAssistant.Windows
             GeneralSettingsFrame.Content = new GeneralSettingsPage
                 (() =>
                 {
-                    //todo
-                    //if (MessageBox.Show("Should you set all settings to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting all configurations to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-                    //{
-                    //    if (notewi.Widget != null)
-                    //    {
-                    //        WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref _noteWidgetContainer.Widget);
-                    //    }
-                    //    _noteWidgetContainer.Widget = new NoteWidget();
-                    //    _noteWidgetContainer.Widget.Show();
-                    //    LoadWidget(ref _noteWidgetContainer);
-                    //    WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(_noteWidgetContainer.Widget);
-                    //}
+                    //todo Przywracanie ustawień domyślnych dla kaźdego widgetu.
                 });
 
             Closing += (o, e) =>

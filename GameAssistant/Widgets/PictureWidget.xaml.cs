@@ -15,7 +15,6 @@ namespace GameAssistant.Widgets
         public PictureWidget()
         {
             InitializeComponent();
-            // todo widget model w dziedziczeniu widgetModel = (DataContext as IWidgetViewModel<PictureModel>).WidgetModel;
             DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(this);
         }
 

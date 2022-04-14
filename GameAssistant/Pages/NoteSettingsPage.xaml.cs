@@ -221,12 +221,23 @@ namespace GameAssistant.Pages
 
         private void SettingBarVisibilityProperty_PropertyValueChanged(object sender, bool? e)
         {
-            //todo setting bar visibility to improve
+            //todo setting bar visibility to synch
             if (NoteWidgetContainer.Widget?.DataContext != null)
             {
                 var model = WidgetManager.GetModelFromWidget<NoteWidget, NoteModel>(ref NoteWidgetContainer.Widget);
-                model.SettingsBarVisibility = TypeConverter.BoolToVisibility(e);
+                ;
+                switch (model.SettingsBarVisibility = TypeConverter.BoolToVisibility(e))
+                {
+                    case System.Windows.Visibility.Visible:
+                        (NoteWidgetContainer.Widget.DataContext as NoteViewModel).TextBoxMargin = new Thickness(10, 30, 10, 10);
+                        break;
+                    case System.Windows.Visibility.Hidden:
+                    default:
+                        (NoteWidgetContainer.Widget.DataContext as NoteViewModel).TextBoxMargin = new Thickness(10, 10, 10, 10);
+                        break;
+                }
                 WidgetManager.SaveWidgetConfigurationInFile(model);
+
             }
         }
 
@@ -235,8 +246,6 @@ namespace GameAssistant.Pages
         {
             NoteWidget.Events.WidgetActiveChanged_Invoke((bool)e);
 
-            //todo naprawić aktualizowanie configuracji w note widget (show settings bar)
-            //todo naprawić w innych widgetach
             if (_noteWidgetContainer.Widget != null)
             {
                 LoadWidgetSettings(ref _noteWidgetContainer);
@@ -250,7 +259,6 @@ namespace GameAssistant.Pages
         {
             if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
             {
-                // todo przywracanie ustawień domyślnych i zapisywanie ich
                 if (_noteWidgetContainer.Widget != null)
                 {
                     WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref _noteWidgetContainer.Widget);
@@ -264,7 +272,6 @@ namespace GameAssistant.Pages
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
         {
-            // todo zabezpieczyć
             Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(NoteWidget).Name));
         }
 
@@ -280,7 +287,7 @@ namespace GameAssistant.Pages
 
                 Title = "Select save with widget configuration:"
             };
-            //todo dodać sprawdzanie czy nie jest to pusta konfiguracja
+
             if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 if (MessageBox.Show("Should you change widget configuration?\n(Warning, if you change configuration settings without backup you will not be able to restore the current data.)", "Change setting configuration:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)

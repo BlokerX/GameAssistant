@@ -45,7 +45,7 @@ namespace GameAssistant.Controls
             set => FontFamilySettingProperty.ValueTextBox.Text = value.ToString();
         }
 
-        //todo konwersja double-string
+        //todo zmienić textbox size na DoubleUpDown
         public double PropertyFontSize
         {
             get => double.Parse(FontSizeSettingProperty.PropertyValue);

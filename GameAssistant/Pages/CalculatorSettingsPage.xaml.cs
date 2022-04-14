@@ -336,7 +336,6 @@ namespace GameAssistant.Pages
         {
             if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
             {
-                // todo przywracanie ustawień domyślnych i zapisywanie ich
                 if (_calculatorWidgetContainer.Widget != null)
                 {
                     WidgetManager.CloseWidget<CalculatorWidget, CalculatorModel>(ref _calculatorWidgetContainer.Widget);
@@ -350,7 +349,6 @@ namespace GameAssistant.Pages
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
         {
-            // todo zabezpieczyć
             Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(CalculatorWidget).Name));
         }
 

@@ -70,7 +70,6 @@ namespace GameAssistant.WidgetViewModels
                 SaveFilePath = Path.Combine(notesDirePath, "MyNote1")
             };
 
-            //todo poprawić to
             BackButtonCommand = new RelayCommand((o) =>
             {
                 if (notes.Count > 0)
