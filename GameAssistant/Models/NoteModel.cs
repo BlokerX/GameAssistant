@@ -1,5 +1,4 @@
-﻿using GameAssistant.Core;
-using GameAssistant.Services;
+﻿using GameAssistant.Services;
 using System.Windows;
 using System.Windows.Media;
 
@@ -76,7 +75,7 @@ namespace GameAssistant.Models
         /// </summary>
         public AnimatedBrush ForegroundAnimatedBrush
         {
-            get => _foregroundAnimatedBrush; 
+            get => _foregroundAnimatedBrush;
             set => SetProperty(ref _foregroundAnimatedBrush, value);
         }
 

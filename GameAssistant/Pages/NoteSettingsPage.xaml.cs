@@ -38,7 +38,10 @@ namespace GameAssistant.Pages
             ActiveProperty.PropertyValue = noteWidgetState;
         }
 
-        public override void RemoveChangeWidgetActive() => NoteWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+        public override void RemovePageMethodsFromWidgetEvents()
+        {
+            NoteWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+        }
 
         private void WidgetChangeActiveStateMethodForSettingsPage(bool state)
         {

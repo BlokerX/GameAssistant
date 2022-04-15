@@ -2,6 +2,7 @@
 using GameAssistant.Services;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 
@@ -18,6 +19,31 @@ namespace GameAssistant.Models
             AnimationToken_True += () => BackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
             AnimationToken_False += () => BackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
         }
+
+        ///// <summary>
+        ///// Model properties list.
+        ///// </summary>
+        //protected virtual List<object> GetProperties()
+        //{
+        //    return new List<object>()
+        //    {
+        //        //_title,
+                
+        //        _width,
+        //        _height,
+
+        //        _screenPositionX,
+        //        _screenPositionY,
+
+        //        _isActive,
+
+        //        _isDragActive,
+        //        _resizeMode,
+
+        //        _backgroundAnimatedBrush,
+        //        _backgroundOpacity
+        //    };
+        //}
 
         private bool _animationToken = false;
         [JsonIgnore]

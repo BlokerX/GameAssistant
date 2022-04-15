@@ -30,10 +30,10 @@ namespace GameAssistant.Windows
 
             Closing += (o, e) =>
             {
-                (ClockWidgetFrame.Content as SettingsPageBase).RemoveChangeWidgetActive();
-                (PictureWidgetFrame.Content as SettingsPageBase).RemoveChangeWidgetActive();
-                (NoteWidgetFrame.Content as SettingsPageBase).RemoveChangeWidgetActive();
-                (CalculatorWidgetFrame.Content as SettingsPageBase).RemoveChangeWidgetActive();
+                (ClockWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
+                (PictureWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
+                (NoteWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
+                (CalculatorWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
             };
         }
 

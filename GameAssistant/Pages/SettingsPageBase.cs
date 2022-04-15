@@ -39,7 +39,7 @@ namespace GameAssistant.Pages
         /// <summary>
         /// Remove page's method from ChangeWidgetEvent.
         /// </summary>
-        public abstract void RemoveChangeWidgetActive();
+        public abstract void RemovePageMethodsFromWidgetEvents();
 
         // ========================================================================================== //
 

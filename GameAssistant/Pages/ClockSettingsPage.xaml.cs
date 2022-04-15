@@ -34,7 +34,7 @@ namespace GameAssistant.Pages
 
         }
 
-        public override void RemoveChangeWidgetActive() => ClockWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+        public override void RemovePageMethodsFromWidgetEvents() => ClockWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
 
         public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget, ref bool? clockWidgetState) : this(ref clockWidget)
         {

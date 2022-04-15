@@ -38,7 +38,7 @@ namespace GameAssistant.Pages
             ActiveProperty.PropertyValue = calculatorWidgetState;
         }
 
-        public override void RemoveChangeWidgetActive() => CalculatorWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+        public override void RemovePageMethodsFromWidgetEvents() => CalculatorWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
 
         private void WidgetChangeActiveStateMethodForSettingsPage(bool state)
         {
