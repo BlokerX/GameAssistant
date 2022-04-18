@@ -25,7 +25,7 @@ namespace GameAssistant.Pages
         public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget)
         {
             // Register widget change active state event:
-            ClockWidget.Events.WidgetActiveChanged += (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+            ClockWidget.Events.WidgetActiveChanged += WidgetChangeActiveStateMethodForSettingsPage;
 
             InitializeComponent();
 
@@ -34,7 +34,7 @@ namespace GameAssistant.Pages
 
         }
 
-        public override void RemovePageMethodsFromWidgetEvents() => ClockWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+        public override void RemovePageMethodsFromWidgetEvents() => ClockWidget.Events.WidgetActiveChanged -= WidgetChangeActiveStateMethodForSettingsPage;
 
         public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget, ref bool? clockWidgetState) : this(ref clockWidget)
         {

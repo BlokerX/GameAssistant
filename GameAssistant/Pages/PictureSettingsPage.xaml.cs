@@ -26,7 +26,7 @@ namespace GameAssistant.Pages
         public PictureSettingsPage(ref WidgetContainer<PictureWidget> pictureWidget)
         {
             // Register widget change active state event:
-            PictureWidget.Events.WidgetActiveChanged += (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+            PictureWidget.Events.WidgetActiveChanged += WidgetChangeActiveStateMethodForSettingsPage;
 
             InitializeComponent();
 
@@ -39,7 +39,7 @@ namespace GameAssistant.Pages
             ActiveProperty.PropertyValue = pictureWidgetState;
         }
 
-        public override void RemovePageMethodsFromWidgetEvents() => PictureWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+        public override void RemovePageMethodsFromWidgetEvents() => PictureWidget.Events.WidgetActiveChanged -=  WidgetChangeActiveStateMethodForSettingsPage;
 
         private void WidgetChangeActiveStateMethodForSettingsPage(bool state)
         {

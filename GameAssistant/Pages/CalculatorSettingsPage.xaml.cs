@@ -25,7 +25,7 @@ namespace GameAssistant.Pages
         public CalculatorSettingsPage(ref WidgetContainer<CalculatorWidget> calculatorWidget)
         {
             // Register widget change active state event:
-            CalculatorWidget.Events.WidgetActiveChanged += (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+            CalculatorWidget.Events.WidgetActiveChanged += WidgetChangeActiveStateMethodForSettingsPage;
 
             InitializeComponent();
 
@@ -38,7 +38,7 @@ namespace GameAssistant.Pages
             ActiveProperty.PropertyValue = calculatorWidgetState;
         }
 
-        public override void RemovePageMethodsFromWidgetEvents() => CalculatorWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+        public override void RemovePageMethodsFromWidgetEvents() => CalculatorWidget.Events.WidgetActiveChanged -= WidgetChangeActiveStateMethodForSettingsPage;
 
         private void WidgetChangeActiveStateMethodForSettingsPage(bool state)
         {

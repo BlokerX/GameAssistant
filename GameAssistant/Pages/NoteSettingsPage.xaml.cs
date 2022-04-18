@@ -25,7 +25,7 @@ namespace GameAssistant.Pages
         public NoteSettingsPage(ref WidgetContainer<NoteWidget> noteWidget)
         {
             // Register widget change active state event:
-            NoteWidget.Events.WidgetActiveChanged += (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+            NoteWidget.Events.WidgetActiveChanged += WidgetChangeActiveStateMethodForSettingsPage;
 
             InitializeComponent();
 
@@ -40,7 +40,7 @@ namespace GameAssistant.Pages
 
         public override void RemovePageMethodsFromWidgetEvents()
         {
-            NoteWidget.Events.WidgetActiveChanged -= (b) => WidgetChangeActiveStateMethodForSettingsPage(b);
+            NoteWidget.Events.WidgetActiveChanged -= WidgetChangeActiveStateMethodForSettingsPage;
         }
 
         private void WidgetChangeActiveStateMethodForSettingsPage(bool state)
