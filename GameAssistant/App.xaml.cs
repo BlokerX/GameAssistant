@@ -154,6 +154,8 @@ namespace GameAssistant
         {
             base.OnStartup(e);
 
+            new BrowserWidget().Show();
+
             SelectDisks();
             AppFileSystem.RegisterFileSystem
             (
