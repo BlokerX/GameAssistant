@@ -1,0 +1,41 @@
+﻿<local:WidgetBase x:Class="GameAssistant.Widgets.BrowserWidget"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+                  xmlns:local="clr-namespace:GameAssistant.Widgets"
+                  xmlns:widgetmodels="clr-namespace:GameAssistant.WidgetViewModels"
+                  mc:Ignorable="d"
+                  Background="Transparent" AllowsTransparency="True" WindowStyle="None" 
+                  Title="{Binding WidgetModel.Title}" 
+                  IsDragActive="{Binding WidgetModel.IsDragActive}" 
+                  ResizeMode="{Binding WidgetModel.ResizeMode}"
+                  Width="{Binding WidgetModel.Width, Mode=TwoWay}"
+                  Height="{Binding WidgetModel.Height, Mode=TwoWay}"
+                  Left="{Binding WidgetModel.ScreenPositionX, Mode=TwoWay}" 
+                  Top="{Binding WidgetModel.ScreenPositionY, Mode=TwoWay}">
+
+    <local:WidgetBase.DataContext>
+        <widgetmodels:BrowserViewModel/>
+    </local:WidgetBase.DataContext>
+
+    <Grid>
+
+        <Grid Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable}" 
+              Opacity="{Binding WidgetModel.BackgroundOpacity}"/>
+
+        <wpf:ChromiumWebBrowser Address="{Binding WidgetModel.Address, Mode=TwoWay}"
+                                AddressChanged="ChromiumWebBrowser_AddressChanged"
+                                Opacity="{Binding WidgetModel.BrowserOpacity}"
+                                Background="Transparent"/>
+
+        <Border x:Name="DragAndDropBar" 
+                Visibility="{Binding WidgetModel.DragAndDropBarVisibility, Mode=TwoWay}" 
+                Height="15" 
+                Background="White"
+                VerticalAlignment="Top"/>
+
+    </Grid>
+
+</local:WidgetBase>

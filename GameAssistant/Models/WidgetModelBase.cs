@@ -2,7 +2,6 @@
 using GameAssistant.Services;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 
@@ -28,7 +27,7 @@ namespace GameAssistant.Models
         //    return new List<object>()
         //    {
         //        //_title,
-                
+
         //        _width,
         //        _height,
 
@@ -129,8 +128,17 @@ namespace GameAssistant.Models
         public bool? IsDragActive
         {
             get => _isDragActive;
-            set => SetProperty(ref _isDragActive, value);
+            set
+            {
+                SetProperty(ref _isDragActive, value);
+                DragActiveChanged?.Invoke(_isDragActive);
+            }
         }
+
+        /// <summary>
+        /// On drag active changed event.
+        /// </summary>
+        public event Predicate<bool?> DragActiveChanged;
 
         // Variables:
         private double _screenPositionX = 70;

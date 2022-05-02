@@ -23,10 +23,10 @@ namespace GameAssistant.Windows
         {
             InitializeComponent();
             GeneralSettingsFrame.Content = new GeneralSettingsPage
-                (() =>
-                {
-                    //todo Przywracanie ustawień domyślnych dla kaźdego widgetu.
-                });
+            (() =>
+            {
+                //todo Przywracanie ustawień domyślnych dla kaźdego widgetu.
+            });
 
             Closing += (o, e) =>
             {
@@ -34,6 +34,7 @@ namespace GameAssistant.Windows
                 (PictureWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
                 (NoteWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
                 (CalculatorWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
+                (BrowserWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
             };
         }
 
@@ -44,15 +45,18 @@ namespace GameAssistant.Windows
         /// <param name="pictureWidgetContainer"></param>
         /// <param name="noteWidgetContainer"></param>
         /// <param name="calculatorWidgetContainer"></param>
+        /// <param name="browserWidgetContainer"></param>
         public SettingsWindow(ref WidgetContainer<ClockWidget> clockWidgetContainer,
             ref WidgetContainer<PictureWidget> pictureWidgetContainer,
             ref WidgetContainer<NoteWidget> noteWidgetContainer,
-            ref WidgetContainer<CalculatorWidget> calculatorWidgetContainer) : this()
+            ref WidgetContainer<CalculatorWidget> calculatorWidgetContainer,
+            ref WidgetContainer<BrowserWidget> browserWidgetContainer) : this()
         {
             ClockWidgetFrame.Content = new ClockSettingsPage(ref clockWidgetContainer);
             PictureWidgetFrame.Content = new PictureSettingsPage(ref pictureWidgetContainer);
             NoteWidgetFrame.Content = new NoteSettingsPage(ref noteWidgetContainer);
             CalculatorWidgetFrame.Content = new CalculatorSettingsPage(ref calculatorWidgetContainer);
+            BrowserWidgetFrame.Content = new BrowserSettingsPage(ref browserWidgetContainer);
         }
 
         /// <summary>
@@ -65,6 +69,7 @@ namespace GameAssistant.Windows
             PictureWidgetFrame.Visibility = Visibility.Collapsed;
             NoteWidgetFrame.Visibility = Visibility.Collapsed;
             CalculatorWidgetFrame.Visibility = Visibility.Collapsed;
+            BrowserWidgetFrame.Visibility = Visibility.Collapsed;
             AboutFrame.Visibility = Visibility.Collapsed;
         }
 
@@ -79,6 +84,7 @@ namespace GameAssistant.Windows
             PictureWidgetButton.BorderThickness = new Thickness(0);
             NoteWidgetButton.BorderThickness = new Thickness(0);
             CalculatorWidgetButton.BorderThickness = new Thickness(0);
+            BrowserWidgetButton.BorderThickness = new Thickness(0);
             AboutButton.BorderThickness = new Thickness(0);
 
             senderButton.BorderThickness = new Thickness(1);
@@ -128,6 +134,16 @@ namespace GameAssistant.Windows
         {
             HideAllPages();
             CalculatorWidgetFrame.Visibility = Visibility.Visible;
+            CheckMenuButton(sender as Button);
+        }
+
+        /// <summary>
+        /// On browser widget button click.
+        /// </summary>
+        private void BrowserWidgetButton_Click(object sender, RoutedEventArgs e)
+        {
+            HideAllPages();
+            BrowserWidgetFrame.Visibility = Visibility.Visible;
             CheckMenuButton(sender as Button);
         }
 
