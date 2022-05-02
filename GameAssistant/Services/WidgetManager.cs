@@ -42,6 +42,12 @@ namespace GameAssistant.Services
                 WidgetViewModelType = typeof(CalculatorViewModel),
                 WidgetModelType = typeof(CalculatorModel)
             },
+            new MVVMUnit()
+            {
+                WidgetType = typeof(BrowserWidget),
+                WidgetViewModelType = typeof(BrowserViewModel),
+                WidgetModelType = typeof(BrowserModel)
+            },
         };
 
         /// <summary>

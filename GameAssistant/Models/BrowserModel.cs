@@ -7,14 +7,14 @@
     {
         #region Serialize properties
 
-        private string _source = "https://www.google.pl/";
+        private string _address = "https://www.google.com/";
         /// <summary>
         /// The address of page in the browser.
         /// </summary>
-        public string Source
+        public string Address
         {
-            get => _source;
-            set => SetProperty(ref _source, value);
+            get => _address;
+            set => SetProperty(ref _address, value);
         }
 
         private double _browserOpacity = 0.75;

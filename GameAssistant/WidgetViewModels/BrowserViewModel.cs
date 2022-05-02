@@ -11,7 +11,6 @@ namespace GameAssistant.WidgetViewModels
     /// </summary>
     internal class BrowserViewModel : BindableObject, IWidgetViewModel<BrowserModel>
     {
-
         private BrowserModel _widgetModel = new BrowserModel();
         /// <summary>
         /// Browser widget properties.
@@ -68,7 +67,7 @@ namespace GameAssistant.WidgetViewModels
             WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.DarkBlue);
             WidgetModel.BackgroundOpacity = 0.25;
 
-            // todo testy
+            // todo tests, delete it
             WidgetModel.IsDragActive = true;
         }
 

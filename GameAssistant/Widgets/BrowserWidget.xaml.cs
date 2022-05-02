@@ -1,11 +1,12 @@
 ﻿using GameAssistant.Models;
 using GameAssistant.Services;
+using GameAssistant.WidgetViewModels;
 using System;
 
 namespace GameAssistant.Widgets
 {
     /// <summary>
-    /// Logika interakcji dla klasy CalculatorWidget.xaml
+    /// Logika interakcji dla klasy BrowserWidget.xaml
     /// </summary>
     public partial class BrowserWidget : WidgetBase
     {
@@ -16,21 +17,18 @@ namespace GameAssistant.Widgets
         {
             InitializeComponent();
             DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<BrowserWidget, BrowserModel>(this);
-            //WebBrowserControl.Source = new Uri("https://www.google.pl/");
         }
 
-        //private string _browserAddress = "http://google.com";
-        //public string BrowserAddress
-        //{
-        //    get => _browserAddress;
-        //    set => WebBrowserControl.Source = new Uri(_browserAddress = value);
-        //}
+        /// <summary>
+        /// When browser's address changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void ChromiumWebBrowser_AddressChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        {
+            WidgetManager.SaveWidgetConfigurationInFile<BrowserWidget, BrowserModel>(this);
+        }
 
-        //public static WidgetEvents Events = new WidgetEvents();
-
-        //private void WebBrowserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        //{
-        //    WebBrowserControl.UpdateWindowPos();
-        //}
+        public static WidgetEvents Events = new WidgetEvents();
     }
 }

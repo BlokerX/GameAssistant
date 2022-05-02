@@ -24,8 +24,10 @@
         <Grid Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable}" 
               Opacity="{Binding WidgetModel.BackgroundOpacity}"/>
 
-        <wpf:ChromiumWebBrowser Address="google.pl"
-                                Opacity="{Binding WidgetModel.BrowserOpacity}"/>
+        <wpf:ChromiumWebBrowser Address="{Binding WidgetModel.Address, Mode=TwoWay}"
+                                AddressChanged="ChromiumWebBrowser_AddressChanged"
+                                Opacity="{Binding WidgetModel.BrowserOpacity}"
+                                Background="Transparent"/>
 
         <Border x:Name="DragAndDropBar" Visibility="{Binding DragAndDropBarVisibility}" Height="15" 
                 Background="White"
