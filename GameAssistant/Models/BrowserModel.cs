@@ -33,9 +33,7 @@ namespace GameAssistant.Models
                 }
                 catch (Exception ex)
                 {
-#if DEBUG
                     MessageBox.Show(ex.Message);
-#endif
                     return false;
                 }
             };
@@ -64,7 +62,7 @@ namespace GameAssistant.Models
             set => SetProperty(ref _address, value);
         }
 
-        private double _browserOpacity = 0.75;
+        private double _browserOpacity = 0.5;
         /// <summary>
         /// Browser's opacity.
         /// </summary>

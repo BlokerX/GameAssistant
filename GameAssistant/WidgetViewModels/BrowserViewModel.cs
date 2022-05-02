@@ -30,15 +30,15 @@ namespace GameAssistant.WidgetViewModels
             WidgetModel.Title = "Browser widget";
 
             // Set widget size:
-            WidgetModel.Width = 450;
-            WidgetModel.Height = 320;
+            WidgetModel.Width = 360;
+            WidgetModel.Height = 325;
 
             // Set widget position:
-            WidgetModel.ScreenPositionY += 70;
+            WidgetModel.ScreenPositionX += 410;
 
             // Set widget background color:
-            WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.DarkBlue);
-            WidgetModel.BackgroundOpacity = 0.25;
+            WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.Navy);
+            WidgetModel.BackgroundOpacity = 0.6;
         }
 
     }
