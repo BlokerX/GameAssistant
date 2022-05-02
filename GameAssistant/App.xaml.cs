@@ -163,7 +163,7 @@ namespace GameAssistant
                 nameof(CalculatorWidget)
             );
 
-            // Register widget events
+            // Register widget events:
             RegisterWidgetEvents();
 
             // Notify icon register:
@@ -185,6 +185,9 @@ namespace GameAssistant
                     }
                 )
             };
+
+            // Notify icon double click event add:
+            NotifyIcon.DoubleClick += (s,a) => OpenSettingsWindow();
 
             LoadWidgets();
         }
