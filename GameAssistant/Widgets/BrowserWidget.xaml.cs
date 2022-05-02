@@ -1,7 +1,5 @@
 ﻿using GameAssistant.Models;
 using GameAssistant.Services;
-using GameAssistant.WidgetViewModels;
-using System;
 
 namespace GameAssistant.Widgets
 {

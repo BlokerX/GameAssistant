@@ -42,7 +42,7 @@ namespace GameAssistant
         /// </summary>
         private WidgetContainer<CalculatorWidget> calculatorWidgetContainer = new WidgetContainer<CalculatorWidget>();
         #endregion
-        
+
         #region BrowserWidgetContainer
         /// <summary>
         /// The browser widget's container.
@@ -105,7 +105,7 @@ namespace GameAssistant
         {
             CalculatorWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.CalculatorWidget].Checked);
         }
-        
+
         /// <summary>
         /// Invoke when browser widget button clicked.
         /// </summary>
@@ -150,7 +150,8 @@ namespace GameAssistant
                     ref clockWidgetContainer,
                     ref pictureWidgetContainer,
                     ref noteWidgetContainer,
-                    ref calculatorWidgetContainer);
+                    ref calculatorWidgetContainer,
+                    ref browserWidgetContainer);
                 settingsWindow.Closed += (s, o) => settingsWindow = null;
                 settingsWindow.AppClose += CloseApp;
                 settingsWindow.Show();
@@ -266,19 +267,19 @@ namespace GameAssistant
             WidgetManager.LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref clockWidgetContainer.Widget);
             if (clockWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.ClockWidget].Checked = true;
-           
+
             WidgetManager.LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref pictureWidgetContainer.Widget);
             if (pictureWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.PictureWidget].Checked = true;
-            
+
             WidgetManager.LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref noteWidgetContainer.Widget);
             if (noteWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.NoteWidget].Checked = true;
-            
+
             WidgetManager.LoadWidget<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref calculatorWidgetContainer.Widget);
             if (calculatorWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.CalculatorWidget].Checked = true;
-            
+
             WidgetManager.LoadWidget<BrowserWidget, BrowserViewModel, BrowserModel>(ref browserWidgetContainer.Widget);
             if (browserWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.BrowserWidget].Checked = true;

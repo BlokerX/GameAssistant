@@ -162,6 +162,9 @@
     <Compile Include="Pages\NoteSettingsPage.xaml.cs">
       <DependentUpon>NoteSettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\BrowserSettingsPage.xaml.cs">
+      <DependentUpon>BrowserSettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PictureSettingsPage.xaml.cs">
       <DependentUpon>PictureSettingsPage.xaml</DependentUpon>
     </Compile>
@@ -258,6 +261,10 @@
     <Page Include="Pages\NoteSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\BrowserSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\PictureSettingsPage.xaml">
       <SubType>Designer</SubType>

@@ -73,6 +73,7 @@
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
@@ -108,8 +109,14 @@
                     Margin="0,0,0,1"
                     Click="CalculatorWidgetButton_Click"/>
 
+                <Button x:Name="BrowserWidgetButton"
+                    Content="Browser Widget" Grid.Row="5"
+                    Style="{StaticResource MenuButton}"
+                    Margin="0,0,0,1"
+                    Click="BrowserWidgetButton_Click"/>
+
                 <Button x:Name="AboutButton"
-                    Content="About" Grid.Row="6"
+                    Content="About" Grid.Row="7"
                     Style="{StaticResource MenuButton}"
                     Click="AboutButton_Click"/>
 
@@ -133,6 +140,9 @@
                        Visibility="Collapsed"/>
 
                         <Frame x:Name="CalculatorWidgetFrame"
+                       Visibility="Collapsed"/>
+
+                        <Frame x:Name="BrowserWidgetFrame"
                        Visibility="Collapsed"/>
 
                         <Frame x:Name="AboutFrame"

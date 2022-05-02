@@ -3,8 +3,9 @@
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
                   xmlns:local="clr-namespace:GameAssistant.Widgets"
-                  xmlns:widgetmodels="clr-namespace:GameAssistant.WidgetViewModels" xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+                  xmlns:widgetmodels="clr-namespace:GameAssistant.WidgetViewModels"
                   mc:Ignorable="d"
                   Background="Transparent" AllowsTransparency="True" WindowStyle="None" 
                   Title="{Binding WidgetModel.Title}" 
@@ -29,7 +30,9 @@
                                 Opacity="{Binding WidgetModel.BrowserOpacity}"
                                 Background="Transparent"/>
 
-        <Border x:Name="DragAndDropBar" Visibility="{Binding DragAndDropBarVisibility}" Height="15" 
+        <Border x:Name="DragAndDropBar" 
+                Visibility="{Binding WidgetModel.DragAndDropBarVisibility, Mode=TwoWay}" 
+                Height="15" 
                 Background="White"
                 VerticalAlignment="Top"/>
 
