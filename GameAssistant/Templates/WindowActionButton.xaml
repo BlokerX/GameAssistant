@@ -23,9 +23,7 @@
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Stretch">
 
-                        <Grid>
-
-                            <Label Content="{TemplateBinding Content}"
+                        <Label Content="{TemplateBinding Content}"
                                    FontSize="{TemplateBinding FontSize}"
                                    FontFamily="Century Gothic"
                                    Foreground="{TemplateBinding Foreground}"
@@ -33,8 +31,6 @@
                                    HorizontalAlignment="Stretch"
                                    VerticalContentAlignment="Center"
                                    HorizontalContentAlignment="Center"/>
-
-                        </Grid>
 
                     </Border>
 

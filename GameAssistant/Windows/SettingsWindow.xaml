@@ -44,14 +44,32 @@
                         VerticalAlignment="Stretch"
                         HorizontalAlignment="Right">
 
-                <Button Content="_" Click="WindowActionButton_MinimizeButton_Click"
-                        Style="{DynamicResource WindowActionButton}"/>
+                <Button Click="WindowActionButton_MinimizeButton_Click"
+                        Style="{DynamicResource WindowActionButton}">
+                    <Image Source="/resources/windowstatebuttonsimages/mini.png"
+                           VerticalAlignment="Stretch"
+                           HorizontalAlignment="Stretch"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           Margin="-6,-8,-6,1"/>
+                </Button>
 
-                <Button Content="[]" Click="WindowActionButton_WindowStateButton_Click"
-                        Style="{DynamicResource WindowActionButton}"/>
+                <Button Click="WindowActionButton_WindowStateButton_Click"
+                        Style="{DynamicResource WindowActionButton}">
+                    <Image Source="/resources/windowstatebuttonsimages/okno.png"
+                           VerticalAlignment="Stretch"
+                           HorizontalAlignment="Stretch"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           Margin="-11"/>
+                </Button>
 
-                <Button Content="X" Click="WindowActionButton_CloseButton_Click"
-                        Style="{DynamicResource WindowActionButton}"/>
+                <Button Click="WindowActionButton_CloseButton_Click"
+                        Style="{DynamicResource WindowActionButton}">
+                    <Image Source="/resources/windowstatebuttonsimages/krzyzyc.png"
+                           VerticalAlignment="Stretch"
+                           HorizontalAlignment="Stretch"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           Margin="-11"/>
+                </Button>
 
             </StackPanel>
 

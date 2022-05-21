@@ -386,6 +386,15 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\AppIcon\ColorBackground\32.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowStateButtonsImages\okno.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowStateButtonsImages\krzyzyc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\WindowStateButtonsImages\mini.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -101,12 +101,42 @@ namespace GameAssistant.Properties {
         }
         
         /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap krzyzyc {
+            get {
+                object obj = ResourceManager.GetObject("krzyzyc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mini {
+            get {
+                object obj = ResourceManager.GetObject("mini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Icon podobny do zasobu (Ikona).
         /// </summary>
         internal static System.Drawing.Icon NotifyIcon {
             get {
                 object obj = ResourceManager.GetObject("NotifyIcon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap okno {
+            get {
+                object obj = ResourceManager.GetObject("okno", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
