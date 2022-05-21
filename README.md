@@ -4,6 +4,8 @@ Application is in tests faze.
 If you would like to be my new tester, you can follow me.
 All opinions nice to see :)
 
+![4](https://user-images.githubusercontent.com/67635977/169653658-97e6111e-bd7c-4bff-8fa8-dc6095b13a80.png)
+
 # Open settings
 
 Start app and find window icon in task bar.
