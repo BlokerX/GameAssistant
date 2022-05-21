@@ -14,7 +14,7 @@ namespace GameAssistant.Pages
     /// <summary>
     /// Logika interakcji dla klasy BrowserSettingsPage.xaml
     /// </summary>
-    public partial class BrowserSettingsPage : SettingsPageBase
+    public partial class BrowserSettingsPage : WidgetSettingsPage
     {
         #region Constructors
 

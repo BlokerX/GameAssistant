@@ -22,41 +22,43 @@ namespace GameAssistant.Windows
         public SettingsWindow()
         {
             InitializeComponent();
-            GeneralSettingsFrame.Content = new GeneralSettingsPage
-            (() =>
-            {
-                //todo Przywracanie ustawień domyślnych dla kaźdego widgetu.
-            });
 
             Closing += (o, e) =>
             {
-                (ClockWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
-                (PictureWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
-                (NoteWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
-                (CalculatorWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
-                (BrowserWidgetFrame.Content as SettingsPageBase).RemovePageMethodsFromWidgetEvents();
+                // General:
+                (GeneralSettingsFrame.Content as GeneralSettingsPage).RemovePageMethodsFromWidgetsEvents();
+                // Widgets:
+                (ClockWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
+                (PictureWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
+                (NoteWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
+                (CalculatorWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
+                (BrowserWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
             };
         }
 
         /// <summary>
         /// Constructor with widgets.
         /// </summary>
-        /// <param name="clockWidgetContainer"></param>
-        /// <param name="pictureWidgetContainer"></param>
-        /// <param name="noteWidgetContainer"></param>
-        /// <param name="calculatorWidgetContainer"></param>
-        /// <param name="browserWidgetContainer"></param>
-        public SettingsWindow(ref WidgetContainer<ClockWidget> clockWidgetContainer,
+        /// <param name="widgetsContainer"></param>
+        public SettingsWindow(/*ref WidgetContainer<ClockWidget> clockWidgetContainer,
             ref WidgetContainer<PictureWidget> pictureWidgetContainer,
             ref WidgetContainer<NoteWidget> noteWidgetContainer,
             ref WidgetContainer<CalculatorWidget> calculatorWidgetContainer,
-            ref WidgetContainer<BrowserWidget> browserWidgetContainer) : this()
+            ref WidgetContainer<BrowserWidget> browserWidgetContainer*/
+            ref AllWidgetsContainer widgetsContainer) : this()
         {
-            ClockWidgetFrame.Content = new ClockSettingsPage(ref clockWidgetContainer);
-            PictureWidgetFrame.Content = new PictureSettingsPage(ref pictureWidgetContainer);
-            NoteWidgetFrame.Content = new NoteSettingsPage(ref noteWidgetContainer);
-            CalculatorWidgetFrame.Content = new CalculatorSettingsPage(ref calculatorWidgetContainer);
-            BrowserWidgetFrame.Content = new BrowserSettingsPage(ref browserWidgetContainer);
+            GeneralSettingsFrame.Content = new GeneralSettingsPage
+            (ref widgetsContainer,
+            () =>
+            {
+                // todo przywracanie ustawień domyślnych dla każdego widgetu
+            });
+
+            ClockWidgetFrame.Content = new ClockSettingsPage(ref widgetsContainer.clockWidgetContainer);
+            PictureWidgetFrame.Content = new PictureSettingsPage(ref widgetsContainer.pictureWidgetContainer);
+            NoteWidgetFrame.Content = new NoteSettingsPage(ref widgetsContainer.noteWidgetContainer);
+            CalculatorWidgetFrame.Content = new CalculatorSettingsPage(ref widgetsContainer.calculatorWidgetContainer);
+            BrowserWidgetFrame.Content = new BrowserSettingsPage(ref widgetsContainer.browserWidgetContainer);
         }
 
         /// <summary>

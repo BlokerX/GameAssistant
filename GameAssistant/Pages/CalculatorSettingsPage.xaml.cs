@@ -14,7 +14,7 @@ namespace GameAssistant.Pages
     /// <summary>
     /// Logika interakcji dla klasy CalculatorSettingsPage.xaml
     /// </summary>
-    public partial class CalculatorSettingsPage : SettingsPageBase
+    public partial class CalculatorSettingsPage : WidgetSettingsPage
     {
         #region Constructors
 

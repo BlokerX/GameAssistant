@@ -15,7 +15,7 @@ namespace GameAssistant.Pages
     /// <summary>
     /// Logika interakcji dla klasy PictureSettingsPage.xaml
     /// </summary>
-    public partial class PictureSettingsPage : SettingsPageBase
+    public partial class PictureSettingsPage : WidgetSettingsPage
     {
         #region Constructors
 

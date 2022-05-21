@@ -178,7 +178,8 @@
     <Compile Include="Pages\PictureSettingsPage.xaml.cs">
       <DependentUpon>PictureSettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SettingsPageBase.cs" />
+    <Compile Include="Pages\SettingsPage.cs" />
+    <Compile Include="Pages\WidgetSettingsPage.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -190,6 +191,7 @@
     <Compile Include="Services\WidgetEvents.cs" />
     <Compile Include="Services\WidgetManager.cs" />
     <Compile Include="Services\MVVMUnit.cs" />
+    <Compile Include="Widgets\AllWidgetsContainer.cs" />
     <Compile Include="Widgets\BrowserWidget.xaml.cs">
       <DependentUpon>BrowserWidget.xaml</DependentUpon>
     </Compile>

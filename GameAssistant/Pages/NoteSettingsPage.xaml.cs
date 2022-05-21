@@ -14,7 +14,7 @@ namespace GameAssistant.Pages
     /// <summary>
     /// Logika interakcji dla klasy NoteSettingsPage.xaml
     /// </summary>
-    public partial class NoteSettingsPage : SettingsPageBase
+    public partial class NoteSettingsPage : WidgetSettingsPage
     {
         #region Constructors
 

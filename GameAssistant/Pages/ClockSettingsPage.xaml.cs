@@ -14,7 +14,7 @@ namespace GameAssistant.Pages
     /// <summary>
     /// Logika interakcji dla klasy ClockSettingsPage.xaml
     /// </summary>
-    public partial class ClockSettingsPage : SettingsPageBase
+    public partial class ClockSettingsPage : WidgetSettingsPage
     {
         #region Constructors
 
@@ -108,7 +108,7 @@ namespace GameAssistant.Pages
 
         #region Widget
 
-        public static readonly DependencyProperty PropertyColorProperty = DependencyProperty.Register(
+        public static readonly DependencyProperty PropertyClockWidgetContainer = DependencyProperty.Register(
         "ClockWidgetContainer", typeof(WidgetContainer<ClockWidget>),
         typeof(ClockSettingsPage)
         );

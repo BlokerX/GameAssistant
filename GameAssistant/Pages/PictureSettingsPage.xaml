@@ -1,4 +1,4 @@
-﻿<local:SettingsPageBase x:Class="GameAssistant.Pages.PictureSettingsPage"
+﻿<local:WidgetSettingsPage x:Class="GameAssistant.Pages.PictureSettingsPage"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -122,4 +122,4 @@
 
     </StackPanel>
 
-</local:SettingsPageBase>
+</local:WidgetSettingsPage>
