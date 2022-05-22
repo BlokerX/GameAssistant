@@ -47,12 +47,7 @@ namespace GameAssistant.Windows
             ref WidgetContainer<BrowserWidget> browserWidgetContainer*/
             ref AllWidgetsContainer widgetsContainer) : this()
         {
-            GeneralSettingsFrame.Content = new GeneralSettingsPage
-            (ref widgetsContainer,
-            () =>
-            {
-                // todo przywracanie ustawień domyślnych dla każdego widgetu
-            });
+            GeneralSettingsFrame.Content = new GeneralSettingsPage(ref widgetsContainer);
 
             ClockWidgetFrame.Content = new ClockSettingsPage(ref widgetsContainer.clockWidgetContainer);
             PictureWidgetFrame.Content = new PictureSettingsPage(ref widgetsContainer.pictureWidgetContainer);

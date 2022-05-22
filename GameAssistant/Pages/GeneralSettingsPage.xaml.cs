@@ -1,6 +1,6 @@
 ﻿using GameAssistant.Services;
 using GameAssistant.Widgets;
-using System;
+using System.Diagnostics;
 using System.Windows;
 
 namespace GameAssistant.Pages
@@ -13,25 +13,19 @@ namespace GameAssistant.Pages
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public GeneralSettingsPage(/*ref WidgetContainer<ClockWidget> clockWidgetContainer,
-                                   ref WidgetContainer<PictureWidget> pictureWidgetContainer,
-                                   ref WidgetContainer<NoteWidget> noteWidgetContainer,
-                                   ref WidgetContainer<CalculatorWidget> calculatorWidgetContainer,
-                                   ref WidgetContainer<BrowserWidget> browserWidgetContainer,*/
-                                   ref AllWidgetsContainer allWidgetsContainer,
-                                   Action resetAllSettings = null)
+        public GeneralSettingsPage(ref AllWidgetsContainer allWidgetsContainer)
         {
             InitializeComponent();
 
             _allWidgetsContainer = allWidgetsContainer;
 
-            LoadWidgets(AllWidgetsContainer /*clockWidgetContainer, pictureWidgetContainer, noteWidgetContainer, calculatorWidgetContainer, browserWidgetContainer*/);
+            LoadWidgets(AllWidgetsContainer);
 
             SubscriptionWidgetsActiveChangedEvents();
 
             AutoStart.PropertyValue = AppFileSystem.CheckStartupKeyValue();
-            if (resetAllSettings != null)
-                ResetAllSettings += resetAllSettings;
+
+            CheckAllWidgetsActiveProperty();
         }
 
         public void RemovePageMethodsFromWidgetsEvents() => DesubscriptionWidgetsActiveChangedEvents();
@@ -136,30 +130,36 @@ namespace GameAssistant.Pages
         {
             if (ClockWidgetActiveProperty.PropertyValue != state)
                 ClockWidgetActiveProperty.PropertyValue = state;
+            CheckAllWidgetsActiveProperty();
         }
 
         private void PictureWidgetEvents_WidgetActiveChanged(bool state)
         {
             if (PictureWidgetActiveProperty.PropertyValue != state)
                 PictureWidgetActiveProperty.PropertyValue = state;
+            CheckAllWidgetsActiveProperty();
         }
 
         private void NoteWidgetEvents_WidgetActiveChanged(bool state)
         {
             if (NoteWidgetActiveProperty.PropertyValue != state)
                 NoteWidgetActiveProperty.PropertyValue = state;
+            CheckAllWidgetsActiveProperty();
         }
 
         private void CalculatorWidgetEvents_WidgetActiveChanged(bool state)
         {
             if (CalculatorWidgetActiveProperty.PropertyValue != state)
                 CalculatorWidgetActiveProperty.PropertyValue = state;
+            CheckAllWidgetsActiveProperty();
         }
 
         private void BrowserWidgetEvents_WidgetActiveChanged(bool state)
         {
             if (BrowserWidgetActiveProperty.PropertyValue != state)
                 BrowserWidgetActiveProperty.PropertyValue = state;
+
+            CheckAllWidgetsActiveProperty();
         }
 
         #endregion
@@ -177,16 +177,6 @@ namespace GameAssistant.Pages
                 AppFileSystem.CreateStartupKey();
             else
                 AppFileSystem.DeleteStartupKey();
-        }
-
-        /// <summary>
-        /// On reset all settings button clicked.
-        /// </summary>
-        public event Action ResetAllSettings;
-
-        private void ResetAllSettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            ResetAllSettings?.Invoke();
         }
 
         #region Active changed checkboxes
@@ -217,5 +207,70 @@ namespace GameAssistant.Pages
         }
 
         #endregion
+
+        // todo poprawić wydajność programu pod względem wykonywania eventów
+        private void AllWidgetsActiveProperty_PropertyValueChanged(object sender, bool? e)
+        {
+            if (!AllWidgetsActiveProperty.IsEnabled)
+                return;
+
+            if (ClockWidgetActiveProperty.PropertyValue != e)
+                ClockWidgetActiveProperty.PropertyValue = e;
+
+            if (PictureWidgetActiveProperty.PropertyValue != e)
+                PictureWidgetActiveProperty.PropertyValue = e;
+
+            if (NoteWidgetActiveProperty.PropertyValue != e)
+                NoteWidgetActiveProperty.PropertyValue = e;
+
+            if (CalculatorWidgetActiveProperty.PropertyValue != e)
+                CalculatorWidgetActiveProperty.PropertyValue = e;
+
+            if (BrowserWidgetActiveProperty.PropertyValue != e)
+                BrowserWidgetActiveProperty.PropertyValue = e;
+        }
+
+        // a - czy sprawdzać wartość false
+        private void CheckAllWidgetsActiveProperty()
+        {
+            if (!AllWidgetsActiveProperty.IsEnabled)
+                return;
+
+            if (true == ClockWidgetActiveProperty.PropertyValue &&
+                ClockWidgetActiveProperty.PropertyValue == PictureWidgetActiveProperty.PropertyValue &&
+                PictureWidgetActiveProperty.PropertyValue == NoteWidgetActiveProperty.PropertyValue &&
+                NoteWidgetActiveProperty.PropertyValue == CalculatorWidgetActiveProperty.PropertyValue &&
+                CalculatorWidgetActiveProperty.PropertyValue == BrowserWidgetActiveProperty.PropertyValue)
+            {
+                AllWidgetsActiveProperty.PropertyValue = true;
+            }
+            else if (AllWidgetsActiveProperty.ValueCheckBox.IsChecked != false)
+            {
+                AllWidgetsActiveProperty.IsEnabled = false;
+                AllWidgetsActiveProperty.ValueCheckBox.IsChecked = false;
+                AllWidgetsActiveProperty.IsEnabled = true;
+            }
+        }
+
+        private void ResetAllSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            //if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+            //{
+            //    if (AllWidgetsContainer.clockWidgetContainer.Widget != null)
+            //    {
+            //        WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref AllWidgetsContainer.clockWidgetContainer.Widget);
+            //    }
+            //    AllWidgetsContainer.clockWidgetContainer.Widget = new ClockWidget();
+            //    AllWidgetsContainer.clockWidgetContainer.Widget.Show();
+            //    todo metoda synchronizująca ładowanie widgetu
+            //    LoadWidget(ref AllWidgetsContainer.clockWidgetContainer);
+            //    WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(AllWidgetsContainer.clockWidgetContainer.Widget);
+            //}
+        }
+
+        private void OpenConfigurationsDireButton_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("Explorer", AppFileSystem.WidgetsConfigurationsMainDire);
+        }
     }
 }

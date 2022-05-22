@@ -13,7 +13,7 @@ namespace GameAssistant.Services
         /// <summary>
         /// Path to main dire of app informations and save configurations.
         /// </summary>
-        private static string WidgetsConfigurationsMainDire = Path.Combine("C:\\", "Users", Environment.UserName, Application.ResourceAssembly.GetName().Name);
+        public static string WidgetsConfigurationsMainDire { get; private set; } = Path.Combine("C:\\", "Users", Environment.UserName, Application.ResourceAssembly.GetName().Name);
 
         /// <summary>
         /// Return widgets save configuration dire path.
@@ -79,30 +79,30 @@ namespace GameAssistant.Services
             RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             reg.SetValue("Game Assistant", System.Reflection.Assembly.GetExecutingAssembly().Location);
         }
-        
+
         public static void DeleteStartupKey()
         {
             RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             reg.DeleteValue("Game Assistant", false);
         }
-        
+
         public static bool CheckStartupKeyValue()
         {
             RegistryKey reg = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
             var value = reg.GetValue("Game Assistant");
-            if(value != null)
+            if (value != null)
                 return true;
             return false;
         }
 
         //public static void SwitchOnStartupState()
         //{
-            
+
         //}
-        
+
         //public static void SwitchOffStartupState()
         //{
-            
+
         //}
 
         #endregion

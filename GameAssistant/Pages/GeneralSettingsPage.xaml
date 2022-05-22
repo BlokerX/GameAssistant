@@ -1,14 +1,13 @@
-﻿<pages:SettingsPage
-    x:Class="GameAssistant.Pages.GeneralSettingsPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="clr-namespace:GameAssistant.Controls"
-    xmlns:pages="clr-namespace:GameAssistant.Pages"
-    mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="GeneralSettingsPage">
+﻿<pages:SettingsPage x:Class="GameAssistant.Pages.GeneralSettingsPage"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:controls="clr-namespace:GameAssistant.Controls"
+                    xmlns:pages="clr-namespace:GameAssistant.Pages"
+                    mc:Ignorable="d" 
+                    d:DesignHeight="450" d:DesignWidth="800"
+                    Title="GeneralSettingsPage">
 
     <Grid>
 
@@ -22,6 +21,10 @@
                    Style="{StaticResource SettingsGroupTitle}" />
 
             <StackPanel>
+
+                <controls:BoolSettingProperty x:Name="AllWidgetsActiveProperty" PropertyName="All widgets active:" 
+                                              PropertyValueChanged="AllWidgetsActiveProperty_PropertyValueChanged" 
+                                              BorderColor="Black" BackgorundColor="#FF2E2B31"/>
 
                 <controls:BoolSettingProperty x:Name="ClockWidgetActiveProperty" PropertyName="Clock widget active:" 
                                               PropertyValueChanged="ClockWidgetActiveProperty_PropertyValueChanged"/>
@@ -51,6 +54,11 @@
                     Content="Reset all settings"
                     Style="{StaticResource SettingButton}"
                     Click="ResetAllSettingsButton_Click"/>
+            
+            <Button x:Name="OpenConfigurationsDireButton"
+                    Content="Open configuration dire"
+                    Style="{StaticResource SettingButton}"
+                    Click="OpenConfigurationsDireButton_Click"/>
 
         </StackPanel>
     </Grid>
