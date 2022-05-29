@@ -70,50 +70,76 @@ namespace GameAssistant.WidgetViewModels
         {
             while (_keyDetector_IsRunning)
             {
-                if ((Keyboard.GetKeyStates(Key.W) & KeyStates.Down) > 0)
+                #region Mouse buttons
+                //todo naprawić to
+                if (Mouse.LeftButton == MouseButtonState.Pressed)
                 {
-                    WidgetModel.DetectPanelOpacity1 = 1;
+                    WidgetModel.DetectPanelOpacityML = 1;
                 }
                 else
                 {
-                    WidgetModel.DetectPanelOpacity1 = WidgetModel.DetectPanelOpacity;
+                    WidgetModel.DetectPanelOpacityML = WidgetModel.DetectPanelOpacity;
+                }
+                
+                if (Mouse.RightButton == MouseButtonState.Pressed)
+                {
+                    WidgetModel.DetectPanelOpacityMR = 1;
+                }
+                else
+                {
+                    WidgetModel.DetectPanelOpacityMR = WidgetModel.DetectPanelOpacity;
+                }
+
+                #endregion
+
+                #region Keyboard buttons
+
+                if ((Keyboard.GetKeyStates(Key.W) & KeyStates.Down) > 0)
+                {
+                    WidgetModel.DetectPanelOpacityW = 1;
+                }
+                else
+                {
+                    WidgetModel.DetectPanelOpacityW = WidgetModel.DetectPanelOpacity;
                 }
 
                 if ((Keyboard.GetKeyStates(Key.A) & KeyStates.Down) > 0)
                 {
-                    WidgetModel.DetectPanelOpacity2 = 1;
+                    WidgetModel.DetectPanelOpacityA = 1;
                 }
                 else
                 {
-                    WidgetModel.DetectPanelOpacity2 = WidgetModel.DetectPanelOpacity;
+                    WidgetModel.DetectPanelOpacityA = WidgetModel.DetectPanelOpacity;
                 }
 
                 if ((Keyboard.GetKeyStates(Key.S) & KeyStates.Down) > 0)
                 {
-                    WidgetModel.DetectPanelOpacity3 = 1;
+                    WidgetModel.DetectPanelOpacityS = 1;
                 }
                 else
                 {
-                    WidgetModel.DetectPanelOpacity3 = WidgetModel.DetectPanelOpacity;
+                    WidgetModel.DetectPanelOpacityS = WidgetModel.DetectPanelOpacity;
                 }
 
                 if ((Keyboard.GetKeyStates(Key.D) & KeyStates.Down) > 0)
                 {
-                    WidgetModel.DetectPanelOpacity4 = 1;
+                    WidgetModel.DetectPanelOpacityD = 1;
                 }
                 else
                 {
-                    WidgetModel.DetectPanelOpacity4 = WidgetModel.DetectPanelOpacity;
+                    WidgetModel.DetectPanelOpacityD = WidgetModel.DetectPanelOpacity;
                 }
 
                 if ((Keyboard.GetKeyStates(Key.Space) & KeyStates.Down) > 0)
                 {
-                    WidgetModel.DetectPanelOpacity5 = 1;
+                    WidgetModel.DetectPanelOpacitySpace = 1;
                 }
                 else
                 {
-                    WidgetModel.DetectPanelOpacity5 = WidgetModel.DetectPanelOpacity;
+                    WidgetModel.DetectPanelOpacitySpace = WidgetModel.DetectPanelOpacity;
                 }
+
+                #endregion
             }
         }
 

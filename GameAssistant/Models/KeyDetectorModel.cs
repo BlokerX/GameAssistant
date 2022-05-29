@@ -48,7 +48,7 @@ namespace GameAssistant.Models
         }
 
         //todo dodać enumy
-        private double[] _detectPanelOpacity = new double[6] { 0.75, 0.75, 0.75, 0.75, 0.75, 0.75 };
+        private double[] _detectPanelOpacity = new double[8] { 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75, 0.75 };
         /// <summary>
         /// Detect panel's opacity.
         /// </summary>
@@ -57,30 +57,40 @@ namespace GameAssistant.Models
             get => _detectPanelOpacity[0];
             set => SetProperty(ref _detectPanelOpacity[0], value);
         }
-        public double DetectPanelOpacity1
+        public double DetectPanelOpacityML
         {
             get => _detectPanelOpacity[1];
             set => SetProperty(ref _detectPanelOpacity[1], value);
         }
-        public double DetectPanelOpacity2
+        public double DetectPanelOpacityMR
         {
             get => _detectPanelOpacity[2];
             set => SetProperty(ref _detectPanelOpacity[2], value);
         }
-        public double DetectPanelOpacity3
+        public double DetectPanelOpacityW
         {
             get => _detectPanelOpacity[3];
             set => SetProperty(ref _detectPanelOpacity[3], value);
         }
-        public double DetectPanelOpacity4
+        public double DetectPanelOpacityA
         {
             get => _detectPanelOpacity[4];
             set => SetProperty(ref _detectPanelOpacity[4], value);
         }
-        public double DetectPanelOpacity5
+        public double DetectPanelOpacityS
         {
             get => _detectPanelOpacity[5];
             set => SetProperty(ref _detectPanelOpacity[5], value);
+        }
+        public double DetectPanelOpacityD
+        {
+            get => _detectPanelOpacity[6];
+            set => SetProperty(ref _detectPanelOpacity[6], value);
+        }
+        public double DetectPanelOpacitySpace
+        {
+            get => _detectPanelOpacity[7];
+            set => SetProperty(ref _detectPanelOpacity[7], value);
         }
 
         private AnimatedBrush _detectPanelAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Cyan));

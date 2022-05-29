@@ -39,26 +39,64 @@
               Grid.ColumnSpan="3" Grid.RowSpan="3"/>
 
         <Border Background="{Binding WidgetModel.ForegroundAnimatedBrush.BrushContainer.Variable}"
-                Opacity="{Binding WidgetModel.DetectPanelOpacity1}"
+                Opacity="{Binding WidgetModel.DetectPanelOpacityML}"
+                Padding="2"
+                Margin="1"
+                Grid.Row="0"
+                Grid.Column="0">
+
+            <Border Background="{Binding WidgetModel.DetectPanelAnimatedBrush.BrushContainer.Variable}">
+
+                <Label Content="M0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Foreground="{Binding WidgetModel.ForegroundAnimatedBrush.BrushContainer.Variable}"
+                   FontSize="{Binding WidgetModel.FontSize}"/>
+
+            </Border>
+
+        </Border>
+
+        <Border Background="{Binding WidgetModel.ForegroundAnimatedBrush.BrushContainer.Variable}"
+                Opacity="{Binding WidgetModel.DetectPanelOpacityW}"
                 Padding="2"
                 Margin="1"
                 Grid.Row="0"
                 Grid.Column="1">
-            
+
             <Border Background="{Binding WidgetModel.DetectPanelAnimatedBrush.BrushContainer.Variable}">
-                
+
                 <Label Content="W"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    Foreground="{Binding WidgetModel.ForegroundAnimatedBrush.BrushContainer.Variable}"
                    FontSize="{Binding WidgetModel.FontSize}"/>
-                
+
             </Border>
-            
+
         </Border>
 
         <Border Background="{Binding WidgetModel.ForegroundAnimatedBrush.BrushContainer.Variable}"
-                Opacity="{Binding WidgetModel.DetectPanelOpacity2}"
+                Opacity="{Binding WidgetModel.DetectPanelOpacityMR}"
+                Padding="2"
+                Margin="1"
+                Grid.Row="0"
+                Grid.Column="2">
+
+            <Border Background="{Binding WidgetModel.DetectPanelAnimatedBrush.BrushContainer.Variable}">
+
+                <Label Content="M1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Foreground="{Binding WidgetModel.ForegroundAnimatedBrush.BrushContainer.Variable}"
+                   FontSize="{Binding WidgetModel.FontSize}"/>
+
+            </Border>
+
+        </Border>
+
+        <Border Background="{Binding WidgetModel.ForegroundAnimatedBrush.BrushContainer.Variable}"
+                Opacity="{Binding WidgetModel.DetectPanelOpacityA}"
                 Padding="2"
                 Margin="1"
                 Grid.Row="1"
@@ -77,7 +115,7 @@
         </Border>
 
         <Border Background="{Binding WidgetModel.ForegroundAnimatedBrush.BrushContainer.Variable}"
-                Opacity="{Binding WidgetModel.DetectPanelOpacity3}"
+                Opacity="{Binding WidgetModel.DetectPanelOpacityS}"
                 Padding="2"
                 Margin="1"
                 Grid.Row="1"
@@ -96,7 +134,7 @@
         </Border>
 
         <Border Background="{Binding WidgetModel.ForegroundAnimatedBrush.BrushContainer.Variable}"
-                Opacity="{Binding WidgetModel.DetectPanelOpacity4}"
+                Opacity="{Binding WidgetModel.DetectPanelOpacityD}"
                 Padding="2"
                 Margin="1"
                 Grid.Row="1"
@@ -115,7 +153,7 @@
         </Border>
 
         <Border Background="{Binding WidgetModel.ForegroundAnimatedBrush.BrushContainer.Variable}"
-                Opacity="{Binding WidgetModel.DetectPanelOpacity5}"
+                Opacity="{Binding WidgetModel.DetectPanelOpacitySpace}"
                 Padding="2"
                 Margin="1"
                 Grid.Row="2"
