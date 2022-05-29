@@ -151,6 +151,7 @@
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\BindableObject.cs" />
     <Compile Include="Core\VariableContainer.cs" />
+    <Compile Include="Models\KeyDetectorModel.cs" />
     <Compile Include="Models\BrowserModel.cs" />
     <Compile Include="Models\CalculatorModel.cs" />
     <Compile Include="Models\ClockModel.cs" />
@@ -192,6 +193,9 @@
     <Compile Include="Services\WidgetManager.cs" />
     <Compile Include="Services\MVVMUnit.cs" />
     <Compile Include="Widgets\AllWidgetsContainer.cs" />
+    <Compile Include="Widgets\KeyDetectorWidget.xaml.cs">
+      <DependentUpon>KeyDetectorWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widgets\BrowserWidget.xaml.cs">
       <DependentUpon>BrowserWidget.xaml</DependentUpon>
     </Compile>
@@ -199,6 +203,7 @@
       <DependentUpon>CalculatorWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="Widgets\WidgetContainer.cs" />
+    <Compile Include="WidgetViewModels\KeyDetectorViewModel.cs" />
     <Compile Include="WidgetViewModels\BrowserViewModel.cs" />
     <Compile Include="WidgetViewModels\CalculatorViewModel.cs" />
     <Compile Include="WidgetViewModels\ClockViewModel.cs" />
@@ -297,6 +302,10 @@
     <Page Include="Templates\SettingButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widgets\KeyDetectorWidget.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Widgets\BrowserWidget.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -139,6 +139,7 @@ namespace GameAssistant
         /// <param name="e">Startup args.</param>
         protected override void OnStartup(StartupEventArgs e)
         {
+            new KeyDetectorWidget().Show();
             base.OnStartup(e);
 
             SelectDisks();
