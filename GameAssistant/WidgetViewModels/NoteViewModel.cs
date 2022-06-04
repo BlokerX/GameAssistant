@@ -50,18 +50,7 @@ namespace GameAssistant.WidgetViewModels
         /// </summary>
         public NoteViewModel()
         {
-            // Set title:
-            WidgetModel.Title = "Note widget";
-
-            // Set widget size:
-            WidgetModel.Width = 360;
-            WidgetModel.Height = 280;
-
-            // Set widget position:
-            WidgetModel.ScreenPositionY += 330;
-
-            // Set widget background color:
-            WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.OrangeRed);
+            LoadModel();
 
             // Set selected note:
             SelectedNote = new NoteInformations()
@@ -163,6 +152,22 @@ namespace GameAssistant.WidgetViewModels
             // Check save notes:
             LoadNotesList();
 
+        }
+
+        public void LoadModel()
+        {
+            // Set title:
+            WidgetModel.Title = "Note widget";
+
+            // Set widget size:
+            WidgetModel.Width = 360;
+            WidgetModel.Height = 280;
+
+            // Set widget position:
+            WidgetModel.ScreenPositionY += 330;
+
+            // Set widget background color:
+            WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.OrangeRed);
         }
 
         private ICommand _backButtonCommand = new RelayCommand((o) => { });

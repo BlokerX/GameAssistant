@@ -33,6 +33,7 @@ namespace GameAssistant.Windows
                 (NoteWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
                 (CalculatorWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
                 (BrowserWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
+                (KeyDetectorWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
             };
         }
 
@@ -40,12 +41,7 @@ namespace GameAssistant.Windows
         /// Constructor with widgets.
         /// </summary>
         /// <param name="widgetsContainer"></param>
-        public SettingsWindow(/*ref WidgetContainer<ClockWidget> clockWidgetContainer,
-            ref WidgetContainer<PictureWidget> pictureWidgetContainer,
-            ref WidgetContainer<NoteWidget> noteWidgetContainer,
-            ref WidgetContainer<CalculatorWidget> calculatorWidgetContainer,
-            ref WidgetContainer<BrowserWidget> browserWidgetContainer*/
-            ref AllWidgetsContainer widgetsContainer) : this()
+        public SettingsWindow(ref AllWidgetsContainer widgetsContainer) : this()
         {
             GeneralSettingsFrame.Content = new GeneralSettingsPage(ref widgetsContainer);
 
@@ -54,6 +50,7 @@ namespace GameAssistant.Windows
             NoteWidgetFrame.Content = new NoteSettingsPage(ref widgetsContainer.noteWidgetContainer);
             CalculatorWidgetFrame.Content = new CalculatorSettingsPage(ref widgetsContainer.calculatorWidgetContainer);
             BrowserWidgetFrame.Content = new BrowserSettingsPage(ref widgetsContainer.browserWidgetContainer);
+            KeyDetectorWidgetFrame.Content = new KeyDetectorSettingsPage(ref widgetsContainer.keyDetectorWidgetContainer);
         }
 
         /// <summary>
@@ -67,6 +64,7 @@ namespace GameAssistant.Windows
             NoteWidgetFrame.Visibility = Visibility.Collapsed;
             CalculatorWidgetFrame.Visibility = Visibility.Collapsed;
             BrowserWidgetFrame.Visibility = Visibility.Collapsed;
+            KeyDetectorWidgetFrame.Visibility = Visibility.Collapsed;
             AboutFrame.Visibility = Visibility.Collapsed;
         }
 
@@ -82,6 +80,7 @@ namespace GameAssistant.Windows
             NoteWidgetButton.BorderThickness = new Thickness(0);
             CalculatorWidgetButton.BorderThickness = new Thickness(0);
             BrowserWidgetButton.BorderThickness = new Thickness(0);
+            KeyDetectorWidgetButton.BorderThickness = new Thickness(0);
             AboutButton.BorderThickness = new Thickness(0);
 
             senderButton.BorderThickness = new Thickness(1);
@@ -141,6 +140,16 @@ namespace GameAssistant.Windows
         {
             HideAllPages();
             BrowserWidgetFrame.Visibility = Visibility.Visible;
+            CheckMenuButton(sender as Button);
+        }
+
+        /// <summary>
+        /// On key detector widget button click.
+        /// </summary>
+        private void KeyDetectorWidgetButton_Click(object sender, RoutedEventArgs e)
+        {
+            HideAllPages();
+            KeyDetectorWidgetFrame.Visibility = Visibility.Visible;
             CheckMenuButton(sender as Button);
         }
 

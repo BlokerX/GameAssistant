@@ -1,0 +1,137 @@
+﻿<pages:WidgetSettingsPage
+    x:Class="GameAssistant.Pages.KeyDetectorSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:GameAssistant.Controls"
+    xmlns:pages="clr-namespace:GameAssistant.Pages"
+    mc:Ignorable="d"
+    Title="ClockSettingsPage"  d:DesignHeight="760" d:DesignWidth="997">
+
+    <StackPanel>
+
+        <Label Content="Key Detector Widget - configuration settings"
+                           FontSize="24"
+                           Foreground="White"/>
+
+        <StackPanel>
+
+            <Label Content="Visibility:"
+                   Style="{StaticResource SettingsGroupTitle}" />
+
+            <StackPanel>
+
+                <controls:BoolSettingProperty x:Name="ActiveProperty" PropertyName="Active:" 
+                                              PropertyValueChanged="ActiveProperty_PropertyValueChanged"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel>
+
+            <Label Content="Colors:"
+                   Style="{StaticResource SettingsGroupTitle}"/>
+
+            <StackPanel>
+
+                <controls:ColorSettingProperty x:Name="BackgroundColorProperty" 
+                                               PropertyName="Background color:"
+                                               PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"/>
+
+                <controls:AnimationModeSettingProperty x:Name="BackgroundAnimationProperty"
+                                                       PropertyName="Background animation:"
+                                                       PropertyValueChanged="BackgroundAnimationProperty_PropertyValueChanged"/>
+
+                <controls:ColorSettingProperty x:Name="ForegroundColorProperty"
+                                               PropertyName="Foreground color:"
+                                               PropertyColorChanged="ForegroundColorProperty_PropertyColorChanged"/>
+                
+                <controls:AnimationModeSettingProperty x:Name="ForegroundAnimationProperty"
+                                                       PropertyName="Foreground animation:"
+                                                       PropertyValueChanged="ForegroundAnimationProperty_PropertyValueChanged"/>
+                
+                <controls:ColorSettingProperty x:Name="DetectPanelColorProperty"
+                                               PropertyName="Detect panel color:"
+                                               PropertyColorChanged="DetectPanelColorProperty_PropertyColorChanged"/>
+
+                <controls:AnimationModeSettingProperty x:Name="DetectPanelAnimationProperty"
+                                                       PropertyName="DetectPanel animation:"
+                                                       PropertyValueChanged="DetectPanelAnimationProperty_PropertyValueChanged"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel>
+
+            <Label Content="Opacity:"
+                   Style="{StaticResource SettingsGroupTitle}"/>
+
+            <StackPanel>
+
+                <controls:DoubleSettingProperty x:Name="BackgroundOpacityProperty"
+                                                 PropertyName="Background opacity:"
+                                                 PropertyValueChanged="BackgroundOpacityProperty_PropertyValueChanged"/>
+
+                <controls:DoubleSettingProperty x:Name="ForegroundOpacityProperty"
+                                                 PropertyName="Foreground opacity:"
+                                                 PropertyValueChanged="ForegroundOpacityProperty_PropertyValueChanged"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel>
+
+            <Label Content="Font:"
+                   Style="{StaticResource SettingsGroupTitle}"/>
+
+            <StackPanel>
+
+                <controls:FontSettingProperty x:Name="FontSettingsPropertyPanel"
+                                              PropertyValueChanged="FontSettingsPropertyPanel_PropertyValueChanged"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel>
+
+            <Label Content="Other:"
+                   Style="{StaticResource SettingsGroupTitle}"/>
+
+            <StackPanel>
+
+                <controls:BoolSettingProperty x:Name="CanResizeProperty"
+                                              PropertyName="Can resize:"
+                                              PropertyValueChanged="CanResizeProperty_PropertyValueChanged"/>
+
+                <controls:BoolSettingProperty x:Name="DragActiveProperty"
+                                              PropertyName="Drag active:"
+                                              PropertyValueChanged="DragActiveProperty_PropertyValueChanged"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <Button x:Name="DefaultSettingsButton"
+                Style="{StaticResource SettingButton}"
+                Content="Default settings"
+                Click="DefaultSettingsButton_Click"/>
+
+        <Button x:Name="OpenSaveConfigurationDireButton"
+                Style="{StaticResource SettingButton}"
+                Content="Open save configuration dire"
+                Click="OpenSaveConfigurationDireButton_Click"/>
+
+        <Button x:Name="LoadSavedConfigurationButton"
+                Style="{StaticResource SettingButton}"
+                Content="Download save configuration"
+                Click="LoadSavedConfigurationButton_Click"/>
+
+
+    </StackPanel>
+
+</pages:WidgetSettingsPage>

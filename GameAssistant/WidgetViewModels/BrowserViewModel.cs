@@ -26,6 +26,11 @@ namespace GameAssistant.WidgetViewModels
         /// </summary>
         public BrowserViewModel()
         {
+            LoadModel();
+        }
+
+        public void LoadModel()
+        {
             // Set title:
             WidgetModel.Title = "Browser widget";
 
@@ -40,6 +45,5 @@ namespace GameAssistant.WidgetViewModels
             WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.Navy);
             WidgetModel.BackgroundOpacity = 0.6;
         }
-
     }
 }

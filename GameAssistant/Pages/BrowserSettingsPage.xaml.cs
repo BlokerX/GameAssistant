@@ -210,7 +210,8 @@ namespace GameAssistant.Pages
                 {
                     WidgetManager.CloseWidget<BrowserWidget, BrowserModel>(ref _browserWidgetContainer.Widget);
                 }
-                _browserWidgetContainer.Widget = new BrowserWidget();
+                _browserWidgetContainer.Widget = WidgetManager.CreateWidget<BrowserWidget, BrowserViewModel, BrowserModel>(new BrowserModel());
+                (_browserWidgetContainer.Widget.DataContext as IWidgetViewModel<BrowserModel>).LoadModel();
                 _browserWidgetContainer.Widget.Show();
                 LoadWidget(ref _browserWidgetContainer);
                 WidgetManager.SaveWidgetConfigurationInFile<BrowserWidget, BrowserModel>(_browserWidgetContainer.Widget);

@@ -93,16 +93,6 @@ namespace GameAssistant.Models
             set => SetProperty(ref _detectPanelOpacity[7], value);
         }
 
-        private AnimatedBrush _detectPanelAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Cyan));
-        /// <summary>
-        /// Detect panel's animated brush.
-        /// </summary>
-        public AnimatedBrush DetectPanelAnimatedBrush
-        {
-            get => _detectPanelAnimatedBrush;
-            set => SetProperty(ref _detectPanelAnimatedBrush, value);
-        }
-
         private AnimatedBrush _foregroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Color.FromArgb(255, 0, 0, 0)));
         /// <summary>
         /// Detect panel font's animated brush.
@@ -111,6 +101,16 @@ namespace GameAssistant.Models
         {
             get => _foregroundAnimatedBrush;
             set => SetProperty(ref _foregroundAnimatedBrush, value);
+        }
+
+        private AnimatedBrush _detectPanelAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Cyan));
+        /// <summary>
+        /// Detect panel's animated brush.
+        /// </summary>
+        public AnimatedBrush DetectPanelAnimatedBrush
+        {
+            get => _detectPanelAnimatedBrush;
+            set => SetProperty(ref _detectPanelAnimatedBrush, value);
         }
 
         #endregion

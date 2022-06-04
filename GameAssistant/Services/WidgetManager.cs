@@ -48,6 +48,12 @@ namespace GameAssistant.Services
                 WidgetViewModelType = typeof(BrowserViewModel),
                 WidgetModelType = typeof(BrowserModel)
             },
+            new MVVMUnit()
+            {
+                WidgetType = typeof(KeyDetectorWidget),
+                WidgetViewModelType = typeof(KeyDetectorViewModel),
+                WidgetModelType = typeof(KeyDetectorModel)
+            },
         };
 
         /// <summary>

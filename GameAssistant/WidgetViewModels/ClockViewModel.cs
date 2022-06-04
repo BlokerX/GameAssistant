@@ -26,6 +26,17 @@ namespace GameAssistant.WidgetViewModels
         /// </summary>
         public ClockViewModel()
         {
+            LoadModel();
+
+            // Clock timer configuration:
+            ClockTimer.Elapsed += (sender, e) => ClockTime = DateTime.Now.ToString("HH:mm:ss");
+
+            // Run clock:
+            ClockTimer.Start();
+        }
+
+        public void LoadModel()
+        {
             // Set title:
             WidgetModel.Title = "Clock widget";
 
@@ -35,12 +46,6 @@ namespace GameAssistant.WidgetViewModels
 
             // Set widget background color:
             WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.Yellow);
-
-            // Clock timer configuration:
-            ClockTimer.Elapsed += (sender, e) => ClockTime = DateTime.Now.ToString("HH:mm:ss");
-
-            // Run clock:
-            ClockTimer.Start();
         }
 
         private string _clockTime = DateTime.Now.ToString("HH:mm:ss");

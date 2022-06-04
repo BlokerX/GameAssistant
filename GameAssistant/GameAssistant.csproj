@@ -164,6 +164,9 @@
     <Compile Include="Pages\CalculatorSettingsPage.xaml.cs">
       <DependentUpon>CalculatorSettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\KeyDetectorSettingsPage.xaml.cs">
+      <DependentUpon>KeyDetectorSettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ClockSettingsPage.xaml.cs">
       <DependentUpon>ClockSettingsPage.xaml</DependentUpon>
     </Compile>
@@ -264,6 +267,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CalculatorSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\KeyDetectorSettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

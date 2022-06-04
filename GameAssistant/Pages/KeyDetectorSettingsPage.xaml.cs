@@ -12,33 +12,33 @@ using System.Windows.Media;
 namespace GameAssistant.Pages
 {
     /// <summary>
-    /// Logika interakcji dla klasy ClockSettingsPage.xaml
+    /// Logika interakcji dla klasy KeyDetectorSettingsPage.xaml
     /// </summary>
-    public partial class ClockSettingsPage : WidgetSettingsPage
+    public partial class KeyDetectorSettingsPage : WidgetSettingsPage
     {
         #region Constructors
 
         /// <summary>
         /// Default constructor.
         /// </summary>
-        /// <param name="clockWidget">Widget container with clock widget to use.</param>
-        public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget)
+        /// <param name="keyDetectorWidget">Widget container with keyDetector widget to use.</param>
+        public KeyDetectorSettingsPage(ref WidgetContainer<KeyDetectorWidget> keyDetectorWidget)
         {
             // Register widget change active state event:
-            ClockWidget.Events.WidgetActiveChanged += WidgetChangeActiveStateMethodForSettingsPage;
+            KeyDetectorWidget.Events.WidgetActiveChanged += WidgetChangeActiveStateMethodForSettingsPage;
 
             InitializeComponent();
 
-            ClockWidgetContainer = clockWidget;
-            LoadWidget(ref _clockWidgetContainer);
+            KeyDetectorWidgetContainer = keyDetectorWidget;
+            LoadWidget(ref _keyDetectorWidgetContainer);
 
         }
 
-        public override void RemovePageMethodsFromWidgetEvents() => ClockWidget.Events.WidgetActiveChanged -= WidgetChangeActiveStateMethodForSettingsPage;
+        public override void RemovePageMethodsFromWidgetEvents() => KeyDetectorWidget.Events.WidgetActiveChanged -= WidgetChangeActiveStateMethodForSettingsPage;
 
-        public ClockSettingsPage(ref WidgetContainer<ClockWidget> clockWidget, ref bool? clockWidgetState) : this(ref clockWidget)
+        public KeyDetectorSettingsPage(ref WidgetContainer<KeyDetectorWidget> keyDetectorWidget, ref bool? keyDetectorWidgetState) : this(ref keyDetectorWidget)
         {
-            ActiveProperty.PropertyValue = clockWidgetState;
+            ActiveProperty.PropertyValue = keyDetectorWidgetState;
         }
 
         private void WidgetChangeActiveStateMethodForSettingsPage(bool state)
@@ -52,10 +52,10 @@ namespace GameAssistant.Pages
         /// <summary>
         /// Load widget in settings page.
         /// </summary>
-        /// <param name="clockWidgetContainer">Clock widget to load.</param>
-        private void LoadWidget(ref WidgetContainer<ClockWidget> clockWidgetContainer)
+        /// <param name="keyDetectorWidgetContainer">KeyDetector widget to load.</param>
+        private void LoadWidget(ref WidgetContainer<KeyDetectorWidget> keyDetectorWidgetContainer)
         {
-            if (clockWidgetContainer.Widget == null)
+            if (keyDetectorWidgetContainer.Widget == null)
             {
                 this.ActiveProperty.PropertyValue = false;
                 ActiveChanged(false);
@@ -63,23 +63,25 @@ namespace GameAssistant.Pages
             else
             {
                 this.ActiveProperty.PropertyValue = true;
-                LoadWidgetSettings(ref clockWidgetContainer);
+                LoadWidgetSettings(ref keyDetectorWidgetContainer);
                 ActiveChanged(true);
             }
         }
 
-        private void LoadWidgetSettings(ref WidgetContainer<ClockWidget> clockWidgetContainer)
+        private void LoadWidgetSettings(ref WidgetContainer<KeyDetectorWidget> keyDetectorWidgetContainer)
         {
-            var model = (clockWidgetContainer.Widget.DataContext as IWidgetViewModel<ClockModel>).WidgetModel;
+            var model = (keyDetectorWidgetContainer.Widget.DataContext as IWidgetViewModel<KeyDetectorModel>).WidgetModel;
 
             this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushContainer.Variable;
             this.ForegroundColorProperty.PropertyColor = model.ForegroundAnimatedBrush.BrushContainer.Variable;
+            this.DetectPanelColorProperty.PropertyColor = model.DetectPanelAnimatedBrush.BrushContainer.Variable;
 
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
-            this.ForegroundOpacityProperty.PropertyValue = model.ClockLabelOpacity;
+            this.ForegroundOpacityProperty.PropertyValue = model.DetectPanelOpacity;
 
             this.BackgroundAnimationProperty.SelectedElementIndex = (int)model.BackgroundAnimatedBrush.BrushAnimationManager.Animation;
             this.ForegroundAnimationProperty.SelectedElementIndex = (int)model.ForegroundAnimatedBrush.BrushAnimationManager.Animation;
+            this.DetectPanelAnimationProperty.SelectedElementIndex = (int)model.DetectPanelAnimatedBrush.BrushAnimationManager.Animation;
 
             this.FontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.FontFamily);
             this.FontSettingsPropertyPanel.PropertyFontSize = model.FontSize;
@@ -93,12 +95,14 @@ namespace GameAssistant.Pages
         {
             this.BackgroundColorProperty.IsEnabled = newState;
             this.ForegroundColorProperty.IsEnabled = newState;
+            this.DetectPanelColorProperty.IsEnabled = newState;
 
             this.BackgroundOpacityProperty.IsEnabled = newState;
             this.ForegroundOpacityProperty.IsEnabled = newState;
 
             this.BackgroundAnimationProperty.IsEnabled = newState;
             this.ForegroundAnimationProperty.IsEnabled = newState;
+            this.DetectPanelAnimationProperty.IsEnabled = newState;
 
             this.FontSettingsPropertyPanel.IsEnabled = newState;
 
@@ -108,20 +112,20 @@ namespace GameAssistant.Pages
 
         #region Widget
 
-        public static readonly DependencyProperty PropertyClockWidgetContainer = DependencyProperty.Register(
-        "ClockWidgetContainer", typeof(WidgetContainer<ClockWidget>),
-        typeof(ClockSettingsPage)
+        public static readonly DependencyProperty PropertyKeyDetectorWidgetContainer = DependencyProperty.Register(
+        "KeyDetectorWidgetContainer", typeof(WidgetContainer<KeyDetectorWidget>),
+        typeof(KeyDetectorSettingsPage)
         );
 
-        private WidgetContainer<ClockWidget> _clockWidgetContainer;
+        private WidgetContainer<KeyDetectorWidget> _keyDetectorWidgetContainer;
 
         /// <summary>
-        /// The clock container with clock widget.
+        /// The keyDetector container with keyDetector widget.
         /// </summary>
-        public WidgetContainer<ClockWidget> ClockWidgetContainer
+        public WidgetContainer<KeyDetectorWidget> KeyDetectorWidgetContainer
         {
-            get => _clockWidgetContainer;
-            set => SetProperty(ref _clockWidgetContainer, value);
+            get => _keyDetectorWidgetContainer;
+            set => SetProperty(ref _keyDetectorWidgetContainer, value);
         }
 
         #endregion
@@ -130,9 +134,9 @@ namespace GameAssistant.Pages
 
         private void BackgroundColorProperty_PropertyColorChanged(object sender, Brush e)
         {
-            if (ClockWidgetContainer.Widget?.DataContext != null)
+            if (KeyDetectorWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<KeyDetectorWidget, KeyDetectorModel>(ref KeyDetectorWidgetContainer.Widget);
                 model.BackgroundAnimatedBrush.BrushContainer.Variable = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
@@ -140,9 +144,9 @@ namespace GameAssistant.Pages
 
         private void BackgroundAnimationProperty_PropertyValueChanged(object sender, int e)
         {
-            if (ClockWidgetContainer.Widget?.DataContext != null)
+            if (KeyDetectorWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<KeyDetectorWidget, KeyDetectorModel>(ref KeyDetectorWidgetContainer.Widget);
                 model.BackgroundAnimatedBrush.BrushAnimationManager.Animation = (AnimationManager.AnimationType)e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
@@ -150,9 +154,9 @@ namespace GameAssistant.Pages
 
         private void ForegroundColorProperty_PropertyColorChanged(object sender, Brush e)
         {
-            if (ClockWidgetContainer.Widget.DataContext != null)
+            if (KeyDetectorWidgetContainer.Widget.DataContext != null)
             {
-                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<KeyDetectorWidget, KeyDetectorModel>(ref KeyDetectorWidgetContainer.Widget);
                 model.ForegroundAnimatedBrush.BrushContainer.Variable = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
@@ -160,19 +164,39 @@ namespace GameAssistant.Pages
 
         private void ForegroundAnimationProperty_PropertyValueChanged(object sender, int e)
         {
-            if (ClockWidgetContainer.Widget?.DataContext != null)
+            if (KeyDetectorWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<KeyDetectorWidget, KeyDetectorModel>(ref KeyDetectorWidgetContainer.Widget);
                 model.ForegroundAnimatedBrush.BrushAnimationManager.Animation = (AnimationManager.AnimationType)e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+        
+        private void DetectPanelColorProperty_PropertyColorChanged(object sender, Brush e)
+        {
+            if (KeyDetectorWidgetContainer.Widget.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<KeyDetectorWidget, KeyDetectorModel>(ref KeyDetectorWidgetContainer.Widget);
+                model.DetectPanelAnimatedBrush.BrushContainer.Variable = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+
+        private void DetectPanelAnimationProperty_PropertyValueChanged(object sender, int e)
+        {
+            if (KeyDetectorWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<KeyDetectorWidget, KeyDetectorModel>(ref KeyDetectorWidgetContainer.Widget);
+                model.DetectPanelAnimatedBrush.BrushAnimationManager.Animation = (AnimationManager.AnimationType)e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
 
         private void BackgroundOpacityProperty_PropertyValueChanged(object sender, double e)
         {
-            if (ClockWidgetContainer.Widget?.DataContext != null)
+            if (KeyDetectorWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<KeyDetectorWidget, KeyDetectorModel>(ref KeyDetectorWidgetContainer.Widget);
                 model.BackgroundOpacity = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
@@ -180,19 +204,19 @@ namespace GameAssistant.Pages
 
         private void ForegroundOpacityProperty_PropertyValueChanged(object sender, double e)
         {
-            if (ClockWidgetContainer.Widget?.DataContext != null)
+            if (KeyDetectorWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
-                model.ClockLabelOpacity = e;
+                var model = WidgetManager.GetModelFromWidget<KeyDetectorWidget, KeyDetectorModel>(ref KeyDetectorWidgetContainer.Widget);
+                model.DetectPanelOpacity = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
 
         private void CanResizeProperty_PropertyValueChanged(object sender, bool? e)
         {
-            if (ClockWidgetContainer.Widget?.DataContext != null)
+            if (KeyDetectorWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<KeyDetectorWidget, KeyDetectorModel>(ref KeyDetectorWidgetContainer.Widget);
                 model.ResizeMode = TypeConverter.BoolToResizeMod(e);
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
@@ -200,9 +224,9 @@ namespace GameAssistant.Pages
 
         private void DragActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            if (ClockWidgetContainer.Widget?.DataContext != null)
+            if (KeyDetectorWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<KeyDetectorWidget, KeyDetectorModel>(ref KeyDetectorWidgetContainer.Widget);
                 model.IsDragActive = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
@@ -210,9 +234,9 @@ namespace GameAssistant.Pages
 
         private void FontSettingsPropertyPanel_PropertyValueChanged(object sender, (FontFamily, double) e)
         {
-            if (ClockWidgetContainer.Widget?.DataContext != null)
+            if (KeyDetectorWidgetContainer.Widget?.DataContext != null)
             {
-                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                var model = WidgetManager.GetModelFromWidget<KeyDetectorWidget, KeyDetectorModel>(ref KeyDetectorWidgetContainer.Widget);
                 model.FontFamily = e.Item1.ToString();
                 model.FontSize = e.Item2;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
@@ -221,11 +245,11 @@ namespace GameAssistant.Pages
 
         protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
-            ClockWidget.Events.WidgetActiveChanged_Invoke((bool)e);
+            KeyDetectorWidget.Events.WidgetActiveChanged_Invoke((bool)e);
 
-            if (_clockWidgetContainer.Widget != null)
+            if (_keyDetectorWidgetContainer.Widget != null)
             {
-                LoadWidgetSettings(ref _clockWidgetContainer);
+                LoadWidgetSettings(ref _keyDetectorWidgetContainer);
             }
             ActiveChanged((bool)e);
         }
@@ -236,21 +260,21 @@ namespace GameAssistant.Pages
         {
             if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
             {
-                if (_clockWidgetContainer.Widget != null)
+                if (_keyDetectorWidgetContainer.Widget != null)
                 {
-                    WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref _clockWidgetContainer.Widget);
+                    WidgetManager.CloseWidget<KeyDetectorWidget, KeyDetectorModel>(ref _keyDetectorWidgetContainer.Widget);
                 }
-                _clockWidgetContainer.Widget = WidgetManager.CreateWidget<ClockWidget, ClockViewModel, ClockModel>(new ClockModel());
-                (_clockWidgetContainer.Widget.DataContext as IWidgetViewModel<ClockModel>).LoadModel();
-                _clockWidgetContainer.Widget.Show();
-                LoadWidget(ref _clockWidgetContainer);
-                WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(_clockWidgetContainer.Widget);
+                _keyDetectorWidgetContainer.Widget = WidgetManager.CreateWidget<KeyDetectorWidget, KeyDetectorViewModel, KeyDetectorModel>(new KeyDetectorModel());
+                (_keyDetectorWidgetContainer.Widget.DataContext as IWidgetViewModel<KeyDetectorModel>).LoadModel();
+                _keyDetectorWidgetContainer.Widget.Show();
+                LoadWidget(ref _keyDetectorWidgetContainer);
+                WidgetManager.SaveWidgetConfigurationInFile<KeyDetectorWidget, KeyDetectorModel>(_keyDetectorWidgetContainer.Widget);
             }
         }
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(ClockWidget).Name));
+            Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(KeyDetectorWidget).Name));
         }
 
         protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
@@ -270,20 +294,20 @@ namespace GameAssistant.Pages
             {
                 if (MessageBox.Show("Should you change widget configuration?\n(Warning, if you change configuration settings without backup you will not be able to restore the current data.)", "Change setting configuration:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
                 {
-                    var model = new ClockModel();
+                    var model = new KeyDetectorModel();
                     using (var sr = File.OpenText(fileDialog.FileName))
                     {
-                        model = JsonConvert.DeserializeObject<ClockModel>(sr.ReadToEnd());
+                        model = JsonConvert.DeserializeObject<KeyDetectorModel>(sr.ReadToEnd());
                         WidgetManager.SaveWidgetConfigurationInFile(model);
                     }
 
-                    if (_clockWidgetContainer.Widget != null)
+                    if (_keyDetectorWidgetContainer.Widget != null)
                     {
-                        WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref _clockWidgetContainer.Widget);
+                        WidgetManager.CloseWidget<KeyDetectorWidget, KeyDetectorModel>(ref _keyDetectorWidgetContainer.Widget);
                     }
-                    WidgetManager.LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref _clockWidgetContainer.Widget);
-                    _clockWidgetContainer.Widget?.Show();
-                    LoadWidget(ref _clockWidgetContainer);
+                    WidgetManager.LoadWidget<KeyDetectorWidget, KeyDetectorViewModel, KeyDetectorModel>(ref _keyDetectorWidgetContainer.Widget);
+                    _keyDetectorWidgetContainer.Widget?.Show();
+                    LoadWidget(ref _keyDetectorWidgetContainer);
                 }
             }
         }

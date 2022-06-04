@@ -41,6 +41,13 @@
         /// </summary>
         public WidgetContainer<BrowserWidget> browserWidgetContainer;
         #endregion
+        
+        #region KeyDetectorWidgetContainer
+        /// <summary>
+        /// The key detector widget's container.
+        /// </summary>
+        public WidgetContainer<KeyDetectorWidget> keyDetectorWidgetContainer;
+        #endregion
 
         #endregion
     }

@@ -96,6 +96,15 @@ namespace GameAssistant.Pages
             {
                 BrowserWidgetActiveProperty.PropertyValue = true;
             }
+            
+            if (allWidgetsContainer.keyDetectorWidgetContainer.Widget == null)
+            {
+                KeyDetectorWidgetActiveProperty.PropertyValue = false;
+            }
+            else
+            {
+                KeyDetectorWidgetActiveProperty.PropertyValue = true;
+            }
         }
 
         #region Widgets Active Changed Events
@@ -110,6 +119,7 @@ namespace GameAssistant.Pages
             NoteWidget.Events.WidgetActiveChanged += NoteWidgetEvents_WidgetActiveChanged;
             CalculatorWidget.Events.WidgetActiveChanged += CalculatorWidgetEvents_WidgetActiveChanged;
             BrowserWidget.Events.WidgetActiveChanged += BrowserWidgetEvents_WidgetActiveChanged;
+            KeyDetectorWidget.Events.WidgetActiveChanged += KeyDetectoWidgetEvents_WidgetActiveChanged;
         }
 
         /// <summary>
@@ -122,6 +132,7 @@ namespace GameAssistant.Pages
             NoteWidget.Events.WidgetActiveChanged -= NoteWidgetEvents_WidgetActiveChanged;
             CalculatorWidget.Events.WidgetActiveChanged -= CalculatorWidgetEvents_WidgetActiveChanged;
             BrowserWidget.Events.WidgetActiveChanged -= BrowserWidgetEvents_WidgetActiveChanged;
+            KeyDetectorWidget.Events.WidgetActiveChanged -= KeyDetectoWidgetEvents_WidgetActiveChanged;
         }
 
         #region Widgets event's methods
@@ -158,6 +169,14 @@ namespace GameAssistant.Pages
         {
             if (BrowserWidgetActiveProperty.PropertyValue != state)
                 BrowserWidgetActiveProperty.PropertyValue = state;
+
+            CheckAllWidgetsActiveProperty();
+        }
+        
+        private void KeyDetectoWidgetEvents_WidgetActiveChanged(bool state)
+        {
+            if (KeyDetectorWidgetActiveProperty.PropertyValue != state)
+                KeyDetectorWidgetActiveProperty.PropertyValue = state;
 
             CheckAllWidgetsActiveProperty();
         }
@@ -205,6 +224,11 @@ namespace GameAssistant.Pages
         {
             BrowserWidget.Events.WidgetActiveChanged_Invoke((bool)e);
         }
+        
+        private void KeyDetectorWidgetActiveProperty_PropertyValueChanged(object sender, bool? e)
+        {
+            KeyDetectorWidget.Events.WidgetActiveChanged_Invoke((bool)e);
+        }
 
         #endregion
 
@@ -228,6 +252,9 @@ namespace GameAssistant.Pages
 
             if (BrowserWidgetActiveProperty.PropertyValue != e)
                 BrowserWidgetActiveProperty.PropertyValue = e;
+            
+            if (KeyDetectorWidgetActiveProperty.PropertyValue != e)
+                KeyDetectorWidgetActiveProperty.PropertyValue = e;
         }
 
         // a - czy sprawdzać wartość false
@@ -240,7 +267,8 @@ namespace GameAssistant.Pages
                 ClockWidgetActiveProperty.PropertyValue == PictureWidgetActiveProperty.PropertyValue &&
                 PictureWidgetActiveProperty.PropertyValue == NoteWidgetActiveProperty.PropertyValue &&
                 NoteWidgetActiveProperty.PropertyValue == CalculatorWidgetActiveProperty.PropertyValue &&
-                CalculatorWidgetActiveProperty.PropertyValue == BrowserWidgetActiveProperty.PropertyValue)
+                CalculatorWidgetActiveProperty.PropertyValue == BrowserWidgetActiveProperty.PropertyValue &&
+                BrowserWidgetActiveProperty.PropertyValue == KeyDetectorWidgetActiveProperty.PropertyValue)
             {
                 AllWidgetsActiveProperty.PropertyValue = true;
             }
@@ -263,7 +291,7 @@ namespace GameAssistant.Pages
             //    AllWidgetsContainer.clockWidgetContainer.Widget = new ClockWidget();
             //    AllWidgetsContainer.clockWidgetContainer.Widget.Show();
             //    todo metoda synchronizująca ładowanie widgetu
-            //    LoadWidget(ref AllWidgetsContainer.clockWidgetContainer);
+            //    LoadModel(ref AllWidgetsContainer.clockWidgetContainer);
             //    WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(AllWidgetsContainer.clockWidgetContainer.Widget);
             //}
         }
@@ -272,5 +300,6 @@ namespace GameAssistant.Pages
         {
             Process.Start("Explorer", AppFileSystem.WidgetsConfigurationsMainDire);
         }
+
     }
 }

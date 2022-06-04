@@ -41,6 +41,16 @@ namespace GameAssistant.WidgetViewModels
         /// </summary>
         public KeyDetectorViewModel()
         {
+            LoadModel();
+
+            // Key detect method:
+            KeyDetectorThread = new Thread(KeyboardKeyStateDetect);
+            KeyDetectorThread.SetApartmentState(ApartmentState.STA);
+            KeyDetectorThread.Start();
+        }
+
+        public void LoadModel()
+        {
             // Set title:
             WidgetModel.Title = "KeyDetector widget";
 
@@ -54,11 +64,6 @@ namespace GameAssistant.WidgetViewModels
             // Set widget background color:
             WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.Orange);
             WidgetModel.BackgroundOpacity = 0.6;
-
-            // Key detect method:
-            KeyDetectorThread = new Thread(KeyboardKeyStateDetect);
-            KeyDetectorThread.SetApartmentState(ApartmentState.STA);
-            KeyDetectorThread.Start();
         }
 
         public void Closing()
@@ -141,6 +146,5 @@ namespace GameAssistant.WidgetViewModels
                 #endregion
             }
         }
-
     }
 }

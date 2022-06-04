@@ -40,6 +40,9 @@
 
                 <controls:BoolSettingProperty x:Name="BrowserWidgetActiveProperty" PropertyName="Browser widget active:" 
                                               PropertyValueChanged="BrowserWidgetActiveProperty_PropertyValueChanged"/>
+                
+                <controls:BoolSettingProperty x:Name="KeyDetectorWidgetActiveProperty" PropertyName="Key detector widget active:" 
+                                              PropertyValueChanged="KeyDetectorWidgetActiveProperty_PropertyValueChanged"/>
 
             </StackPanel>
 

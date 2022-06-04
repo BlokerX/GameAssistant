@@ -23,7 +23,8 @@ namespace GameAssistant
             pictureWidgetContainer = new WidgetContainer<PictureWidget>(),
             noteWidgetContainer = new WidgetContainer<NoteWidget>(),
             calculatorWidgetContainer = new WidgetContainer<CalculatorWidget>(),
-            browserWidgetContainer = new WidgetContainer<BrowserWidget>()
+            browserWidgetContainer = new WidgetContainer<BrowserWidget>(),
+            keyDetectorWidgetContainer = new WidgetContainer<KeyDetectorWidget>()
         };
         #endregion
 
@@ -43,10 +44,11 @@ namespace GameAssistant
             NoteWidget,
             CalculatorWidget,
             BrowserWidget,
+            KeyDetectorWidget,
             // - //
-            SettingsWindow = 6,
+            SettingsWindow = 7,
             // - //
-            CloseApp = 8
+            CloseApp = 9
         }
 
         /// <summary>
@@ -87,6 +89,14 @@ namespace GameAssistant
         private void NotifyIcon_BrowserWidget_Settings_Click(object sender, System.EventArgs e)
         {
             BrowserWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.BrowserWidget].Checked);
+        }
+        
+        /// <summary>
+        /// Invoke when key detector widget button clicked.
+        /// </summary>
+        private void NotifyIcon_KeyDetectorWidget_Settings_Click(object sender, System.EventArgs e)
+        {
+            KeyDetectorWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.KeyDetectorWidget].Checked);
         }
 
         /// <summary>
@@ -139,7 +149,6 @@ namespace GameAssistant
         /// <param name="e">Startup args.</param>
         protected override void OnStartup(StartupEventArgs e)
         {
-            new KeyDetectorWidget().Show();
             base.OnStartup(e);
 
             SelectDisks();
@@ -149,7 +158,8 @@ namespace GameAssistant
                 nameof(PictureWidget),
                 nameof(NoteWidget),
                 nameof(CalculatorWidget),
-                nameof(BrowserWidget)
+                nameof(BrowserWidget),
+                nameof(KeyDetectorWidget)
             );
 
             // Register widget events:
@@ -168,6 +178,7 @@ namespace GameAssistant
                         new System.Windows.Forms.MenuItem("Note widget", NotifyIcon_NoteWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("Calculator widget", NotifyIcon_CalculatorWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("Browser widget", NotifyIcon_BrowserWidget_Settings_Click),
+                        new System.Windows.Forms.MenuItem("KeyDetector widget", NotifyIcon_KeyDetectorWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("-"),
                         new System.Windows.Forms.MenuItem("Settings", NotifyIcon_MenuItem_Settings_Click),
                         new System.Windows.Forms.MenuItem("-"),
@@ -200,6 +211,8 @@ namespace GameAssistant
             WidgetManager.ChangeWidgetState<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref widgetsContainer.calculatorWidgetContainer.Widget, b);
             BrowserWidget.Events.WidgetActiveChanged += (b) =>
             WidgetManager.ChangeWidgetState<BrowserWidget, BrowserViewModel, BrowserModel>(ref widgetsContainer.browserWidgetContainer.Widget, b);
+            KeyDetectorWidget.Events.WidgetActiveChanged += (b) =>
+            WidgetManager.ChangeWidgetState<KeyDetectorWidget, KeyDetectorViewModel, KeyDetectorModel>(ref widgetsContainer.keyDetectorWidgetContainer.Widget, b);
 
         }
 
@@ -210,10 +223,12 @@ namespace GameAssistant
             NoteWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.NoteWidget].Checked = b;
             CalculatorWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.CalculatorWidget].Checked = b;
             BrowserWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.BrowserWidget].Checked = b;
+            KeyDetectorWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.KeyDetectorWidget].Checked = b;
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
+            widgetsContainer.keyDetectorWidgetContainer?.Widget?.Close();
             CloseAndSaveWidgets();
             NotifyIcon.Dispose();
             base.OnExit(e);
@@ -257,6 +272,10 @@ namespace GameAssistant
             WidgetManager.LoadWidget<BrowserWidget, BrowserViewModel, BrowserModel>(ref widgetsContainer.browserWidgetContainer.Widget);
             if (widgetsContainer.browserWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.BrowserWidget].Checked = true;
+            
+            WidgetManager.LoadWidget<KeyDetectorWidget, KeyDetectorViewModel, KeyDetectorModel>(ref widgetsContainer.keyDetectorWidgetContainer.Widget);
+            if (widgetsContainer.keyDetectorWidgetContainer.Widget != null)
+                NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.KeyDetectorWidget].Checked = true;
         }
 
         /// <summary>
@@ -269,6 +288,7 @@ namespace GameAssistant
             WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(widgetsContainer.noteWidgetContainer.Widget);
             WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(widgetsContainer.calculatorWidgetContainer.Widget);
             WidgetManager.SaveWidgetConfigurationInFile<BrowserWidget, BrowserModel>(widgetsContainer.browserWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<KeyDetectorWidget, KeyDetectorModel>(widgetsContainer.keyDetectorWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -281,6 +301,7 @@ namespace GameAssistant
             WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref widgetsContainer.noteWidgetContainer.Widget);
             WidgetManager.CloseWidget<CalculatorWidget, CalculatorModel>(ref widgetsContainer.calculatorWidgetContainer.Widget);
             WidgetManager.CloseWidget<BrowserWidget, BrowserModel>(ref widgetsContainer.browserWidgetContainer.Widget);
+            WidgetManager.CloseWidget<KeyDetectorWidget, KeyDetectorModel>(ref widgetsContainer.keyDetectorWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -293,6 +314,7 @@ namespace GameAssistant
             WidgetManager.CloseAndSaveWidget<NoteWidget, NoteModel>(ref widgetsContainer.noteWidgetContainer.Widget);
             WidgetManager.CloseAndSaveWidget<CalculatorWidget, CalculatorModel>(ref widgetsContainer.calculatorWidgetContainer.Widget);
             WidgetManager.CloseAndSaveWidget<BrowserWidget, BrowserModel>(ref widgetsContainer.browserWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<KeyDetectorWidget, KeyDetectorModel>(ref widgetsContainer.keyDetectorWidgetContainer.Widget);
         }
 
         #endregion
