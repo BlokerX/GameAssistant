@@ -54,4 +54,4 @@ The browser works on chromium. You can use it for example to playing youtube vid
 
 # Information
 
-I find somebody who can help me with app development (and english😂).
+I look for somebody who can help me with app development (and english😂).
