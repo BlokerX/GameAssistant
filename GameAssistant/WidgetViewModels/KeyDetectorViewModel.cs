@@ -70,29 +70,28 @@ namespace GameAssistant.WidgetViewModels
         {
             while (_keyDetector_IsRunning)
             {
-                #region Mouse buttons
-                //todo naprawić to
-                if (Mouse.LeftButton == MouseButtonState.Pressed)
+                //todo dodać mouse buttons to
+                #region Keyboard buttons
+
+                if ((Keyboard.GetKeyStates(Key.Z) & KeyStates.Down) > 0)
                 {
-                    WidgetModel.DetectPanelOpacityML = 1;
+                    WidgetModel.DetectPanelOpacityZ = 1;
                 }
                 else
                 {
-                    WidgetModel.DetectPanelOpacityML = WidgetModel.DetectPanelOpacity;
+                    WidgetModel.DetectPanelOpacityZ = WidgetModel.DetectPanelOpacity;
                 }
                 
-                if (Mouse.RightButton == MouseButtonState.Pressed)
+                if ((Keyboard.GetKeyStates(Key.X) & KeyStates.Down) > 0)
                 {
-                    WidgetModel.DetectPanelOpacityMR = 1;
+                    WidgetModel.DetectPanelOpacityX = 1;
                 }
                 else
                 {
-                    WidgetModel.DetectPanelOpacityMR = WidgetModel.DetectPanelOpacity;
+                    WidgetModel.DetectPanelOpacityX = WidgetModel.DetectPanelOpacity;
                 }
 
-                #endregion
-
-                #region Keyboard buttons
+                // --- //
 
                 if ((Keyboard.GetKeyStates(Key.W) & KeyStates.Down) > 0)
                 {

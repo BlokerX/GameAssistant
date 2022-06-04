@@ -57,12 +57,12 @@ namespace GameAssistant.Models
             get => _detectPanelOpacity[0];
             set => SetProperty(ref _detectPanelOpacity[0], value);
         }
-        public double DetectPanelOpacityML
+        public double DetectPanelOpacityZ
         {
             get => _detectPanelOpacity[1];
             set => SetProperty(ref _detectPanelOpacity[1], value);
         }
-        public double DetectPanelOpacityMR
+        public double DetectPanelOpacityX
         {
             get => _detectPanelOpacity[2];
             set => SetProperty(ref _detectPanelOpacity[2], value);

@@ -142,7 +142,7 @@
     <Compile Include="Controls\PathSourceProperty.xaml.cs">
       <DependentUpon>PathSourceProperty.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SettingPropertyBase.cs" />
+    <Compile Include="Controls\BindableControl.cs" />
     <Compile Include="Controls\TextBoxStringSettingProperty.xaml.cs">
       <DependentUpon>TextBoxStringSettingProperty.xaml</DependentUpon>
     </Compile>

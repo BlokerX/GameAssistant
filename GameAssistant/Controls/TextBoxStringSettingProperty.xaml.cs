@@ -7,7 +7,7 @@ namespace GameAssistant.Controls
     /// <summary>
     /// Logika interakcji dla klasy TextBoxStringSettingProperty.xaml
     /// </summary>
-    public partial class TextBoxStringSettingProperty : SettingPropertyBase, ISettingProperty
+    public partial class TextBoxStringSettingProperty : BindableControl, ISettingProperty
     {
         /// <summary>
         /// Default constructor.

@@ -10,7 +10,7 @@ namespace GameAssistant.Controls
     /// <summary>
     /// Logika interakcji dla klasy ListBoxSettingProperty.xaml
     /// </summary>
-    public partial class ListBoxSettingProperty : SettingPropertyBase, ISettingProperty
+    public partial class ListBoxSettingProperty : BindableControl, ISettingProperty
     {
         /// <summary>
         /// Default constructor.

@@ -4,7 +4,7 @@ using System.Windows.Controls;
 
 namespace GameAssistant.Controls
 {
-    public class SettingPropertyBase : UserControl, INotifyPropertyChanged
+    public class BindableControl : UserControl, INotifyPropertyChanged
     {
         #region NotifyPropertyChanged (Implemented)
 
