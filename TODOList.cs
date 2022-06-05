@@ -3,6 +3,8 @@
 // TODO Opcja autostartu
 // TODO Animacja koloru poprawić wydajność
 
+// TODO Dodać przywracanie domyślnych ustawień wszystkim widgetom.
+
 // TODO Nowe Widgety: kalkulator, mikser głośności, detektor klawiszy
 
 // TODO Przechwytywanie aplikacji takich jak: Spotify, Discord

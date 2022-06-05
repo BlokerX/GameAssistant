@@ -1,8 +1,4 @@
 ﻿using GameAssistant.Services;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Media;
 
 namespace GameAssistant.Models

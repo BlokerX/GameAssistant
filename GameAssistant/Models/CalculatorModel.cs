@@ -1,5 +1,4 @@
-﻿using GameAssistant.Core;
-using GameAssistant.Services;
+﻿using GameAssistant.Services;
 using System.Windows.Media;
 
 namespace GameAssistant.Models
@@ -14,13 +13,13 @@ namespace GameAssistant.Models
         {
             AnimationToken_True += () => ButtonsBackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
             AnimationToken_False += () => ButtonsBackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
-            
+
             AnimationToken_True += () => ButtonsForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
             AnimationToken_False += () => ButtonsForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
-            
+
             AnimationToken_True += () => TextBoxBackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
             AnimationToken_False += () => TextBoxBackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
-            
+
             AnimationToken_True += () => TextBoxForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
             AnimationToken_False += () => TextBoxForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
         }

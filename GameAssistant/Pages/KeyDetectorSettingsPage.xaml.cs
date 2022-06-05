@@ -171,7 +171,7 @@ namespace GameAssistant.Pages
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
-        
+
         private void DetectPanelColorProperty_PropertyColorChanged(object sender, Brush e)
         {
             if (KeyDetectorWidgetContainer.Widget.DataContext != null)

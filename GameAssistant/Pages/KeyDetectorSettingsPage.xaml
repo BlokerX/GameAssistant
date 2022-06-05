@@ -47,11 +47,11 @@
                 <controls:ColorSettingProperty x:Name="ForegroundColorProperty"
                                                PropertyName="Foreground color:"
                                                PropertyColorChanged="ForegroundColorProperty_PropertyColorChanged"/>
-                
+
                 <controls:AnimationModeSettingProperty x:Name="ForegroundAnimationProperty"
                                                        PropertyName="Foreground animation:"
                                                        PropertyValueChanged="ForegroundAnimationProperty_PropertyValueChanged"/>
-                
+
                 <controls:ColorSettingProperty x:Name="DetectPanelColorProperty"
                                                PropertyName="Detect panel color:"
                                                PropertyColorChanged="DetectPanelColorProperty_PropertyColorChanged"/>

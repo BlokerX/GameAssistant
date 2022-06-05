@@ -4,14 +4,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="clr-namespace:GameAssistant.Controls" 
-    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:controlviewmodels="clr-namespace:GameAssistant.ControlViewModels"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:controls="clr-namespace:GameAssistant.Controls"
+    xmlns:controlviewmodels="clr-namespace:GameAssistant.ControlViewModels"
     mc:Ignorable="d" Padding="0,1">
 
     <UserControl.DataContext>
         <controlviewmodels:DoubleSettingPropertyViewModel/>
     </UserControl.DataContext>
-    
+
     <Border CornerRadius="0" x:Name="MainBorder" Background="#FF1B1616">
 
         <Grid>
@@ -54,7 +55,7 @@
                         Margin="5,5" SmallChange="0.25"
                         ValueChanged="ValueSlider_ValueChanged"/>
 
-                    <xctk:DoubleUpDown x:Name="ValueDoubleUpDown"
+                <xctk:DoubleUpDown x:Name="ValueDoubleUpDown"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Stretch"
                                        Margin="5,5" Grid.Column="1"

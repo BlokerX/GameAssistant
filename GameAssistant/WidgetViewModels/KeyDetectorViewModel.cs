@@ -1,9 +1,6 @@
 ﻿using GameAssistant.Core;
 using GameAssistant.Models;
-using System;
 using System.Threading;
-using System.Timers;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -34,7 +31,7 @@ namespace GameAssistant.WidgetViewModels
             set => SetProperty(ref _keyDetectorThread, value);
         }
 
-        private bool _keyDetector_IsRunning = true;
+        private bool _keyDetector_IsRunning;
 
         /// <summary>
         /// Default constructor.
@@ -47,6 +44,7 @@ namespace GameAssistant.WidgetViewModels
             KeyDetectorThread = new Thread(KeyboardKeyStateDetect);
             KeyDetectorThread.SetApartmentState(ApartmentState.STA);
             KeyDetectorThread.Start();
+            _keyDetector_IsRunning = true;
         }
 
         public void LoadModel()
@@ -60,6 +58,7 @@ namespace GameAssistant.WidgetViewModels
 
             // Set widget position:
             WidgetModel.ScreenPositionX += 410;
+            WidgetModel.ScreenPositionY += 335;
 
             // Set widget background color:
             WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.Orange);
@@ -86,7 +85,7 @@ namespace GameAssistant.WidgetViewModels
                 {
                     WidgetModel.DetectPanelOpacityZ = WidgetModel.DetectPanelOpacity;
                 }
-                
+
                 if ((Keyboard.GetKeyStates(Key.X) & KeyStates.Down) > 0)
                 {
                     WidgetModel.DetectPanelOpacityX = 1;

@@ -1,7 +1,5 @@
 ﻿using GameAssistant.Core;
 using GameAssistant.Models;
-using System;
-using System.Windows;
 using System.Windows.Media;
 
 namespace GameAssistant.WidgetViewModels

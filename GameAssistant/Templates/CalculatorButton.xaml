@@ -16,7 +16,7 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
 
         <Setter Property="BorderThickness" Value="0"/>
-        
+
         <Setter Property="Opacity" Value="0.75"/>
 
     </Style>

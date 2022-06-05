@@ -1,6 +1,5 @@
 ﻿using GameAssistant.Models;
 using GameAssistant.Services;
-using System;
 using System.Windows.Controls;
 
 namespace GameAssistant.Widgets

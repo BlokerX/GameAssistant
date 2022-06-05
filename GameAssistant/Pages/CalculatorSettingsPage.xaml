@@ -1,13 +1,14 @@
-﻿<pages:WidgetSettingsPage
-    x:Class="GameAssistant.Pages.CalculatorSettingsPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="clr-namespace:GameAssistant.Controls"
-    xmlns:pages="clr-namespace:GameAssistant.Pages"
-    mc:Ignorable="d"
-    Title="ClockSettingsPage"  d:DesignHeight="1200" d:DesignWidth="997">
+﻿<pages:WidgetSettingsPage x:Class="GameAssistant.Pages.CalculatorSettingsPage"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                          xmlns:controls="clr-namespace:GameAssistant.Controls"
+                          xmlns:pages="clr-namespace:GameAssistant.Pages"
+                          mc:Ignorable="d"
+                          Title="ClockSettingsPage"
+                          d:DesignHeight="1200"
+                          d:DesignWidth="997">
 
     <StackPanel>
 
@@ -47,7 +48,7 @@
                 <controls:ColorSettingProperty x:Name="TextBoxBackgroundColorProperty"
                                                PropertyName="TextBox background color:"
                                                PropertyColorChanged="TextBoxBackgroundColorProperty_PropertyColorChanged"/>
-                
+
                 <controls:AnimationModeSettingProperty x:Name="TextBoxBackgroundAnimationProperty"
                                                        PropertyName="TextBox background animation:"
                                                        PropertyValueChanged="TextBoxBackgroundAnimationProperty_PropertyValueChanged"/>
@@ -63,7 +64,7 @@
                 <controls:ColorSettingProperty x:Name="ButtonsBackgroundColorProperty"
                                                PropertyName="Buttons background color:"
                                                PropertyColorChanged="ButtonsBackgroundColorProperty_PropertyColorChanged"/>
-                
+
                 <controls:AnimationModeSettingProperty x:Name="ButtonsBackgroundAnimationProperty"
                                                        PropertyName="Buttons background animation:"
                                                        PropertyValueChanged="ButtonsBackgroundAnimationProperty_PropertyValueChanged"/>
@@ -71,7 +72,7 @@
                 <controls:ColorSettingProperty x:Name="ButtonsForegroundColorProperty"
                                                PropertyName="Buttons foreground color:"
                                                PropertyColorChanged="ButtonsForegroundColorProperty_PropertyColorChanged"/>
-                
+
                 <controls:AnimationModeSettingProperty x:Name="ButtonsForegroundAnimationProperty"
                                                        PropertyName="Buttons foreground animation:"
                                                        PropertyValueChanged="ButtonsForegroundAnimationProperty_PropertyValueChanged"/>
@@ -116,7 +117,7 @@
                        Margin="5,0,0,0"/>
                 <controls:FontSettingProperty x:Name="TextBoxFontSettingsPropertyPanel"
                                               PropertyValueChanged="TextBoxFontSettingsPropertyPanel_PropertyValueChanged"/>
-                
+
                 <Label Content="Buttons:"
                        Foreground="White"
                        FontFamily="Century Gothic"

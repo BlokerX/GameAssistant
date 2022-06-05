@@ -39,7 +39,7 @@ namespace GameAssistant.Pages
             ActiveProperty.PropertyValue = pictureWidgetState;
         }
 
-        public override void RemovePageMethodsFromWidgetEvents() => PictureWidget.Events.WidgetActiveChanged -=  WidgetChangeActiveStateMethodForSettingsPage;
+        public override void RemovePageMethodsFromWidgetEvents() => PictureWidget.Events.WidgetActiveChanged -= WidgetChangeActiveStateMethodForSettingsPage;
 
         private void WidgetChangeActiveStateMethodForSettingsPage(bool state)
         {

@@ -16,7 +16,7 @@
         <Setter Property="Foreground" Value="White"/>
 
         <Setter Property="BorderBrush" Value="White"/>
-        
+
         <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="Template">
@@ -48,7 +48,7 @@
                             </Grid>
 
                         </Border>
-                        
+
                     </Border>
 
                 </ControlTemplate>

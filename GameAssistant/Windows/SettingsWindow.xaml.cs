@@ -45,12 +45,12 @@ namespace GameAssistant.Windows
         {
             GeneralSettingsFrame.Content = new GeneralSettingsPage(ref widgetsContainer);
 
-            ClockWidgetFrame.Content = new ClockSettingsPage(ref widgetsContainer.clockWidgetContainer);
-            PictureWidgetFrame.Content = new PictureSettingsPage(ref widgetsContainer.pictureWidgetContainer);
-            NoteWidgetFrame.Content = new NoteSettingsPage(ref widgetsContainer.noteWidgetContainer);
-            CalculatorWidgetFrame.Content = new CalculatorSettingsPage(ref widgetsContainer.calculatorWidgetContainer);
-            BrowserWidgetFrame.Content = new BrowserSettingsPage(ref widgetsContainer.browserWidgetContainer);
-            KeyDetectorWidgetFrame.Content = new KeyDetectorSettingsPage(ref widgetsContainer.keyDetectorWidgetContainer);
+            ClockWidgetFrame.Content = new ClockSettingsPage(ref widgetsContainer.ClockWidgetContainer);
+            PictureWidgetFrame.Content = new PictureSettingsPage(ref widgetsContainer.PictureWidgetContainer);
+            NoteWidgetFrame.Content = new NoteSettingsPage(ref widgetsContainer.NoteWidgetContainer);
+            CalculatorWidgetFrame.Content = new CalculatorSettingsPage(ref widgetsContainer.CalculatorWidgetContainer);
+            BrowserWidgetFrame.Content = new BrowserSettingsPage(ref widgetsContainer.BrowserWidgetContainer);
+            KeyDetectorWidgetFrame.Content = new KeyDetectorSettingsPage(ref widgetsContainer.KeyDetectorWidgetContainer);
         }
 
         /// <summary>

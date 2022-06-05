@@ -1,9 +1,6 @@
-﻿using GameAssistant.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Windows.Input;
 using System.Windows.Media;
-using Forms = System.Windows.Forms;
 
 namespace GameAssistant.Controls
 {
