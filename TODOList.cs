@@ -5,6 +5,7 @@
 
 // TODO Dodać przywracanie domyślnych ustawień wszystkim widgetom.
 // TODO Ujednolicuić przywracanie domyślnych.
+// TODO Dodać skróty klawiszowe.
 
 // TODO Nowe Widgety: kalkulator, mikser głośności, detektor klawiszy
 
