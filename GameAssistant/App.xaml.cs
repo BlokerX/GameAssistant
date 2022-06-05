@@ -17,14 +17,7 @@ namespace GameAssistant
         /// <summary>
         /// The widgets container.
         /// </summary>
-        private AllWidgetsContainer widgetsContainer = new AllWidgetsContainer()
-        {
-            clockWidgetContainer = new WidgetContainer<ClockWidget>(),
-            pictureWidgetContainer = new WidgetContainer<PictureWidget>(),
-            noteWidgetContainer = new WidgetContainer<NoteWidget>(),
-            calculatorWidgetContainer = new WidgetContainer<CalculatorWidget>(),
-            browserWidgetContainer = new WidgetContainer<BrowserWidget>()
-        };
+        private AllWidgetsContainer widgetsContainer = new AllWidgetsContainer();
         #endregion
 
         #region NotifyIcon
@@ -43,10 +36,11 @@ namespace GameAssistant
             NoteWidget,
             CalculatorWidget,
             BrowserWidget,
+            KeyDetectorWidget,
             // - //
-            SettingsWindow = 6,
+            SettingsWindow = 7,
             // - //
-            CloseApp = 8
+            CloseApp = 9
         }
 
         /// <summary>
@@ -87,6 +81,14 @@ namespace GameAssistant
         private void NotifyIcon_BrowserWidget_Settings_Click(object sender, System.EventArgs e)
         {
             BrowserWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.BrowserWidget].Checked);
+        }
+
+        /// <summary>
+        /// Invoke when key detector widget button clicked.
+        /// </summary>
+        private void NotifyIcon_KeyDetectorWidget_Settings_Click(object sender, System.EventArgs e)
+        {
+            KeyDetectorWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.KeyDetectorWidget].Checked);
         }
 
         /// <summary>
@@ -148,7 +150,8 @@ namespace GameAssistant
                 nameof(PictureWidget),
                 nameof(NoteWidget),
                 nameof(CalculatorWidget),
-                nameof(BrowserWidget)
+                nameof(BrowserWidget),
+                nameof(KeyDetectorWidget)
             );
 
             // Register widget events:
@@ -167,6 +170,7 @@ namespace GameAssistant
                         new System.Windows.Forms.MenuItem("Note widget", NotifyIcon_NoteWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("Calculator widget", NotifyIcon_CalculatorWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("Browser widget", NotifyIcon_BrowserWidget_Settings_Click),
+                        new System.Windows.Forms.MenuItem("KeyDetector widget", NotifyIcon_KeyDetectorWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("-"),
                         new System.Windows.Forms.MenuItem("Settings", NotifyIcon_MenuItem_Settings_Click),
                         new System.Windows.Forms.MenuItem("-"),
@@ -190,15 +194,17 @@ namespace GameAssistant
         private void RegisterWidgetEventsMethods()
         {
             ClockWidget.Events.WidgetActiveChanged += (b) =>
-            WidgetManager.ChangeWidgetState<ClockWidget, ClockViewModel, ClockModel>(ref widgetsContainer.clockWidgetContainer.Widget, b);
+            WidgetManager.ChangeWidgetState<ClockWidget, ClockViewModel, ClockModel>(ref widgetsContainer.ClockWidgetContainer.Widget, b);
             PictureWidget.Events.WidgetActiveChanged += (b) =>
-            WidgetManager.ChangeWidgetState<PictureWidget, PictureViewModel, PictureModel>(ref widgetsContainer.pictureWidgetContainer.Widget, b);
+            WidgetManager.ChangeWidgetState<PictureWidget, PictureViewModel, PictureModel>(ref widgetsContainer.PictureWidgetContainer.Widget, b);
             NoteWidget.Events.WidgetActiveChanged += (b) =>
-            WidgetManager.ChangeWidgetState<NoteWidget, NoteViewModel, NoteModel>(ref widgetsContainer.noteWidgetContainer.Widget, b);
+            WidgetManager.ChangeWidgetState<NoteWidget, NoteViewModel, NoteModel>(ref widgetsContainer.NoteWidgetContainer.Widget, b);
             CalculatorWidget.Events.WidgetActiveChanged += (b) =>
-            WidgetManager.ChangeWidgetState<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref widgetsContainer.calculatorWidgetContainer.Widget, b);
+            WidgetManager.ChangeWidgetState<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref widgetsContainer.CalculatorWidgetContainer.Widget, b);
             BrowserWidget.Events.WidgetActiveChanged += (b) =>
-            WidgetManager.ChangeWidgetState<BrowserWidget, BrowserViewModel, BrowserModel>(ref widgetsContainer.browserWidgetContainer.Widget, b);
+            WidgetManager.ChangeWidgetState<BrowserWidget, BrowserViewModel, BrowserModel>(ref widgetsContainer.BrowserWidgetContainer.Widget, b);
+            KeyDetectorWidget.Events.WidgetActiveChanged += (b) =>
+            WidgetManager.ChangeWidgetState<KeyDetectorWidget, KeyDetectorViewModel, KeyDetectorModel>(ref widgetsContainer.KeyDetectorWidgetContainer.Widget, b);
 
         }
 
@@ -209,10 +215,12 @@ namespace GameAssistant
             NoteWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.NoteWidget].Checked = b;
             CalculatorWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.CalculatorWidget].Checked = b;
             BrowserWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.BrowserWidget].Checked = b;
+            KeyDetectorWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.KeyDetectorWidget].Checked = b;
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
+            widgetsContainer.KeyDetectorWidgetContainer?.Widget?.Close();
             CloseAndSaveWidgets();
             NotifyIcon.Dispose();
             base.OnExit(e);
@@ -237,25 +245,29 @@ namespace GameAssistant
         /// </summary>
         private void LoadWidgets()
         {
-            WidgetManager.LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref widgetsContainer.clockWidgetContainer.Widget);
-            if (widgetsContainer.clockWidgetContainer.Widget != null)
+            WidgetManager.LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref widgetsContainer.ClockWidgetContainer.Widget);
+            if (widgetsContainer.ClockWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.ClockWidget].Checked = true;
 
-            WidgetManager.LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref widgetsContainer.pictureWidgetContainer.Widget);
-            if (widgetsContainer.pictureWidgetContainer.Widget != null)
+            WidgetManager.LoadWidget<PictureWidget, PictureViewModel, PictureModel>(ref widgetsContainer.PictureWidgetContainer.Widget);
+            if (widgetsContainer.PictureWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.PictureWidget].Checked = true;
 
-            WidgetManager.LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref widgetsContainer.noteWidgetContainer.Widget);
-            if (widgetsContainer.noteWidgetContainer.Widget != null)
+            WidgetManager.LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref widgetsContainer.NoteWidgetContainer.Widget);
+            if (widgetsContainer.NoteWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.NoteWidget].Checked = true;
 
-            WidgetManager.LoadWidget<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref widgetsContainer.calculatorWidgetContainer.Widget);
-            if (widgetsContainer.calculatorWidgetContainer.Widget != null)
+            WidgetManager.LoadWidget<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref widgetsContainer.CalculatorWidgetContainer.Widget);
+            if (widgetsContainer.CalculatorWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.CalculatorWidget].Checked = true;
 
-            WidgetManager.LoadWidget<BrowserWidget, BrowserViewModel, BrowserModel>(ref widgetsContainer.browserWidgetContainer.Widget);
-            if (widgetsContainer.browserWidgetContainer.Widget != null)
+            WidgetManager.LoadWidget<BrowserWidget, BrowserViewModel, BrowserModel>(ref widgetsContainer.BrowserWidgetContainer.Widget);
+            if (widgetsContainer.BrowserWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.BrowserWidget].Checked = true;
+
+            WidgetManager.LoadWidget<KeyDetectorWidget, KeyDetectorViewModel, KeyDetectorModel>(ref widgetsContainer.KeyDetectorWidgetContainer.Widget);
+            if (widgetsContainer.KeyDetectorWidgetContainer.Widget != null)
+                NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.KeyDetectorWidget].Checked = true;
         }
 
         /// <summary>
@@ -263,11 +275,12 @@ namespace GameAssistant
         /// </summary>
         private void SaveWidgets()
         {
-            WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(widgetsContainer.clockWidgetContainer.Widget);
-            WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(widgetsContainer.pictureWidgetContainer.Widget);
-            WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(widgetsContainer.noteWidgetContainer.Widget);
-            WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(widgetsContainer.calculatorWidgetContainer.Widget);
-            WidgetManager.SaveWidgetConfigurationInFile<BrowserWidget, BrowserModel>(widgetsContainer.browserWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(widgetsContainer.ClockWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(widgetsContainer.PictureWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(widgetsContainer.NoteWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(widgetsContainer.CalculatorWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<BrowserWidget, BrowserModel>(widgetsContainer.BrowserWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<KeyDetectorWidget, KeyDetectorModel>(widgetsContainer.KeyDetectorWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -275,11 +288,12 @@ namespace GameAssistant
         /// </summary>
         private void CloseWidgets()
         {
-            WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref widgetsContainer.clockWidgetContainer.Widget);
-            WidgetManager.CloseWidget<PictureWidget, PictureModel>(ref widgetsContainer.pictureWidgetContainer.Widget);
-            WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref widgetsContainer.noteWidgetContainer.Widget);
-            WidgetManager.CloseWidget<CalculatorWidget, CalculatorModel>(ref widgetsContainer.calculatorWidgetContainer.Widget);
-            WidgetManager.CloseWidget<BrowserWidget, BrowserModel>(ref widgetsContainer.browserWidgetContainer.Widget);
+            WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref widgetsContainer.ClockWidgetContainer.Widget);
+            WidgetManager.CloseWidget<PictureWidget, PictureModel>(ref widgetsContainer.PictureWidgetContainer.Widget);
+            WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref widgetsContainer.NoteWidgetContainer.Widget);
+            WidgetManager.CloseWidget<CalculatorWidget, CalculatorModel>(ref widgetsContainer.CalculatorWidgetContainer.Widget);
+            WidgetManager.CloseWidget<BrowserWidget, BrowserModel>(ref widgetsContainer.BrowserWidgetContainer.Widget);
+            WidgetManager.CloseWidget<KeyDetectorWidget, KeyDetectorModel>(ref widgetsContainer.KeyDetectorWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -287,11 +301,12 @@ namespace GameAssistant
         /// </summary>
         private void CloseAndSaveWidgets()
         {
-            WidgetManager.CloseAndSaveWidget<ClockWidget, ClockModel>(ref widgetsContainer.clockWidgetContainer.Widget);
-            WidgetManager.CloseAndSaveWidget<PictureWidget, PictureModel>(ref widgetsContainer.pictureWidgetContainer.Widget);
-            WidgetManager.CloseAndSaveWidget<NoteWidget, NoteModel>(ref widgetsContainer.noteWidgetContainer.Widget);
-            WidgetManager.CloseAndSaveWidget<CalculatorWidget, CalculatorModel>(ref widgetsContainer.calculatorWidgetContainer.Widget);
-            WidgetManager.CloseAndSaveWidget<BrowserWidget, BrowserModel>(ref widgetsContainer.browserWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<ClockWidget, ClockModel>(ref widgetsContainer.ClockWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<PictureWidget, PictureModel>(ref widgetsContainer.PictureWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<NoteWidget, NoteModel>(ref widgetsContainer.NoteWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<CalculatorWidget, CalculatorModel>(ref widgetsContainer.CalculatorWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<BrowserWidget, BrowserModel>(ref widgetsContainer.BrowserWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<KeyDetectorWidget, KeyDetectorModel>(ref widgetsContainer.KeyDetectorWidgetContainer.Widget);
         }
 
         #endregion

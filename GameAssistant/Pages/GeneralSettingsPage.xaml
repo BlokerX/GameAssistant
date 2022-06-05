@@ -41,6 +41,9 @@
                 <controls:BoolSettingProperty x:Name="BrowserWidgetActiveProperty" PropertyName="Browser widget active:" 
                                               PropertyValueChanged="BrowserWidgetActiveProperty_PropertyValueChanged"/>
 
+                <controls:BoolSettingProperty x:Name="KeyDetectorWidgetActiveProperty" PropertyName="Key detector widget active:" 
+                                              PropertyValueChanged="KeyDetectorWidgetActiveProperty_PropertyValueChanged"/>
+
             </StackPanel>
 
             <Label Content="Startup:"
@@ -54,7 +57,7 @@
                     Content="Reset all settings"
                     Style="{StaticResource SettingButton}"
                     Click="ResetAllSettingsButton_Click"/>
-            
+
             <Button x:Name="OpenConfigurationsDireButton"
                     Content="Open configuration dire"
                     Style="{StaticResource SettingButton}"

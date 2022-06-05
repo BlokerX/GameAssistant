@@ -60,18 +60,7 @@ namespace GameAssistant.WidgetViewModels
         /// </summary>
         public CalculatorViewModel()
         {
-            // Set title:
-            WidgetModel.Title = "Calculator widget";
-
-            // Set widget size:
-            WidgetModel.Width = 240;
-            WidgetModel.Height = 260;
-
-            // Set widget position:
-            WidgetModel.ScreenPositionY += 620;
-
-            // Set widget background color:
-            WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.GhostWhite);
+            LoadModel();
 
             // Command initialize:
             Button0_Command = new RelayCommand((o) => ClickNumberButton(0));
@@ -122,6 +111,22 @@ namespace GameAssistant.WidgetViewModels
             });
 
             ClearButton_Command = new RelayCommand((o) => ClickClearButton());
+        }
+
+        public void LoadModel()
+        {
+            // Set title:
+            WidgetModel.Title = "Calculator widget";
+
+            // Set widget size:
+            WidgetModel.Width = 240;
+            WidgetModel.Height = 260;
+
+            // Set widget position:
+            WidgetModel.ScreenPositionY += 620;
+
+            // Set widget background color:
+            WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.GhostWhite);
         }
 
         /// <summary>

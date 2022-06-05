@@ -1,6 +1,5 @@
 ﻿using GameAssistant.Models;
 using GameAssistant.Services;
-using System;
 
 namespace GameAssistant.Widgets
 {
@@ -19,6 +18,6 @@ namespace GameAssistant.Widgets
         }
 
         public static WidgetEvents Events = new WidgetEvents();
-        
+
     }
 }

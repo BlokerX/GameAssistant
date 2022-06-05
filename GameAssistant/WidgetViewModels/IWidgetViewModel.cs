@@ -10,5 +10,10 @@
         /// Widget properties.
         /// </summary>
         TModel WidgetModel { get; set; }
+
+        /// <summary>
+        /// Loading model.
+        /// </summary>
+        void LoadModel();
     }
 }

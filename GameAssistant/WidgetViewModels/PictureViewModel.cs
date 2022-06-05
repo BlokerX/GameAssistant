@@ -25,6 +25,11 @@ namespace GameAssistant.WidgetViewModels
         /// </summary>
         public PictureViewModel()
         {
+            LoadModel();
+        }
+
+        public void LoadModel()
+        {
             // Set title:
             WidgetModel.Title = "Picture widget";
 

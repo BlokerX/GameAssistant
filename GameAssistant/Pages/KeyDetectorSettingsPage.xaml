@@ -1,5 +1,5 @@
 ﻿<pages:WidgetSettingsPage
-    x:Class="GameAssistant.Pages.NoteSettingsPage"
+    x:Class="GameAssistant.Pages.KeyDetectorSettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,23 +7,22 @@
     xmlns:controls="clr-namespace:GameAssistant.Controls"
     xmlns:pages="clr-namespace:GameAssistant.Pages"
     mc:Ignorable="d"
-    Title="NoteSettingsPage" d:DesignHeight="700" d:DesignWidth="1000">
+    Title="ClockSettingsPage"  d:DesignHeight="760" d:DesignWidth="997">
 
     <StackPanel>
 
-        <Label Content="Note Widget - configuration settings"
+        <Label Content="Key Detector Widget - configuration settings"
                            FontSize="24"
                            Foreground="White"/>
 
         <StackPanel>
 
             <Label Content="Visibility:"
-                   Style="{StaticResource SettingsGroupTitle}"/>
+                   Style="{StaticResource SettingsGroupTitle}" />
 
             <StackPanel>
 
-                <controls:BoolSettingProperty x:Name="ActiveProperty"
-                                              PropertyName="Active:"
+                <controls:BoolSettingProperty x:Name="ActiveProperty" PropertyName="Active:" 
                                               PropertyValueChanged="ActiveProperty_PropertyValueChanged"/>
 
             </StackPanel>
@@ -37,7 +36,7 @@
 
             <StackPanel>
 
-                <controls:ColorSettingProperty x:Name="BackgroundColorProperty"
+                <controls:ColorSettingProperty x:Name="BackgroundColorProperty" 
                                                PropertyName="Background color:"
                                                PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"/>
 
@@ -52,6 +51,14 @@
                 <controls:AnimationModeSettingProperty x:Name="ForegroundAnimationProperty"
                                                        PropertyName="Foreground animation:"
                                                        PropertyValueChanged="ForegroundAnimationProperty_PropertyValueChanged"/>
+
+                <controls:ColorSettingProperty x:Name="DetectPanelColorProperty"
+                                               PropertyName="Detect panel color:"
+                                               PropertyColorChanged="DetectPanelColorProperty_PropertyColorChanged"/>
+
+                <controls:AnimationModeSettingProperty x:Name="DetectPanelAnimationProperty"
+                                                       PropertyName="DetectPanel animation:"
+                                                       PropertyValueChanged="DetectPanelAnimationProperty_PropertyValueChanged"/>
 
             </StackPanel>
 
@@ -105,28 +112,25 @@
                                               PropertyName="Drag active:"
                                               PropertyValueChanged="DragActiveProperty_PropertyValueChanged"/>
 
-                <controls:BoolSettingProperty x:Name="SettingBarVisibilityProperty"
-                                              PropertyName="Setting bar visibility:"
-                                              PropertyValueChanged="SettingBarVisibilityProperty_PropertyValueChanged"/>
-
             </StackPanel>
 
         </StackPanel>
 
         <Button x:Name="DefaultSettingsButton"
-                    Style="{StaticResource SettingButton}"
+                Style="{StaticResource SettingButton}"
                 Content="Default settings"
                 Click="DefaultSettingsButton_Click"/>
 
         <Button x:Name="OpenSaveConfigurationDireButton"
-                    Style="{StaticResource SettingButton}"
+                Style="{StaticResource SettingButton}"
                 Content="Open save configuration dire"
                 Click="OpenSaveConfigurationDireButton_Click"/>
 
         <Button x:Name="LoadSavedConfigurationButton"
-                    Style="{StaticResource SettingButton}"
+                Style="{StaticResource SettingButton}"
                 Content="Download save configuration"
                 Click="LoadSavedConfigurationButton_Click"/>
+
 
     </StackPanel>
 

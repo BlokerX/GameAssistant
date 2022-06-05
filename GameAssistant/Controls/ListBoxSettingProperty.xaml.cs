@@ -1,16 +1,13 @@
-﻿using GameAssistant.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Windows.Input;
 using System.Windows.Media;
-using Forms = System.Windows.Forms;
 
 namespace GameAssistant.Controls
 {
     /// <summary>
     /// Logika interakcji dla klasy ListBoxSettingProperty.xaml
     /// </summary>
-    public partial class ListBoxSettingProperty : SettingPropertyBase, ISettingProperty
+    public partial class ListBoxSettingProperty : BindableControl, ISettingProperty
     {
         /// <summary>
         /// Default constructor.

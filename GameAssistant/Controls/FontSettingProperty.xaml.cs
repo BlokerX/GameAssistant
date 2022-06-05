@@ -9,7 +9,7 @@ namespace GameAssistant.Controls
     /// <summary>
     /// Logika interakcji dla klasy FontSettingProperty.xaml
     /// </summary>
-    public partial class FontSettingProperty : SettingPropertyBase, ISettingProperty
+    public partial class FontSettingProperty : BindableControl, ISettingProperty
     {
         public FontSettingProperty()
         {

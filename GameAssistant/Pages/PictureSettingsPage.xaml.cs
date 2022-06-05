@@ -39,7 +39,7 @@ namespace GameAssistant.Pages
             ActiveProperty.PropertyValue = pictureWidgetState;
         }
 
-        public override void RemovePageMethodsFromWidgetEvents() => PictureWidget.Events.WidgetActiveChanged -=  WidgetChangeActiveStateMethodForSettingsPage;
+        public override void RemovePageMethodsFromWidgetEvents() => PictureWidget.Events.WidgetActiveChanged -= WidgetChangeActiveStateMethodForSettingsPage;
 
         private void WidgetChangeActiveStateMethodForSettingsPage(bool state)
         {
@@ -241,7 +241,8 @@ namespace GameAssistant.Pages
                 {
                     WidgetManager.CloseWidget<PictureWidget, PictureModel>(ref _pictureWidgetContainer.Widget);
                 }
-                _pictureWidgetContainer.Widget = new PictureWidget();
+                _pictureWidgetContainer.Widget = WidgetManager.CreateWidget<PictureWidget, PictureViewModel, PictureModel>(new PictureModel());
+                (_pictureWidgetContainer.Widget.DataContext as IWidgetViewModel<PictureModel>).LoadModel();
                 _pictureWidgetContainer.Widget.Show();
                 LoadWidget(ref _pictureWidgetContainer);
                 WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(_pictureWidgetContainer.Widget);

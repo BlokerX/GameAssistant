@@ -16,9 +16,9 @@
                   Left="{Binding WidgetModel.ScreenPositionX, Mode=TwoWay}" 
                   Top="{Binding WidgetModel.ScreenPositionY, Mode=TwoWay}">
 
-    <local:WidgetBase.DataContext>
+    <d:WidgetBase.DataContext>
         <widgetmodels:BrowserViewModel/>
-    </local:WidgetBase.DataContext>
+    </d:WidgetBase.DataContext>
 
     <Grid>
 

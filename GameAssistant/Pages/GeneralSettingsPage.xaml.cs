@@ -52,7 +52,7 @@ namespace GameAssistant.Pages
 
         private void LoadWidgets(AllWidgetsContainer allWidgetsContainer)
         {
-            if (allWidgetsContainer.clockWidgetContainer.Widget == null)
+            if (allWidgetsContainer.ClockWidgetContainer.Widget == null)
             {
                 ClockWidgetActiveProperty.PropertyValue = false;
             }
@@ -61,7 +61,7 @@ namespace GameAssistant.Pages
                 ClockWidgetActiveProperty.PropertyValue = true;
             }
 
-            if (allWidgetsContainer.pictureWidgetContainer.Widget == null)
+            if (allWidgetsContainer.PictureWidgetContainer.Widget == null)
             {
                 PictureWidgetActiveProperty.PropertyValue = false;
             }
@@ -70,7 +70,7 @@ namespace GameAssistant.Pages
                 PictureWidgetActiveProperty.PropertyValue = true;
             }
 
-            if (allWidgetsContainer.noteWidgetContainer.Widget == null)
+            if (allWidgetsContainer.NoteWidgetContainer.Widget == null)
             {
                 NoteWidgetActiveProperty.PropertyValue = false;
             }
@@ -79,7 +79,7 @@ namespace GameAssistant.Pages
                 NoteWidgetActiveProperty.PropertyValue = true;
             }
 
-            if (allWidgetsContainer.calculatorWidgetContainer.Widget == null)
+            if (allWidgetsContainer.CalculatorWidgetContainer.Widget == null)
             {
                 CalculatorWidgetActiveProperty.PropertyValue = false;
             }
@@ -88,13 +88,22 @@ namespace GameAssistant.Pages
                 CalculatorWidgetActiveProperty.PropertyValue = true;
             }
 
-            if (allWidgetsContainer.browserWidgetContainer.Widget == null)
+            if (allWidgetsContainer.BrowserWidgetContainer.Widget == null)
             {
                 BrowserWidgetActiveProperty.PropertyValue = false;
             }
             else
             {
                 BrowserWidgetActiveProperty.PropertyValue = true;
+            }
+
+            if (allWidgetsContainer.KeyDetectorWidgetContainer.Widget == null)
+            {
+                KeyDetectorWidgetActiveProperty.PropertyValue = false;
+            }
+            else
+            {
+                KeyDetectorWidgetActiveProperty.PropertyValue = true;
             }
         }
 
@@ -110,6 +119,7 @@ namespace GameAssistant.Pages
             NoteWidget.Events.WidgetActiveChanged += NoteWidgetEvents_WidgetActiveChanged;
             CalculatorWidget.Events.WidgetActiveChanged += CalculatorWidgetEvents_WidgetActiveChanged;
             BrowserWidget.Events.WidgetActiveChanged += BrowserWidgetEvents_WidgetActiveChanged;
+            KeyDetectorWidget.Events.WidgetActiveChanged += KeyDetectoWidgetEvents_WidgetActiveChanged;
         }
 
         /// <summary>
@@ -122,6 +132,7 @@ namespace GameAssistant.Pages
             NoteWidget.Events.WidgetActiveChanged -= NoteWidgetEvents_WidgetActiveChanged;
             CalculatorWidget.Events.WidgetActiveChanged -= CalculatorWidgetEvents_WidgetActiveChanged;
             BrowserWidget.Events.WidgetActiveChanged -= BrowserWidgetEvents_WidgetActiveChanged;
+            KeyDetectorWidget.Events.WidgetActiveChanged -= KeyDetectoWidgetEvents_WidgetActiveChanged;
         }
 
         #region Widgets event's methods
@@ -158,6 +169,14 @@ namespace GameAssistant.Pages
         {
             if (BrowserWidgetActiveProperty.PropertyValue != state)
                 BrowserWidgetActiveProperty.PropertyValue = state;
+
+            CheckAllWidgetsActiveProperty();
+        }
+
+        private void KeyDetectoWidgetEvents_WidgetActiveChanged(bool state)
+        {
+            if (KeyDetectorWidgetActiveProperty.PropertyValue != state)
+                KeyDetectorWidgetActiveProperty.PropertyValue = state;
 
             CheckAllWidgetsActiveProperty();
         }
@@ -206,6 +225,11 @@ namespace GameAssistant.Pages
             BrowserWidget.Events.WidgetActiveChanged_Invoke((bool)e);
         }
 
+        private void KeyDetectorWidgetActiveProperty_PropertyValueChanged(object sender, bool? e)
+        {
+            KeyDetectorWidget.Events.WidgetActiveChanged_Invoke((bool)e);
+        }
+
         #endregion
 
         // todo poprawić wydajność programu pod względem wykonywania eventów
@@ -228,6 +252,9 @@ namespace GameAssistant.Pages
 
             if (BrowserWidgetActiveProperty.PropertyValue != e)
                 BrowserWidgetActiveProperty.PropertyValue = e;
+
+            if (KeyDetectorWidgetActiveProperty.PropertyValue != e)
+                KeyDetectorWidgetActiveProperty.PropertyValue = e;
         }
 
         // a - czy sprawdzać wartość false
@@ -240,7 +267,8 @@ namespace GameAssistant.Pages
                 ClockWidgetActiveProperty.PropertyValue == PictureWidgetActiveProperty.PropertyValue &&
                 PictureWidgetActiveProperty.PropertyValue == NoteWidgetActiveProperty.PropertyValue &&
                 NoteWidgetActiveProperty.PropertyValue == CalculatorWidgetActiveProperty.PropertyValue &&
-                CalculatorWidgetActiveProperty.PropertyValue == BrowserWidgetActiveProperty.PropertyValue)
+                CalculatorWidgetActiveProperty.PropertyValue == BrowserWidgetActiveProperty.PropertyValue &&
+                BrowserWidgetActiveProperty.PropertyValue == KeyDetectorWidgetActiveProperty.PropertyValue)
             {
                 AllWidgetsActiveProperty.PropertyValue = true;
             }
@@ -256,15 +284,15 @@ namespace GameAssistant.Pages
         {
             //if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
             //{
-            //    if (AllWidgetsContainer.clockWidgetContainer.Widget != null)
+            //    if (AllWidgetsContainer.ClockWidgetContainer.Widget != null)
             //    {
-            //        WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref AllWidgetsContainer.clockWidgetContainer.Widget);
+            //        WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref AllWidgetsContainer.ClockWidgetContainer.Widget);
             //    }
-            //    AllWidgetsContainer.clockWidgetContainer.Widget = new ClockWidget();
-            //    AllWidgetsContainer.clockWidgetContainer.Widget.Show();
+            //    AllWidgetsContainer.ClockWidgetContainer.Widget = new ClockWidget();
+            //    AllWidgetsContainer.ClockWidgetContainer.Widget.Show();
             //    todo metoda synchronizująca ładowanie widgetu
-            //    LoadWidget(ref AllWidgetsContainer.clockWidgetContainer);
-            //    WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(AllWidgetsContainer.clockWidgetContainer.Widget);
+            //    LoadModel(ref AllWidgetsContainer.ClockWidgetContainer);
+            //    WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(AllWidgetsContainer.ClockWidgetContainer.Widget);
             //}
         }
 
@@ -272,5 +300,6 @@ namespace GameAssistant.Pages
         {
             Process.Start("Explorer", AppFileSystem.WidgetsConfigurationsMainDire);
         }
+
     }
 }

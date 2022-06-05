@@ -9,7 +9,7 @@ namespace GameAssistant.Controls
     /// <summary>
     /// Logika interakcji dla klasy ColorSettingProperty.xaml
     /// </summary>
-    public partial class ColorSettingProperty : SettingPropertyBase, ISettingProperty
+    public partial class ColorSettingProperty : BindableControl, ISettingProperty
     {
         /// <summary>
         /// Default constructor.

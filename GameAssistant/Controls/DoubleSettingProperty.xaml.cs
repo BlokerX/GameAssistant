@@ -8,7 +8,7 @@ namespace GameAssistant.Controls
     /// <summary>
     /// Logika interakcji dla klasy DoubleSettingProperty.xaml
     /// </summary>
-    public partial class DoubleSettingProperty : SettingPropertyBase, ISettingProperty
+    public partial class DoubleSettingProperty : BindableControl, ISettingProperty
     {
         /// <summary>
         /// Default constructor.

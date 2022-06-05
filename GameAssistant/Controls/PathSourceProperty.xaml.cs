@@ -7,7 +7,7 @@ namespace GameAssistant.Controls
     /// <summary>
     /// Logika interakcji dla klasy PathSourceProperty.xaml
     /// </summary>
-    public partial class PathSourceProperty : SettingPropertyBase, ISettingProperty
+    public partial class PathSourceProperty : BindableControl, ISettingProperty
     {
         public PathSourceProperty()
         {
