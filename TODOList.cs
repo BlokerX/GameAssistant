@@ -4,6 +4,7 @@
 // TODO Animacja koloru poprawić wydajność
 
 // TODO Dodać przywracanie domyślnych ustawień wszystkim widgetom.
+// TODO Ujednolicuić przywracanie domyślnych.
 
 // TODO Nowe Widgety: kalkulator, mikser głośności, detektor klawiszy
 
