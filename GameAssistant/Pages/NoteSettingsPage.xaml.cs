@@ -55,7 +55,7 @@ namespace GameAssistant.Pages
         /// Load widget in settings page.
         /// </summary>
         /// <param name="noteWidgetContainer">Note widget to load.</param>
-        private void LoadWidget(ref WidgetContainer<NoteWidget> noteWidgetContainer)
+        public void LoadWidget(ref WidgetContainer<NoteWidget> noteWidgetContainer)
         {
             if (noteWidgetContainer.Widget == null)
             {
@@ -260,17 +260,7 @@ namespace GameAssistant.Pages
 
         protected override void DefaultSettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-            {
-                if (_noteWidgetContainer.Widget != null)
-                {
-                    WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref _noteWidgetContainer.Widget);
-                }
-                _noteWidgetContainer.Widget = WidgetManager.CreateWidget<NoteWidget, NoteViewModel, NoteModel>(new NoteModel());
-                _noteWidgetContainer.Widget.Show();
-                LoadWidget(ref _noteWidgetContainer);
-                WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(_noteWidgetContainer.Widget);
-            }
+            _noteWidgetContainer.ResetWidgetConfigurationToDefaultWithMessageBox<NoteWidget, NoteViewModel, NoteModel>(() => LoadWidget(ref _noteWidgetContainer));
         }
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
@@ -280,37 +270,7 @@ namespace GameAssistant.Pages
 
         protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            var fileDialog = new System.Windows.Forms.OpenFileDialog()
-            {
-                Filter =
-                "JSON files (*.json)|*.json" +
-                "|All files (*.*)|*.*",
-
-                Multiselect = false,
-
-                Title = "Select save with widget configuration:"
-            };
-
-            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                if (MessageBox.Show("Should you change widget configuration?\n(Warning, if you change configuration settings without backup you will not be able to restore the current data.)", "Change setting configuration:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-                {
-                    var model = new NoteModel();
-                    using (var sr = File.OpenText(fileDialog.FileName))
-                    {
-                        model = JsonConvert.DeserializeObject<NoteModel>(sr.ReadToEnd());
-                        WidgetManager.SaveWidgetConfigurationInFile(model);
-                    }
-
-                    if (_noteWidgetContainer.Widget != null)
-                    {
-                        WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref _noteWidgetContainer.Widget);
-                    }
-                    WidgetManager.LoadWidget<NoteWidget, NoteViewModel, NoteModel>(ref _noteWidgetContainer.Widget);
-                    _noteWidgetContainer.Widget?.Show();
-                    LoadWidget(ref _noteWidgetContainer);
-                }
-            }
+            _noteWidgetContainer.LoadConfigurationFromFile<NoteWidget, NoteViewModel, NoteModel>(() => LoadWidget(ref _noteWidgetContainer));
         }
 
     }

@@ -52,7 +52,7 @@ namespace GameAssistant.Pages
         /// Load widget in settings page.
         /// </summary>
         /// <param name="calculatorWidgetContainer">Calculator widget to load.</param>
-        private void LoadWidget(ref WidgetContainer<CalculatorWidget> calculatorWidgetContainer)
+        public void LoadWidget(ref WidgetContainer<CalculatorWidget> calculatorWidgetContainer)
         {
             if (calculatorWidgetContainer.Widget == null)
             {
@@ -334,17 +334,7 @@ namespace GameAssistant.Pages
 
         protected override void DefaultSettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-            {
-                if (_calculatorWidgetContainer.Widget != null)
-                {
-                    WidgetManager.CloseWidget<CalculatorWidget, CalculatorModel>(ref _calculatorWidgetContainer.Widget);
-                }
-                _calculatorWidgetContainer.Widget = WidgetManager.CreateWidget<CalculatorWidget, CalculatorViewModel, CalculatorModel>(new CalculatorModel());
-                _calculatorWidgetContainer.Widget.Show();
-                LoadWidget(ref _calculatorWidgetContainer);
-                WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(_calculatorWidgetContainer.Widget);
-            }
+            _calculatorWidgetContainer.ResetWidgetConfigurationToDefaultWithMessageBox<CalculatorWidget, CalculatorViewModel, CalculatorModel>(() => LoadWidget(ref _calculatorWidgetContainer));
         }
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
@@ -354,37 +344,7 @@ namespace GameAssistant.Pages
 
         protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            var fileDialog = new System.Windows.Forms.OpenFileDialog()
-            {
-                Filter =
-                "JSON files (*.json)|*.json" +
-                "|All files (*.*)|*.*",
-
-                Multiselect = false,
-
-                Title = "Select save with widget configuration:"
-            };
-
-            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                if (MessageBox.Show("Should you change widget configuration?\n(Warning, if you change configuration settings without backup you will not be able to restore the current data.)", "Change setting configuration:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-                {
-                    var model = new CalculatorModel();
-                    using (var sr = File.OpenText(fileDialog.FileName))
-                    {
-                        model = JsonConvert.DeserializeObject<CalculatorModel>(sr.ReadToEnd());
-                        WidgetManager.SaveWidgetConfigurationInFile(model);
-                    }
-
-                    if (_calculatorWidgetContainer.Widget != null)
-                    {
-                        WidgetManager.CloseWidget<CalculatorWidget, CalculatorModel>(ref _calculatorWidgetContainer.Widget);
-                    }
-                    WidgetManager.LoadWidget<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref _calculatorWidgetContainer.Widget);
-                    _calculatorWidgetContainer.Widget?.Show();
-                    LoadWidget(ref _calculatorWidgetContainer);
-                }
-            }
+            _calculatorWidgetContainer.LoadConfigurationFromFile<CalculatorWidget, CalculatorViewModel, CalculatorModel>(() => LoadWidget(ref _calculatorWidgetContainer));
         }
     }
 }

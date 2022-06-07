@@ -1,5 +1,8 @@
-﻿using GameAssistant.Pages;
+﻿using GameAssistant.Models;
+using GameAssistant.Pages;
+using GameAssistant.Services;
 using GameAssistant.Widgets;
+using GameAssistant.WidgetViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,13 +40,15 @@ namespace GameAssistant.Windows
             };
         }
 
+        private readonly AllWidgetsContainer widgetsContainer;
+
         /// <summary>
         /// Constructor with widgets.
         /// </summary>
         /// <param name="widgetsContainer"></param>
         public SettingsWindow(ref AllWidgetsContainer widgetsContainer) : this()
         {
-            GeneralSettingsFrame.Content = new GeneralSettingsPage(ref widgetsContainer);
+            this.widgetsContainer = widgetsContainer;
 
             ClockWidgetFrame.Content = new ClockSettingsPage(ref widgetsContainer.ClockWidgetContainer);
             PictureWidgetFrame.Content = new PictureSettingsPage(ref widgetsContainer.PictureWidgetContainer);
@@ -51,6 +56,19 @@ namespace GameAssistant.Windows
             CalculatorWidgetFrame.Content = new CalculatorSettingsPage(ref widgetsContainer.CalculatorWidgetContainer);
             BrowserWidgetFrame.Content = new BrowserSettingsPage(ref widgetsContainer.BrowserWidgetContainer);
             KeyDetectorWidgetFrame.Content = new KeyDetectorSettingsPage(ref widgetsContainer.KeyDetectorWidgetContainer);
+
+            GeneralSettingsFrame.Content = new GeneralSettingsPage(ref widgetsContainer, () =>
+            {
+                if (MessageBox.Show("Should you set widgets configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+                {
+                    WidgetManager.ResetWidgetConfigurationToDefault<ClockWidget, ClockViewModel, ClockModel>(ref this.widgetsContainer.ClockWidgetContainer, () => (ClockWidgetFrame.Content as ClockSettingsPage).LoadWidget(ref this.widgetsContainer.ClockWidgetContainer));
+                    WidgetManager.ResetWidgetConfigurationToDefault<PictureWidget, PictureViewModel, PictureModel>(ref this.widgetsContainer.PictureWidgetContainer, () => (PictureWidgetFrame.Content as PictureSettingsPage).LoadWidget(ref this.widgetsContainer.PictureWidgetContainer));
+                    WidgetManager.ResetWidgetConfigurationToDefault<NoteWidget, NoteViewModel, NoteModel>(ref this.widgetsContainer.NoteWidgetContainer, () => (NoteWidgetFrame.Content as NoteSettingsPage).LoadWidget(ref this.widgetsContainer.NoteWidgetContainer));
+                    WidgetManager.ResetWidgetConfigurationToDefault<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref this.widgetsContainer.CalculatorWidgetContainer, () => (CalculatorWidgetFrame.Content as CalculatorSettingsPage).LoadWidget(ref this.widgetsContainer.CalculatorWidgetContainer));
+                    WidgetManager.ResetWidgetConfigurationToDefault<BrowserWidget, BrowserViewModel, BrowserModel>(ref this.widgetsContainer.BrowserWidgetContainer, () => (BrowserWidgetFrame.Content as BrowserSettingsPage).LoadWidget(ref this.widgetsContainer.BrowserWidgetContainer));
+                    WidgetManager.ResetWidgetConfigurationToDefault<KeyDetectorWidget, KeyDetectorViewModel, KeyDetectorModel>(ref this.widgetsContainer.KeyDetectorWidgetContainer, () => (KeyDetectorWidgetFrame.Content as KeyDetectorSettingsPage).LoadWidget(ref this.widgetsContainer.KeyDetectorWidgetContainer));
+                }
+            });
         }
 
         /// <summary>

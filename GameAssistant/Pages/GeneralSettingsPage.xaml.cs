@@ -1,5 +1,6 @@
 ﻿using GameAssistant.Services;
 using GameAssistant.Widgets;
+using System;
 using System.Diagnostics;
 using System.Windows;
 
@@ -13,7 +14,7 @@ namespace GameAssistant.Pages
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public GeneralSettingsPage(ref AllWidgetsContainer allWidgetsContainer)
+        public GeneralSettingsPage(ref AllWidgetsContainer allWidgetsContainer, Action resetConfigAction)
         {
             InitializeComponent();
 
@@ -26,6 +27,8 @@ namespace GameAssistant.Pages
             AutoStart.PropertyValue = AppFileSystem.CheckStartupKeyValue();
 
             CheckAllWidgetsActiveProperty();
+
+            ResetAllSettingsButton.Click += (sender, e) => resetConfigAction.Invoke();
         }
 
         public void RemovePageMethodsFromWidgetsEvents() => DesubscriptionWidgetsActiveChangedEvents();
@@ -40,7 +43,7 @@ namespace GameAssistant.Pages
         private AllWidgetsContainer _allWidgetsContainer;
 
         /// <summary>
-        /// The all widgets containers with widgets.
+        /// The all widgetsContainer containers with widgetsContainer.
         /// </summary>
         public AllWidgetsContainer AllWidgetsContainer
         {
@@ -110,7 +113,7 @@ namespace GameAssistant.Pages
         #region Widgets Active Changed Events
 
         /// <summary>
-        /// Add subscription to widgets active changed's events.
+        /// Add subscription to widgetsContainer active changed's events.
         /// </summary>
         private void SubscriptionWidgetsActiveChangedEvents()
         {
@@ -123,7 +126,7 @@ namespace GameAssistant.Pages
         }
 
         /// <summary>
-        /// Remove subscription to widgets active changed's events.
+        /// Remove subscription to widgetsContainer active changed's events.
         /// </summary>
         public void DesubscriptionWidgetsActiveChangedEvents()
         {
@@ -278,22 +281,6 @@ namespace GameAssistant.Pages
                 AllWidgetsActiveProperty.ValueCheckBox.IsChecked = false;
                 AllWidgetsActiveProperty.IsEnabled = true;
             }
-        }
-
-        private void ResetAllSettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            //if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-            //{
-            //    if (AllWidgetsContainer.ClockWidgetContainer.Widget != null)
-            //    {
-            //        WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref AllWidgetsContainer.ClockWidgetContainer.Widget);
-            //    }
-            //    AllWidgetsContainer.ClockWidgetContainer.Widget = new ClockWidget();
-            //    AllWidgetsContainer.ClockWidgetContainer.Widget.Show();
-            //    todo metoda synchronizująca ładowanie widgetu
-            //    LoadModel(ref AllWidgetsContainer.ClockWidgetContainer);
-            //    WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(AllWidgetsContainer.ClockWidgetContainer.Widget);
-            //}
         }
 
         private void OpenConfigurationsDireButton_Click(object sender, RoutedEventArgs e)

@@ -55,8 +55,7 @@
 
             <Button x:Name="ResetAllSettingsButton"
                     Content="Reset all settings"
-                    Style="{StaticResource SettingButton}"
-                    Click="ResetAllSettingsButton_Click"/>
+                    Style="{StaticResource SettingButton}"/>
 
             <Button x:Name="OpenConfigurationsDireButton"
                     Content="Open configuration dire"

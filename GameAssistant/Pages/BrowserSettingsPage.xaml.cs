@@ -52,7 +52,7 @@ namespace GameAssistant.Pages
         /// Load widget in settings page.
         /// </summary>
         /// <param name="browserWidgetContainer">Browser widget to load.</param>
-        private void LoadWidget(ref WidgetContainer<BrowserWidget> browserWidgetContainer)
+        public void LoadWidget(ref WidgetContainer<BrowserWidget> browserWidgetContainer)
         {
             if (BrowserWidgetContainer.Widget == null)
             {
@@ -204,17 +204,7 @@ namespace GameAssistant.Pages
 
         protected override void DefaultSettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-            {
-                if (_browserWidgetContainer.Widget != null)
-                {
-                    WidgetManager.CloseWidget<BrowserWidget, BrowserModel>(ref _browserWidgetContainer.Widget);
-                }
-                _browserWidgetContainer.Widget = WidgetManager.CreateWidget<BrowserWidget, BrowserViewModel, BrowserModel>(new BrowserModel());
-                _browserWidgetContainer.Widget.Show();
-                LoadWidget(ref _browserWidgetContainer);
-                WidgetManager.SaveWidgetConfigurationInFile<BrowserWidget, BrowserModel>(_browserWidgetContainer.Widget);
-            }
+            _browserWidgetContainer.ResetWidgetConfigurationToDefaultWithMessageBox<BrowserWidget, BrowserViewModel, BrowserModel>(() => LoadWidget(ref _browserWidgetContainer));
         }
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
@@ -224,38 +214,7 @@ namespace GameAssistant.Pages
 
         protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            // todo ujednolicić sposób wybierania plików json dla wszystkich widgetów (load saved config)
-            var fileDialog = new System.Windows.Forms.OpenFileDialog()
-            {
-                Filter =
-                "JSON files (*.json)|*.json" +
-                "|All files (*.*)|*.*",
-
-                Multiselect = false,
-
-                Title = "Select save with widget configuration:"
-            };
-
-            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                if (MessageBox.Show("Should you change widget configuration?\n(Warning, if you change configuration settings without backup you will not be able to restore the current data.)", "Change setting configuration:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-                {
-                    var model = new BrowserModel();
-                    using (var sr = File.OpenText(fileDialog.FileName))
-                    {
-                        model = JsonConvert.DeserializeObject<BrowserModel>(sr.ReadToEnd());
-                        WidgetManager.SaveWidgetConfigurationInFile(model);
-                    }
-
-                    if (_browserWidgetContainer.Widget != null)
-                    {
-                        WidgetManager.CloseWidget<BrowserWidget, BrowserModel>(ref _browserWidgetContainer.Widget);
-                    }
-                    WidgetManager.LoadWidget<BrowserWidget, BrowserViewModel, BrowserModel>(ref _browserWidgetContainer.Widget);
-                    _browserWidgetContainer.Widget?.Show();
-                    LoadWidget(ref _browserWidgetContainer);
-                }
-            }
+            _browserWidgetContainer.LoadConfigurationFromFile<BrowserWidget, BrowserViewModel, BrowserModel>(() => LoadWidget(ref _browserWidgetContainer));
         }
     }
 }

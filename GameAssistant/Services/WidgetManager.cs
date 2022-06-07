@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows;
 
 namespace GameAssistant.Services
 {
@@ -147,27 +148,139 @@ namespace GameAssistant.Services
         }
 
         /// <summary>
+        /// Reset widget configuration to default without saving and show it.
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ViewModelType">Type of widget's view model.</typeparam>
+        /// <typeparam name="ModelType">Type of widget model.</typeparam>
+        /// <param name="widgetContainer">The box with widget to reset.</param>
+        public static void ResetWidgetConfigurationToDefaultWithoutSaving<WidgetType, ViewModelType, ModelType>(ref WidgetContainer<WidgetType> widgetContainer)
+            where WidgetType : WidgetBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            if (widgetContainer.Widget != null)
+            {
+                CloseWidget<WidgetType, ModelType>(ref widgetContainer.Widget);
+            }
+            widgetContainer.Widget = CreateWidget<WidgetType, ViewModelType, ModelType>(new ModelType());
+            (widgetContainer.Widget.DataContext as IWidgetViewModel<ModelType>).LoadModel();
+            widgetContainer.Widget.Show();
+        }
+
+        /// <summary>
+        /// Reset widget configuration to default with saving and show it.
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ViewModelType">Type of widget's view model.</typeparam>
+        /// <typeparam name="ModelType">Type of widget model.</typeparam>
+        /// <param name="widgetContainer">The box with widget to reset.</param>
+        public static void ResetWidgetConfigurationToDefault<WidgetType, ViewModelType, ModelType>(ref WidgetContainer<WidgetType> widgetContainer, Action action = null)
+            where WidgetType : WidgetBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            ResetWidgetConfigurationToDefaultWithoutSaving<WidgetType, ViewModelType, ModelType>(ref widgetContainer);
+            SaveWidgetConfigurationInFile<WidgetType, ModelType>(widgetContainer.Widget);
+            action?.Invoke();
+        }
+
+        /// <summary>
+        /// Reset widget configuration to default with saving, show it and push informing message box.
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ViewModelType">Type of widget's view model.</typeparam>
+        /// <typeparam name="ModelType">Type of widget model.</typeparam>
+        /// <param name="widgetContainer">The box with widget to reset.</param>
+        /// <param name="action">Method to invoke.</param>
+        public static void ResetWidgetConfigurationToDefaultWithMessageBox<WidgetType, ViewModelType, ModelType>(this WidgetContainer<WidgetType> widgetContainer, Action action = null)
+            where WidgetType : WidgetBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+            {
+                ResetWidgetConfigurationToDefault<WidgetType, ViewModelType, ModelType>(ref widgetContainer, action);
+            }
+        }
+
+        /// <summary>
+        /// Load configuration form file.
+        /// </summary>
+        /// <typeparam name="WidgetType">Type of widget.</typeparam>
+        /// <typeparam name="ViewModelType">Type of widget's view model.</typeparam>
+        /// <typeparam name="ModelType">Type of widget model.</typeparam>
+        /// <param name="widgetContainer">The box with widget to reset.</param>
+        /// <param name="action">Method to invoke.</param>
+        public static void LoadConfigurationFromFile<WidgetType, ViewModelType, ModelType>(this WidgetContainer<WidgetType> widgetContainer, Action action = null)
+            where WidgetType : WidgetBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
+        {
+            var fileDialog = new System.Windows.Forms.OpenFileDialog()
+            {
+                Filter =
+                "JSON files (*.json)|*.json" +
+                "|All files (*.*)|*.*",
+
+                Multiselect = false,
+
+                Title = "Select save with widget configuration:"
+            };
+
+            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (MessageBox.Show("Should you change widget configuration?\n(Warning, if you change configuration settings without backup you will not be able to restore the current data.)", "Change setting configuration:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+                {
+                    var model = new ModelType();
+                    using (var sr = File.OpenText(fileDialog.FileName))
+                    {
+                        model = JsonConvert.DeserializeObject<ModelType>(sr.ReadToEnd());
+                        SaveWidgetConfigurationInFile(model);
+                    }
+
+                    if (widgetContainer.Widget != null)
+                    {
+                        CloseWidget<WidgetType, ModelType>(ref widgetContainer.Widget);
+                    }
+                    LoadWidget<WidgetType, ViewModelType, ModelType>(ref widgetContainer.Widget);
+                    widgetContainer.Widget?.Show();
+
+                    // Action invoke:
+                    action?.Invoke();
+                }
+            }
+        }
+
+        /// <summary>
         /// Return new widget.
         /// </summary>
         /// <typeparam name="WidgetType">Type of widget.</typeparam>
         /// <typeparam name="ViewModelType">Type of widget's view model.</typeparam>
         /// <typeparam name="ModelType">Type of widget model.</typeparam>
         /// <returns>Widget.</returns>
-        public static WidgetType CreateWidget<WidgetType, ViewModelType, ModelType>(ModelType widgetModel)
+        public static WidgetType CreateWidget<WidgetType, ViewModelType, ModelType>(ModelType widgetModel = null)
             where WidgetType : WidgetBase, new()
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
             AppFileSystem.CheckDiresArchitecture();
 
-            var widget = new WidgetType()
-            {
-                DataContext = new ViewModelType()
+            WidgetType widget;
+
+            if (widgetModel == null)
+                widget = new WidgetType()
                 {
-                    WidgetModel = widgetModel
-                }
-            };
-            (widget.DataContext as IWidgetViewModel<ModelType>).LoadModel();
+                    DataContext = new ViewModelType()
+                };
+            else
+                widget = new WidgetType()
+                {
+                    DataContext = new ViewModelType()
+                    {
+                        WidgetModel = widgetModel
+                    }
+                };
             return widget;
         }
 
@@ -370,7 +483,7 @@ namespace GameAssistant.Services
             }
             else
             {
-                widget = CreateWidget<WidgetType, ViewModelType, ModelType>(new ModelType());
+                widget = CreateWidget<WidgetType, ViewModelType, ModelType>();
                 downloadedModel = (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel;
             }
             widget.Show();
@@ -425,7 +538,7 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
-            WidgetManager.SaveWidgetConfigurationInFile(CloseWidget<WidgetType, ModelType>(ref widget));
+            SaveWidgetConfigurationInFile(CloseWidget<WidgetType, ModelType>(ref widget));
         }
 
         /// <summary>
@@ -440,14 +553,14 @@ namespace GameAssistant.Services
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
-            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            var downloadedConfigurationResult = DownloadWidgetConfigurationFromFile(out ModelType model);
 
             if (!downloadedConfigurationResult || model.IsActive)
             {
                 BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
             }
 
-            WidgetManager.SaveWidgetConfigurationInFile(model);
+            SaveWidgetConfigurationInFile(model);
         }
 
         /// <typeparam name="WidgetType">Type of widget.</typeparam>

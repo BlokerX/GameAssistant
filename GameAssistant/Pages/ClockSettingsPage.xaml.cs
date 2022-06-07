@@ -53,7 +53,7 @@ namespace GameAssistant.Pages
         /// Load widget in settings page.
         /// </summary>
         /// <param name="clockWidgetContainer">Clock widget to load.</param>
-        private void LoadWidget(ref WidgetContainer<ClockWidget> clockWidgetContainer)
+        public void LoadWidget(ref WidgetContainer<ClockWidget> clockWidgetContainer)
         {
             if (clockWidgetContainer.Widget == null)
             {
@@ -234,17 +234,7 @@ namespace GameAssistant.Pages
 
         protected override void DefaultSettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Should you set widget configuration to default?\n(Warning, if you restore the default settings you will not be able to restore the current data.)", "Setting configuration to default:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-            {
-                if (_clockWidgetContainer.Widget != null)
-                {
-                    WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref _clockWidgetContainer.Widget);
-                }
-                _clockWidgetContainer.Widget = WidgetManager.CreateWidget<ClockWidget, ClockViewModel, ClockModel>(new ClockModel());
-                _clockWidgetContainer.Widget.Show();
-                LoadWidget(ref _clockWidgetContainer);
-                WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(_clockWidgetContainer.Widget);
-            }
+            _clockWidgetContainer.ResetWidgetConfigurationToDefaultWithMessageBox<ClockWidget, ClockViewModel, ClockModel>(() => LoadWidget(ref _clockWidgetContainer));
         }
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
@@ -254,37 +244,7 @@ namespace GameAssistant.Pages
 
         protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            var fileDialog = new System.Windows.Forms.OpenFileDialog()
-            {
-                Filter =
-                "JSON files (*.json)|*.json" +
-                "|All files (*.*)|*.*",
-
-                Multiselect = false,
-
-                Title = "Select save with widget configuration:"
-            };
-
-            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                if (MessageBox.Show("Should you change widget configuration?\n(Warning, if you change configuration settings without backup you will not be able to restore the current data.)", "Change setting configuration:", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes) == MessageBoxResult.Yes)
-                {
-                    var model = new ClockModel();
-                    using (var sr = File.OpenText(fileDialog.FileName))
-                    {
-                        model = JsonConvert.DeserializeObject<ClockModel>(sr.ReadToEnd());
-                        WidgetManager.SaveWidgetConfigurationInFile(model);
-                    }
-
-                    if (_clockWidgetContainer.Widget != null)
-                    {
-                        WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref _clockWidgetContainer.Widget);
-                    }
-                    WidgetManager.LoadWidget<ClockWidget, ClockViewModel, ClockModel>(ref _clockWidgetContainer.Widget);
-                    _clockWidgetContainer.Widget?.Show();
-                    LoadWidget(ref _clockWidgetContainer);
-                }
-            }
+            _clockWidgetContainer.LoadConfigurationFromFile<ClockWidget, ClockViewModel, ClockModel>(() => LoadWidget(ref _clockWidgetContainer));
         }
     }
 }
