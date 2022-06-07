@@ -265,7 +265,6 @@ namespace GameAssistant.Pages
                     WidgetManager.CloseWidget<KeyDetectorWidget, KeyDetectorModel>(ref _keyDetectorWidgetContainer.Widget);
                 }
                 _keyDetectorWidgetContainer.Widget = WidgetManager.CreateWidget<KeyDetectorWidget, KeyDetectorViewModel, KeyDetectorModel>(new KeyDetectorModel());
-                (_keyDetectorWidgetContainer.Widget.DataContext as IWidgetViewModel<KeyDetectorModel>).LoadModel();
                 _keyDetectorWidgetContainer.Widget.Show();
                 LoadWidget(ref _keyDetectorWidgetContainer);
                 WidgetManager.SaveWidgetConfigurationInFile<KeyDetectorWidget, KeyDetectorModel>(_keyDetectorWidgetContainer.Widget);

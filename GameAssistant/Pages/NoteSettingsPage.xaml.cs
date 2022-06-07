@@ -267,7 +267,6 @@ namespace GameAssistant.Pages
                     WidgetManager.CloseWidget<NoteWidget, NoteModel>(ref _noteWidgetContainer.Widget);
                 }
                 _noteWidgetContainer.Widget = WidgetManager.CreateWidget<NoteWidget, NoteViewModel, NoteModel>(new NoteModel());
-                (_noteWidgetContainer.Widget.DataContext as IWidgetViewModel<NoteModel>).LoadModel();
                 _noteWidgetContainer.Widget.Show();
                 LoadWidget(ref _noteWidgetContainer);
                 WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(_noteWidgetContainer.Widget);

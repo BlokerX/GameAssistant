@@ -150,23 +150,25 @@ namespace GameAssistant.Services
         /// Return new widget.
         /// </summary>
         /// <typeparam name="WidgetType">Type of widget.</typeparam>
-        /// <typeparam name="WidgetViewModelType">Type of widget's view model.</typeparam>
-        /// <typeparam name="WidgetModelType">Type of widget model.</typeparam>
+        /// <typeparam name="ViewModelType">Type of widget's view model.</typeparam>
+        /// <typeparam name="ModelType">Type of widget model.</typeparam>
         /// <returns>Widget.</returns>
-        public static WidgetType CreateWidget<WidgetType, WidgetViewModelType, WidgetModelType>(WidgetModelType widgetModel)
+        public static WidgetType CreateWidget<WidgetType, ViewModelType, ModelType>(ModelType widgetModel)
             where WidgetType : WidgetBase, new()
-            where WidgetViewModelType : class, IWidgetViewModel<WidgetModelType>, new()
-            where WidgetModelType : WidgetModelBase, new()
+            where ViewModelType : class, IWidgetViewModel<ModelType>, new()
+            where ModelType : WidgetModelBase, new()
         {
             AppFileSystem.CheckDiresArchitecture();
 
-            return new WidgetType()
+            var widget = new WidgetType()
             {
-                DataContext = new WidgetViewModelType()
+                DataContext = new ViewModelType()
                 {
                     WidgetModel = widgetModel
                 }
             };
+            (widget.DataContext as IWidgetViewModel<ModelType>).LoadModel();
+            return widget;
         }
 
         /// <summary>
@@ -364,11 +366,11 @@ namespace GameAssistant.Services
                 downloadedModel.AnimationToken = true;
             if (downloadWidgetConfigurationResult)
             {
-                widget = WidgetManager.CreateWidget<WidgetType, ViewModelType, ModelType>(downloadedModel);
+                widget = CreateWidget<WidgetType, ViewModelType, ModelType>(downloadedModel);
             }
             else
             {
-                widget = new WidgetType();
+                widget = CreateWidget<WidgetType, ViewModelType, ModelType>(new ModelType());
                 downloadedModel = (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel;
             }
             widget.Show();

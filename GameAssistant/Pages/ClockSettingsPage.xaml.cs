@@ -241,7 +241,6 @@ namespace GameAssistant.Pages
                     WidgetManager.CloseWidget<ClockWidget, ClockModel>(ref _clockWidgetContainer.Widget);
                 }
                 _clockWidgetContainer.Widget = WidgetManager.CreateWidget<ClockWidget, ClockViewModel, ClockModel>(new ClockModel());
-                (_clockWidgetContainer.Widget.DataContext as IWidgetViewModel<ClockModel>).LoadModel();
                 _clockWidgetContainer.Widget.Show();
                 LoadWidget(ref _clockWidgetContainer);
                 WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(_clockWidgetContainer.Widget);

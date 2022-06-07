@@ -27,8 +27,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0E99CC2E83A0000CE9FC74676FEECFFC"
-        "OwnerKey" = "8:_8E09746E8204421FA8C8EC32F9BB57FC"
+        "MsmKey" = "8:_1480A1AD430E453BAA55F7AAFBD064C2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1C127B89A8D9498AA8BC8A2EF9811F14"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -117,12 +123,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_459A77064AF74D46B881CF9F16F6DB0E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_4ACCA839B8F94385B39295CA0E1C7B7A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -141,7 +141,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_517C04ECFCE34B0FA25C5313273A84C6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_556CDE8563E64EA2A9EEF9CB9FC43F29"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_58B5DE0609F842D8A0540228E5E13CE3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -165,12 +177,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_649184EFD67845D9B2519EF90419E593"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_649B43D2183344E18A923DDF3A61208F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -189,20 +195,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_686D100813A24C29A873D10DDA493B9A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_69ADD3FB1FF94E79B74842365FC2C9FC"
         "OwnerKey" = "8:_678522EA393B42EE91008000ACC29C9C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6AC86DEDD610409A97B075193752F8F1"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -249,12 +243,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7B8F53D050C04E9EA63FE73A3BB7624D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_7ECB17D62D79490FB9936246F07523B8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -291,12 +279,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8E09746E8204421FA8C8EC32F9BB57FC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_8F125336407A4595920CBA47678F3F90"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -309,6 +291,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_95123DBA96C6462B8B02C3242DBB570D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_97A7133603E14F298A7293FA79414DF7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -316,12 +304,6 @@
         "Entry"
         {
         "MsmKey" = "8:_9A4C36A1496B4073830F9E2E39C1B1C5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9AAE8FCDB03149139B4B2503A485160E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -351,6 +333,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_AEAFDF8FB8CF4BA484367B97C75C3488"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B3F41F698EAF401B8879E6CCD3FAA895"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -370,13 +358,13 @@
         "Entry"
         {
         "MsmKey" = "8:_B5E8AAD42639BCEE0800789756866D15"
-        "OwnerKey" = "8:_0E99CC2E83A0000CE9FC74676FEECFFC"
+        "OwnerKey" = "8:_517C04ECFCE34B0FA25C5313273A84C6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_B5E8AAD42639BCEE0800789756866D15"
-        "OwnerKey" = "8:_8E09746E8204421FA8C8EC32F9BB57FC"
+        "OwnerKey" = "8:_FFBA4DD89DFB5D351F34C7F4F587A90A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -399,7 +387,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B77F250EA59D4AD8B998D46FDD6F2E75"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B93BC8B9219F4B28BCDB03BD2535F28C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BC7E96CA627C4D3FB8DB857EAA263EF4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -501,12 +501,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EAAE1A94B0FF476FBD51C2F340BEABA4"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_F1135FD4153E43C599073767AF74F72E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -531,26 +525,26 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_69ADD3FB1FF94E79B74842365FC2C9FC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8E09746E8204421FA8C8EC32F9BB57FC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0E99CC2E83A0000CE9FC74676FEECFFC"
+        "MsmKey" = "8:_FFBA4DD89DFB5D351F34C7F4F587A90A"
+        "OwnerKey" = "8:_517C04ECFCE34B0FA25C5313273A84C6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_678522EA393B42EE91008000ACC29C9C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_517C04ECFCE34B0FA25C5313273A84C6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_FFBA4DD89DFB5D351F34C7F4F587A90A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -611,6 +605,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B5E8AAD42639BCEE0800789756866D15"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_69ADD3FB1FF94E79B74842365FC2C9FC"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -812,21 +812,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0E99CC2E83A0000CE9FC74676FEECFFC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1480A1AD430E453BAA55F7AAFBD064C2"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CefSharp.BrowserSubprocess.Core, Version=100.0.230.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_0E99CC2E83A0000CE9FC74676FEECFFC"
-                    {
-                    "Name" = "8:CefSharp.BrowserSubprocess.Core.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:CefSharp.BrowserSubprocess.Core.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:D:\\Moje dokumenty\\Przestrzeń pracy\\Potrzebne do implementacji w instalkę game assistant\\v8_context_snapshot.bin"
+            "TargetName" = "8:v8_context_snapshot.bin"
             "Tag" = "8:"
             "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
             "Condition" = "8:"
@@ -840,7 +829,27 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C127B89A8D9498AA8BC8A2EF9811F14"
+            {
+            "SourcePath" = "8:D:\\Moje dokumenty\\Przestrzeń pracy\\Potrzebne do implementacji w instalkę game assistant\\Potrzebne Mniej\\vk_swiftshader.dll"
+            "TargetName" = "8:vk_swiftshader.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C67211B4EC4427E8DDF65ADB10C0B27"
@@ -1136,26 +1145,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_459A77064AF74D46B881CF9F16F6DB0E"
-            {
-            "SourcePath" = "8:E:\\Potrzebne do implementacji w instalkę game assistant\\resources.pak"
-            "TargetName" = "8:resources.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4ACCA839B8F94385B39295CA0E1C7B7A"
             {
             "SourcePath" = "8:..\\GameAssistant\\bin\\Release\\locales\\pl.pak"
@@ -1216,12 +1205,63 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_517C04ECFCE34B0FA25C5313273A84C6"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CefSharp.BrowserSubprocess, Version=100.0.230.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_517C04ECFCE34B0FA25C5313273A84C6"
+                    {
+                    "Name" = "8:CefSharp.BrowserSubprocess.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:D:\\Moje dokumenty\\Przestrzeń pracy\\Potrzebne do implementacji w instalkę game assistant\\CefSharp.BrowserSubprocess.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_556CDE8563E64EA2A9EEF9CB9FC43F29"
             {
             "SourcePath" = "8:..\\GameAssistant\\bin\\Release\\locales\\lv.pak"
             "TargetName" = "8:lv.pak"
             "Tag" = "8:"
             "Folder" = "8:_96710251D7BD4588BD1CD65EDF31DC84"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_58B5DE0609F842D8A0540228E5E13CE3"
+            {
+            "SourcePath" = "8:D:\\Moje dokumenty\\Przestrzeń pracy\\Potrzebne do implementacji w instalkę game assistant\\libcef.dll"
+            "TargetName" = "8:libcef.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1296,26 +1336,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_649184EFD67845D9B2519EF90419E593"
-            {
-            "SourcePath" = "8:E:\\Potrzebne do implementacji w instalkę game assistant\\v8_context_snapshot.bin"
-            "TargetName" = "8:v8_context_snapshot.bin"
-            "Tag" = "8:"
-            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_649B43D2183344E18A923DDF3A61208F"
             {
             "SourcePath" = "8:..\\GameAssistant\\bin\\Release\\locales\\ko.pak"
@@ -1342,26 +1362,6 @@
             "TargetName" = "8:en-US.pak"
             "Tag" = "8:"
             "Folder" = "8:_96710251D7BD4588BD1CD65EDF31DC84"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_686D100813A24C29A873D10DDA493B9A"
-            {
-            "SourcePath" = "8:E:\\Potrzebne do implementacji w instalkę game assistant\\Potrzebne Mniej\\vk_swiftshader.dll"
-            "TargetName" = "8:vk_swiftshader.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1405,26 +1405,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6AC86DEDD610409A97B075193752F8F1"
-            {
-            "SourcePath" = "8:E:\\Potrzebne do implementacji w instalkę game assistant\\chrome_elf.dll"
-            "TargetName" = "8:chrome_elf.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_70338FD9F4A340C2914F6FC4D0CBAE1E"
@@ -1578,26 +1558,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B8F53D050C04E9EA63FE73A3BB7624D"
-            {
-            "SourcePath" = "8:E:\\Potrzebne do implementacji w instalkę game assistant\\libcef.dll"
-            "TargetName" = "8:libcef.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7ECB17D62D79490FB9936246F07523B8"
             {
             "SourcePath" = "8:..\\GameAssistant\\bin\\Release\\locales\\uk.pak"
@@ -1718,37 +1678,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8E09746E8204421FA8C8EC32F9BB57FC"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:CefSharp.BrowserSubprocess, Version=100.0.230.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_8E09746E8204421FA8C8EC32F9BB57FC"
-                    {
-                    "Name" = "8:CefSharp.BrowserSubprocess.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:E:\\Potrzebne do implementacji w instalkę game assistant\\CefSharp.BrowserSubprocess.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F125336407A4595920CBA47678F3F90"
             {
             "SourcePath" = "8:..\\GameAssistant\\bin\\Release\\locales\\sk.pak"
@@ -1789,6 +1718,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_95123DBA96C6462B8B02C3242DBB570D"
+            {
+            "SourcePath" = "8:D:\\Moje dokumenty\\Przestrzeń pracy\\Potrzebne do implementacji w instalkę game assistant\\chrome_elf.dll"
+            "TargetName" = "8:chrome_elf.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_97A7133603E14F298A7293FA79414DF7"
             {
             "SourcePath" = "8:..\\GameAssistant\\bin\\Release\\locales\\sl.pak"
@@ -1815,26 +1764,6 @@
             "TargetName" = "8:ml.pak"
             "Tag" = "8:"
             "Folder" = "8:_96710251D7BD4588BD1CD65EDF31DC84"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9AAE8FCDB03149139B4B2503A485160E"
-            {
-            "SourcePath" = "8:E:\\Potrzebne do implementacji w instalkę game assistant\\libGLESv2.dll"
-            "TargetName" = "8:libGLESv2.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1940,6 +1869,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AEAFDF8FB8CF4BA484367B97C75C3488"
+            {
+            "SourcePath" = "8:D:\\Moje dokumenty\\Przestrzeń pracy\\Potrzebne do implementacji w instalkę game assistant\\resources.pak"
+            "TargetName" = "8:resources.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B3F41F698EAF401B8879E6CCD3FAA895"
             {
             "SourcePath" = "8:..\\GameAssistant\\bin\\Release\\locales\\sv.pak"
@@ -2011,12 +1960,52 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B77F250EA59D4AD8B998D46FDD6F2E75"
+            {
+            "SourcePath" = "8:D:\\Moje dokumenty\\Przestrzeń pracy\\Potrzebne do implementacji w instalkę game assistant\\libGLESv2.dll"
+            "TargetName" = "8:libGLESv2.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B93BC8B9219F4B28BCDB03BD2535F28C"
             {
             "SourcePath" = "8:..\\GameAssistant\\bin\\Release\\locales\\fil.pak"
             "TargetName" = "8:fil.pak"
             "Tag" = "8:"
             "Folder" = "8:_96710251D7BD4588BD1CD65EDF31DC84"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC7E96CA627C4D3FB8DB857EAA263EF4"
+            {
+            "SourcePath" = "8:D:\\Moje dokumenty\\Przestrzeń pracy\\Potrzebne do implementacji w instalkę game assistant\\libEGL.dll"
+            "TargetName" = "8:libEGL.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2304,26 +2293,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EAAE1A94B0FF476FBD51C2F340BEABA4"
-            {
-            "SourcePath" = "8:E:\\Potrzebne do implementacji w instalkę game assistant\\libEGL.dll"
-            "TargetName" = "8:libEGL.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F1135FD4153E43C599073767AF74F72E"
             {
             "SourcePath" = "8:..\\GameAssistant\\bin\\Release\\locales\\hr.pak"
@@ -2413,6 +2382,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FFBA4DD89DFB5D351F34C7F4F587A90A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:CefSharp.BrowserSubprocess.Core, Version=100.0.230.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_FFBA4DD89DFB5D351F34C7F4F587A90A"
+                    {
+                    "Name" = "8:CefSharp.BrowserSubprocess.Core.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:CefSharp.BrowserSubprocess.Core.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }
@@ -3032,7 +3032,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_678522EA393B42EE91008000ACC29C9C"
             {
-            "SourcePath" = "8:..\\GameAssistant\\obj\\Debug\\GameAssistant.exe"
+            "SourcePath" = "8:..\\GameAssistant\\obj\\Release\\GameAssistant.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C87B68D714484F8D8F94C5606B491489"

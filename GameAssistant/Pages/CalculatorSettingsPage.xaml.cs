@@ -341,7 +341,6 @@ namespace GameAssistant.Pages
                     WidgetManager.CloseWidget<CalculatorWidget, CalculatorModel>(ref _calculatorWidgetContainer.Widget);
                 }
                 _calculatorWidgetContainer.Widget = WidgetManager.CreateWidget<CalculatorWidget, CalculatorViewModel, CalculatorModel>(new CalculatorModel());
-                (_calculatorWidgetContainer.Widget.DataContext as IWidgetViewModel<CalculatorModel>).LoadModel();
                 _calculatorWidgetContainer.Widget.Show();
                 LoadWidget(ref _calculatorWidgetContainer);
                 WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(_calculatorWidgetContainer.Widget);
