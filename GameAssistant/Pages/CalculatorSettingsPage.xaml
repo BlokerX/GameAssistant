@@ -37,45 +37,30 @@
 
             <StackPanel>
 
-                <controls:ColorSettingProperty x:Name="BackgroundColorProperty" 
-                                               PropertyName="Background color:"
-                                               PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"/>
+                <controls:AnimationBrushSettingProperty x:Name="BackgroundAnimationBrushProperty"
+                                                        PropertyName="Background"
+                                                        PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"
+                                                        PropertyAnimationChanged="BackgroundAnimationProperty_PropertyValueChanged"/>
 
-                <controls:AnimationModeSettingProperty x:Name="BackgroundAnimationProperty"
-                                                       PropertyName="Background animation:"
-                                                       PropertyValueChanged="BackgroundAnimationProperty_PropertyValueChanged"/>
+                <controls:AnimationBrushSettingProperty x:Name="TextBoxBackgroundAnimationBrushProperty"
+                                                        PropertyName="TextBox background"
+                                                        PropertyColorChanged="TextBoxBackgroundColorProperty_PropertyColorChanged"
+                                                        PropertyAnimationChanged="TextBoxBackgroundAnimationProperty_PropertyValueChanged"/>
 
-                <controls:ColorSettingProperty x:Name="TextBoxBackgroundColorProperty"
-                                               PropertyName="TextBox background color:"
-                                               PropertyColorChanged="TextBoxBackgroundColorProperty_PropertyColorChanged"/>
+                <controls:AnimationBrushSettingProperty x:Name="TextBoxForegroundAnimationBrushProperty"
+                                                        PropertyName="TextBox foreground"
+                                                        PropertyColorChanged="TextBoxForegroundColorProperty_PropertyColorChanged"
+                                                        PropertyAnimationChanged="TextBoxForegroundAnimationProperty_PropertyValueChanged"/>
 
-                <controls:AnimationModeSettingProperty x:Name="TextBoxBackgroundAnimationProperty"
-                                                       PropertyName="TextBox background animation:"
-                                                       PropertyValueChanged="TextBoxBackgroundAnimationProperty_PropertyValueChanged"/>
+                <controls:AnimationBrushSettingProperty x:Name="ButtonsBackgroundAnimationBrushProperty"
+                                                        PropertyName="Buttons background"
+                                                        PropertyColorChanged="ButtonsBackgroundColorProperty_PropertyColorChanged"
+                                                        PropertyAnimationChanged="ButtonsBackgroundAnimationProperty_PropertyValueChanged"/>
 
-                <controls:ColorSettingProperty x:Name="TextBoxForegroundColorProperty"
-                                               PropertyName="TextBox foreground color:"
-                                               PropertyColorChanged="TextBoxForegroundColorProperty_PropertyColorChanged"/>
-
-                <controls:AnimationModeSettingProperty x:Name="TextBoxForegroundAnimationProperty"
-                                                       PropertyName="TextBox foreground animation:"
-                                                       PropertyValueChanged="TextBoxForegroundAnimationProperty_PropertyValueChanged"/>
-
-                <controls:ColorSettingProperty x:Name="ButtonsBackgroundColorProperty"
-                                               PropertyName="Buttons background color:"
-                                               PropertyColorChanged="ButtonsBackgroundColorProperty_PropertyColorChanged"/>
-
-                <controls:AnimationModeSettingProperty x:Name="ButtonsBackgroundAnimationProperty"
-                                                       PropertyName="Buttons background animation:"
-                                                       PropertyValueChanged="ButtonsBackgroundAnimationProperty_PropertyValueChanged"/>
-
-                <controls:ColorSettingProperty x:Name="ButtonsForegroundColorProperty"
-                                               PropertyName="Buttons foreground color:"
-                                               PropertyColorChanged="ButtonsForegroundColorProperty_PropertyColorChanged"/>
-
-                <controls:AnimationModeSettingProperty x:Name="ButtonsForegroundAnimationProperty"
-                                                       PropertyName="Buttons foreground animation:"
-                                                       PropertyValueChanged="ButtonsForegroundAnimationProperty_PropertyValueChanged"/>
+                <controls:AnimationBrushSettingProperty x:Name="ButtonsForegroundAnimationBrushProperty"
+                                                        PropertyName="Buttons foreground"
+                                                        PropertyColorChanged="ButtonsForegroundColorProperty_PropertyColorChanged"
+                                                        PropertyAnimationChanged="ButtonsForegroundAnimationProperty_PropertyValueChanged"/>
 
             </StackPanel>
 

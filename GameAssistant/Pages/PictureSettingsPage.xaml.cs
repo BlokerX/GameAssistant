@@ -72,9 +72,9 @@ namespace GameAssistant.Pages
         {
             var model = (pictureWidgetContainer.Widget.DataContext as IWidgetViewModel<PictureModel>).WidgetModel;
 
-            this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushContainer.Variable;
+            this.BackgroundAnimationBrushProperty.ColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushContainer.Variable;
 
-            this.BackgroundAnimationProperty.SelectedElementIndex = (int)model.BackgroundAnimatedBrush.BrushAnimationManager.Animation;
+            this.BackgroundAnimationBrushProperty.AnimationProperty.SelectedElementIndex = (int)model.BackgroundAnimatedBrush.BrushAnimationManager.Animation;
 
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
             this.ImageOpacityProperty.PropertyValue = model.ImageOpacity;
@@ -87,12 +87,10 @@ namespace GameAssistant.Pages
 
         protected override void ActiveChanged(bool newState)
         {
-            this.BackgroundColorProperty.IsEnabled = newState;
+            this.BackgroundAnimationBrushProperty.IsEnabled = newState;
 
             this.BackgroundOpacityProperty.IsEnabled = newState;
             this.ImageOpacityProperty.IsEnabled = newState;
-
-            this.BackgroundAnimationProperty.IsEnabled = newState;
 
             this.CanResizeProperty.IsEnabled = newState;
             this.DragActiveProperty.IsEnabled = newState;

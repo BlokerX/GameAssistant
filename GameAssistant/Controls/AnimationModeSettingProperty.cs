@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameAssistant.Controls
 {
-    internal class AnimationModeSettingProperty : ListBoxSettingProperty
+    public class AnimationModeSettingProperty : ListBoxSettingProperty
     {
         public AnimationModeSettingProperty()
         {

@@ -36,29 +36,20 @@
 
             <StackPanel>
 
-                <controls:ColorSettingProperty x:Name="BackgroundColorProperty" 
-                                               PropertyName="Background color:"
-                                               PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"/>
+                <controls:AnimationBrushSettingProperty x:Name="BackgroundAnimationBrushProperty"
+                                                        PropertyName="Background"
+                                                        PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"
+                                                        PropertyAnimationChanged="BackgroundAnimationProperty_PropertyValueChanged"/>
 
-                <controls:AnimationModeSettingProperty x:Name="BackgroundAnimationProperty"
-                                                       PropertyName="Background animation:"
-                                                       PropertyValueChanged="BackgroundAnimationProperty_PropertyValueChanged"/>
+                <controls:AnimationBrushSettingProperty x:Name="ForegroundAnimationBrushProperty"
+                                                        PropertyName="Foreground"
+                                                        PropertyColorChanged="ForegroundColorProperty_PropertyColorChanged"
+                                                        PropertyAnimationChanged="ForegroundAnimationProperty_PropertyValueChanged"/>
 
-                <controls:ColorSettingProperty x:Name="ForegroundColorProperty"
-                                               PropertyName="Foreground color:"
-                                               PropertyColorChanged="ForegroundColorProperty_PropertyColorChanged"/>
-
-                <controls:AnimationModeSettingProperty x:Name="ForegroundAnimationProperty"
-                                                       PropertyName="Foreground animation:"
-                                                       PropertyValueChanged="ForegroundAnimationProperty_PropertyValueChanged"/>
-
-                <controls:ColorSettingProperty x:Name="DetectPanelColorProperty"
-                                               PropertyName="Detect panel color:"
-                                               PropertyColorChanged="DetectPanelColorProperty_PropertyColorChanged"/>
-
-                <controls:AnimationModeSettingProperty x:Name="DetectPanelAnimationProperty"
-                                                       PropertyName="DetectPanel animation:"
-                                                       PropertyValueChanged="DetectPanelAnimationProperty_PropertyValueChanged"/>
+                <controls:AnimationBrushSettingProperty x:Name="DetectPanelAnimationBrushProperty"
+                                                        PropertyName="Detect panel"
+                                                        PropertyColorChanged="DetectPanelColorProperty_PropertyColorChanged"
+                                                        PropertyAnimationChanged="DetectPanelAnimationProperty_PropertyValueChanged"/>
 
             </StackPanel>
 

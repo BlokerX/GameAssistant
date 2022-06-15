@@ -71,21 +71,21 @@ namespace GameAssistant.Pages
         {
             var model = (calculatorWidgetContainer.Widget.DataContext as IWidgetViewModel<CalculatorModel>).WidgetModel;
 
-            this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushContainer.Variable;
-            this.TextBoxBackgroundColorProperty.PropertyColor = model.TextBoxBackgroundAnimatedBrush.BrushContainer.Variable;
-            this.TextBoxForegroundColorProperty.PropertyColor = model.TextBoxForegroundAnimatedBrush.BrushContainer.Variable;
-            this.ButtonsBackgroundColorProperty.PropertyColor = model.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable;
-            this.ButtonsForegroundColorProperty.PropertyColor = model.ButtonsForegroundAnimatedBrush.BrushContainer.Variable;
+            this.BackgroundAnimationBrushProperty.ColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushContainer.Variable;
+            this.TextBoxBackgroundAnimationBrushProperty.ColorProperty.PropertyColor = model.TextBoxBackgroundAnimatedBrush.BrushContainer.Variable;
+            this.TextBoxForegroundAnimationBrushProperty.ColorProperty.PropertyColor = model.TextBoxForegroundAnimatedBrush.BrushContainer.Variable;
+            this.ButtonsBackgroundAnimationBrushProperty.ColorProperty.PropertyColor = model.ButtonsBackgroundAnimatedBrush.BrushContainer.Variable;
+            this.ButtonsForegroundAnimationBrushProperty.ColorProperty.PropertyColor = model.ButtonsForegroundAnimatedBrush.BrushContainer.Variable;
 
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
             this.TextBoxOpacityProperty.PropertyValue = model.TextBoxOpacity;
             this.ButtonsOpacityProperty.PropertyValue = model.ButtonsOpacity;
 
-            this.BackgroundAnimationProperty.SelectedElementIndex = (int)model.BackgroundAnimatedBrush.BrushAnimationManager.Animation;
-            this.TextBoxBackgroundAnimationProperty.SelectedElementIndex = (int)model.TextBoxBackgroundAnimatedBrush.BrushAnimationManager.Animation;
-            this.TextBoxForegroundAnimationProperty.SelectedElementIndex = (int)model.TextBoxForegroundAnimatedBrush.BrushAnimationManager.Animation;
-            this.ButtonsBackgroundAnimationProperty.SelectedElementIndex = (int)model.ButtonsBackgroundAnimatedBrush.BrushAnimationManager.Animation;
-            this.ButtonsForegroundAnimationProperty.SelectedElementIndex = (int)model.ButtonsForegroundAnimatedBrush.BrushAnimationManager.Animation;
+            this.BackgroundAnimationBrushProperty.AnimationProperty.SelectedElementIndex = (int)model.BackgroundAnimatedBrush.BrushAnimationManager.Animation;
+            this.TextBoxBackgroundAnimationBrushProperty.AnimationProperty.SelectedElementIndex = (int)model.TextBoxBackgroundAnimatedBrush.BrushAnimationManager.Animation;
+            this.TextBoxForegroundAnimationBrushProperty.AnimationProperty.SelectedElementIndex = (int)model.TextBoxForegroundAnimatedBrush.BrushAnimationManager.Animation;
+            this.ButtonsBackgroundAnimationBrushProperty.AnimationProperty.SelectedElementIndex = (int)model.ButtonsBackgroundAnimatedBrush.BrushAnimationManager.Animation;
+            this.ButtonsForegroundAnimationBrushProperty.AnimationProperty.SelectedElementIndex = (int)model.ButtonsForegroundAnimatedBrush.BrushAnimationManager.Animation;
 
             this.TextBoxFontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.TextBoxFontFamily);
             this.TextBoxFontSettingsPropertyPanel.PropertyFontSize = model.TextBoxFontSize;
@@ -100,21 +100,15 @@ namespace GameAssistant.Pages
 
         protected override void ActiveChanged(bool newState)
         {
-            this.BackgroundColorProperty.IsEnabled = newState;
-            this.TextBoxBackgroundColorProperty.IsEnabled = newState;
-            this.TextBoxForegroundColorProperty.IsEnabled = newState;
-            this.ButtonsBackgroundColorProperty.IsEnabled = newState;
-            this.ButtonsForegroundColorProperty.IsEnabled = newState;
+            this.BackgroundAnimationBrushProperty.IsEnabled = newState;
+            this.TextBoxBackgroundAnimationBrushProperty.IsEnabled = newState;
+            this.TextBoxForegroundAnimationBrushProperty.IsEnabled = newState;
+            this.ButtonsBackgroundAnimationBrushProperty.IsEnabled = newState;
+            this.ButtonsForegroundAnimationBrushProperty.IsEnabled = newState;
 
             this.BackgroundOpacityProperty.IsEnabled = newState;
             this.TextBoxOpacityProperty.IsEnabled = newState;
             this.ButtonsOpacityProperty.IsEnabled = newState;
-
-            this.BackgroundAnimationProperty.IsEnabled = newState;
-            this.TextBoxBackgroundAnimationProperty.IsEnabled = newState;
-            this.TextBoxForegroundAnimationProperty.IsEnabled = newState;
-            this.ButtonsBackgroundAnimationProperty.IsEnabled = newState;
-            this.ButtonsForegroundAnimationProperty.IsEnabled = newState;
 
             this.TextBoxFontSettingsPropertyPanel.IsEnabled = newState;
             this.TextBoxFontSettingsPropertyPanel.IsEnabled = newState;

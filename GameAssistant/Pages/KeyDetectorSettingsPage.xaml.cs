@@ -72,16 +72,16 @@ namespace GameAssistant.Pages
         {
             var model = (keyDetectorWidgetContainer.Widget.DataContext as IWidgetViewModel<KeyDetectorModel>).WidgetModel;
 
-            this.BackgroundColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushContainer.Variable;
-            this.ForegroundColorProperty.PropertyColor = model.ForegroundAnimatedBrush.BrushContainer.Variable;
-            this.DetectPanelColorProperty.PropertyColor = model.DetectPanelAnimatedBrush.BrushContainer.Variable;
+            this.BackgroundAnimationBrushProperty.ColorProperty.PropertyColor = model.BackgroundAnimatedBrush.BrushContainer.Variable;
+            this.ForegroundAnimationBrushProperty.ColorProperty.PropertyColor = model.ForegroundAnimatedBrush.BrushContainer.Variable;
+            this.DetectPanelAnimationBrushProperty.ColorProperty.PropertyColor = model.DetectPanelAnimatedBrush.BrushContainer.Variable;
 
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
             this.ForegroundOpacityProperty.PropertyValue = model.DetectPanelOpacity;
 
-            this.BackgroundAnimationProperty.SelectedElementIndex = (int)model.BackgroundAnimatedBrush.BrushAnimationManager.Animation;
-            this.ForegroundAnimationProperty.SelectedElementIndex = (int)model.ForegroundAnimatedBrush.BrushAnimationManager.Animation;
-            this.DetectPanelAnimationProperty.SelectedElementIndex = (int)model.DetectPanelAnimatedBrush.BrushAnimationManager.Animation;
+            this.BackgroundAnimationBrushProperty.AnimationProperty.SelectedElementIndex = (int)model.BackgroundAnimatedBrush.BrushAnimationManager.Animation;
+            this.ForegroundAnimationBrushProperty.AnimationProperty.SelectedElementIndex = (int)model.ForegroundAnimatedBrush.BrushAnimationManager.Animation;
+            this.DetectPanelAnimationBrushProperty.AnimationProperty.SelectedElementIndex = (int)model.DetectPanelAnimatedBrush.BrushAnimationManager.Animation;
 
             this.FontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.FontFamily);
             this.FontSettingsPropertyPanel.PropertyFontSize = model.FontSize;
@@ -93,16 +93,12 @@ namespace GameAssistant.Pages
 
         protected override void ActiveChanged(bool newState)
         {
-            this.BackgroundColorProperty.IsEnabled = newState;
-            this.ForegroundColorProperty.IsEnabled = newState;
-            this.DetectPanelColorProperty.IsEnabled = newState;
+            this.BackgroundAnimationBrushProperty.IsEnabled = newState;
+            this.ForegroundAnimationBrushProperty.IsEnabled = newState;
+            this.DetectPanelAnimationBrushProperty.IsEnabled = newState;
 
             this.BackgroundOpacityProperty.IsEnabled = newState;
             this.ForegroundOpacityProperty.IsEnabled = newState;
-
-            this.BackgroundAnimationProperty.IsEnabled = newState;
-            this.ForegroundAnimationProperty.IsEnabled = newState;
-            this.DetectPanelAnimationProperty.IsEnabled = newState;
 
             this.FontSettingsPropertyPanel.IsEnabled = newState;
 

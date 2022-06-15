@@ -37,13 +37,18 @@
 
             <StackPanel>
 
-                <controls:ColorSettingProperty x:Name="BackgroundColorProperty"
+                <!--controls:ColorSettingProperty x:Name="BackgroundColorProperty"
                                                PropertyName="Background color:"
                                                PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"/>
 
                 <controls:AnimationModeSettingProperty x:Name="BackgroundAnimationProperty"
                                                        PropertyName="Background animation:"
-                                                       PropertyValueChanged="BackgroundAnimationProperty_PropertyValueChanged"/>
+                                                       PropertyValueChanged="BackgroundAnimationProperty_PropertyValueChanged"/-->
+
+                <controls:AnimationBrushSettingProperty x:Name="BackgroundAnimationBrushProperty"
+                                                        PropertyName="Background"
+                                                        PropertyColorChanged="BackgroundColorProperty_PropertyColorChanged"
+                                                        PropertyAnimationChanged="BackgroundAnimationProperty_PropertyValueChanged"/>
 
             </StackPanel>
 
