@@ -66,30 +66,12 @@ namespace GameAssistant.Controls
         }
 
         /// <summary>
-        /// Property value for color.
-        /// </summary>
-        public Brush PropertyColor
-        {
-            get => ColorProperty.PropertyColor;
-            set => ColorProperty.PropertyColor = value;
-        }
-
-        /// <summary>
         /// On ColorProperty changed.
         /// </summary>
         public event EventHandler<Brush> PropertyColorChanged
         {
             add => ColorProperty.PropertyColorChanged += value;
             remove => ColorProperty.PropertyColorChanged -= value;
-        }
-
-        /// <summary>
-        /// Property value animation mode.
-        /// </summary>
-        public int PropertyAnimation
-        {
-            get => AnimationProperty.SelectedElementIndex;
-            set => AnimationProperty.SelectedElementIndex = value;
         }
 
         /// <summary>
