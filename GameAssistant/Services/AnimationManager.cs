@@ -1,6 +1,5 @@
 ﻿using GameAssistant.Core;
 using GameAssistant.Services.Animations;
-using System.Timers;
 using System.Windows.Media;
 
 namespace GameAssistant.Services
@@ -56,7 +55,7 @@ namespace GameAssistant.Services
                 }
             }
         }
-        // todo dublowanie się memberów (*problem z zamykaniem animacji*)
+
         public void AnimationMemberDepose()
         {
             switch (Animation)

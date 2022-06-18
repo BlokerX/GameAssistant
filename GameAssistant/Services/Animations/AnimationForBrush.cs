@@ -1,5 +1,4 @@
 ﻿using GameAssistant.Core;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Timers;
@@ -9,6 +8,9 @@ namespace GameAssistant.Services.Animations
 {
     public class AnimationForBrush
     {
+        /// <summary>
+        /// Animation timer.
+        /// </summary>
         protected Timer animationTimer;
 
         // todo dodać szybkość animacji INTERVAL
@@ -18,8 +20,15 @@ namespace GameAssistant.Services.Animations
         /// </summary>
         protected VariableContainer<Brush> brush = new VariableContainer<Brush>(new SolidColorBrush(Colors.Red));
 
-        private List<VariableContainer<Brush>> _members = new List<VariableContainer<Brush>>();
+        /// <summary>
+        /// List of members (brush containers).
+        /// </summary>
+        private readonly List<VariableContainer<Brush>> _members = new List<VariableContainer<Brush>>();
 
+        /// <summary>
+        /// Adds members.
+        /// </summary>
+        /// <param name="brushContainer">New member.</param>
         public void AddMember(ref VariableContainer<Brush> brushContainer)
         {
             _members.Add(brushContainer);
@@ -30,6 +39,10 @@ namespace GameAssistant.Services.Animations
                 StartAnimate();
         }
 
+        /// <summary>
+        /// Removes members.
+        /// </summary>
+        /// <param name="brushContainer">A member.</param>
         public void RemoveMember(ref VariableContainer<Brush> brushContainer)
         {
             if (_members.Contains(brushContainer))
@@ -53,6 +66,9 @@ namespace GameAssistant.Services.Animations
             animationTimer.Elapsed += AnimationTimer_Elapsed;
         }
 
+        /// <summary>
+        /// Animation method.
+        /// </summary>
         protected virtual void Animate() { }
 
         private void AnimationTimer_Elapsed(object sender, ElapsedEventArgs e)

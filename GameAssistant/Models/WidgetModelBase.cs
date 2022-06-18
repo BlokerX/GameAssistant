@@ -178,7 +178,6 @@ namespace GameAssistant.Models
 
         ~WidgetModelBase()
         {
-            // important place
             AnimationMemberDepose_Invoke();
         }
 

@@ -419,7 +419,7 @@ namespace GameAssistant.Services
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
-            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            var downloadedConfigurationResult = DownloadWidgetConfigurationFromFile(out ModelType model);
 
             if (widget != null)
             {
@@ -429,7 +429,7 @@ namespace GameAssistant.Services
 
             BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
         END:
-            WidgetManager.SaveWidgetConfigurationInFile(model);
+            SaveWidgetConfigurationInFile(model);
         }
 
         /// <summary>
@@ -445,19 +445,19 @@ namespace GameAssistant.Services
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
-            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            var downloadedConfigurationResult = DownloadWidgetConfigurationFromFile(out ModelType model);
 
             if (state == false && widget != null)
             {
-                WidgetManager.CloseWidget(ref widget, ref model);
+                CloseWidget(ref widget, ref model);
             }
 
             if (state == true && widget == null)
             {
-                WidgetManager.BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
+                BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
             }
 
-            WidgetManager.SaveWidgetConfigurationInFile(model);
+            SaveWidgetConfigurationInFile(model);
         }
 
         /// <summary>
@@ -520,7 +520,7 @@ namespace GameAssistant.Services
             where ModelType : WidgetModelBase, new()
         {
             (widget?.DataContext as IWidgetViewModel<ModelType>)?.WidgetModel.AnimationMemberDepose_Invoke();
-            WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            DownloadWidgetConfigurationFromFile(out ModelType model);
             widget?.Close();
             widget = null;
             return model;
