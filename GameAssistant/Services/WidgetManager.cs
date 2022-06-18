@@ -501,7 +501,7 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
-            (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel.AnimationToken = false;
+            (widget?.DataContext as IWidgetViewModel<ModelType>)?.WidgetModel.AnimationMemberDepose_Invoke();
 
             widget?.Close();
             widget = null;
@@ -519,9 +519,7 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
-            if (widget != null)
-                (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel.AnimationToken = false;
-
+            (widget?.DataContext as IWidgetViewModel<ModelType>)?.WidgetModel.AnimationMemberDepose_Invoke();
             WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
             widget?.Close();
             widget = null;

@@ -13,13 +13,9 @@ namespace GameAssistant.Models
         /// </summary>
         public KeyDetectorModel()
         {
-            AnimationToken_True += () => DetectPanelAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => DetectPanelAnimatedBrush.BrushAnimationManager.StopAnimate();
-
-            AnimationToken_True += () => ForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => ForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
+            AnimationMemberDepose += ForegroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
+            AnimationMemberDepose += DetectPanelAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
         }
-
 
         #region Serialize properties
 

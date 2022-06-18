@@ -11,17 +11,10 @@ namespace GameAssistant.Models
         // Constructors:
         public CalculatorModel()
         {
-            AnimationToken_True += () => ButtonsBackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => ButtonsBackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
-
-            AnimationToken_True += () => ButtonsForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => ButtonsForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
-
-            AnimationToken_True += () => TextBoxBackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => TextBoxBackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
-
-            AnimationToken_True += () => TextBoxForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => TextBoxForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
+            AnimationMemberDepose += ButtonsBackgroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
+            AnimationMemberDepose += ButtonsForegroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
+            AnimationMemberDepose += TextBoxBackgroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
+            AnimationMemberDepose += TextBoxForegroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
         }
 
         #region Serialize properties

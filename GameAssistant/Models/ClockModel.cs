@@ -11,8 +11,7 @@ namespace GameAssistant.Models
         // Constructors:
         public ClockModel()
         {
-            AnimationToken_True += () => ForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => ForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
+            AnimationMemberDepose += ForegroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
         }
 
         #region Serialize properties

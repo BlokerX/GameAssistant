@@ -12,13 +12,6 @@ namespace GameAssistant.Models
     /// </summary>
     public class WidgetModelBase : BindableObject
     {
-        // Constructors:
-        public WidgetModelBase()
-        {
-            AnimationToken_True += () => BackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => BackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
-        }
-
         ///// <summary>
         ///// Model properties list.
         ///// </summary>
@@ -44,6 +37,18 @@ namespace GameAssistant.Models
         //    };
         //}
 
+        public WidgetModelBase()
+        {
+            AnimationMemberDepose += BackgroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
+        }
+
+        protected event Action AnimationMemberDepose;
+
+        public void AnimationMemberDepose_Invoke()
+        {
+            AnimationMemberDepose.Invoke();
+        }
+
         private bool _animationToken = false;
         [JsonIgnore]
         /// <summary>
@@ -55,18 +60,8 @@ namespace GameAssistant.Models
             set
             {
                 SetProperty(ref _animationToken, value);
-                if (value == true)
-                    AnimationToken_True();
-                else if (value == false)
-                    AnimationToken_False();
             }
         }
-
-        [JsonIgnore]
-        protected Action AnimationToken_True;
-
-        [JsonIgnore]
-        protected Action AnimationToken_False;
 
         // Window const elements:
         private string _title = "Widget";
@@ -183,7 +178,8 @@ namespace GameAssistant.Models
 
         ~WidgetModelBase()
         {
-            AnimationToken = false;
+            // important place
+            AnimationMemberDepose_Invoke();
         }
 
     }
