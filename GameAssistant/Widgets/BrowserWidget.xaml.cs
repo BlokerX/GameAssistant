@@ -1,5 +1,6 @@
 ﻿using GameAssistant.Models;
 using GameAssistant.Services;
+using GameAssistant.WidgetViewModels;
 
 namespace GameAssistant.Widgets
 {
@@ -28,5 +29,14 @@ namespace GameAssistant.Widgets
         }
 
         public static WidgetEvents Events = new WidgetEvents();
+
+        private void HomeButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var vm = DataContext as BrowserViewModel;
+            if (vm != null && vm.WidgetModel != null)
+                vm.WidgetModel.Address = "https://google.com";
+        }
+
+        //todo BrowserWidget : hide bar button
     }
 }
