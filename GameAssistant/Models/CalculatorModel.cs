@@ -11,17 +11,10 @@ namespace GameAssistant.Models
         // Constructors:
         public CalculatorModel()
         {
-            AnimationToken_True += () => ButtonsBackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => ButtonsBackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
-
-            AnimationToken_True += () => ButtonsForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => ButtonsForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
-
-            AnimationToken_True += () => TextBoxBackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => TextBoxBackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
-
-            AnimationToken_True += () => TextBoxForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => TextBoxForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
+            AnimationMemberDepose += ButtonsBackgroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
+            AnimationMemberDepose += ButtonsForegroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
+            AnimationMemberDepose += TextBoxBackgroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
+            AnimationMemberDepose += TextBoxForegroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
         }
 
         #region Serialize properties
@@ -50,7 +43,7 @@ namespace GameAssistant.Models
 
         private AnimatedBrush _buttonsForegroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Black));
         /// <summary>
-        /// Buttons foreground animated brush.
+        /// Buttons foreground animated brushContainer.
         /// </summary>
         public AnimatedBrush ButtonsForegroundAnimatedBrush
         {
@@ -61,7 +54,7 @@ namespace GameAssistant.Models
         // Buttons background:
         private AnimatedBrush _buttonsBackgroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.DarkGray));
         /// <summary>
-        /// Buttons background animated brush.
+        /// Buttons background animated brushContainer.
         /// </summary>
         public AnimatedBrush ButtonsBackgroundAnimatedBrush
         {
@@ -103,7 +96,7 @@ namespace GameAssistant.Models
 
         private AnimatedBrush _textBoxForegroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Black));
         /// <summary>
-        /// TextBox foreground animated brush.
+        /// TextBox foreground animated brushContainer.
         /// </summary>
         public AnimatedBrush TextBoxForegroundAnimatedBrush
         {
@@ -115,7 +108,7 @@ namespace GameAssistant.Models
 
         private AnimatedBrush _textBoxBackgroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.White));
         /// <summary>
-        /// TextBox background animated brush.
+        /// TextBox background animated brushContainer.
         /// </summary>
         public AnimatedBrush TextBoxBackgroundAnimatedBrush
         {

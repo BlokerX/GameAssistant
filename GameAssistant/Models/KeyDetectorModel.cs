@@ -13,13 +13,9 @@ namespace GameAssistant.Models
         /// </summary>
         public KeyDetectorModel()
         {
-            AnimationToken_True += () => DetectPanelAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => DetectPanelAnimatedBrush.BrushAnimationManager.StopAnimate();
-
-            AnimationToken_True += () => ForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => ForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
+            AnimationMemberDepose += ForegroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
+            AnimationMemberDepose += DetectPanelAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
         }
-
 
         #region Serialize properties
 
@@ -91,7 +87,7 @@ namespace GameAssistant.Models
 
         private AnimatedBrush _foregroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Color.FromArgb(255, 0, 0, 0)));
         /// <summary>
-        /// Detect panel font's animated brush.
+        /// Detect panel font's animated brushContainer.
         /// </summary>
         public AnimatedBrush ForegroundAnimatedBrush
         {
@@ -101,7 +97,7 @@ namespace GameAssistant.Models
 
         private AnimatedBrush _detectPanelAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Cyan));
         /// <summary>
-        /// Detect panel's animated brush.
+        /// Detect panel's animated brushContainer.
         /// </summary>
         public AnimatedBrush DetectPanelAnimatedBrush
         {

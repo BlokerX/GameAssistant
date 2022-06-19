@@ -386,7 +386,6 @@ namespace GameAssistant.Services
             using (var sr = new StreamReader(path))
             {
                 widgetModel = JsonConvert.DeserializeObject<WidgetModelType>(sr.ReadToEnd());
-                widgetModel.AnimationToken = false;
             }
             return true;
         }
@@ -419,7 +418,7 @@ namespace GameAssistant.Services
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
-            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            var downloadedConfigurationResult = DownloadWidgetConfigurationFromFile(out ModelType model);
 
             if (widget != null)
             {
@@ -429,7 +428,7 @@ namespace GameAssistant.Services
 
             BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
         END:
-            WidgetManager.SaveWidgetConfigurationInFile(model);
+            SaveWidgetConfigurationInFile(model);
         }
 
         /// <summary>
@@ -445,19 +444,19 @@ namespace GameAssistant.Services
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
-            var downloadedConfigurationResult = WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            var downloadedConfigurationResult = DownloadWidgetConfigurationFromFile(out ModelType model);
 
             if (state == false && widget != null)
             {
-                WidgetManager.CloseWidget(ref widget, ref model);
+                CloseWidget(ref widget, ref model);
             }
 
             if (state == true && widget == null)
             {
-                WidgetManager.BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
+                BuildWidget<WidgetType, ViewModelType, ModelType>(ref widget, ref model, downloadedConfigurationResult);
             }
 
-            WidgetManager.SaveWidgetConfigurationInFile(model);
+            SaveWidgetConfigurationInFile(model);
         }
 
         /// <summary>
@@ -475,8 +474,6 @@ namespace GameAssistant.Services
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
-            if (downloadedModel != null)
-                downloadedModel.AnimationToken = true;
             if (downloadWidgetConfigurationResult)
             {
                 widget = CreateWidget<WidgetType, ViewModelType, ModelType>(downloadedModel);
@@ -501,7 +498,7 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
-            (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel.AnimationToken = false;
+            (widget?.DataContext as IWidgetViewModel<ModelType>)?.WidgetModel.AnimationMemberDepose_Invoke();
 
             widget?.Close();
             widget = null;
@@ -519,10 +516,8 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
-            if (widget != null)
-                (widget.DataContext as IWidgetViewModel<ModelType>).WidgetModel.AnimationToken = false;
-
-            WidgetManager.DownloadWidgetConfigurationFromFile(out ModelType model);
+            (widget?.DataContext as IWidgetViewModel<ModelType>)?.WidgetModel.AnimationMemberDepose_Invoke();
+            DownloadWidgetConfigurationFromFile(out ModelType model);
             widget?.Close();
             widget = null;
             return model;

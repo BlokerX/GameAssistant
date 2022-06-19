@@ -12,8 +12,7 @@ namespace GameAssistant.Models
         // Constructors:
         public NoteModel()
         {
-            AnimationToken_True += () => ForegroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => ForegroundAnimatedBrush.BrushAnimationManager.StopAnimate();
+            AnimationMemberDepose += ForegroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
         }
 
         #region Serialize properties
@@ -71,7 +70,7 @@ namespace GameAssistant.Models
 
         private AnimatedBrush _foregroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Black));
         /// <summary>
-        /// Note font animated brush.
+        /// Note font animated brushContainer.
         /// </summary>
         public AnimatedBrush ForegroundAnimatedBrush
         {

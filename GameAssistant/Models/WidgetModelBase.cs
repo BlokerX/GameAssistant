@@ -12,61 +12,26 @@ namespace GameAssistant.Models
     /// </summary>
     public class WidgetModelBase : BindableObject
     {
-        // Constructors:
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public WidgetModelBase()
         {
-            AnimationToken_True += () => BackgroundAnimatedBrush.BrushAnimationManager.StartAnimate();
-            AnimationToken_False += () => BackgroundAnimatedBrush.BrushAnimationManager.StopAnimate();
+            AnimationMemberDepose += BackgroundAnimatedBrush.BrushAnimationManager.AnimationMemberDepose;
         }
 
-        ///// <summary>
-        ///// Model properties list.
-        ///// </summary>
-        //protected virtual List<object> GetProperties()
-        //{
-        //    return new List<object>()
-        //    {
-        //        //_title,
-
-        //        _width,
-        //        _height,
-
-        //        _screenPositionX,
-        //        _screenPositionY,
-
-        //        _isActive,
-
-        //        _isDragActive,
-        //        _resizeMode,
-
-        //        _backgroundAnimatedBrush,
-        //        _backgroundOpacity
-        //    };
-        //}
-
-        private bool _animationToken = false;
-        [JsonIgnore]
         /// <summary>
-        /// Specjal seciurity protocol for animations threads.
+        /// Depose animation member event.
         /// </summary>
-        public bool AnimationToken
+        protected event Action AnimationMemberDepose;
+
+        /// <summary>
+        /// Depose animation member.
+        /// </summary>
+        public void AnimationMemberDepose_Invoke()
         {
-            get => _animationToken;
-            set
-            {
-                SetProperty(ref _animationToken, value);
-                if (value == true)
-                    AnimationToken_True();
-                else if (value == false)
-                    AnimationToken_False();
-            }
+            AnimationMemberDepose.Invoke();
         }
-
-        [JsonIgnore]
-        protected Action AnimationToken_True;
-
-        [JsonIgnore]
-        protected Action AnimationToken_False;
 
         // Window const elements:
         private string _title = "Widget";
@@ -163,7 +128,7 @@ namespace GameAssistant.Models
 
         private AnimatedBrush _backgroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Color.FromRgb(249, 255, 129)));
         /// <summary>
-        /// Widget's background animated brush.
+        /// Widget's background animated brushContainer.
         /// </summary>
         public AnimatedBrush BackgroundAnimatedBrush
         {
@@ -181,10 +146,38 @@ namespace GameAssistant.Models
             set => SetProperty(ref _backgroundOpacity, value);
         }
 
+        /// <summary>
+        /// Default destructor.
+        /// </summary>
         ~WidgetModelBase()
         {
-            AnimationToken = false;
+            AnimationMemberDepose_Invoke();
         }
+
+        ///// <summary>
+        ///// Model properties list.
+        ///// </summary>
+        //protected virtual List<object> GetProperties()
+        //{
+        //    return new List<object>()
+        //    {
+        //        //_title,
+
+        //        _width,
+        //        _height,
+
+        //        _screenPositionX,
+        //        _screenPositionY,
+
+        //        _isActive,
+
+        //        _isDragActive,
+        //        _resizeMode,
+
+        //        _backgroundAnimatedBrush,
+        //        _backgroundOpacity
+        //    };
+        //}
 
     }
 }

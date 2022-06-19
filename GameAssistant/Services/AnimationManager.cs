@@ -1,19 +1,18 @@
 ﻿using GameAssistant.Core;
-using System.Timers;
+using GameAssistant.Services.Animations;
 using System.Windows.Media;
 
 namespace GameAssistant.Services
 {
+    /// <summary>
+    /// Animation manager with brushContainer and animation controler.
+    /// </summary>
     public class AnimationManager
     {
-        private Timer animationTimer;
-
-        // todo dodać szybkość animacji INTERVAL
-
         /// <summary>
         /// Brush to animate.
         /// </summary>
-        private VariableContainer<Brush> brush;
+        private VariableContainer<Brush> brushContainer;
 
         private AnimationType _animation;
         /// <summary>
@@ -24,9 +23,48 @@ namespace GameAssistant.Services
             get => _animation;
             set
             {
-                _animation = value;
-                animationInformation = 0;
+                if (value != _animation)
+                {
+                    switch (_animation)
+                    {
+                        case AnimationType.RGB:
+                            RGBAnimation.RemoveMember(ref brushContainer);
+                            break;
+                        case AnimationType.ReversedRGB:
+                            ReservedRGBAnimation.RemoveMember(ref brushContainer);
+                            break;
+                    }
+
+                    _animation = value;
+
+                    switch (value)
+                    {
+                        case AnimationType.RGB:
+                            RGBAnimation.AddMember(ref brushContainer);
+                            break;
+                        case AnimationType.ReversedRGB:
+                            ReservedRGBAnimation.AddMember(ref brushContainer);
+                            break;
+                    }
+                }
             }
+        }
+
+        /// <summary>
+        /// Depose member of animation.
+        /// </summary>
+        public void AnimationMemberDepose()
+        {
+            switch (Animation)
+            {
+                case AnimationType.RGB:
+                    RGBAnimation.RemoveMember(ref brushContainer);
+                    break;
+                case AnimationType.ReversedRGB:
+                    ReservedRGBAnimation.RemoveMember(ref brushContainer);
+                    break;
+            }
+
         }
 
         /// <summary>
@@ -36,211 +74,27 @@ namespace GameAssistant.Services
         /// <param name="animationInterval">Refresh time.</param>
         public AnimationManager(ref VariableContainer<Brush> brush, double animationInterval = 5)
         {
-            this.brush = brush;
-            animationTimer = new Timer(animationInterval);
-            animationTimer.Elapsed += AnimationTimer_Elapsed;
-        }
-
-        private void AnimationTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            Animate();
+            this.brushContainer = brush;
         }
 
         /// <summary>
         /// Constructor with animation parameter.
         /// </summary>
-        /// <param name="brush">Brush to animate.</param>
+        /// <param name="brush">Brush container to animate.</param>
         /// <param name="animation">Type of animation.</param>
         public AnimationManager(ref VariableContainer<Brush> brush, AnimationType animation, double animationInterval = 5) : this(ref brush, animationInterval)
         {
-            Animation = animation;
-        }
-
-        /// <summary>
-        /// Turn on timer elapsed event.
-        /// </summary>
-        public void StartAnimate()
-        {
-            animationTimer?.Start();
-        }
-
-        /// <summary>
-        /// Turn off timer elapsed event.
-        /// </summary>
-        public void StopAnimate()
-        {
-            animationTimer?.Stop();
+            _animation = animation;
         }
 
         /// <summary>
         /// Selects and triggers animation.
         /// </summary>
-        private void Animate()
+        /// <param name="brushContainer">Brush container to animate.</param>
+        private void Animate(VariableContainer<Brush> brushContainer)
         {
-            switch (Animation)
-            {
-                case AnimationType.RGB:
-                    Animate_RGB();
-                    break;
-
-                case AnimationType.RGB_Reversed:
-                    Animate_RGB_Reversed();
-                    break;
-
-                case AnimationType.None:
-                default:
-                    return;
-            }
+            this.brushContainer.Variable = brushContainer.Variable;
         }
-
-        private int animationInformation = 0;
-
-        #region Animations methods
-
-        /// <summary>
-        /// Animate as RGB style.
-        /// </summary>
-        private void Animate_RGB()
-        {
-            var tmpColor = default(Color);
-            if (animationTimer.Enabled)
-                System.Windows.Application.Current.Dispatcher.Invoke(() => tmpColor = ((SolidColorBrush)(brush.Variable)).Color);
-            const byte jump = 1;
-
-            switch (animationInformation)
-            {
-                case 0:
-                    tmpColor = Color.FromRgb(255, 0, 0);
-                    animationInformation = 1;
-                    break;
-
-                case 1:
-                    if (tmpColor.G < 255)
-                    {
-                        tmpColor.G += jump;
-                    }
-                    else animationInformation = 2;
-                    break;
-
-                case 2:
-                    if (tmpColor.R > 0)
-                    {
-                        tmpColor.R -= jump;
-                    }
-                    else animationInformation = 3;
-                    break;
-
-                case 3:
-                    if (tmpColor.B < 255)
-                    {
-                        tmpColor.B += jump;
-                    }
-                    else animationInformation = 4;
-                    break;
-
-                case 4:
-                    if (tmpColor.G > 0)
-                    {
-                        tmpColor.G -= jump;
-                    }
-                    else animationInformation = 5;
-                    break;
-
-                case 5:
-                    if (tmpColor.R < 255)
-                    {
-                        tmpColor.R += jump;
-                    }
-                    else animationInformation = 6;
-                    break;
-
-                case 6:
-                    if (tmpColor.B > 0)
-                    {
-                        tmpColor.B -= jump;
-                    }
-                    else animationInformation = 1;
-                    break;
-
-            }
-
-            if (animationTimer.Enabled)
-                System.Windows.Application.Current.Dispatcher.Invoke(() => brush.Variable = new SolidColorBrush(tmpColor));
-        }
-
-        /// <summary>
-        /// Animate as RGB_Reversed style.
-        /// </summary>
-        private void Animate_RGB_Reversed()
-        {
-            var tmpColor = default(Color);
-            if (animationTimer.Enabled)
-                System.Windows.Application.Current.Dispatcher.Invoke(() => tmpColor = ((SolidColorBrush)(brush.Variable)).Color);
-            const byte jump = 1;
-
-            switch (animationInformation)
-            {
-                case 0:
-                    tmpColor = Color.FromRgb(255, 0, 0);
-                    animationInformation = 1;
-                    break;
-
-                case 1:
-                    if (tmpColor.B < 255)
-                    {
-                        tmpColor.B += jump;
-                    }
-                    else animationInformation = 2;
-                    break;
-
-                case 2:
-                    if (tmpColor.R > 0)
-                    {
-                        tmpColor.R -= jump;
-                    }
-                    else animationInformation = 3;
-                    break;
-
-                case 3:
-                    if (tmpColor.G < 255)
-                    {
-                        tmpColor.G += jump;
-                    }
-                    else animationInformation = 4;
-                    break;
-
-                case 4:
-                    if (tmpColor.B > 0)
-                    {
-                        tmpColor.B -= jump;
-                    }
-
-                    else animationInformation = 5;
-                    break;
-
-                case 5:
-                    if (tmpColor.R < 255)
-                    {
-                        tmpColor.R += jump;
-                    }
-                    else animationInformation = 6;
-                    break;
-
-                case 6:
-                    if (tmpColor.G > 0)
-                    {
-                        tmpColor.G -= jump;
-                    }
-                    else animationInformation = 1;
-                    break;
-
-            }
-
-            if (animationTimer.Enabled)
-                System.Windows.Application.Current.Dispatcher.Invoke(() => brush.Variable = new SolidColorBrush(tmpColor));
-        }
-
-        #endregion
 
         /// <summary>
         /// Animation type.
@@ -260,13 +114,30 @@ namespace GameAssistant.Services
             /// <summary>
             /// Reversed RGB animation.
             /// </summary>
-            RGB_Reversed = 2
+            ReversedRGB = 2
         }
 
+        /// <summary>
+        /// Default destructor.
+        /// </summary>
         ~AnimationManager()
         {
-            StopAnimate();
+            RGBAnimation.RemoveMember(ref brushContainer);
         }
+
+        #region Animations
+
+        /// <summary>
+        /// RGB animation controler.
+        /// </summary>
+        private static AnimationBrushRGBController RGBAnimation = new AnimationBrushRGBController();
+
+        /// <summary>
+        /// Reversed RGB animation controler.
+        /// </summary>
+        private static AnimationBrushReversedRGBController ReservedRGBAnimation = new AnimationBrushReversedRGBController();
+
+        #endregion
 
     }
 }
