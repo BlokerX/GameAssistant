@@ -4,14 +4,15 @@ using System.Windows.Media;
 
 namespace GameAssistant.Services
 {
+    /// <summary>
+    /// Animation manager with brushContainer and animation controler.
+    /// </summary>
     public class AnimationManager
     {
         /// <summary>
         /// Brush to animate.
         /// </summary>
-        private VariableContainer<Brush> brush;
-
-        public bool IsAnimationSelectorOn = true;
+        private VariableContainer<Brush> brushContainer;
 
         private AnimationType _animation;
         /// <summary>
@@ -22,22 +23,15 @@ namespace GameAssistant.Services
             get => _animation;
             set
             {
-                if (!IsAnimationSelectorOn)
-                {
-                    _animation = value;
-                    return;
-                }
-
                 if (value != _animation)
                 {
-
                     switch (_animation)
                     {
                         case AnimationType.RGB:
-                            RGBAnimation.RemoveMember(ref brush);
+                            RGBAnimation.RemoveMember(ref brushContainer);
                             break;
                         case AnimationType.ReversedRGB:
-                            ReservedRGBAnimation.RemoveMember(ref brush);
+                            ReservedRGBAnimation.RemoveMember(ref brushContainer);
                             break;
                     }
 
@@ -46,25 +40,28 @@ namespace GameAssistant.Services
                     switch (value)
                     {
                         case AnimationType.RGB:
-                            RGBAnimation.AddMember(ref brush);
+                            RGBAnimation.AddMember(ref brushContainer);
                             break;
                         case AnimationType.ReversedRGB:
-                            ReservedRGBAnimation.AddMember(ref brush);
+                            ReservedRGBAnimation.AddMember(ref brushContainer);
                             break;
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Depose member of animation.
+        /// </summary>
         public void AnimationMemberDepose()
         {
             switch (Animation)
             {
                 case AnimationType.RGB:
-                    RGBAnimation.RemoveMember(ref brush);
+                    RGBAnimation.RemoveMember(ref brushContainer);
                     break;
                 case AnimationType.ReversedRGB:
-                    ReservedRGBAnimation.RemoveMember(ref brush);
+                    ReservedRGBAnimation.RemoveMember(ref brushContainer);
                     break;
             }
 
@@ -77,13 +74,13 @@ namespace GameAssistant.Services
         /// <param name="animationInterval">Refresh time.</param>
         public AnimationManager(ref VariableContainer<Brush> brush, double animationInterval = 5)
         {
-            this.brush = brush;
+            this.brushContainer = brush;
         }
 
         /// <summary>
         /// Constructor with animation parameter.
         /// </summary>
-        /// <param name="brush">Brush to animate.</param>
+        /// <param name="brush">Brush container to animate.</param>
         /// <param name="animation">Type of animation.</param>
         public AnimationManager(ref VariableContainer<Brush> brush, AnimationType animation, double animationInterval = 5) : this(ref brush, animationInterval)
         {
@@ -93,9 +90,10 @@ namespace GameAssistant.Services
         /// <summary>
         /// Selects and triggers animation.
         /// </summary>
-        private void Animate(VariableContainer<Brush> b)
+        /// <param name="brushContainer">Brush container to animate.</param>
+        private void Animate(VariableContainer<Brush> brushContainer)
         {
-            brush.Variable = b.Variable;
+            this.brushContainer.Variable = brushContainer.Variable;
         }
 
         /// <summary>
@@ -119,19 +117,27 @@ namespace GameAssistant.Services
             ReversedRGB = 2
         }
 
+        /// <summary>
+        /// Default destructor.
+        /// </summary>
         ~AnimationManager()
         {
-            RGBAnimation.RemoveMember(ref brush);
+            RGBAnimation.RemoveMember(ref brushContainer);
         }
 
-        private static AnimationBrushRGB RGBAnimation = new AnimationBrushRGB();
+        #region Animations
 
-        private static AnimationBrushReversedRGB ReservedRGBAnimation = new AnimationBrushReversedRGB();
+        /// <summary>
+        /// RGB animation controler.
+        /// </summary>
+        private static AnimationBrushRGBController RGBAnimation = new AnimationBrushRGBController();
 
-        //public static void RegisterAnimations()
-        //{
+        /// <summary>
+        /// Reversed RGB animation controler.
+        /// </summary>
+        private static AnimationBrushReversedRGBController ReservedRGBAnimation = new AnimationBrushReversedRGBController();
 
-        //}
+        #endregion
 
     }
 }

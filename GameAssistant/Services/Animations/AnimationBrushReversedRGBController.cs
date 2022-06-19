@@ -2,14 +2,20 @@
 
 namespace GameAssistant.Services.Animations
 {
-    internal class AnimationBrushReversedRGB : AnimationForBrush
+    /// <summary>
+    /// Reversed RGB animation controller.
+    /// </summary>
+    internal class AnimationBrushReversedRGBController : AnimationControllerBase
     {
         /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="animationInterval">Refresh time.</param>
-        public AnimationBrushReversedRGB(double animationInterval = 5) : base(animationInterval) { }
+        public AnimationBrushReversedRGBController(double animationInterval = 5) : base(animationInterval) { }
 
+        /// <summary>
+        /// Important for Animate() method.
+        /// </summary>
         private int animationInformation = 0;
 
         /// <summary>

@@ -6,7 +6,10 @@ using System.Windows.Media;
 
 namespace GameAssistant.Services.Animations
 {
-    public class AnimationForBrush
+    /// <summary>
+    /// Animation controller base.
+    /// </summary>
+    public class AnimationControllerBase
     {
         /// <summary>
         /// Animation timer.
@@ -21,7 +24,7 @@ namespace GameAssistant.Services.Animations
         protected VariableContainer<Brush> brush = new VariableContainer<Brush>(new SolidColorBrush(Colors.Red));
 
         /// <summary>
-        /// List of members (brush containers).
+        /// List of members (brushContainer containers).
         /// </summary>
         private readonly List<VariableContainer<Brush>> _members = new List<VariableContainer<Brush>>();
 
@@ -60,17 +63,20 @@ namespace GameAssistant.Services.Animations
         /// <param name="brush">Brush to animate.</param>
         /// <param name="animation">Type of animation.</param>
         /// <param name="animationInterval">Refresh time.</param>
-        public AnimationForBrush(double animationInterval = 5)
+        public AnimationControllerBase(double animationInterval = 5)
         {
             animationTimer = new Timer(animationInterval);
             animationTimer.Elapsed += AnimationTimer_Elapsed;
         }
 
         /// <summary>
-        /// Animation method.
+        /// Animation method (default is void).
         /// </summary>
         protected virtual void Animate() { }
 
+        /// <summary>
+        /// On timer elapsed event.
+        /// </summary>
         private void AnimationTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             Animate();

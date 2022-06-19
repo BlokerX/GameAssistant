@@ -22,7 +22,7 @@ namespace GameAssistant.Services
 
         private VariableContainer<Brush> _brushContainer;
         /// <summary>
-        /// Container with brush (Container).
+        /// Container with brushContainer (Container).
         /// </summary>
         public VariableContainer<Brush> BrushContainer
         {

@@ -2,14 +2,20 @@
 
 namespace GameAssistant.Services.Animations
 {
-    internal class AnimationBrushRGB : AnimationForBrush
+    /// <summary>
+    /// RGB animation controller.
+    /// </summary>
+    internal class AnimationBrushRGBController : AnimationControllerBase
     {
         /// <summary>
         /// Default constructor.
         /// </summary>
         /// <param name="animationInterval">Refresh time.</param>
-        public AnimationBrushRGB(double animationInterval = 5) : base(animationInterval) { }
+        public AnimationBrushRGBController(double animationInterval = 5) : base(animationInterval) { }
 
+        /// <summary>
+        /// Important for Animate() method.
+        /// </summary>
         private int animationInformation = 0;
 
         /// <summary>

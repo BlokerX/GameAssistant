@@ -70,7 +70,7 @@ namespace GameAssistant.Models
 
         private AnimatedBrush _foregroundAnimatedBrush = new AnimatedBrush(new SolidColorBrush(Colors.Black));
         /// <summary>
-        /// Note font animated brush.
+        /// Note font animated brushContainer.
         /// </summary>
         public AnimatedBrush ForegroundAnimatedBrush
         {

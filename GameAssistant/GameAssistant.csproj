@@ -193,9 +193,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\AnimatedBrush.cs" />
-    <Compile Include="Services\Animations\AnimationBrushReversedRGB.cs" />
-    <Compile Include="Services\Animations\AnimationBrushRGB.cs" />
-    <Compile Include="Services\Animations\AnimationForBrush.cs" />
+    <Compile Include="Services\Animations\AnimationBrushReversedRGBController.cs" />
+    <Compile Include="Services\Animations\AnimationBrushRGBController.cs" />
+    <Compile Include="Services\Animations\AnimationControllerBase.cs" />
     <Compile Include="Services\AnimationManager.cs" />
     <Compile Include="Services\AppFileSystem.cs" />
     <Compile Include="Services\WidgetEvents.cs" />

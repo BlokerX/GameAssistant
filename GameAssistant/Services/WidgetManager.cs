@@ -386,7 +386,6 @@ namespace GameAssistant.Services
             using (var sr = new StreamReader(path))
             {
                 widgetModel = JsonConvert.DeserializeObject<WidgetModelType>(sr.ReadToEnd());
-                widgetModel.AnimationToken = false;
             }
             return true;
         }
@@ -475,8 +474,6 @@ namespace GameAssistant.Services
             where ViewModelType : class, IWidgetViewModel<ModelType>, new()
             where ModelType : WidgetModelBase, new()
         {
-            if (downloadedModel != null)
-                downloadedModel.AnimationToken = true;
             if (downloadWidgetConfigurationResult)
             {
                 widget = CreateWidget<WidgetType, ViewModelType, ModelType>(downloadedModel);
