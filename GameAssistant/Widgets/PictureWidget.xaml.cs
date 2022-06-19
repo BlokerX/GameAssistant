@@ -14,7 +14,7 @@ namespace GameAssistant.Widgets
         public PictureWidget()
         {
             InitializeComponent();
-            DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(this);
+            WindowSizeOrPositionChangedEvent += () => WidgetManager.SaveWidgetConfigurationInFile<PictureWidget, PictureModel>(this);
         }
 
         public static WidgetEvents Events = new WidgetEvents();

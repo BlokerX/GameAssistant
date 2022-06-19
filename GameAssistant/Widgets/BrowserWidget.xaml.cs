@@ -14,7 +14,7 @@ namespace GameAssistant.Widgets
         public BrowserWidget()
         {
             InitializeComponent();
-            DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<BrowserWidget, BrowserModel>(this);
+            WindowSizeOrPositionChangedEvent += () => WidgetManager.SaveWidgetConfigurationInFile<BrowserWidget, BrowserModel>(this);
         }
 
         /// <summary>

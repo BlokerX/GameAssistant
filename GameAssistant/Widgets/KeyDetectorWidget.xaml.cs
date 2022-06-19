@@ -15,7 +15,7 @@ namespace GameAssistant.Widgets
         public KeyDetectorWidget()
         {
             InitializeComponent();
-            DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<KeyDetectorWidget, KeyDetectorModel>(this);
+            WindowSizeOrPositionChangedEvent += () => WidgetManager.SaveWidgetConfigurationInFile<KeyDetectorWidget, KeyDetectorModel>(this);
         }
 
         public static WidgetEvents Events = new WidgetEvents();

@@ -26,6 +26,7 @@ namespace GameAssistant.Widgets
             ShowInTaskbar = false;
 
             this.MouseLeftButtonDown += DragWindow;
+            this.SizeChanged += WidgetSizeChanged;
         }
 
         #region Properties
@@ -57,14 +58,22 @@ namespace GameAssistant.Widgets
             if (IsDragActive && e.ButtonState == System.Windows.Input.MouseButtonState.Pressed)
             {
                 DragMove();
-                DragWindowEvent.Invoke();
+                WindowSizeOrPositionChangedEvent?.Invoke();
             }
         }
 
         /// <summary>
-        /// Event invoked when drag window.
+        /// Widget size changed method.
+        /// </summary>  
+        private void WidgetSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            WindowSizeOrPositionChangedEvent?.Invoke();
+        }
+
+        /// <summary>
+        /// Event invokes when drag window or window is resizing.
         /// </summary>
-        protected event Action DragWindowEvent;
+        protected event Action WindowSizeOrPositionChangedEvent;
 
     }
 }

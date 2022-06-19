@@ -15,7 +15,7 @@ namespace GameAssistant.Widgets
         public NoteWidget()
         {
             InitializeComponent();
-            DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(this);
+            WindowSizeOrPositionChangedEvent += () => WidgetManager.SaveWidgetConfigurationInFile<NoteWidget, NoteModel>(this);
         }
 
         public void TextBox_TextChanged(object sender, TextChangedEventArgs e)

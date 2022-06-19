@@ -14,7 +14,7 @@ namespace GameAssistant.Widgets
         public ClockWidget()
         {
             InitializeComponent();
-            DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(this);
+            WindowSizeOrPositionChangedEvent += () => WidgetManager.SaveWidgetConfigurationInFile<ClockWidget, ClockModel>(this);
         }
 
         public static WidgetEvents Events = new WidgetEvents();

@@ -14,7 +14,7 @@ namespace GameAssistant.Widgets
         public CalculatorWidget()
         {
             InitializeComponent();
-            DragWindowEvent += () => WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(this);
+            WindowSizeOrPositionChangedEvent += () => WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(this);
         }
 
         public static WidgetEvents Events = new WidgetEvents();
