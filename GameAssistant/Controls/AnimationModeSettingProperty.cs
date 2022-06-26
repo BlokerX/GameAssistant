@@ -14,7 +14,8 @@ namespace GameAssistant.Controls
             {
                 "None",
                 "RGB",
-                "Reversed RGB"
+                "Reversed RGB",
+                "Pixels averange of screen"
             };
         }
     }

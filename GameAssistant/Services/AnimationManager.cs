@@ -33,6 +33,9 @@ namespace GameAssistant.Services
                         case AnimationType.ReversedRGB:
                             ReservedRGBAnimation.RemoveMember(ref brushContainer);
                             break;
+                        case AnimationType.PixelsAverangeOfScreen:
+                            AverangePixelsOfScreenAnimation.RemoveMember(ref brushContainer);
+                            break;
                     }
 
                     _animation = value;
@@ -44,6 +47,9 @@ namespace GameAssistant.Services
                             break;
                         case AnimationType.ReversedRGB:
                             ReservedRGBAnimation.AddMember(ref brushContainer);
+                            break;
+                        case AnimationType.PixelsAverangeOfScreen:
+                            AverangePixelsOfScreenAnimation.AddMember(ref brushContainer);
                             break;
                     }
                 }
@@ -62,6 +68,9 @@ namespace GameAssistant.Services
                     break;
                 case AnimationType.ReversedRGB:
                     ReservedRGBAnimation.RemoveMember(ref brushContainer);
+                    break;
+                case AnimationType.PixelsAverangeOfScreen:
+                    AverangePixelsOfScreenAnimation.RemoveMember(ref brushContainer);
                     break;
             }
 
@@ -114,7 +123,12 @@ namespace GameAssistant.Services
             /// <summary>
             /// Reversed RGB animation.
             /// </summary>
-            ReversedRGB = 2
+            ReversedRGB = 2,
+            
+            /// <summary>
+            /// Pixels averange of screen animation.
+            /// </summary>
+            PixelsAverangeOfScreen = 3
         }
 
         /// <summary>
@@ -135,7 +149,12 @@ namespace GameAssistant.Services
         /// <summary>
         /// Reversed RGB animation controler.
         /// </summary>
-        private static AnimationBrushReversedRGBController ReservedRGBAnimation = new AnimationBrushReversedRGBController();
+        private static AnimationBrushReversedRGBController ReservedRGBAnimation = new AnimationBrushReversedRGBController();        
+        
+        /// <summary>
+        /// Averange of screen animation controler.
+        /// </summary>
+        private static AnimationBrushAverangePixelsOfScreenController AverangePixelsOfScreenAnimation = new AnimationBrushAverangePixelsOfScreenController();
 
         #endregion
 

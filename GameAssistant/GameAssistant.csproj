@@ -45,6 +45,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,9 +55,11 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FullDebug|AnyCPU'">
     <OutputPath>bin\FullDebug\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\Icons\AppIcon\ColorBackground\64.ico</ApplicationIcon>
@@ -70,6 +73,7 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CefSharp, Version=100.0.230.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
@@ -194,6 +198,7 @@
     </Compile>
     <Compile Include="Services\AnimatedBrush.cs" />
     <Compile Include="Services\Animations\AnimationBrushReversedRGBController.cs" />
+    <Compile Include="Services\Animations\AnimationBrushAverangePixelsOfScreenController.cs" />
     <Compile Include="Services\Animations\AnimationBrushRGBController.cs" />
     <Compile Include="Services\Animations\AnimationControllerBase.cs" />
     <Compile Include="Services\AnimationManager.cs" />
