@@ -158,6 +158,7 @@
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\BindableObject.cs" />
     <Compile Include="Core\VariableContainer.cs" />
+    <Compile Include="Models\AnimationsConfiguration.cs" />
     <Compile Include="Models\KeyDetectorModel.cs" />
     <Compile Include="Models\BrowserModel.cs" />
     <Compile Include="Models\CalculatorModel.cs" />

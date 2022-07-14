@@ -11,7 +11,7 @@ namespace GameAssistant.Services.Animations
         /// Default constructor.
         /// </summary>
         /// <param name="animationInterval">Refresh time.</param>
-        public AnimationBrushAverangePixelsOfScreenController(double animationInterval = 90) : base(animationInterval) { }
+        public AnimationBrushAverangePixelsOfScreenController(double animationInterval = 2000) : base(animationInterval) { }
 
         /// <summary>
         /// Animate as RGB style.
@@ -64,67 +64,6 @@ namespace GameAssistant.Services.Animations
             var avgB = sumB / numSamples;
             return System.Drawing.Color.FromArgb((int)avgR, (int)avgG, (int)avgB);
         }
-
-        //private Color GetAverangeScreenColor()
-        //{
-        //    int screenWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
-        //    int screenHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
-        //    System.Drawing.Color[,] pixels = new System.Drawing.Color[screenWidth, screenHeight];
-
-        //    for (int i = 1; i <= screenHeight; i++)
-        //    {
-        //        for (int j = 1; j <= screenWidth; j++)
-        //        {
-        //            pixels[i, j] = GetPixelColor(i, j);
-        //        }
-        //    }
-
-        //    ulong[] averangeScreenColor = new ulong[3];
-        //    for (int i = 1; i <= screenHeight; i++)
-        //    {
-        //        ulong[] averangeScreenColorWidth = new ulong[3];
-
-        //        for (int j = 1; j <= screenWidth; j++)
-        //        {
-        //            averangeScreenColorWidth[0] += pixels[i, j].R;
-        //            averangeScreenColorWidth[1] += pixels[i, j].G;
-        //            averangeScreenColorWidth[2] += pixels[i, j].B;
-        //        }
-
-        //        averangeScreenColorWidth[0] = averangeScreenColorWidth[0] / (ulong)screenWidth;
-        //        averangeScreenColorWidth[1] = averangeScreenColorWidth[1] / (ulong)screenWidth;
-        //        averangeScreenColorWidth[2] = averangeScreenColorWidth[2] / (ulong)screenWidth;
-
-        //        averangeScreenColor[0] += averangeScreenColorWidth[0];
-        //        averangeScreenColor[1] += averangeScreenColorWidth[1];
-        //        averangeScreenColor[2] += averangeScreenColorWidth[2];
-        //    }
-
-        //    averangeScreenColor[0] = averangeScreenColor[0] / (ulong)screenHeight;
-        //    averangeScreenColor[1] = averangeScreenColor[1] / (ulong)screenHeight;
-        //    averangeScreenColor[2] = averangeScreenColor[2] / (ulong)screenHeight;
-
-        //    return Color.FromRgb((byte)averangeScreenColor[0], (byte)averangeScreenColor[1], (byte)averangeScreenColor[2]);
-        //}
-
-        //#region Helpers
-
-        //[DllImport("user32.dll")]
-        //static extern IntPtr GetDC(IntPtr hwnd);
-        //[DllImport("user32.dll")]
-        //static extern Int32 ReleaseDC(IntPtr hwnd, IntPtr hdc);
-        //[DllImport("gdi32.dll")]
-        //static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
-
-        //public System.Drawing.Color GetPixelColor(int x, int y)
-        //{
-        //    IntPtr hdc = GetDC(IntPtr.Zero);
-        //    uint pixel = GetPixel(hdc, x, y);
-        //    ReleaseDC(IntPtr.Zero, hdc);
-        //    return System.Drawing.Color.FromArgb((int)pixel);
-        //}
-
-        //#endregion
 
     }
 }

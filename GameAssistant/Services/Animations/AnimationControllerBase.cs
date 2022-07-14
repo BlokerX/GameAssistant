@@ -17,6 +17,18 @@ namespace GameAssistant.Services.Animations
         protected Timer animationTimer;
 
         // todo dodać szybkość animacji INTERVAL
+        private double _animationInterval;
+
+        public double AnimationInterval
+        {
+            get => _animationInterval;
+            set
+            {
+                _animationInterval = value;
+                animationTimer.Interval = value;
+            }
+        }
+
 
         /// <summary>
         /// Brush to animate.
@@ -65,6 +77,7 @@ namespace GameAssistant.Services.Animations
         /// <param name="animationInterval">Refresh time.</param>
         public AnimationControllerBase(double animationInterval = 5)
         {
+            _animationInterval = animationInterval;
             animationTimer = new Timer(animationInterval);
             animationTimer.Elapsed += AnimationTimer_Elapsed;
         }

@@ -157,6 +157,9 @@ namespace GameAssistant
             // Register widget events:
             RegisterWidgetEvents();
 
+            // Download animations configuration from file.
+            AnimationManager.DownloadAnimationConfiguation();
+
             // Notify icon register:
             NotifyIcon = new System.Windows.Forms.NotifyIcon()
             {

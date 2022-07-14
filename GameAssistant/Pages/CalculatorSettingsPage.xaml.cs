@@ -333,7 +333,7 @@ namespace GameAssistant.Pages
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(CalculatorWidget).Name));
+            Process.Start("Explorer", AppFileSystem.GetWidgetConfigurationDirePath(typeof(CalculatorWidget).Name));
         }
 
         protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
