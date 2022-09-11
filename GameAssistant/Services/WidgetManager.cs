@@ -319,8 +319,8 @@ namespace GameAssistant.Services
             where WidgetType : WidgetBase, new()
             where ModelType : WidgetModelBase, new()
         {
-            Directory.CreateDirectory(AppFileSystem.GetSaveDireConfigurationPath(typeof(WidgetType).Name));
-            return SaveWidgetConfigurationInFile<WidgetType, ModelType>(widget, AppFileSystem.GetSaveFileConfigurationPath(typeof(WidgetType).Name));
+            Directory.CreateDirectory(AppFileSystem.GetWidgetConfigurationDirePath(typeof(WidgetType).Name));
+            return SaveWidgetConfigurationInFile<WidgetType, ModelType>(widget, AppFileSystem.GetWidgetConfiguraionFilePath(typeof(WidgetType).Name));
         }
 
         /// <summary>
@@ -362,8 +362,8 @@ namespace GameAssistant.Services
         public static bool SaveWidgetConfigurationInFile<ModelType>(ModelType model)
             where ModelType : WidgetModelBase, new()
         {
-            Directory.CreateDirectory(AppFileSystem.GetSaveDireConfigurationPath(GetWidgetTypeOfModelType(typeof(ModelType)).Name));
-            return SaveWidgetConfigurationInFile(model, AppFileSystem.GetSaveFileConfigurationPath(GetWidgetTypeOfModelType(typeof(ModelType)).Name));
+            Directory.CreateDirectory(AppFileSystem.GetWidgetConfigurationDirePath(GetWidgetTypeOfModelType(typeof(ModelType)).Name));
+            return SaveWidgetConfigurationInFile(model, AppFileSystem.GetWidgetConfiguraionFilePath(GetWidgetTypeOfModelType(typeof(ModelType)).Name));
         }
 
         /// <summary>
@@ -399,7 +399,7 @@ namespace GameAssistant.Services
         public static bool DownloadWidgetConfigurationFromFile<WidgetModelType>(out WidgetModelType widgetModel)
             where WidgetModelType : WidgetModelBase, new()
         {
-            return DownloadWidgetConfigurationFromFile(out widgetModel, AppFileSystem.GetSaveFileConfigurationPath(GetWidgetTypeOfModelType(typeof(WidgetModelType)).Name));
+            return DownloadWidgetConfigurationFromFile(out widgetModel, AppFileSystem.GetWidgetConfiguraionFilePath(GetWidgetTypeOfModelType(typeof(WidgetModelType)).Name));
         }
 
         //                //

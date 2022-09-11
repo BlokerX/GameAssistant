@@ -262,7 +262,7 @@ namespace GameAssistant.Pages
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(NoteWidget).Name));
+            Process.Start("Explorer", AppFileSystem.GetWidgetConfigurationDirePath(typeof(NoteWidget).Name));
         }
 
         protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)

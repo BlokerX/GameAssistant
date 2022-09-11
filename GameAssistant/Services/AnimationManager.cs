@@ -1,5 +1,8 @@
 ﻿using GameAssistant.Core;
+using GameAssistant.Models;
 using GameAssistant.Services.Animations;
+using Newtonsoft.Json;
+using System.IO;
 using System.Windows.Media;
 
 namespace GameAssistant.Services
@@ -33,6 +36,9 @@ namespace GameAssistant.Services
                         case AnimationType.ReversedRGB:
                             ReservedRGBAnimation.RemoveMember(ref brushContainer);
                             break;
+                        case AnimationType.PixelsAverangeOfScreen:
+                            AverangePixelsOfScreenAnimation.RemoveMember(ref brushContainer);
+                            break;
                     }
 
                     _animation = value;
@@ -44,6 +50,9 @@ namespace GameAssistant.Services
                             break;
                         case AnimationType.ReversedRGB:
                             ReservedRGBAnimation.AddMember(ref brushContainer);
+                            break;
+                        case AnimationType.PixelsAverangeOfScreen:
+                            AverangePixelsOfScreenAnimation.AddMember(ref brushContainer);
                             break;
                     }
                 }
@@ -62,6 +71,9 @@ namespace GameAssistant.Services
                     break;
                 case AnimationType.ReversedRGB:
                     ReservedRGBAnimation.RemoveMember(ref brushContainer);
+                    break;
+                case AnimationType.PixelsAverangeOfScreen:
+                    AverangePixelsOfScreenAnimation.RemoveMember(ref brushContainer);
                     break;
             }
 
@@ -114,7 +126,12 @@ namespace GameAssistant.Services
             /// <summary>
             /// Reversed RGB animation.
             /// </summary>
-            ReversedRGB = 2
+            ReversedRGB = 2,
+
+            /// <summary>
+            /// Pixels averange of screen animation.
+            /// </summary>
+            PixelsAverangeOfScreen = 3
         }
 
         /// <summary>
@@ -136,6 +153,36 @@ namespace GameAssistant.Services
         /// Reversed RGB animation controler.
         /// </summary>
         private static AnimationBrushReversedRGBController ReservedRGBAnimation = new AnimationBrushReversedRGBController();
+
+        /// <summary>
+        /// Averange of screen animation controler.
+        /// </summary>
+        private static AnimationBrushAverangePixelsOfScreenController AverangePixelsOfScreenAnimation = new AnimationBrushAverangePixelsOfScreenController();
+
+        public static bool DownloadAnimationConfiguation()
+        {
+            if (!Directory.Exists(AppFileSystem.GetAnimationsConfigurationDirePath()))
+            {
+                Directory.CreateDirectory(AppFileSystem.GetAnimationsConfigurationDirePath()); ;
+            }
+            //todo przetestować ustawienia animacji w praktyce
+            if (File.Exists(AppFileSystem.GetAnimationsConfigurationFilePath()))
+            {
+                using(var sr = File.OpenText(AppFileSystem.GetAnimationsConfigurationFilePath()))
+                {
+                    var config = JsonConvert.DeserializeObject<AnimationsConfiguration>(sr.ReadToEnd());
+
+                    RGBAnimation.AnimationInterval = config.RGBAnimationInterval;
+                    ReservedRGBAnimation.AnimationInterval = config.ReversedRGBAnimationInterval;
+                    AverangePixelsOfScreenAnimation.AnimationInterval = config.AverangePixelsOfScreenAnimationInterval;
+
+                    sr.Close();
+                }
+                return true;
+
+            }
+            return false;
+        }
 
         #endregion
 

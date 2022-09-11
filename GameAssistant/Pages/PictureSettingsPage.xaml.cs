@@ -238,7 +238,7 @@ namespace GameAssistant.Pages
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(PictureWidget).Name));
+            Process.Start("Explorer", AppFileSystem.GetWidgetConfigurationDirePath(typeof(PictureWidget).Name));
         }
 
         protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)

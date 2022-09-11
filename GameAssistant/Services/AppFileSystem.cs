@@ -20,7 +20,7 @@ namespace GameAssistant.Services
         /// </summary>
         /// <param name="widgetName">Name of widget.</param>
         /// <returns>Save dire configuration path.</returns>
-        public static string GetSaveDireConfigurationPath(string widgetName)
+        public static string GetWidgetConfigurationDirePath(string widgetName)
         {
             return Path.Combine(WidgetsConfigurationsMainDire, $"{widgetName}Settings");
         }
@@ -30,9 +30,27 @@ namespace GameAssistant.Services
         /// </summary>
         /// <param name="widgetName">Name of widget.</param>
         /// <returns>Save file configuration path.</returns>
-        public static string GetSaveFileConfigurationPath(string widgetName)
+        public static string GetWidgetConfiguraionFilePath(string widgetName)
         {
-            return Path.Combine(GetSaveDireConfigurationPath(widgetName), $"{widgetName}_configuration.json");
+            return Path.Combine(GetWidgetConfigurationDirePath(widgetName), $"{widgetName}_configuration.json");
+        }
+
+        /// <summary>
+        /// Return animations save configuration dire path.
+        /// </summary>
+        /// <returns>Save dire configuration path.</returns>
+        public static string GetAnimationsConfigurationDirePath()
+        {
+            return Path.Combine(WidgetsConfigurationsMainDire, $"Animations_Settings");
+        }
+
+        /// <summary>
+        /// Return animations save configuration file path.
+        /// </summary>
+        /// <returns>Save file configuration path.</returns>
+        public static string GetAnimationsConfigurationFilePath()
+        {
+            return Path.Combine(GetAnimationsConfigurationDirePath(), $"Animations_configuration.json");
         }
 
         /// <summary>
@@ -52,9 +70,11 @@ namespace GameAssistant.Services
             {
                 CheckDiresArchitectureEvent += () =>
                 {
-                    Directory.CreateDirectory(GetSaveDireConfigurationPath(widgetTypeName));
+                    Directory.CreateDirectory(GetWidgetConfigurationDirePath(widgetTypeName));
                 };
             };
+
+            Directory.CreateDirectory(GetAnimationsConfigurationDirePath());
 
             CheckDiresArchitectureEvent.Invoke();
         }

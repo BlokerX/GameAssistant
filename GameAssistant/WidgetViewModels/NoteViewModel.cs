@@ -18,7 +18,7 @@ namespace GameAssistant.WidgetViewModels
         /// <summary>
         /// Dire of notes.
         /// </summary>
-        private static readonly string notesDirePath = Path.Combine(AppFileSystem.GetSaveDireConfigurationPath(nameof(NoteWidget)), "Notes");
+        private static readonly string notesDirePath = Path.Combine(AppFileSystem.GetWidgetConfigurationDirePath(nameof(NoteWidget)), "Notes");
 
         private NoteModel _widgetModel = new NoteModel();
         /// <summary>

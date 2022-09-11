@@ -236,7 +236,7 @@ namespace GameAssistant.Pages
 
         protected override void OpenSaveConfigurationDireButton_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("Explorer", AppFileSystem.GetSaveDireConfigurationPath(typeof(ClockWidget).Name));
+            Process.Start("Explorer", AppFileSystem.GetWidgetConfigurationDirePath(typeof(ClockWidget).Name));
         }
 
         protected override void LoadSavedConfigurationButton_Click(object sender, RoutedEventArgs e)
