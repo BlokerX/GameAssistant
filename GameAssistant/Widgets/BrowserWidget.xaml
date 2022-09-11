@@ -37,7 +37,8 @@
                 VerticalAlignment="Top"
                 d:Visibility="Visible">
 
-            <Grid Margin="1">
+            <Grid Margin="1"
+                  Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushAnimationManager}">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"/>
@@ -66,6 +67,7 @@
                          FontFamily="Century Gothic"/>
 
                 <Button Content="Hide bar" Grid.Column="3"
+                        Click="HideBarButton_Click"
                         Background="#BF191919"
                         FontSize="9"
                         BorderBrush="Transparent"
