@@ -37,6 +37,12 @@ namespace GameAssistant.Widgets
                 vm.WidgetModel.Address = "https://google.com";
         }
 
+        private void HideBarButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var vm = DataContext as BrowserViewModel;
+            vm.WidgetModel.DragAndDropBarVisibility = System.Windows.Visibility.Hidden;
+        }
+
         //todo BrowserWidget : hide bar button
     }
 }
