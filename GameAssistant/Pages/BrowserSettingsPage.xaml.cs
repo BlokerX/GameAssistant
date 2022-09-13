@@ -3,9 +3,7 @@ using GameAssistant.Models;
 using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
-using Newtonsoft.Json;
 using System.Diagnostics;
-using System.IO;
 using System.Windows;
 using System.Windows.Media;
 
@@ -77,6 +75,7 @@ namespace GameAssistant.Pages
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
             this.BrowserOpacityProperty.PropertyValue = model.BrowserOpacity;
 
+            this.IsTopmostProperty.PropertyValue = model.IsTopmost;
             this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
             this.DragActiveProperty.PropertyValue = model.IsDragActive;
 
@@ -90,6 +89,7 @@ namespace GameAssistant.Pages
             this.BackgroundOpacityProperty.IsEnabled = newState;
             this.BrowserOpacityProperty.IsEnabled = newState;
 
+            this.IsTopmostProperty.IsEnabled = newState;
             this.CanResizeProperty.IsEnabled = newState;
             this.DragActiveProperty.IsEnabled = newState;
 
@@ -152,6 +152,16 @@ namespace GameAssistant.Pages
             {
                 var model = WidgetManager.GetModelFromWidget<BrowserWidget, BrowserModel>(ref BrowserWidgetContainer.Widget);
                 model.BrowserOpacity = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+
+        private void IsTopmostProperty_PropertyValueChanged(object sender, bool? e)
+        {
+            if (BrowserWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<BrowserWidget, BrowserModel>(ref BrowserWidgetContainer.Widget);
+                model.IsTopmost = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }

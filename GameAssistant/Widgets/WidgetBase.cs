@@ -22,7 +22,6 @@ namespace GameAssistant.Widgets
             Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
             AllowsTransparency = true;
             WindowStyle = WindowStyle.None;
-            Topmost = true;
             ShowInTaskbar = false;
 
             this.MouseLeftButtonDown += DragWindow;

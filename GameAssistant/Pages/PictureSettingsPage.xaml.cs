@@ -79,6 +79,7 @@ namespace GameAssistant.Pages
             this.BackgroundOpacityProperty.PropertyValue = model.BackgroundOpacity;
             this.ImageOpacityProperty.PropertyValue = model.ImageOpacity;
 
+            this.IsTopmostProperty.PropertyValue = model.IsTopmost;
             this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
             this.DragActiveProperty.PropertyValue = model.IsDragActive;
 
@@ -92,6 +93,7 @@ namespace GameAssistant.Pages
             this.BackgroundOpacityProperty.IsEnabled = newState;
             this.ImageOpacityProperty.IsEnabled = newState;
 
+            this.IsTopmostProperty.IsEnabled = newState;
             this.CanResizeProperty.IsEnabled = newState;
             this.DragActiveProperty.IsEnabled = newState;
 
@@ -154,6 +156,16 @@ namespace GameAssistant.Pages
             {
                 var model = WidgetManager.GetModelFromWidget<PictureWidget, PictureModel>(ref PictureWidgetContainer.Widget);
                 model.ImageOpacity = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+
+        private void IsTopmostProperty_PropertyValueChanged(object sender, bool? e)
+        {
+            if (PictureWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<PictureWidget, PictureModel>(ref PictureWidgetContainer.Widget);
+                model.IsTopmost = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }

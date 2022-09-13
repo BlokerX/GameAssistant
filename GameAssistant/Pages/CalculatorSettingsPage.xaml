@@ -120,6 +120,10 @@
                    Style="{StaticResource SettingsGroupTitle}"/>
 
             <StackPanel>
+                
+                <controls:BoolSettingProperty x:Name="IsTopmostProperty"
+                                              PropertyName="Is topmost:"
+                                              PropertyValueChanged="IsTopmostProperty_PropertyValueChanged"/>
 
                 <controls:BoolSettingProperty x:Name="CanResizeProperty"
                                               PropertyName="Can resize:"

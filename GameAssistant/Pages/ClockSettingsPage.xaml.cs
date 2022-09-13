@@ -84,11 +84,13 @@ namespace GameAssistant.Pages
             this.FontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.FontFamily);
             this.FontSettingsPropertyPanel.PropertyFontSize = model.FontSize;
 
+            this.IsTopmostProperty.PropertyValue = model.IsTopmost;
             this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
             this.DragActiveProperty.PropertyValue = model.IsDragActive;
 
         }
 
+        //todo uprościć dla wszystkich widgetów
         protected override void ActiveChanged(bool newState)
         {
             this.BackgroundAnimationBrushProperty.IsEnabled = newState;
@@ -99,6 +101,7 @@ namespace GameAssistant.Pages
 
             this.FontSettingsPropertyPanel.IsEnabled = newState;
 
+            this.IsTopmostProperty.IsEnabled = newState;
             this.CanResizeProperty.IsEnabled = newState;
             this.DragActiveProperty.IsEnabled = newState;
         }
@@ -185,6 +188,16 @@ namespace GameAssistant.Pages
             }
         }
 
+        private void IsTopmostProperty_PropertyValueChanged(object sender, bool? e)
+        {
+            if (ClockWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<ClockWidget, ClockModel>(ref ClockWidgetContainer.Widget);
+                model.IsTopmost = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+        
         private void CanResizeProperty_PropertyValueChanged(object sender, bool? e)
         {
             if (ClockWidgetContainer.Widget?.DataContext != null)

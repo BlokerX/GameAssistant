@@ -3,9 +3,7 @@ using GameAssistant.Models;
 using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
-using Newtonsoft.Json;
 using System.Diagnostics;
-using System.IO;
 using System.Windows;
 using System.Windows.Media;
 
@@ -86,6 +84,7 @@ namespace GameAssistant.Pages
             this.FontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.NoteFontFamily);
             this.FontSettingsPropertyPanel.PropertyFontSize = model.NoteFontSize;
 
+            this.IsTopmostProperty.PropertyValue = model.IsTopmost;
             this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
             this.DragActiveProperty.PropertyValue = model.IsDragActive;
 
@@ -102,6 +101,7 @@ namespace GameAssistant.Pages
 
             this.FontSettingsPropertyPanel.IsEnabled = newState;
 
+            this.IsTopmostProperty.IsEnabled = newState;
             this.CanResizeProperty.IsEnabled = newState;
             this.DragActiveProperty.IsEnabled = newState;
 
@@ -184,6 +184,16 @@ namespace GameAssistant.Pages
             {
                 var model = WidgetManager.GetModelFromWidget<NoteWidget, NoteModel>(ref NoteWidgetContainer.Widget);
                 model.NoteFontOpacity = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+
+        private void IsTopmostProperty_PropertyValueChanged(object sender, bool? e)
+        {
+            if (NoteWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<NoteWidget, NoteModel>(ref NoteWidgetContainer.Widget);
+                model.IsTopmost = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }

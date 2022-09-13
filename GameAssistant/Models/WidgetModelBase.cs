@@ -76,6 +76,16 @@ namespace GameAssistant.Models
             set => SetProperty(ref _height, value);
         }
 
+        private bool? _isTopmost = true;
+        /// <summary>
+        /// If true widget is topmost, else widget shows like normal window.
+        /// </summary>
+        public bool? IsTopmost
+        {
+            get => _isTopmost;
+            set => SetProperty(ref _isTopmost, value);
+        }
+
         private ResizeMode _resizeMode = ResizeMode.CanResizeWithGrip;
         /// <summary>
         /// Resize mode of window.

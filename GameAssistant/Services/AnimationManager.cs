@@ -147,17 +147,17 @@ namespace GameAssistant.Services
         /// <summary>
         /// RGB animation controler.
         /// </summary>
-        private static AnimationBrushRGBController RGBAnimation = new AnimationBrushRGBController();
+        private static readonly AnimationBrushRGBController RGBAnimation = new AnimationBrushRGBController();
 
         /// <summary>
         /// Reversed RGB animation controler.
         /// </summary>
-        private static AnimationBrushReversedRGBController ReservedRGBAnimation = new AnimationBrushReversedRGBController();
+        private static readonly AnimationBrushReversedRGBController ReservedRGBAnimation = new AnimationBrushReversedRGBController();
 
         /// <summary>
         /// Averange of screen animation controler.
         /// </summary>
-        private static AnimationBrushAverangePixelsOfScreenController AverangePixelsOfScreenAnimation = new AnimationBrushAverangePixelsOfScreenController();
+        private static readonly AnimationBrushAverangePixelsOfScreenController AverangePixelsOfScreenAnimation = new AnimationBrushAverangePixelsOfScreenController();
 
         public static bool DownloadAnimationConfiguation()
         {

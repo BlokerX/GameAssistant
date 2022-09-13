@@ -32,15 +32,14 @@ namespace GameAssistant.Widgets
 
         private void HomeButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var vm = DataContext as BrowserViewModel;
-            if (vm != null && vm.WidgetModel != null)
+            if (DataContext is BrowserViewModel vm && vm.WidgetModel != null)
                 vm.WidgetModel.Address = "https://google.com";
         }
 
         private void HideBarButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            var vm = DataContext as BrowserViewModel;
-            vm.WidgetModel.DragAndDropBarVisibility = System.Windows.Visibility.Hidden;
+            if (DataContext is BrowserViewModel vm && vm.WidgetModel != null)
+                vm.WidgetModel.DragAndDropBarVisibility = System.Windows.Visibility.Hidden;
         }
 
         //todo BrowserWidget : hide bar button

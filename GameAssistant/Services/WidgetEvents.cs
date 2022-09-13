@@ -28,5 +28,8 @@ namespace GameAssistant.Services
         {
             WidgetActiveChanged?.Invoke(state);
         }
+
+        //todo [dragAndDrop] and [canResize] actions
+        //todo add personal actions
     }
 }

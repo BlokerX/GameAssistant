@@ -54,15 +54,15 @@ namespace GameAssistant.Core
         /// </summary>
         /// <param name="resizeMode">System.Windows.ResizeMode to convert.</param>
         /// <returns>The bool? tesult.</returns>
-        public static bool? ResizeModToBool(System.Windows.ResizeMode resizeMode)
+        public static bool? ResizeModToBool(ResizeMode resizeMode)
         {
             switch (resizeMode)
             {
                 //case ResizeMode.CanResize:
-                case System.Windows.ResizeMode.CanResizeWithGrip:
+                case ResizeMode.CanResizeWithGrip:
                     return true;
                 default:
-                case System.Windows.ResizeMode.NoResize:
+                case ResizeMode.NoResize:
                     return false;
             }
         }
@@ -72,15 +72,15 @@ namespace GameAssistant.Core
         /// </summary>
         /// <param name="resizeMode">A bool? to convert.</param>
         /// <returns>System.Windows.ResizeMode result.</returns>
-        public static System.Windows.ResizeMode BoolToResizeMod(bool? resizeMode)
+        public static ResizeMode BoolToResizeMod(bool? resizeMode)
         {
             switch (resizeMode)
             {
                 case true:
-                    return System.Windows.ResizeMode.CanResizeWithGrip;
+                    return ResizeMode.CanResizeWithGrip;
                 default:
                 case false:
-                    return System.Windows.ResizeMode.NoResize;
+                    return ResizeMode.NoResize;
             }
         }
 

@@ -3,9 +3,7 @@ using GameAssistant.Models;
 using GameAssistant.Services;
 using GameAssistant.Widgets;
 using GameAssistant.WidgetViewModels;
-using Newtonsoft.Json;
 using System.Diagnostics;
-using System.IO;
 using System.Windows;
 using System.Windows.Media;
 
@@ -93,6 +91,7 @@ namespace GameAssistant.Pages
             this.ButtonsFontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.ButtonsFontFamily);
             this.ButtonsFontSettingsPropertyPanel.PropertyFontSize = model.ButtonsFontSize;
 
+            this.IsTopmostProperty.PropertyValue = model.IsTopmost;
             this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
             this.DragActiveProperty.PropertyValue = model.IsDragActive;
 
@@ -116,6 +115,7 @@ namespace GameAssistant.Pages
             this.ButtonsFontSettingsPropertyPanel.IsEnabled = newState;
             this.ButtonsFontSettingsPropertyPanel.IsEnabled = newState;
 
+            this.IsTopmostProperty.IsEnabled = newState;
             this.CanResizeProperty.IsEnabled = newState;
             this.DragActiveProperty.IsEnabled = newState;
         }
@@ -267,6 +267,16 @@ namespace GameAssistant.Pages
             {
                 var model = WidgetManager.GetModelFromWidget<CalculatorWidget, CalculatorModel>(ref CalculatorWidgetContainer.Widget);
                 model.ButtonsOpacity = e;
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+
+        private void IsTopmostProperty_PropertyValueChanged(object sender, bool? e)
+        {
+            if (CalculatorWidgetContainer.Widget?.DataContext != null)
+            {
+                var model = WidgetManager.GetModelFromWidget<CalculatorWidget, CalculatorModel>(ref CalculatorWidgetContainer.Widget);
+                model.IsTopmost = e;
                 WidgetManager.SaveWidgetConfigurationInFile(model);
             }
         }
