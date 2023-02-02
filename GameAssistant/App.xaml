@@ -13,7 +13,8 @@
                 <ResourceDictionary Source="./Templates/SettingsGroupTitle.xaml"/>
                 <ResourceDictionary Source="./Templates/WindowActionButton.xaml"/>
                 <ResourceDictionary Source="./Templates/CalculatorButton.xaml"/>
-
+                <!-- todo dodać obsługę trybu w11 -->
+                <ResourceDictionary Source="./Templates/Windows11WidgetsStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

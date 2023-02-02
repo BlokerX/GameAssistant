@@ -23,8 +23,9 @@
 
     <Grid>
 
-        <Grid Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable}" 
-              Opacity="{Binding WidgetModel.BackgroundOpacity}"/>
+        <Border Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable}" 
+                Opacity="{Binding WidgetModel.BackgroundOpacity}"
+                Style="{StaticResource WindowBackground}"/>
 
         <wpf:ChromiumWebBrowser Address="{Binding WidgetModel.Address, Mode=TwoWay}"
                                 AddressChanged="ChromiumWebBrowser_AddressChanged"
@@ -36,6 +37,7 @@
                 Height="15" 
                 Background="#7FFFFFFF"
                 VerticalAlignment="Top"
+                CornerRadius="8,8,0,0"
                 d:Visibility="Visible">
 
             <Grid Margin="1"

@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:GameAssistant.Controls"
-    xmlns:pages="clr-namespace:GameAssistant.Pages"
+    xmlns:pages="clr-namespace:GameAssistant.Pages" xmlns:fullsegments="clr-namespace:GameAssistant.Controls.FullSegments"
     mc:Ignorable="d"
     Title="ClockSettingsPage"  
     d:DesignHeight="760" 
@@ -90,21 +90,10 @@
             <Label Content="Other:"
                    Style="{StaticResource SettingsGroupTitle}"/>
 
-            <StackPanel>
-
-                <controls:BoolSettingProperty x:Name="IsTopmostProperty"
-                                              PropertyName="Is topmost:"
-                                              PropertyValueChanged="IsTopmostProperty_PropertyValueChanged"/>
-
-                <controls:BoolSettingProperty x:Name="CanResizeProperty"
-                                              PropertyName="Can resize:"
-                                              PropertyValueChanged="CanResizeProperty_PropertyValueChanged"/>
-
-                <controls:BoolSettingProperty x:Name="DragActiveProperty"
-                                              PropertyName="Drag active:"
-                                              PropertyValueChanged="DragActiveProperty_PropertyValueChanged"/>
-
-            </StackPanel>
+            <fullsegments:WidgetOtherSettings x:Name="OtherSettings"
+                                              IsTopmostPropertyValueChanged="IsTopmostProperty_PropertyValueChanged"
+                                              CanResizePropertyValueChanged="CanResizeProperty_PropertyValueChanged"
+                                              DragActivePropertyValueChanged="DragActiveProperty_PropertyValueChanged"/>
 
         </StackPanel>
 

@@ -22,11 +22,17 @@
 
     <Grid>
 
-        <Grid Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable}" 
-              Opacity="{Binding WidgetModel.BackgroundOpacity}"/>
+        <Border Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable}" 
+                Opacity="{Binding WidgetModel.BackgroundOpacity}"
+                Style="{StaticResource WindowBackground}"/>
 
-        <Image Source="{Binding WidgetModel.ImageSource}"
-               Opacity="{Binding WidgetModel.ImageOpacity}"/>
+        <Border Style="{StaticResource WindowBackground}">
+            <Border.Background>
+                <ImageBrush ImageSource="{Binding WidgetModel.ImageSource}"
+                   Opacity="{Binding WidgetModel.ImageOpacity}"
+                            Stretch="Uniform"/>
+            </Border.Background>
+        </Border>
 
     </Grid>
 

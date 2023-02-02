@@ -22,8 +22,9 @@
 
     <Grid>
 
-        <Grid Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable}" 
-              Opacity="{Binding WidgetModel.BackgroundOpacity}"/>
+        <Border Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable}" 
+                Opacity="{Binding WidgetModel.BackgroundOpacity}"
+                Style="{StaticResource WindowBackground}"/>
 
         <Label Content="{Binding ClockTime}" 
                FontSize="{Binding WidgetModel.FontSize}" 

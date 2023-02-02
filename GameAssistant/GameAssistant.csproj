@@ -133,6 +133,9 @@
     <Compile Include="Controls\BoolSettingProperty.xaml.cs">
       <DependentUpon>BoolSettingProperty.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FullSegments\WidgetOtherSettings.xaml.cs">
+      <DependentUpon>WidgetOtherSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ListBoxSettingProperty.xaml.cs">
       <DependentUpon>ListBoxSettingProperty.xaml</DependentUpon>
     </Compile>
@@ -250,6 +253,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\FullSegments\WidgetOtherSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ListBoxSettingProperty.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -323,6 +330,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Templates\SettingButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\Windows11WidgetsStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

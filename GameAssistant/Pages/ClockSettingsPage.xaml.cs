@@ -84,9 +84,9 @@ namespace GameAssistant.Pages
             this.FontSettingsPropertyPanel.PropertyFontFamily = new FontFamily(model.FontFamily);
             this.FontSettingsPropertyPanel.PropertyFontSize = model.FontSize;
 
-            this.IsTopmostProperty.PropertyValue = model.IsTopmost;
-            this.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
-            this.DragActiveProperty.PropertyValue = model.IsDragActive;
+            this.OtherSettings.IsTopmostProperty.PropertyValue = model.IsTopmost;
+            this.OtherSettings.CanResizeProperty.PropertyValue = TypeConverter.ResizeModToBool(model.ResizeMode);
+            this.OtherSettings.DragActiveProperty.PropertyValue = model.IsDragActive;
 
         }
 
@@ -101,9 +101,9 @@ namespace GameAssistant.Pages
 
             this.FontSettingsPropertyPanel.IsEnabled = newState;
 
-            this.IsTopmostProperty.IsEnabled = newState;
-            this.CanResizeProperty.IsEnabled = newState;
-            this.DragActiveProperty.IsEnabled = newState;
+            this.OtherSettings.IsTopmostProperty.IsEnabled = newState;
+            this.OtherSettings.CanResizeProperty.IsEnabled = newState;
+            this.OtherSettings.DragActiveProperty.IsEnabled = newState;
         }
 
         #region Widget
