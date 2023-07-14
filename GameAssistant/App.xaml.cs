@@ -37,10 +37,11 @@ namespace GameAssistant
             CalculatorWidget,
             BrowserWidget,
             KeyDetectorWidget,
+            SpotifyWidget,
             // - //
-            SettingsWindow = 7,
+            SettingsWindow = 8,
             // - //
-            CloseApp = 9
+            CloseApp = 10
         }
 
         /// <summary>
@@ -89,6 +90,14 @@ namespace GameAssistant
         private void NotifyIcon_KeyDetectorWidget_Settings_Click(object sender, System.EventArgs e)
         {
             KeyDetectorWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.KeyDetectorWidget].Checked);
+        }
+        
+        /// <summary>
+        /// Invoke when spotify widget button clicked.
+        /// </summary>
+        private void NotifyIcon_SpotifyWidget_Settings_Click(object sender, System.EventArgs e)
+        {
+            SpotifyWidget.Events.WidgetActiveChanged_Invoke(!NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.SpotifyWidget].Checked);
         }
 
         /// <summary>
@@ -151,7 +160,8 @@ namespace GameAssistant
                 nameof(NoteWidget),
                 nameof(CalculatorWidget),
                 nameof(BrowserWidget),
-                nameof(KeyDetectorWidget)
+                nameof(KeyDetectorWidget),
+                nameof(SpotifyWidget)
             );
 
             // Register widget events:
@@ -174,6 +184,7 @@ namespace GameAssistant
                         new System.Windows.Forms.MenuItem("Calculator widget", NotifyIcon_CalculatorWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("Browser widget", NotifyIcon_BrowserWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("KeyDetector widget", NotifyIcon_KeyDetectorWidget_Settings_Click),
+                        new System.Windows.Forms.MenuItem("Spotify widget", NotifyIcon_SpotifyWidget_Settings_Click),
                         new System.Windows.Forms.MenuItem("-"),
                         new System.Windows.Forms.MenuItem("Settings", NotifyIcon_MenuItem_Settings_Click),
                         new System.Windows.Forms.MenuItem("-"),
@@ -186,6 +197,7 @@ namespace GameAssistant
             NotifyIcon.DoubleClick += (s, a) => OpenSettingsWindow();
 
             LoadWidgets();
+
         }
 
         private void RegisterWidgetEvents()
@@ -208,6 +220,8 @@ namespace GameAssistant
             WidgetManager.ChangeWidgetState<BrowserWidget, BrowserViewModel, BrowserModel>(ref widgetsContainer.BrowserWidgetContainer.Widget, b);
             KeyDetectorWidget.Events.WidgetActiveChanged += (b) =>
             WidgetManager.ChangeWidgetState<KeyDetectorWidget, KeyDetectorViewModel, KeyDetectorModel>(ref widgetsContainer.KeyDetectorWidgetContainer.Widget, b);
+            SpotifyWidget.Events.WidgetActiveChanged += (b) =>
+            WidgetManager.ChangeWidgetState<SpotifyWidget, SpotifyViewModel, SpotifyModel>(ref widgetsContainer.SpotifyWidgetContainer.Widget, b);
 
         }
 
@@ -219,6 +233,7 @@ namespace GameAssistant
             CalculatorWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.CalculatorWidget].Checked = b;
             BrowserWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.BrowserWidget].Checked = b;
             KeyDetectorWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.KeyDetectorWidget].Checked = b;
+            SpotifyWidget.Events.WidgetActiveChanged += (b) => NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.SpotifyWidget].Checked = b;
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -271,6 +286,10 @@ namespace GameAssistant
             WidgetManager.LoadWidget<KeyDetectorWidget, KeyDetectorViewModel, KeyDetectorModel>(ref widgetsContainer.KeyDetectorWidgetContainer.Widget);
             if (widgetsContainer.KeyDetectorWidgetContainer.Widget != null)
                 NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.KeyDetectorWidget].Checked = true;
+
+            WidgetManager.LoadWidget<SpotifyWidget, SpotifyViewModel, SpotifyModel>(ref widgetsContainer.SpotifyWidgetContainer.Widget);
+            if (widgetsContainer.SpotifyWidgetContainer.Widget != null)
+                NotifyIcon.ContextMenu.MenuItems[(int)NotifyIconMenuItem.SpotifyWidget].Checked = true;
         }
 
         /// <summary>
@@ -284,6 +303,7 @@ namespace GameAssistant
             WidgetManager.SaveWidgetConfigurationInFile<CalculatorWidget, CalculatorModel>(widgetsContainer.CalculatorWidgetContainer.Widget);
             WidgetManager.SaveWidgetConfigurationInFile<BrowserWidget, BrowserModel>(widgetsContainer.BrowserWidgetContainer.Widget);
             WidgetManager.SaveWidgetConfigurationInFile<KeyDetectorWidget, KeyDetectorModel>(widgetsContainer.KeyDetectorWidgetContainer.Widget);
+            WidgetManager.SaveWidgetConfigurationInFile<SpotifyWidget, SpotifyModel>(widgetsContainer.SpotifyWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -297,6 +317,7 @@ namespace GameAssistant
             WidgetManager.CloseWidget<CalculatorWidget, CalculatorModel>(ref widgetsContainer.CalculatorWidgetContainer.Widget);
             WidgetManager.CloseWidget<BrowserWidget, BrowserModel>(ref widgetsContainer.BrowserWidgetContainer.Widget);
             WidgetManager.CloseWidget<KeyDetectorWidget, KeyDetectorModel>(ref widgetsContainer.KeyDetectorWidgetContainer.Widget);
+            WidgetManager.CloseWidget<SpotifyWidget, SpotifyModel>(ref widgetsContainer.SpotifyWidgetContainer.Widget);
         }
 
         /// <summary>
@@ -310,6 +331,7 @@ namespace GameAssistant
             WidgetManager.CloseAndSaveWidget<CalculatorWidget, CalculatorModel>(ref widgetsContainer.CalculatorWidgetContainer.Widget);
             WidgetManager.CloseAndSaveWidget<BrowserWidget, BrowserModel>(ref widgetsContainer.BrowserWidgetContainer.Widget);
             WidgetManager.CloseAndSaveWidget<KeyDetectorWidget, KeyDetectorModel>(ref widgetsContainer.KeyDetectorWidgetContainer.Widget);
+            WidgetManager.CloseAndSaveWidget<SpotifyWidget, SpotifyModel>(ref widgetsContainer.SpotifyWidgetContainer.Widget);
         }
 
         #endregion

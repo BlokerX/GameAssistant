@@ -1,0 +1,46 @@
+﻿<local:WidgetBase x:Class="GameAssistant.Widgets.SpotifyWidget"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+                  xmlns:local="clr-namespace:GameAssistant.Widgets"
+                  xmlns:widgetmodels="clr-namespace:GameAssistant.WidgetViewModels"
+                  mc:Ignorable="d"
+                  Background="Transparent" AllowsTransparency="True" WindowStyle="None" 
+                  Title="{Binding WidgetModel.Title}"
+                  Topmost="{Binding WidgetModel.IsTopmost}"
+                  IsDragActive="{Binding WidgetModel.IsDragActive}" 
+                  ResizeMode="{Binding WidgetModel.ResizeMode}"
+                  Width="{Binding WidgetModel.Width, Mode=TwoWay}"
+                  Height="{Binding WidgetModel.Height, Mode=TwoWay}"
+                  Left="{Binding WidgetModel.ScreenPositionX, Mode=TwoWay}" 
+                  Top="{Binding WidgetModel.ScreenPositionY, Mode=TwoWay}">
+
+    <d:WidgetBase.DataContext>
+        <widgetmodels:SpotifyViewModel/>
+    </d:WidgetBase.DataContext>
+
+    <Grid>
+
+        <Border Background="{Binding WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable}" 
+                Opacity="{Binding WidgetModel.BackgroundOpacity}"
+                Style="{StaticResource WindowBackground}"/>
+
+        <wpf:ChromiumWebBrowser x:Name="browserWindow"
+                                Address="{Binding WidgetModel.BrowserAddress, Mode=TwoWay}"
+                                AddressChanged="browserWindow_AddressChanged"
+                                Opacity="{Binding WidgetModel.SpotifyOpacity}"
+                                Background="Transparent" Foreground="White"/>
+
+        <Border x:Name="DragAndDropBar" 
+                Visibility="Visible" 
+                Height="15" 
+                Background="#7FFFFFFF"
+                VerticalAlignment="Top"
+                CornerRadius="8,8,0,0"
+                d:Visibility="Visible" />
+
+    </Grid>
+
+</local:WidgetBase>

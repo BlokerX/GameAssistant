@@ -162,6 +162,7 @@
     <Compile Include="Core\BindableObject.cs" />
     <Compile Include="Core\VariableContainer.cs" />
     <Compile Include="Models\AnimationsConfiguration.cs" />
+    <Compile Include="Models\SpotifyModel.cs" />
     <Compile Include="Models\KeyDetectorModel.cs" />
     <Compile Include="Models\BrowserModel.cs" />
     <Compile Include="Models\CalculatorModel.cs" />
@@ -171,6 +172,9 @@
     <Compile Include="Models\PictureModel.cs" />
     <Compile Include="Pages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SpotifySettingsPage.xaml.cs">
+      <DependentUpon>SpotifySettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CalculatorSettingsPage.xaml.cs">
       <DependentUpon>CalculatorSettingsPage.xaml</DependentUpon>
@@ -211,6 +215,9 @@
     <Compile Include="Services\WidgetManager.cs" />
     <Compile Include="Services\MVVMUnit.cs" />
     <Compile Include="Widgets\AllWidgetsContainer.cs" />
+    <Compile Include="Widgets\SpotifyWidget.xaml.cs">
+      <DependentUpon>SpotifyWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Widgets\KeyDetectorWidget.xaml.cs">
       <DependentUpon>KeyDetectorWidget.xaml</DependentUpon>
     </Compile>
@@ -221,6 +228,7 @@
       <DependentUpon>CalculatorWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="Widgets\WidgetContainer.cs" />
+    <Compile Include="WidgetViewModels\SpotifyViewModel.cs" />
     <Compile Include="WidgetViewModels\KeyDetectorViewModel.cs" />
     <Compile Include="WidgetViewModels\BrowserViewModel.cs" />
     <Compile Include="WidgetViewModels\CalculatorViewModel.cs" />
@@ -289,6 +297,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\SpotifySettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\CalculatorSettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -336,6 +348,10 @@
     <Page Include="Templates\Windows11WidgetsStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widgets\SpotifyWidget.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Widgets\KeyDetectorWidget.xaml">
       <Generator>MSBuild:Compile</Generator>

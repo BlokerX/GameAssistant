@@ -55,6 +55,12 @@ namespace GameAssistant.Services
                 WidgetViewModelType = typeof(KeyDetectorViewModel),
                 WidgetModelType = typeof(KeyDetectorModel)
             },
+            new MVVMUnit()
+            {
+                WidgetType = typeof(SpotifyWidget),
+                WidgetViewModelType = typeof(SpotifyViewModel),
+                WidgetModelType = typeof(SpotifyModel)
+            },
         };
 
         /// <summary>

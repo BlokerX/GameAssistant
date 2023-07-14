@@ -108,6 +108,15 @@ namespace GameAssistant.Pages
             {
                 KeyDetectorWidgetActiveProperty.PropertyValue = true;
             }
+
+            if (allWidgetsContainer.SpotifyWidgetContainer.Widget == null)
+            {
+                SpotifyWidgetActiveProperty.PropertyValue = false;
+            }
+            else
+            {
+                SpotifyWidgetActiveProperty.PropertyValue = true;
+            }
         }
 
         #region Widgets Active Changed Events
@@ -122,7 +131,8 @@ namespace GameAssistant.Pages
             NoteWidget.Events.WidgetActiveChanged += NoteWidgetEvents_WidgetActiveChanged;
             CalculatorWidget.Events.WidgetActiveChanged += CalculatorWidgetEvents_WidgetActiveChanged;
             BrowserWidget.Events.WidgetActiveChanged += BrowserWidgetEvents_WidgetActiveChanged;
-            KeyDetectorWidget.Events.WidgetActiveChanged += KeyDetectoWidgetEvents_WidgetActiveChanged;
+            KeyDetectorWidget.Events.WidgetActiveChanged += KeyDetectorWidgetEvents_WidgetActiveChanged;
+            SpotifyWidget.Events.WidgetActiveChanged += SpotifyWidgetEvents_WidgetActiveChanged;
         }
 
         /// <summary>
@@ -135,7 +145,8 @@ namespace GameAssistant.Pages
             NoteWidget.Events.WidgetActiveChanged -= NoteWidgetEvents_WidgetActiveChanged;
             CalculatorWidget.Events.WidgetActiveChanged -= CalculatorWidgetEvents_WidgetActiveChanged;
             BrowserWidget.Events.WidgetActiveChanged -= BrowserWidgetEvents_WidgetActiveChanged;
-            KeyDetectorWidget.Events.WidgetActiveChanged -= KeyDetectoWidgetEvents_WidgetActiveChanged;
+            KeyDetectorWidget.Events.WidgetActiveChanged -= KeyDetectorWidgetEvents_WidgetActiveChanged;
+            SpotifyWidget.Events.WidgetActiveChanged -= SpotifyWidgetEvents_WidgetActiveChanged;
         }
 
         #region Widgets event's methods
@@ -176,10 +187,18 @@ namespace GameAssistant.Pages
             CheckAllWidgetsActiveProperty();
         }
 
-        private void KeyDetectoWidgetEvents_WidgetActiveChanged(bool state)
+        private void KeyDetectorWidgetEvents_WidgetActiveChanged(bool state)
         {
             if (KeyDetectorWidgetActiveProperty.PropertyValue != state)
                 KeyDetectorWidgetActiveProperty.PropertyValue = state;
+
+            CheckAllWidgetsActiveProperty();
+        }
+
+        private void SpotifyWidgetEvents_WidgetActiveChanged(bool state)
+        {
+            if (SpotifyWidgetActiveProperty.PropertyValue != state)
+                SpotifyWidgetActiveProperty.PropertyValue = state;
 
             CheckAllWidgetsActiveProperty();
         }
@@ -233,6 +252,11 @@ namespace GameAssistant.Pages
             KeyDetectorWidget.Events.WidgetActiveChanged_Invoke((bool)e);
         }
 
+        private void SpotifyWidgetActiveProperty_PropertyValueChanged(object sender, bool? e)
+        {
+            SpotifyWidget.Events.WidgetActiveChanged_Invoke((bool)e);
+        }
+
         #endregion
 
         // todo poprawić wydajność programu pod względem wykonywania eventów
@@ -258,6 +282,9 @@ namespace GameAssistant.Pages
 
             if (KeyDetectorWidgetActiveProperty.PropertyValue != e)
                 KeyDetectorWidgetActiveProperty.PropertyValue = e;
+
+            if (SpotifyWidgetActiveProperty.PropertyValue != e)
+                SpotifyWidgetActiveProperty.PropertyValue = e;
         }
 
         // a - czy sprawdzać wartość false
@@ -271,7 +298,8 @@ namespace GameAssistant.Pages
                 PictureWidgetActiveProperty.PropertyValue == NoteWidgetActiveProperty.PropertyValue &&
                 NoteWidgetActiveProperty.PropertyValue == CalculatorWidgetActiveProperty.PropertyValue &&
                 CalculatorWidgetActiveProperty.PropertyValue == BrowserWidgetActiveProperty.PropertyValue &&
-                BrowserWidgetActiveProperty.PropertyValue == KeyDetectorWidgetActiveProperty.PropertyValue)
+                BrowserWidgetActiveProperty.PropertyValue == KeyDetectorWidgetActiveProperty.PropertyValue &&
+                KeyDetectorWidgetActiveProperty.PropertyValue == SpotifyWidgetActiveProperty.PropertyValue)
             {
                 AllWidgetsActiveProperty.PropertyValue = true;
             }

@@ -86,62 +86,70 @@
             <Grid Background="#FF1C1A1A">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
 
                 <Button x:Name="GeneralSettingsButton"
                     Content="General" Grid.Row="0" 
                     Style="{StaticResource MenuButton}"
                     Click="GeneralSettingsButton_Click"
-                    Margin="0,0,0,1"
+                    Margin="0,0,0,0"
                     BorderThickness="1"/>
 
                 <Button x:Name="ClockWidgetButton"
-                    Content="Clock Widget" Grid.Row="1" 
+                    Content="Clock Widget" Grid.Row="2" 
                     Style="{StaticResource MenuButton}"
                     Click="ClockWidgetButton_Click"
-                    Margin="0,0,0,1"/>
+                    Margin="5"/>
 
                 <Button x:Name="PictureWidgetButton"
-                    Content="Picture Widget" Grid.Row="2"
+                    Content="Picture Widget" Grid.Row="3"
                     Style="{StaticResource MenuButton}"
-                    Margin="0,0,0,1"
+                    Margin="5"
                     Click="PictureWidgetButton_Click"/>
 
                 <Button x:Name="NoteWidgetButton"
-                    Content="Note Widget" Grid.Row="3"
+                    Content="Note Widget" Grid.Row="4"
                     Style="{StaticResource MenuButton}"
-                    Margin="0,0,0,1"
+                    Margin="5"
                     Click="NoteWidgetButton_Click"/>
 
                 <Button x:Name="CalculatorWidgetButton"
-                    Content="Calculator Widget" Grid.Row="4"
+                    Content="Calculator Widget" Grid.Row="5"
                     Style="{StaticResource MenuButton}"
-                    Margin="0,0,0,1"
+                    Margin="5"
                     Click="CalculatorWidgetButton_Click"/>
 
                 <Button x:Name="BrowserWidgetButton"
-                    Content="Browser Widget" Grid.Row="5"
+                    Content="Browser Widget" Grid.Row="6"
                     Style="{StaticResource MenuButton}"
-                    Margin="0,0,0,1"
+                    Margin="5"
                     Click="BrowserWidgetButton_Click"/>
 
                 <Button x:Name="KeyDetectorWidgetButton"
-                    Content="Key Detector Widget" Grid.Row="6"
+                    Content="Key Detector Widget" Grid.Row="7"
                     Style="{StaticResource MenuButton}"
-                    Margin="0,0,0,1"
+                    Margin="5"
                     Click="KeyDetectorWidgetButton_Click"/>
 
+                <Button x:Name="SpotifyWidgetButton"
+                    Content="Spotify Widget" Grid.Row="8"
+                    Style="{StaticResource MenuButton}"
+                    Margin="5"
+                    Click="SpotifyWidgetButton_Click"/>
+
                 <Button x:Name="AboutButton"
-                    Content="About" Grid.Row="8"
+                    Content="About" Grid.Row="100"
                     Style="{StaticResource MenuButton}"
                     Click="AboutButton_Click"/>
 
@@ -171,6 +179,9 @@
                        Visibility="Collapsed"/>
 
                         <Frame x:Name="KeyDetectorWidgetFrame"
+                       Visibility="Collapsed"/>
+
+                        <Frame x:Name="SpotifyWidgetFrame"
                        Visibility="Collapsed"/>
 
                         <Frame x:Name="AboutFrame"

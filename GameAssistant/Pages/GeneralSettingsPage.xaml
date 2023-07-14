@@ -44,6 +44,9 @@
                 <controls:BoolSettingProperty x:Name="KeyDetectorWidgetActiveProperty" PropertyName="Key detector widget active:" 
                                               PropertyValueChanged="KeyDetectorWidgetActiveProperty_PropertyValueChanged"/>
 
+                <controls:BoolSettingProperty x:Name="SpotifyWidgetActiveProperty" PropertyName="Spotify widget active:" 
+                                              PropertyValueChanged="SpotifyWidgetActiveProperty_PropertyValueChanged"/>
+
             </StackPanel>
 
             <Label Content="Startup:"

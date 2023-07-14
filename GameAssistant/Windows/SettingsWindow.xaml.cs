@@ -37,6 +37,7 @@ namespace GameAssistant.Windows
                 (CalculatorWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
                 (BrowserWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
                 (KeyDetectorWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
+                (SpotifyWidgetFrame.Content as WidgetSettingsPage).RemovePageMethodsFromWidgetEvents();
             };
         }
 
@@ -56,6 +57,7 @@ namespace GameAssistant.Windows
             CalculatorWidgetFrame.Content = new CalculatorSettingsPage(ref widgetsContainer.CalculatorWidgetContainer);
             BrowserWidgetFrame.Content = new BrowserSettingsPage(ref widgetsContainer.BrowserWidgetContainer);
             KeyDetectorWidgetFrame.Content = new KeyDetectorSettingsPage(ref widgetsContainer.KeyDetectorWidgetContainer);
+            SpotifyWidgetFrame.Content = new SpotifySettingsPage(ref widgetsContainer.SpotifyWidgetContainer);
 
             GeneralSettingsFrame.Content = new GeneralSettingsPage(ref widgetsContainer, () =>
             {
@@ -67,6 +69,7 @@ namespace GameAssistant.Windows
                     WidgetManager.ResetWidgetConfigurationToDefault<CalculatorWidget, CalculatorViewModel, CalculatorModel>(ref this.widgetsContainer.CalculatorWidgetContainer, () => (CalculatorWidgetFrame.Content as CalculatorSettingsPage).LoadWidget(ref this.widgetsContainer.CalculatorWidgetContainer));
                     WidgetManager.ResetWidgetConfigurationToDefault<BrowserWidget, BrowserViewModel, BrowserModel>(ref this.widgetsContainer.BrowserWidgetContainer, () => (BrowserWidgetFrame.Content as BrowserSettingsPage).LoadWidget(ref this.widgetsContainer.BrowserWidgetContainer));
                     WidgetManager.ResetWidgetConfigurationToDefault<KeyDetectorWidget, KeyDetectorViewModel, KeyDetectorModel>(ref this.widgetsContainer.KeyDetectorWidgetContainer, () => (KeyDetectorWidgetFrame.Content as KeyDetectorSettingsPage).LoadWidget(ref this.widgetsContainer.KeyDetectorWidgetContainer));
+                    WidgetManager.ResetWidgetConfigurationToDefault<SpotifyWidget, SpotifyViewModel, SpotifyModel>(ref this.widgetsContainer.SpotifyWidgetContainer, () => (SpotifyWidgetFrame.Content as SpotifySettingsPage).LoadWidget(ref this.widgetsContainer.SpotifyWidgetContainer));
                 }
             });
         }
@@ -83,6 +86,7 @@ namespace GameAssistant.Windows
             CalculatorWidgetFrame.Visibility = Visibility.Collapsed;
             BrowserWidgetFrame.Visibility = Visibility.Collapsed;
             KeyDetectorWidgetFrame.Visibility = Visibility.Collapsed;
+            SpotifyWidgetFrame.Visibility = Visibility.Collapsed;
             AboutFrame.Visibility = Visibility.Collapsed;
         }
 
@@ -99,6 +103,7 @@ namespace GameAssistant.Windows
             CalculatorWidgetButton.BorderThickness = new Thickness(0);
             BrowserWidgetButton.BorderThickness = new Thickness(0);
             KeyDetectorWidgetButton.BorderThickness = new Thickness(0);
+            SpotifyWidgetButton.BorderThickness = new Thickness(0);
             AboutButton.BorderThickness = new Thickness(0);
 
             senderButton.BorderThickness = new Thickness(1);
@@ -168,6 +173,16 @@ namespace GameAssistant.Windows
         {
             HideAllPages();
             KeyDetectorWidgetFrame.Visibility = Visibility.Visible;
+            CheckMenuButton(sender as Button);
+        }
+        
+        /// <summary>
+        /// On spotify widget button click.
+        /// </summary>
+        private void SpotifyWidgetButton_Click(object sender, RoutedEventArgs e)
+        {
+            HideAllPages();
+            SpotifyWidgetFrame.Visibility = Visibility.Visible;
             CheckMenuButton(sender as Button);
         }
 

@@ -16,6 +16,7 @@
             CalculatorWidgetContainer = new WidgetContainer<CalculatorWidget>();
             BrowserWidgetContainer = new WidgetContainer<BrowserWidget>();
             KeyDetectorWidgetContainer = new WidgetContainer<KeyDetectorWidget>();
+            SpotifyWidgetContainer = new WidgetContainer<SpotifyWidget>();
         }
 
         /// <summary>
@@ -27,13 +28,15 @@
         /// <param name="calculatorWidgetContainer">Calculator widget container.</param>
         /// <param name="browserWidgetContainer">Browser widget container.</param>
         /// <param name="keyDetectorWidgetContainer">Key detector widget container.</param>
+        /// <param name="spotifyWidgetContainer">Spotify widget container.</param>
         public AllWidgetsContainer
             (ref WidgetContainer<ClockWidget> clockWidgetContainer,
             ref WidgetContainer<PictureWidget> pictureWidgetContainer,
             ref WidgetContainer<NoteWidget> noteWidgetContainer,
             ref WidgetContainer<CalculatorWidget> calculatorWidgetContainer,
             ref WidgetContainer<BrowserWidget> browserWidgetContainer,
-            ref WidgetContainer<KeyDetectorWidget> keyDetectorWidgetContainer)
+            ref WidgetContainer<KeyDetectorWidget> keyDetectorWidgetContainer,
+            ref WidgetContainer<SpotifyWidget> spotifyWidgetContainer)
         {
             ClockWidgetContainer = clockWidgetContainer;
             PictureWidgetContainer = pictureWidgetContainer;
@@ -41,6 +44,7 @@
             CalculatorWidgetContainer = calculatorWidgetContainer;
             BrowserWidgetContainer = browserWidgetContainer;
             KeyDetectorWidgetContainer = keyDetectorWidgetContainer;
+            SpotifyWidgetContainer = spotifyWidgetContainer;
         }
 
         #region WidgetsContainers
@@ -85,6 +89,13 @@
         /// The key detector widget's container.
         /// </summary>
         public WidgetContainer<KeyDetectorWidget> KeyDetectorWidgetContainer;
+        #endregion
+        
+        #region SpotifyWidgetContainer
+        /// <summary>
+        /// The spotify widget's container.
+        /// </summary>
+        public WidgetContainer<SpotifyWidget> SpotifyWidgetContainer;
         #endregion
 
         #endregion
