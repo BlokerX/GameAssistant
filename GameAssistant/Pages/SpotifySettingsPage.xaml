@@ -83,6 +83,12 @@
                 <controls:TextBoxStringSettingProperty x:Name="BrowserAddressProperty"
                                              PropertyName="Browser address:"
                                              PropertyValueChanged="BrowserAddressProperty_PropertyValueChanged"/>
+                
+                <controls:DoubleSettingProperty x:Name="ZoomLevelProperty"
+                                                PropertyName="Zoom level:"
+                                                MinimumValue="-10"
+                                                MaximumValue="10"
+                                                PropertyValueChanged="ZoomLevelProperty_PropertyValueChanged"/>
 
             </StackPanel>
 

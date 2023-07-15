@@ -1,4 +1,5 @@
-﻿using GameAssistant.Core;
+﻿using CefSharp;
+using GameAssistant.Core;
 using GameAssistant.Models;
 using GameAssistant.Services;
 using GameAssistant.Widgets;
@@ -80,6 +81,7 @@ namespace GameAssistant.Pages
             this.DragActiveProperty.PropertyValue = model.IsDragActive;
 
             this.BrowserAddressProperty.PropertyValue = model.BrowserAddress;
+            this.ZoomLevelProperty.PropertyValue = model.ZoomLevel;
         }
 
         protected override void ActiveChanged(bool newState)
@@ -94,6 +96,7 @@ namespace GameAssistant.Pages
             this.DragActiveProperty.IsEnabled = newState;
 
             this.BrowserAddressProperty.IsEnabled = newState;
+            this.ZoomLevelProperty.IsEnabled = newState;
         }
 
         #region Widget
@@ -196,6 +199,16 @@ namespace GameAssistant.Pages
             }
         }
 
+        private void ZoomLevelProperty_PropertyValueChanged(object sender, double e)
+        {
+            if (SpotifyWidgetContainer.Widget?.DataContext != null)
+            {
+                SpotifyWidgetContainer.Widget.browserWindow.SetZoomLevel((SpotifyWidgetContainer.Widget.DataContext as SpotifyViewModel).WidgetModel.ZoomLevel = e);
+                var model = WidgetManager.GetModelFromWidget<SpotifyWidget, SpotifyModel>(ref SpotifyWidgetContainer.Widget);
+                WidgetManager.SaveWidgetConfigurationInFile(model);
+            }
+        }
+
         protected override void ActiveProperty_PropertyValueChanged(object sender, bool? e)
         {
             SpotifyWidget.Events.WidgetActiveChanged_Invoke((bool)e);
@@ -223,5 +236,6 @@ namespace GameAssistant.Pages
         {
             _spotifyWidgetContainer.LoadConfigurationFromFile<SpotifyWidget, SpotifyViewModel, SpotifyModel>(() => LoadWidget(ref _spotifyWidgetContainer));
         }
+
     }
 }

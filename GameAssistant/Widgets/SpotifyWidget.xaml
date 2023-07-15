@@ -36,7 +36,7 @@
         <Border x:Name="DragAndDropBar" 
                 Visibility="Visible" 
                 Height="15" 
-                Background="#7FFFFFFF"
+                Background="#22FFFFFF"
                 VerticalAlignment="Top"
                 CornerRadius="8,8,0,0"
                 d:Visibility="Visible" />

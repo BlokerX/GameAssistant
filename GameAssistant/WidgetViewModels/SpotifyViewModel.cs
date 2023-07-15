@@ -37,11 +37,11 @@ namespace GameAssistant.WidgetViewModels
             WidgetModel.Height = 420;
 
             // Set widget position:
-            WidgetModel.ScreenPositionX += 410;
+            WidgetModel.ScreenPositionX += 820;
 
             // Set widget background color:
-            WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.Navy);
-            WidgetModel.BackgroundOpacity = 0.6;
+            WidgetModel.BackgroundAnimatedBrush.BrushContainer.Variable = new SolidColorBrush(Colors.Green);
+            WidgetModel.BackgroundOpacity = 0.5;
         }
     }
 }
